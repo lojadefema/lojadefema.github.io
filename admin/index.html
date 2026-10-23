@@ -548,6 +548,143 @@ html:has(dialog[open]){overflow:hidden}
 .barra-baixo .btn{flex-direction:column;gap:2px;font-size:11.5px;padding:6px 2px;min-height:52px;white-space:nowrap}
 .barra-baixo .btn svg{width:20px;height:20px}
 .barra-baixo .btn-pri{flex:1 1 0}
+
+/* ===================== ABAS (Início · Produtos · Alterar preço) ===================== */
+.abas-topo{display:none}
+@media (min-width:760px){
+  .abas-topo:not([hidden]){display:flex;gap:4px;margin-right:8px}
+  .abas-topo button{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:8px 14px;border-radius:10px;border:0;background:none;color:#fff;opacity:.82;font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap}
+  .abas-topo button svg{width:18px;height:18px}
+  .abas-topo button:hover{opacity:1;background:rgba(255,255,255,.1)}
+  .abas-topo button[aria-current="page"]{opacity:1;background:rgba(255,255,255,.18);box-shadow:inset 0 -3px 0 #f2c94c}
+  .marca{margin-right:16px}
+  .abas-topo{margin-right:auto !important}
+}
+@media (min-width:760px) and (max-width:1023px){.abas-topo button svg{display:none}.abas-topo button{padding:8px 10px}}
+.barra-baixo .aba-btn{border-color:transparent;background:none;color:var(--muted)}
+.barra-baixo .aba-btn[aria-current="page"]{background:var(--leaf-soft);color:var(--leaf-ink)}
+.barra-baixo .aba-preco{flex:1.35 1 0}
+.tela-pag{min-width:0}
+@media (min-width:1024px){.tela-pag{max-width:1180px;margin:0 auto;padding:24px 28px 48px}}
+
+/* ---------- Início ---------- */
+.ini-hero{background:var(--leaf);color:#fff;border-radius:20px;padding:20px;display:grid;gap:16px;margin-bottom:14px;position:relative;overflow:hidden}
+.ini-hero::after{content:"";position:absolute;right:-60px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none}
+[data-theme="dark"] .ini-hero{background:#143220}
+@media (min-width:760px){.ini-hero{grid-template-columns:minmax(0,1fr) minmax(280px,380px);align-items:center;padding:24px 26px}}
+.ini-data{margin:0 0 2px;font-size:14px;font-weight:600;opacity:.8}
+.ini-hero h2{font-size:30px;color:#fff;margin:0 0 10px}
+.ini-status{display:inline-flex;align-items:center;gap:8px;margin:0;padding:5px 12px 5px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:700;font-size:14px}
+.ini-status .ponto{width:9px;height:9px;border-radius:50%;background:#f0a39a;flex:none}
+.ini-status.aberto .ponto{background:#7be3a0;box-shadow:0 0 0 3px rgba(123,227,160,.25)}
+.ini-horario{margin:8px 0 0;font-size:13px;opacity:.75}
+.ini-clima{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;position:relative;z-index:1;min-width:0}
+.ini-clima-msg{margin:0;font-size:14px;opacity:.85}
+.cl-agora{display:flex;align-items:center;gap:12px}
+.cl-ico{width:46px;height:46px;flex:none;color:#ffe08a}
+.cl-ico.nuvem{color:#e6eef0}
+.cl-temp{font:700 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.cl-desc{font-size:14px;line-height:1.3}
+.cl-desc b{display:block;font-size:15px}
+.cl-desc small{opacity:.8}
+.cl-linha{margin:10px 0 0;font-size:13.5px;opacity:.92;font-variant-numeric:tabular-nums}
+.cl-pulv{margin:10px 0 0;padding:8px 10px;border-radius:10px;font-size:13.5px;line-height:1.35;background:rgba(0,0,0,.16)}
+.cl-pulv b{font-weight:700}
+.cl-pulv.ok b{color:#9bf0b8}
+.cl-pulv.nao b{color:#ffc2a8}
+.cl-dias{display:flex;gap:6px;margin-top:10px}
+.cl-dia{flex:1;min-width:0;display:flex;align-items:center;gap:6px;font-size:12.5px;background:rgba(255,255,255,.07);border-radius:10px;padding:6px 8px;font-variant-numeric:tabular-nums}
+.cl-dia svg{width:22px;height:22px;flex:none;color:#ffe08a}
+.cl-dia span{min-width:0;line-height:1.25}
+.cl-dia b{display:block;font-weight:700}
+.cl-fonte{display:block;margin-top:8px;font-size:11px;opacity:.6}
+
+.ini-grade{display:grid;gap:14px}
+@media (min-width:760px){.ini-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ini-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0}
+.ini-card h3{font-size:19px;color:var(--leaf-ink);margin:0 0 12px}
+.ini-card-topo{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.ini-card-topo .link-btn{padding:0 0 12px;white-space:nowrap}
+.ini-vazio{color:var(--muted);margin:0;font-size:14px;list-style:none}
+.ini-nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:1024px){.ini-nums{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ini-num{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:76px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;text-align:left;color:var(--fg)}
+.ini-num:hover{border-color:var(--leaf-ink)}
+.ini-num b{font:700 26px/1.1 var(--display);color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.ini-num span{font-size:13px;font-weight:600;color:var(--muted)}
+.ini-num.alerta b{color:var(--soil)}
+.ini-num.promo b{color:var(--promo)}
+.ini-atalhos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ini-at{display:flex;align-items:center;gap:10px;min-height:52px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font-weight:600;font-size:14.5px;cursor:pointer;text-align:left;text-decoration:none;line-height:1.2}
+.ini-at:hover{border-color:var(--leaf-ink);color:var(--leaf-ink)}
+.ini-at svg{width:20px;height:20px;flex:none;color:var(--leaf-ink)}
+.ini-at.pri{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.ini-at.pri svg{color:#fff}
+.ini-at.pri:hover{background:var(--leaf-2);color:#fff}
+.ini-nf{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);margin-bottom:10px;font-size:14.5px}
+.ini-nf b{font-weight:700}
+.ini-prog{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ini-prog li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;font-size:14px}
+.ini-prog .barra{grid-column:1/-1;height:7px;border-radius:999px;background:var(--line);overflow:hidden}
+.ini-prog .barra span{display:block;height:100%;background:var(--ok);border-radius:999px}
+.ini-prog .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.ini-pedido{margin:10px 0 0;font-size:13.5px;color:var(--soil);font-weight:600}
+.ini-hist{list-style:none;margin:0;padding:0;display:grid}
+.ini-hist li+li{border-top:1px solid var(--line)}
+.ini-hist button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;width:100%;padding:9px 2px;border:0;background:none;text-align:left;cursor:pointer;color:var(--fg);font-size:14px}
+.ini-hist button:hover .h-nome{text-decoration:underline}
+.ini-hist .h-nome{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ini-hist .h-val{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.ini-hist .h-val s{color:var(--muted);font-size:12.5px;margin-right:4px}
+.ini-hist .h-val b.sobe{color:var(--promo)}
+.ini-hist .h-val b.desce{color:var(--ok)}
+.ini-hist small{color:var(--muted);font-size:12.5px}
+
+/* ---------- Alterar preço ---------- */
+.pr-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.pr-topo h2{font-size:26px;color:var(--leaf-ink);margin:0 0 2px}
+.pr-topo .dica{margin:0}
+.pr-topo .btn{min-height:44px;padding:8px 14px}
+.pr-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pr-lista .grupo-tit{list-style:none;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:6px 2px 0}
+.pr-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
+.pr-item.aberto{border-color:var(--leaf-ink);box-shadow:0 6px 22px rgba(22,58,34,.1)}
+.pr-item.inativo .pr-linha .thumb,.pr-item.inativo .pr-nome{opacity:.6}
+.pr-linha{display:flex;align-items:center;gap:12px;width:100%;min-height:76px;padding:10px 12px;border:0;background:none;text-align:left;cursor:pointer;color:var(--fg);-webkit-tap-highlight-color:transparent}
+.pr-linha:active{background:var(--bg)}
+.pr-txt{flex:1;min-width:0}
+.pr-nome{font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.pr-sub{display:block;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr-valor{flex:none;text-align:right;font-variant-numeric:tabular-nums;line-height:1.2;display:flex;flex-direction:column;align-items:flex-end}
+.pr-valor b{font-size:18px;color:var(--leaf-ink)}
+.pr-valor s{font-size:12.5px;color:var(--muted)}
+.pr-valor small{font-size:11.5px;color:var(--muted)}
+.pr-valor .consultar{font-size:12.5px;color:var(--soil);font-weight:600;background:var(--soil-soft);padding:3px 8px;border-radius:8px}
+.pr-valor .tag{margin-top:3px}
+.pr-seta{width:18px;height:18px;flex:none;color:var(--muted);transition:transform .15s}
+.pr-item.aberto .pr-seta{transform:rotate(180deg)}
+.pr-form{border-top:1px solid var(--line);padding:14px 12px 12px;background:var(--bg)}
+.pr-campos{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:560px){.pr-campos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr-campos .campo{margin:0}
+.pr-campos .preco-box .inp{font-size:20px;font-weight:700;min-height:54px}
+.pr-ajustes{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.pr-ajustes button{min-height:36px;padding:4px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:13px;cursor:pointer;font-variant-numeric:tabular-nums;color:var(--fg)}
+.pr-ajustes button:hover{border-color:var(--leaf-ink)}
+.pr-ajustes .menos{color:var(--ok)}
+.pr-ajustes .mais{color:var(--promo)}
+.pr-chk{display:flex;align-items:center;gap:10px;min-height:48px;padding:8px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;font-weight:600}
+.pr-chk input{width:22px;height:22px;accent-color:var(--leaf);flex:none;margin:0}
+.pr-chk small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
+.pr-chk.promo-on{border-color:var(--promo);background:var(--promo-soft)}
+.pr-erro{color:var(--erro);font-weight:600;font-size:14px;margin:10px 0 0}
+.pr-info{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.pr-pe{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.pr-pe .btn{min-height:46px}
+.pr-pe .pr-editar{margin-right:auto}
+.pr-pe .btn-pri{min-width:130px}
+@media (max-width:420px){.pr-pe .pr-editar{flex-basis:100%;order:3}.pr-pe .btn{flex:1}}
+.pr-mais{text-align:center;color:var(--muted);font-size:14px;padding:6px 0 0;list-style:none}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -646,6 +783,12 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <small id="usuarioTxt">Sistema da loja</small>
       </div>
     </div>
+    <nav class="abas-topo" id="abasTopo" aria-label="Seções do painel" hidden>
+      <button type="button" data-aba="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Início</button>
+      <button type="button" data-aba="produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Produtos</button>
+      <button type="button" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg>Alterar preço</button>
+      <button type="button" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
+    </nav>
     <button class="btn btn-claro btn-ico" id="btnTema" type="button" aria-label="Mudar para modo escuro"><svg class="ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <button class="btn btn-claro btn-instalar" id="btnInstalar" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18.5h3"/></svg><span>Instalar</span></button>
     <button class="btn btn-claro" id="btnSair" type="button" hidden>Sair</button>
@@ -671,6 +814,70 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <p class="erro-txt" id="loginErro" role="alert" hidden></p>
       <button class="btn btn-pri" type="submit" style="width:100%" id="btnEntrar">Entrar</button>
     </form>
+  </section>
+
+  <!-- INÍCIO -->
+  <section id="telaInicio" class="tela-pag" hidden aria-labelledby="tInicio">
+    <div class="ini-hero">
+      <div class="ini-hero-txt">
+        <p class="ini-data" id="iniData"></p>
+        <h2 id="tInicio">Bom dia!</h2>
+        <p class="ini-status" id="iniStatus"><span class="ponto" aria-hidden="true"></span><span id="iniStatusTxt"></span></p>
+        <p class="ini-horario" id="iniHorario"></p>
+      </div>
+      <div class="ini-clima" id="iniClima" aria-live="polite"><p class="ini-clima-msg">Carregando o tempo…</p></div>
+    </div>
+    <div class="ini-grade">
+      <section class="ini-card ini-cat" aria-labelledby="tIniCat">
+        <div class="ini-card-topo"><h3 id="tIniCat">Catálogo</h3><button type="button" class="link-btn" data-aba="produtos">Ver produtos</button></div>
+        <div class="ini-nums" id="iniNums"></div>
+      </section>
+      <section class="ini-card" aria-labelledby="tIniAtalhos">
+        <h3 id="tIniAtalhos">Atalhos</h3>
+        <div class="ini-atalhos">
+          <button type="button" class="ini-at pri" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg><span>Alterar preço</span></button>
+          <button type="button" class="ini-at" data-acao="novo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Novo produto</span></button>
+          <button type="button" class="ini-at" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg><span>Mudas – balcão</span></button>
+          <button type="button" class="ini-at" data-acao="reajuste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg><span>Reajuste em lote</span></button>
+          <button type="button" class="ini-at" data-acao="historico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>Histórico de preços</span></button>
+          <button type="button" class="ini-at" data-acao="secoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Seções</span></button>
+          <button type="button" class="ini-at" data-acao="carrossel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="11" rx="2"/><path d="M2 8v5M22 8v5"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="12" cy="20" r="1" fill="currentColor"/><circle cx="15" cy="20" r="1" fill="currentColor"/></svg><span>Carrossel do site</span></button>
+          <a class="ini-at" href="../" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg><span>Ver o site</span></a>
+        </div>
+      </section>
+      <section class="ini-card" aria-labelledby="tIniMudas">
+        <div class="ini-card-topo"><h3 id="tIniMudas">Mudas de bandeja</h3><button type="button" class="link-btn" data-acao="mudas">Abrir</button></div>
+        <div id="iniMudas"><p class="ini-vazio">Carregando…</p></div>
+      </section>
+      <section class="ini-card" aria-labelledby="tIniHist">
+        <div class="ini-card-topo"><h3 id="tIniHist">Últimas mudanças de preço</h3><button type="button" class="link-btn" data-acao="historico">Ver tudo</button></div>
+        <ul class="ini-hist" id="iniHist"><li class="ini-vazio">Carregando…</li></ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- ALTERAR PREÇO -->
+  <section id="telaPrecos" class="tela-pag" hidden aria-labelledby="tPrecos">
+    <div class="pr-topo">
+      <div>
+        <h2 id="tPrecos">Alterar preço</h2>
+        <p class="dica">Busque o produto, toque nele, mude o preço e salve. O site atualiza na hora.</p>
+      </div>
+      <button class="btn btn-sec" type="button" id="btnReajuste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Reajuste em lote</button>
+    </div>
+    <div class="ferr">
+      <div class="busca">
+        <label for="prBusca" class="sr">Buscar produto para alterar o preço</label>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input class="inp" id="prBusca" type="search" placeholder="Nome, marca ou tipo do produto…" autocomplete="off" enterkeyhint="search">
+      </div>
+      <div>
+        <label for="prDep" class="sr">Departamento</label>
+        <select class="inp" id="prDep"><option value="">Todos os departamentos</option></select>
+      </div>
+    </div>
+    <p class="resumo" id="prResumo" aria-live="polite"></p>
+    <ul class="pr-lista" id="prLista"></ul>
   </section>
 
   <!-- LISTA -->
@@ -715,16 +922,12 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   </section>
 </main>
 
-<nav class="barra-baixo" id="barraBaixo" aria-label="Ações" hidden>
-  <button class="btn btn-sec" type="button" id="btnReajuste" aria-label="Reajuste de preços em lote">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Reajuste</button>
-  <button class="btn btn-sec" type="button" id="btnMudas" aria-label="Mudas – vendas de balcão e notas fiscais">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
-  <button class="btn btn-sec" type="button" id="btnHist" aria-label="Histórico de preços"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Histórico</button>
-  <button class="btn btn-sec" type="button" id="btnDeps" aria-label="Departamentos e subcategorias">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Seções</button>
-  <button class="btn btn-pri" type="button" id="btnNovo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Novo</button>
+<nav class="barra-baixo" id="barraBaixo" aria-label="Seções do painel" hidden>
+  <button class="btn btn-sec aba-btn" type="button" data-aba="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Início</button>
+  <button class="btn btn-sec aba-btn" type="button" data-aba="produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Produtos</button>
+  <button class="btn btn-sec aba-btn aba-preco" type="button" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg>Alterar preço</button>
+  <button class="btn btn-sec aba-btn" type="button" id="btnMudas" aria-label="Mudas – vendas de balcão e notas fiscais"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
+  <button class="btn btn-pri" type="button" id="btnNovo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Novo</button>
 </nav>
 
 <!-- EDITOR -->
@@ -1643,11 +1846,40 @@ async function comFeedback(msgCarregando, msgOk, fn) {
 
 /* ---------- telas ---------- */
 function mostrarTela(nome) {
+  if (nome === "lista") nome = "produtos";
   $("#telaCarregando").hidden = true;
   $("#telaLogin").hidden = nome !== "login";
-  $("#telaLista").hidden = nome !== "lista";
-  const logado = nome === "lista";
-  ["#btnSair", "#btnNovoTopo", "#btnReajusteTopo", "#btnDepsTopo", "#btnMudasTopo", "#btnHistTopo", "#btnCarrosselTopo", "#barraBaixo"].forEach(s => $(s).hidden = !logado);
+  $("#telaInicio").hidden = nome !== "inicio";
+  $("#telaLista").hidden = nome !== "produtos";
+  $("#telaPrecos").hidden = nome !== "precos";
+  const logado = nome !== "login";
+  ui.logado = logado;
+  ["#btnSair", "#btnNovoTopo", "#btnReajusteTopo", "#btnDepsTopo", "#btnMudasTopo", "#btnHistTopo", "#btnCarrosselTopo", "#barraBaixo", "#abasTopo"].forEach(s => $(s).hidden = !logado);
+  document.querySelectorAll("#barraBaixo [data-aba], #abasTopo [data-aba]").forEach(b => {
+    if (b.dataset.aba === nome) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+}
+
+/* ---------- abas: Início · Produtos · Alterar preço (o botão "voltar" do celular volta para o Início) ---------- */
+const ABAS = ["inicio", "produtos", "precos"];
+const abaDoEndereco = () => { const h = location.hash.slice(1); return ABAS.includes(h) ? h : "inicio"; };
+function irPara(aba, { historico = true } = {}) {
+  if (!ABAS.includes(aba)) aba = "inicio";
+  const antes = ui.aba;
+  ui.aba = aba;
+  if (historico && location.hash.slice(1) !== aba) {
+    if (aba === "inicio") {
+      if (history.state && history.state.painel) { history.back(); return; } // o popstate desenha o Início
+      history.replaceState(null, "", location.pathname + location.search);
+    } else if (history.state && history.state.painel) history.replaceState({ painel: aba }, "", "#" + aba);
+    else history.pushState({ painel: aba }, "", "#" + aba);
+  }
+  mostrarTela(aba);
+  if (aba === "inicio") { renderInicio(); carregarExtrasInicio(); }
+  if (aba === "precos") { montarDepsPrecos(); renderPrecos(); }
+  if (aba === "produtos") renderListaBase();
+  if (antes !== aba) window.scrollTo(0, 0);
+  if (aba === "precos" && antes !== "precos" && mqLargo.matches) focarDepois("#prBusca");
 }
 
 async function recarregar() {
@@ -1733,6 +1965,11 @@ function htmlAcoes(p) {
 }
 
 function renderLista() {
+  renderListaBase();
+  if (ui.aba === "precos" && prUi.aberto == null) { montarDepsPrecos(); renderPrecos(); }
+  if (ui.aba === "inicio") renderInicio();
+}
+function renderListaBase() {
   const { q, dep, chip } = ui.filtro;
   const doDep = ui.produtos.filter(p => !dep || p.dep === dep);
   const { itens: base, parecidos } = filtrarBusca(doDep, q);
@@ -2547,6 +2784,385 @@ async function instalarPainel() {
   $("#dlgInstalar").showModal();
 }
 
+
+/* =====================================================================
+   INÍCIO — resumo do dia: loja aberta?, tempo em Pirapozinho, catálogo,
+   mudas e últimas mudanças de preço
+   ===================================================================== */
+const HORARIO_LOJA = { 1: [8, 17], 2: [8, 17], 3: [8, 17], 4: [8, 17], 5: [8, 17], 6: [8, 12] }; // igual ao site; 0 = domingo (fechado)
+const DIAS_SEM = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+function agoraLoja() { // sempre no relógio de Brasília
+  try {
+    const f = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23" }).formatToParts(new Date());
+    const g = t => (f.find(x => x.type === t) || {}).value;
+    return { dia: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(g("weekday")), min: (+g("hour") % 24) * 60 + +g("minute") };
+  } catch { const d = new Date(Date.now() - 3 * 3600e3); return { dia: d.getUTCDay(), min: d.getUTCHours() * 60 + d.getUTCMinutes() }; }
+}
+function situacaoDaLoja() {
+  const { dia, min } = agoraLoja(), h = HORARIO_LOJA[dia];
+  if (h && min >= h[0] * 60 && min < h[1] * 60) return { aberto: true, texto: `Loja aberta · fecha às ${h[1]}h` };
+  if (h && min < h[0] * 60) return { aberto: false, texto: `Loja fechada · abre hoje às ${h[0]}h` };
+  for (let i = 1; i <= 7; i++) { const d = (dia + i) % 7; if (HORARIO_LOJA[d]) return { aberto: false, texto: `Loja fechada · abre ${i === 1 ? "amanhã" : DIAS_SEM[d]} às ${HORARIO_LOJA[d][0]}h` }; }
+  return { aberto: false, texto: "Loja fechada" };
+}
+function renderHeroInicio() {
+  const { dia, min } = agoraLoja();
+  const h = Math.floor(min / 60);
+  $("#tInicio").textContent = (h >= 5 && h < 12 ? "Bom dia" : h >= 12 && h < 18 ? "Boa tarde" : "Boa noite") + "!";
+  $("#iniData").textContent = maiuscula(new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo", weekday: "long", day: "numeric", month: "long" }));
+  const st = situacaoDaLoja();
+  $("#iniStatusTxt").textContent = st.texto;
+  $("#iniStatus").classList.toggle("aberto", st.aberto);
+  const hj = HORARIO_LOJA[dia];
+  $("#iniHorario").textContent = (hj ? `Hoje: das ${hj[0]}h às ${hj[1]}h` : "Domingo: loja fechada") + " · Seg. a sex. 8h–17h · Sáb. 8h–12h".replace(/ (?=\d|a )/g, "\u00a0");
+}
+
+/* ---------- tempo (Open-Meteo, sem chave). Guarda 30 min neste aparelho. ---------- */
+const CLIMA_URL = "https://api.open-meteo.com/v1/forecast?latitude=-22.2756&longitude=-51.4997"
+  + "&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,precipitation"
+  + "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum"
+  + "&timezone=America%2FSao_Paulo&forecast_days=3";
+const clima = { dados: null, carregando: false };
+function tipoClima(c) {
+  if (c === 0) return ["sol", "Céu limpo"];
+  if (c <= 2) return ["solnuvem", "Poucas nuvens"];
+  if (c === 3) return ["nuvem", "Nublado"];
+  if (c === 45 || c === 48) return ["neblina", "Neblina"];
+  if (c >= 51 && c <= 57) return ["chuva", "Garoa"];
+  if ((c >= 61 && c <= 67) || (c >= 80 && c <= 82)) return ["chuva", c >= 80 ? "Pancadas de chuva" : "Chuva"];
+  if (c >= 95) return ["raio", "Trovoadas"];
+  return ["nuvem", "Tempo instável"];
+}
+function svgClima(tipo, cls = "") {
+  const sol = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>';
+  const nuvem = '<path d="M7 18.5h10.2a3.8 3.8 0 0 0 .4-7.6 5.6 5.6 0 0 0-10.8 1.4A3.1 3.1 0 0 0 7 18.5z"/>';
+  const corpo = {
+    sol,
+    solnuvem: '<circle cx="8.5" cy="8.5" r="3"/><path d="M8.5 2.5v1.5M2.5 8.5H4M4.3 4.3l1 1M12.7 4.3l-1 1"/><path d="M9 20h8.4a3.3 3.3 0 0 0 .3-6.6 4.8 4.8 0 0 0-9.3 1.2A2.7 2.7 0 0 0 9 20z"/>',
+    nuvem,
+    neblina: '<path d="M7 14h10.2a3.8 3.8 0 0 0 .4-7.6 5.6 5.6 0 0 0-10.8 1.4A3.1 3.1 0 0 0 7 14z"/><path d="M4 17.5h16M6 21h12"/>',
+    chuva: '<path d="M7 15h10.2a3.8 3.8 0 0 0 .4-7.6 5.6 5.6 0 0 0-10.8 1.4A3.1 3.1 0 0 0 7 15z"/><path d="M8.5 18l-1 2.5M12.5 18l-1 2.5M16.5 18l-1 2.5"/>',
+    raio: '<path d="M7 14h10.2a3.8 3.8 0 0 0 .4-7.6 5.6 5.6 0 0 0-10.8 1.4A3.1 3.1 0 0 0 7 14z"/><path d="M12.5 15l-2 3.5h3l-2 3.5"/>',
+  }[tipo] || nuvem;
+  const cor = tipo === "sol" || tipo === "solnuvem" ? "" : " nuvem";
+  return `<svg class="${cls}${cls ? cor : ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${corpo}</svg>`;
+}
+/* recomendação usual para aplicar defensivos: vento entre 3 e 10 km/h, abaixo de 30 °C, umidade acima de 55%, sem chuva */
+function avaliarPulverizacao(c) {
+  const v = c.wind_speed_10m, t = c.temperature_2m, u = c.relative_humidity_2m, problemas = [];
+  if (c.precipitation > 0) problemas.push("está chovendo");
+  if (v > 10) problemas.push(`vento forte (${Math.round(v)} km/h)`);
+  else if (v < 3) problemas.push(`ar parado (${Math.round(v)} km/h)`);
+  if (t >= 30) problemas.push(`calor (${Math.round(t)} °C)`);
+  if (u < 55) problemas.push(`ar seco (${Math.round(u)}% de umidade)`);
+  return problemas.length
+    ? `<p class="cl-pulv nao"><b>Pulverizar agora: evitar.</b> ${maiuscula(problemas.join(", "))}.</p>`
+    : `<p class="cl-pulv ok"><b>Pulverizar agora: condições boas.</b> Vento ${Math.round(v)} km/h, ${Math.round(t)} °C, umidade ${Math.round(u)}%.</p>`;
+}
+function renderClima() {
+  const box = $("#iniClima"), d = clima.dados;
+  if (!d) { box.innerHTML = `<p class="ini-clima-msg">${clima.carregando ? "Carregando o tempo…" : "Previsão do tempo indisponível agora."}</p>`; return; }
+  const c = d.current, dd = d.daily;
+  const [tipo, desc] = tipoClima(c.weather_code);
+  const chuvaHoje = dd.precipitation_probability_max[0];
+  const dias = [1, 2].map(i => {
+    const [ti] = tipoClima(dd.weather_code[i]);
+    const nome = i === 1 ? "Amanhã" : maiuscula(new Date(dd.time[i] + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "short" }).replace(".", ""));
+    return `<div class="cl-dia">${svgClima(ti)}<span><b>${nome}</b>${Math.round(dd.temperature_2m_max[i])}° / ${Math.round(dd.temperature_2m_min[i])}° · ${dd.precipitation_probability_max[i] ?? 0}%</span></div>`;
+  }).join("");
+  box.innerHTML = `<div class="cl-agora">${svgClima(tipo, "cl-ico")}<span class="cl-temp">${Math.round(c.temperature_2m)}°</span>
+      <span class="cl-desc"><b>${desc}</b><small>Pirapozinho, agora</small></span></div>
+    <p class="cl-linha">Hoje: máx. ${Math.round(dd.temperature_2m_max[0])}° · mín. ${Math.round(dd.temperature_2m_min[0])}° · chuva ${chuvaHoje ?? 0}%${dd.precipitation_sum[0] >= 0.5 ? ` (${String(Math.round(dd.precipitation_sum[0] * 10) / 10).replace(".", ",")} mm)` : ""}</p>
+    ${avaliarPulverizacao(c)}
+    <div class="cl-dias">${dias}</div>
+    <small class="cl-fonte">Previsão: Open-Meteo</small>`;
+}
+async function carregarClima() {
+  const salvo = lerJSON("defema-clima");
+  if (salvo && salvo.d && Date.now() - salvo.t < 30 * 60000) { clima.dados = salvo.d; renderClima(); return; }
+  if (clima.carregando) return;
+  clima.carregando = true; if (!clima.dados) renderClima();
+  try {
+    const r = await fetch(CLIMA_URL, { cache: "no-store" });
+    if (!r.ok) throw new Error("clima " + r.status);
+    const d = await r.json();
+    if (!d.current || !d.daily) throw new Error("clima sem dados");
+    clima.dados = d; gravarJSON("defema-clima", { t: Date.now(), d });
+  } catch (e) { console.warn(e); if (salvo && salvo.d) clima.dados = salvo.d; }
+  finally { clima.carregando = false; renderClima(); }
+}
+
+/* ---------- números, mudas e histórico ---------- */
+const ini = { hist: null, histErro: "", mudasOk: false, mudasErro: "", em: 0 };
+async function carregarExtrasInicio(forcar) {
+  carregarClima();
+  if (!forcar && Date.now() - ini.em < 90000) return;
+  ini.em = Date.now();
+  const desde = new Date(Date.now() - 14 * 864e5).toISOString();
+  const [m, h] = await Promise.allSettled([api.listarMudas(), api.listarHistorico(desde)]);
+  if (m.status === "fulfilled") { mudasUi.movs = m.value; ini.mudasOk = true; ini.mudasErro = ""; } else ini.mudasErro = m.reason?.message || "Não foi possível carregar.";
+  if (h.status === "fulfilled") { ini.hist = h.value; ini.histErro = ""; } else ini.histErro = h.reason?.message || "Não foi possível carregar.";
+  if (ui.aba === "inicio") renderInicio();
+}
+function quando(iso) {
+  const d = new Date(iso), hoje = new Date(), ontem = new Date(Date.now() - 864e5);
+  const hora = d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  if (d.toDateString() === hoje.toDateString()) return "hoje, " + hora;
+  if (d.toDateString() === ontem.toDateString()) return "ontem, " + hora;
+  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }) + ", " + hora;
+}
+function renderInicio() {
+  renderHeroInicio();
+  renderClima();
+  const ps = ui.produtos, carregado = ps.length > 0;
+  const n = f => carregado ? ps.filter(f).length : "–";
+  const nums = [
+    ["ativo", n(p => p.ativo), "No site", ""],
+    ["promo", n(p => p.preco_antigo != null), "Em promoção", "promo"],
+    ["sempreco", n(p => p.preco == null), "Sem preço", "alerta"],
+    ["semfoto", n(p => !p.foto_publica), "Sem foto", "alerta"],
+    ["inativo", n(p => !p.ativo), "Ocultos", ""],
+    ["todos", carregado ? ps.length : "–", "Cadastrados", ""],
+  ];
+  $("#iniNums").innerHTML = nums.map(([chip, v, rot, cls]) =>
+    `<button type="button" class="ini-num${v && cls ? " " + cls : ""}" data-chip-ini="${chip}" aria-label="${rot}: ${v} — ver na lista"><b>${v}</b><span>${rot}</span></button>`).join("");
+
+  // mudas: bandejas completas (para nota) e as que estão mais perto de completar
+  if (!ini.mudasOk) $("#iniMudas").innerHTML = `<p class="ini-vazio">${esc(ini.mudasErro || "Carregando…")}</p>`;
+  else {
+    const lista = produtosBandeja(), saldo = saldoMudas(false), prontas = [], prog = [];
+    for (const p of lista) {
+      const t = tamBandeja(p.sub), s0 = Math.max(0, saldo.get(p.id) || 0);
+      if (Math.floor(s0 / t)) prontas.push({ n: Math.floor(s0 / t), nome: nomeMuda(p) });
+      if (s0 % t) prog.push({ p, t, r: s0 % t });
+    }
+    prog.sort((a, b) => b.r / b.t - a.r / a.t);
+    const pend = lerPedidoMudas().reduce((s1, it) => s1 + it.mudas, 0);
+    $("#iniMudas").innerHTML = (prontas.length
+        ? (() => { const tot = prontas.reduce((a, x) => a + x.n, 0);
+            return `<div class="ini-nf">${ICONE_NF}<span><b>${tot} bandeja${tot > 1 ? "s prontas" : " pronta"} para nota fiscal:</b> ${prontas.map(x => `${x.n > 1 ? x.n + "× " : ""}${esc(x.nome)}`).join(", ")}</span></div>`; })() : "")
+      + (prog.length
+        ? `<ul class="ini-prog">${prog.slice(0, 4).map(({ p, t, r }) => `<li><span>${esc(nomeMuda(p))}</span><span class="n">${r} de ${t}</span><span class="barra" aria-hidden="true"><span style="width:${(r / t * 100).toFixed(1)}%"></span></span></li>`).join("")}</ul>`
+        : (prontas.length ? "" : '<p class="ini-vazio">Nenhuma bandeja em andamento.</p>'))
+      + (pend ? `<p class="ini-pedido">Pedido em aberto neste aparelho: ${pend} mudas (falta salvar).</p>` : "");
+  }
+
+  // últimas mudanças de preço
+  if (ini.histErro) $("#iniHist").innerHTML = `<li class="ini-vazio">${esc(ini.histErro)}</li>`;
+  else if (!ini.hist) $("#iniHist").innerHTML = '<li class="ini-vazio">Carregando…</li>';
+  else {
+    const itens = ini.hist.filter(h => h.campo === "preco").slice(0, 6);
+    $("#iniHist").innerHTML = itens.length ? itens.map(h => {
+      const a = h.valor_antes == null ? null : Number(h.valor_antes), b = h.valor_depois == null ? null : Number(h.valor_depois);
+      const seta = a == null || b == null ? "" : b > a ? "sobe" : b < a ? "desce" : "";
+      const existe = ui.produtos.some(x => String(x.id) === String(h.produto_id));
+      return `<li><button type="button" ${existe ? `data-pr-abrir="${esc(h.produto_id)}"` : "disabled"}>
+        <span class="h-nome">${esc(h.produto_nome || "(produto excluído)")}</span>
+        <span class="h-val">${a != null ? `<s>${moeda(a)}</s>` : ""}<b class="${seta}">${b != null ? moeda(b) : "consultar"}</b></span>
+        <small>${quando(h.alterado_em)}${h.alterado_por_email ? " · " + esc(h.alterado_por_email.split("@")[0]) : ""}</small></button></li>`;
+    }).join("") : '<li class="ini-vazio">Nenhum preço mudou nos últimos 14 dias.</li>';
+  }
+}
+const ICONE_NF = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5v4.5H19M9 12h7M9 15.5h7M9 19h4"/></svg>';
+
+/* =====================================================================
+   ALTERAR PREÇO — busca + edição rápida de preço, promoção e "no site"
+   ===================================================================== */
+const prUi = { q: "", dep: "", aberto: null };
+const PR_MAX = 40;
+function montarDepsPrecos() {
+  const sel = $("#prDep"), atual = prUi.dep;
+  sel.innerHTML = '<option value="">Todos os departamentos</option>' + ui.deps.map(d => `<option value="${esc(d.nome)}">${esc(d.nome)}</option>`).join("");
+  sel.value = ui.deps.some(d => d.nome === atual) ? atual : "";
+}
+function htmlValorPr(p) {
+  if (p.preco == null) return '<span class="consultar">Sem preço</span>';
+  const t = tamBandeja(p.sub);
+  return (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s>` : "") + `<b>${moeda(p.preco)}</b>`
+    + (p.por_metro ? "<small>por metro</small>" : "") + (t ? `<small>${loteDe(t)} mudas</small>` : "")
+    + (p.preco_antigo != null ? `<span class="tag promo">Promoção</span>` : "");
+}
+function htmlFormPr(p) {
+  const id = esc(p.id), t = tamBandeja(p.sub), promo = p.preco_antigo != null;
+  return `<form class="pr-form" data-pr-form="${id}" novalidate>
+    <div class="pr-campos">
+      <div class="campo">
+        <label for="prP-${id}"><span class="pr-rot">${promo ? "Preço da promoção" : "Preço"}</span>${t ? ` (lote de ${loteDe(t)} mudas)` : p.por_metro ? " (por metro)" : ""}</label>
+        <div class="preco-box"><span>R$</span><input class="inp" id="prP-${id}" name="preco" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="Consultar" value="${p.preco != null ? num2(p.preco) : ""}"></div>
+        <div class="pr-ajustes" role="group" aria-label="Ajuste rápido do preço">
+          <button type="button" class="menos" data-aj="-10">−10%</button><button type="button" class="menos" data-aj="-5">−5%</button>
+          <button type="button" class="mais" data-aj="5">+5%</button><button type="button" class="mais" data-aj="10">+10%</button>
+          <button type="button" data-aj="desfazer">Desfazer</button>
+        </div>
+      </div>
+      <div class="campo">
+        <label class="pr-chk${promo ? " promo-on" : ""}"><input type="checkbox" name="promo"${promo ? " checked" : ""}><span>Em promoção<small>Mostra no site o preço antigo riscado</small></span></label>
+        <div class="campo" data-pr-antigo${promo ? "" : " hidden"} style="margin:10px 0 0">
+          <label for="prA-${id}">Preço antes da promoção (riscado)</label>
+          <div class="preco-box"><span>R$</span><input class="inp" id="prA-${id}" name="antigo" inputmode="decimal" autocomplete="off" value="${promo ? num2(p.preco_antigo) : ""}"></div>
+        </div>
+        ${t ? `<div class="campo" style="margin:10px 0 0"><label for="prB-${id}">Bandeja fechada de ${t} (encomenda)</label>
+          <div class="preco-box"><span>R$</span><input class="inp" id="prB-${id}" name="bandeja" inputmode="decimal" autocomplete="off" placeholder="Consultar" value="${p.preco_bandeja != null ? num2(p.preco_bandeja) : ""}"></div></div>` : ""}
+        <label class="pr-chk" style="margin-top:10px"><input type="checkbox" name="ativo"${p.ativo ? " checked" : ""}><span>Aparece no site<small>Desmarque se acabou o estoque</small></span></label>
+      </div>
+    </div>
+    <p class="pr-erro" role="alert" hidden></p>
+    <p class="pr-info">Deixe o preço vazio para mostrar “Consultar” no site.${p.atualizado_em ? ` Última alteração: ${dataBR(p.atualizado_em)}.` : ""}</p>
+    <div class="pr-pe">
+      <button type="button" class="btn btn-sec pr-editar" data-pr-editar="${id}">Editar tudo (foto, descrição…)</button>
+      <button type="button" class="btn btn-sec" data-pr-fechar>Cancelar</button>
+      <button type="submit" class="btn btn-pri">Salvar</button>
+    </div>
+  </form>`;
+}
+function renderPrecos() {
+  const base = ui.produtos.filter(p => !prUi.dep || p.dep === prUi.dep);
+  const q = prUi.q.trim();
+  let itens, titulo = "", parecidos = false;
+  if (!q && !prUi.dep) {
+    itens = [...base].sort((a, b) => String(b.atualizado_em || "").localeCompare(String(a.atualizado_em || ""))).slice(0, 10);
+    titulo = "Mexidos por último";
+  } else {
+    const r = filtrarBusca(base, q);
+    parecidos = r.parecidos;
+    itens = r.itens.sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR") || (a.marca || "").localeCompare(b.marca || "", "pt-BR"));
+  }
+  if (prUi.aberto != null && !itens.some(p => String(p.id) === prUi.aberto)) {
+    const ab = ui.produtos.find(p => String(p.id) === prUi.aberto); if (ab) itens.unshift(ab); else prUi.aberto = null;
+  }
+  const total = itens.length, mostra = itens.slice(0, PR_MAX);
+  $("#prResumo").textContent = !ui.produtos.length ? "Carregando produtos…"
+    : !q && !prUi.dep ? "Digite o nome do produto para buscar. Abaixo, os últimos que foram alterados."
+    : `${total} produto${total === 1 ? "" : "s"}${parecidos ? " parecido" + (total === 1 ? "" : "s") + " (nenhum resultado exato)" : ""}`;
+  if (!total) { $("#prLista").innerHTML = `<li class="vazio">Nenhum produto encontrado.${q ? "<br>Tente outra palavra ou só parte do nome." : ""}</li>`; return; }
+  const seta = '<svg class="pr-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  $("#prLista").innerHTML = (titulo && ui.produtos.length ? `<li class="grupo-tit">${titulo}</li>` : "") + mostra.map(p => {
+    const aberto = String(p.id) === prUi.aberto;
+    const thumb = p.foto_publica ? `<img src="${esc(p.foto_publica)}" alt="" loading="lazy" decoding="async">` : esc((p.nome || "?").trim()[0] || "?");
+    return `<li class="pr-item${aberto ? " aberto" : ""}${p.ativo ? "" : " inativo"}">
+      <button type="button" class="pr-linha" data-pr="${esc(p.id)}" aria-expanded="${aberto}">
+        <span class="thumb">${thumb}</span>
+        <span class="pr-txt"><span class="pr-nome">${esc(p.nome)}</span><span class="pr-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}${p.ativo ? "" : " · oculto no site"}</span></span>
+        <span class="pr-valor">${htmlValorPr(p)}</span>${seta}
+      </button>${aberto ? htmlFormPr(p) : ""}</li>`;
+  }).join("") + (total > PR_MAX ? `<li class="pr-mais">Mostrando ${PR_MAX} de ${total}. Digite mais do nome para achar mais rápido.</li>` : "");
+}
+function abrirPr(id, { rolar = true } = {}) {
+  prUi.aberto = prUi.aberto === id ? null : id;
+  renderPrecos();
+  if (prUi.aberto == null) { focarDepois(`[data-pr="${CSS.escape(id)}"]`); return; }
+  requestAnimationFrame(() => {
+    const inp = document.getElementById("prP-" + id); if (!inp) return;
+    if (rolar) inp.closest(".pr-item").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    inp.focus({ preventScroll: true }); inp.select();
+  });
+}
+function fecharPr() { const id = prUi.aberto; prUi.aberto = null; renderPrecos(); if (id != null) focarDepois(`[data-pr="${CSS.escape(id)}"]`); }
+function erroPr(form, msg, campo) {
+  const e = form.querySelector(".pr-erro"); e.textContent = msg; e.hidden = false;
+  if (campo) { campo.setAttribute("aria-invalid", "true"); campo.focus(); }
+}
+async function salvarPr(form) {
+  const p = ui.produtos.find(x => String(x.id) === form.dataset.prForm); if (!p) return;
+  form.querySelector(".pr-erro").hidden = true;
+  form.querySelectorAll("[aria-invalid]").forEach(i => i.removeAttribute("aria-invalid"));
+  const el = form.elements, t = tamBandeja(p.sub);
+  const preco = lerPreco(el.preco.value);
+  if (Number.isNaN(preco)) return erroPr(form, "Preço inválido. Escreva por exemplo 49,90.", el.preco);
+  let antigo = null;
+  if (el.promo.checked) {
+    antigo = lerPreco(el.antigo.value);
+    if (Number.isNaN(antigo) || antigo == null) return erroPr(form, "Preencha o preço de antes da promoção (o que aparece riscado).", el.antigo);
+    if (preco == null) return erroPr(form, "Para ter promoção, preencha o preço da promoção.", el.preco);
+    if (antigo <= preco) return erroPr(form, "O preço de antes precisa ser MAIOR que o preço da promoção.", el.antigo);
+  }
+  const campos = {};
+  if (preco !== p.preco) campos.preco = preco;
+  if (antigo !== p.preco_antigo) campos.preco_antigo = antigo;
+  if (t) {
+    const bandeja = lerPreco(el.bandeja.value);
+    if (Number.isNaN(bandeja)) return erroPr(form, "Preço da bandeja inválido. Escreva por exemplo 40,00.", el.bandeja);
+    if (bandeja !== p.preco_bandeja) campos.preco_bandeja = bandeja;
+  }
+  if (el.ativo.checked !== p.ativo) campos.ativo = el.ativo.checked;
+  if (!Object.keys(campos).length) { fecharPr(); toast("Nada mudou."); return; }
+  const btn = form.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = "Salvando…";
+  const msg = campos.preco_antigo === null && p.preco_antigo != null ? "Salvo ✓ (promoção encerrada)"
+    : campos.preco_antigo != null && p.preco_antigo == null ? "Salvo ✓ — promoção no ar" : "Salvo ✓ — já está no site";
+  try {
+    await comFeedback("Salvando…", msg, () => api.atualizarCampos(p.id, campos));
+    Object.assign(p, campos, { atualizado_em: new Date().toISOString() });
+    ini.em = 0; // o Início busca o histórico de novo na próxima vez
+    prUi.aberto = null;
+    renderListaBase(); renderPrecos();
+    // pronto para o próximo: volta para a busca com o texto selecionado
+    requestAnimationFrame(() => { const b = $("#prBusca"); b.focus({ preventScroll: !mqLargo.matches }); b.select(); });
+  } catch { btn.disabled = false; btn.textContent = "Salvar"; }
+}
+function ligarEventosAbas() {
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-aba]");
+    if (a && ui.logado) { e.preventDefault(); irPara(a.dataset.aba); return; }
+    const ac = e.target.closest("[data-acao]"); if (!ac || !ui.logado) return;
+    ({ novo: () => abrirEditor(null), mudas: abrirMudas, reajuste: abrirReajuste, historico: abrirHistorico, secoes: abrirDeps, carrossel: abrirCarrossel })[ac.dataset.acao]?.();
+  });
+  window.addEventListener("popstate", () => { if (ui.logado) irPara(abaDoEndereco(), { historico: false }); });
+  // Início
+  $("#iniNums").addEventListener("click", e => {
+    const b = e.target.closest("[data-chip-ini]"); if (!b) return;
+    ui.filtro = { q: "", dep: "", chip: b.dataset.chipIni }; ui.pagina = 1;
+    $("#busca").value = ""; $("#filtroDep").value = "";
+    irPara("produtos");
+  });
+  $("#iniHist").addEventListener("click", e => {
+    const b = e.target.closest("[data-pr-abrir]"); if (!b) return;
+    const p = ui.produtos.find(x => String(x.id) === b.dataset.prAbrir); if (!p) return;
+    prUi.q = p.nome; prUi.dep = ""; $("#prBusca").value = p.nome; prUi.aberto = null;
+    irPara("precos"); abrirPr(String(p.id));
+  });
+  setInterval(() => { if (ui.aba === "inicio" && !document.hidden) renderHeroInicio(); }, 60000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && ui.aba === "inicio" && ui.logado) carregarExtrasInicio(); });
+  $("#dlgMudas").addEventListener("close", () => { if (ui.aba === "inicio") renderInicio(); });
+  // Alterar preço
+  let tPr;
+  $("#prBusca").addEventListener("input", e => { clearTimeout(tPr); tPr = setTimeout(() => { prUi.q = e.target.value; prUi.aberto = null; renderPrecos(); }, 120); });
+  $("#prBusca").addEventListener("keydown", e => {
+    if (e.key !== "Enter") return; e.preventDefault();
+    const primeiro = $("#prLista [data-pr]"); if (primeiro) abrirPr(primeiro.dataset.pr); // Enter abre o primeiro resultado
+  });
+  $("#prDep").addEventListener("change", e => { prUi.dep = e.target.value; prUi.aberto = null; renderPrecos(); });
+  $("#prLista").addEventListener("click", e => {
+    const l = e.target.closest("[data-pr]"); if (l) { abrirPr(l.dataset.pr); return; }
+    if (e.target.closest("[data-pr-fechar]")) { fecharPr(); return; }
+    const ed = e.target.closest("[data-pr-editar]");
+    if (ed) { const p = ui.produtos.find(x => String(x.id) === ed.dataset.prEditar); if (p) { prUi.aberto = null; renderPrecos(); abrirEditor(p); } return; }
+    const aj = e.target.closest("[data-aj]");
+    if (aj) {
+      const form = aj.closest("form"), p = ui.produtos.find(x => String(x.id) === form.dataset.prForm), inp = form.elements.preco;
+      if (aj.dataset.aj === "desfazer") { inp.value = p && p.preco != null ? num2(p.preco) : ""; inp.focus(); return; }
+      const atual = lerPreco(inp.value);
+      if (atual == null || Number.isNaN(atual)) { erroPr(form, "Digite um preço primeiro para aplicar a porcentagem.", inp); return; }
+      inp.value = num2(r2(atual * (1 + Number(aj.dataset.aj) / 100)));
+      inp.removeAttribute("aria-invalid"); form.querySelector(".pr-erro").hidden = true;
+    }
+  });
+  $("#prLista").addEventListener("change", e => {
+    if (e.target.name !== "promo") return;
+    const form = e.target.closest("form"), p = ui.produtos.find(x => String(x.id) === form.dataset.prForm);
+    const box = form.querySelector("[data-pr-antigo]"), on = e.target.checked;
+    box.hidden = !on; e.target.closest(".pr-chk").classList.toggle("promo-on", on);
+    form.querySelector(".pr-rot").textContent = on ? "Preço da promoção" : "Preço";
+    if (on && !form.elements.antigo.value && p && p.preco != null) {
+      // ligou a promoção: o preço atual vira o "de" riscado; agora é só digitar o preço novo
+      form.elements.antigo.value = num2(p.preco);
+      form.elements.preco.focus(); form.elements.preco.select();
+    }
+  });
+  $("#prLista").addEventListener("submit", e => { const f = e.target.closest("[data-pr-form]"); if (!f) return; e.preventDefault(); salvarPr(f); });
+  $("#prLista").addEventListener("keydown", e => { if (e.key === "Escape" && e.target.closest("[data-pr-form]")) { e.preventDefault(); fecharPr(); } });
+  $("#prLista").addEventListener("input", e => { if (e.target.matches(".inp")) e.target.removeAttribute("aria-invalid"); });
+}
+
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
   ev.preventDefault();
@@ -2564,8 +3180,12 @@ async function posLogin(sessao) {
   const papel = sessao?.papel === "user" ? "User" : "Admin";
   $("#usuarioTxt").innerHTML = `<span class="papel">${papel}</span>${api.modo === "demo" ? " · demonstração" : ""}`;
   $("#usuarioTxt").title = sessao?.email || "";
-  mostrarTela("lista");
+  const abaIni = abaDoEndereco(); // o Início fica sempre "embaixo", para o botão voltar levar até ele
+  history.replaceState(null, "", location.pathname + location.search);
+  if (abaIni !== "inicio") history.pushState({ painel: abaIni }, "", "#" + abaIni);
+  irPara(abaIni, { historico: false });
   try { await recarregar(); } catch (e) { toast(e.message || "Erro ao carregar.", "erro"); }
+  if (ui.aba === "inicio") carregarExtrasInicio(true);
 }
 
 /* ---------- EVENTOS ---------- */
@@ -2610,8 +3230,8 @@ function ligarEventos() {
   });
   $("#lista").addEventListener("submit", e => { const f = e.target.closest("[data-form-preco]"); if (!f) return; e.preventDefault(); salvarPrecoRapido(f.dataset.formPreco); });
   $("#lista").addEventListener("keydown", e => { const f = e.target.closest("[data-form-preco]"); if (f && e.key === "Escape") { e.preventDefault(); fecharPrecoRapido(f.dataset.formPreco); } });
-  ["#btnDeps", "#btnDepsTopo"].forEach(s => $(s).addEventListener("click", abrirDeps));
-  ["#btnHist", "#btnHistTopo"].forEach(s => $(s).addEventListener("click", abrirHistorico));
+  $("#btnDepsTopo").addEventListener("click", abrirDeps);
+  $("#btnHistTopo").addEventListener("click", abrirHistorico);
   $("#btnCarrosselTopo").addEventListener("click", abrirCarrossel);
   $("#btnInstalar").addEventListener("click", instalarPainel);
   mostrarBotaoInstalar();
@@ -2639,6 +3259,7 @@ function ligarEventos() {
   $("#formNovoDep").addEventListener("submit", salvarDepOuSub);
   ["#btnNovo", "#btnNovoTopo"].forEach(s => $(s).addEventListener("click", () => abrirEditor(null)));
   ["#btnReajuste", "#btnReajusteTopo"].forEach(s => $(s).addEventListener("click", abrirReajuste));
+  ligarEventosAbas();
   $("#btnRestaurar").addEventListener("click", async () => {
     if (!confirm("Apagar as alterações feitas neste aparelho e voltar aos dados de exemplo?")) return;
     await api.restaurar(); await recarregar(); toast("Dados de exemplo restaurados", "ok");
@@ -2777,13 +3398,13 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230756";
+  const VERSAO = "202610230826";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
     try{
       const v = (await fetch("../versao.txt?t=" + Date.now(), {cache:"no-store"}).then(r => r.ok ? r.text() : "")).trim();
-      if(v && v !== VERSAO && !document.querySelector("dialog[open]")) location.reload();
+      if(v && v !== VERSAO && !document.querySelector("dialog[open]") && !document.querySelector(".pr-item.aberto")) location.reload();
     }catch(_){}
   }
   document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") conferir(); });
