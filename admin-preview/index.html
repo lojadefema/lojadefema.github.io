@@ -1084,6 +1084,79 @@ html:has(dialog[open]){overflow:hidden}
 /* barra de estoque: o amarelo vai alaranjando perto do ponto de repor */
 .est-acabando .est-barra span{background:var(--est-cor,#e0a100)}
 .est-acabando .est-txt{color:var(--est-cor-txt,#9a6b00)}
+
+/* ---------- cena do tempo no "Bom dia" ---------- */
+.cena{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.cena svg{position:absolute;right:0;top:0;width:46%;height:130px;opacity:.55}
+.ini-hero-txt,.ini-clima{position:relative;z-index:1}
+@media (min-width:760px){.cena svg{right:auto;left:0;width:calc(100% - 400px);height:100%;opacity:.85}}
+.ini-hero{--cena-fundo:var(--leaf)}
+[data-theme="dark"] .ini-hero{--cena-fundo:#143220}
+:root[data-estilo] .ini-hero{--cena-fundo:var(--leaf)}
+.cn-sol{transform-origin:center;transform-box:fill-box;animation:cnGira 60s linear infinite}
+.cn-brilho{animation:cnPulsa 5s ease-in-out infinite}
+.cn-nuvem{animation:cnVai 46s linear infinite}
+.cn-nuvem.d2{animation-duration:62s;animation-delay:-20s}
+.cn-nuvem.d3{animation-duration:80s;animation-delay:-45s}
+.cn-gota{animation:cnCai 1.1s linear infinite}
+.cn-raio{animation:cnRaio 6s steps(1) infinite;opacity:0}
+.cn-nevoa{animation:cnNevoa 14s ease-in-out infinite alternate}
+.cn-lua{animation:cnPulsa 7s ease-in-out infinite}
+.cn-estrela{animation:cnPisca 3s ease-in-out infinite}
+@keyframes cnGira{to{transform:rotate(360deg)}}
+@keyframes cnPulsa{0%,100%{opacity:.85}50%{opacity:1}}
+@keyframes cnVai{0%{transform:translateX(-120px)}50%{transform:translateX(120px)}100%{transform:translateX(-120px)}}
+@keyframes cnCai{from{transform:translate(0,-30px);opacity:0}15%{opacity:.9}to{transform:translate(-14px,150px);opacity:0}}
+@keyframes cnRaio{0%,88%,100%{opacity:0}89%{opacity:1}91%{opacity:.2}93%{opacity:1}96%{opacity:0}}
+@keyframes cnNevoa{from{transform:translateX(-40px)}to{transform:translateX(40px)}}
+@keyframes cnPisca{0%,100%{opacity:.25}50%{opacity:.9}}
+.cena-raio::after{content:"";position:absolute;inset:0;background:#fff;opacity:0;animation:cnFlash 6s steps(1) infinite}
+@keyframes cnFlash{0%,88%,100%{opacity:0}89%{opacity:.12}91%{opacity:0}93%{opacity:.08}96%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.cena *,.cena::after{animation:none !important}}
+
+.tb-corpo{flex-direction:row !important;flex-wrap:wrap;justify-content:center;align-content:flex-start;gap:24px !important}
+.tb-zoom{display:flex;align-items:center;gap:6px;margin-left:auto}
+.tb-zoom .btn{min-height:38px;padding:4px 12px;font-size:16px}
+.tb-zoom span{min-width:48px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums;font-size:14px}
+@media (max-width:759px){.tb-zoom{margin-left:0}}
+@media (min-width:1024px){#dlgTabela{width:min(1500px,94vw);height:94vh}}
+
+.pd-deps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.pd-deps button{display:flex;flex-direction:column;align-items:flex-start;padding:6px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;line-height:1.2}
+.pd-deps button span{font-weight:700;font-size:14px}
+.pd-deps button small{font-size:11.5px;color:var(--muted)}
+.pd-deps button small b{color:var(--leaf-ink)}
+.pd-deps button[aria-pressed="true"]{border-color:var(--leaf-ink);background:var(--leaf-soft);color:var(--leaf-ink)}
+.pd-dep-tit{display:flex;align-items:baseline;gap:8px;margin:10px 2px 2px;font-size:13px !important;color:var(--leaf-ink) !important;border-bottom:2px solid var(--line);padding-bottom:4px}
+.pd-dep-tit span{font:700 17px var(--display);letter-spacing:0;text-transform:none}
+.pd-dep-tit small{font-size:12px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:600}
+@media (min-width:1024px){
+  #dlgPedido{width:min(1560px,96vw) !important;height:94vh}
+  .pd-corpo.pd-montando{display:grid !important;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:start}
+  .pd-corpo.pd-montando .pd-deps{position:sticky;top:0;flex-direction:column;flex-wrap:nowrap;margin:0}
+  .pd-corpo.pd-montando .pd-deps button{width:100%;padding:9px 12px}
+}
+@media (min-width:1500px){ .pd-lista{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1800px){ .pd-lista{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+.calc-principal{display:flex;flex-direction:column;gap:12px}
+.calc-hist{border-top:1px solid var(--line);padding-top:12px}
+.calc-hist-topo{display:flex;align-items:baseline;justify-content:space-between}
+.calc-hist-topo h3{font-size:17px;color:var(--leaf-ink);margin:0 0 4px}
+.calc-hist-topo .link-btn{padding:0}
+.calc-hist-lista{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.calc-hist-lista button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 10px;width:100%;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;font-variant-numeric:tabular-nums}
+.calc-hist-lista button:hover{border-color:var(--leaf-ink)}
+.calc-hist-lista span{color:var(--muted);font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.calc-hist-lista b{font-size:16px;text-align:right}
+.calc-hist-lista small{grid-column:1/-1;font-size:11.5px;color:var(--muted)}
+@media (min-width:760px){
+  #dlgCalc{width:min(860px,94vw) !important}
+  .calc-corpo{display:grid !important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px !important;align-items:start}
+  .calc-hist{border-top:0;border-left:1px solid var(--line);padding:0 0 0 18px;max-height:min(560px,70vh);overflow:auto}
+  .calc-teclas button{min-height:68px;font-size:26px}
+  .calc-num{font-size:46px}
+}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1236,6 +1309,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <!-- INÍCIO -->
   <section id="telaInicio" class="tela-pag" hidden aria-labelledby="tInicio">
     <div class="ini-hero">
+      <div class="cena" id="iniCena" aria-hidden="true"></div>
       <div class="ini-hero-txt">
         <p class="ini-data" id="iniData"></p>
         <h2 id="tInicio">Bom dia!</h2>
@@ -1731,6 +1805,12 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <button type="button" data-tb-folha="bandejas" aria-pressed="false">Bandejas fechadas</button>
       </div>
       <label class="check-mini"><input type="checkbox" id="tbOcultas"> Incluir mudas ocultas no site</label>
+      <div class="tb-zoom" role="group" aria-label="Zoom">
+        <button type="button" class="btn btn-sec" data-tb-zoom="-" aria-label="Diminuir">−</button>
+        <span id="tbZoomTxt">100%</span>
+        <button type="button" class="btn btn-sec" data-tb-zoom="+" aria-label="Aumentar">+</button>
+        <button type="button" class="btn btn-sec" data-tb-zoom="ajustar">Ajustar</button>
+      </div>
     </div>
     <div class="dlg-corpo tb-corpo" id="tbPrevia"></div>
     <div class="dlg-pe">
@@ -1803,6 +1883,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <div class="dlg">
     <div class="dlg-topo"><h2 id="tCalc">Calculadora</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="dlg-corpo calc-corpo">
+      <div class="calc-principal">
       <div class="calc-visor"><div class="calc-conta" id="calcConta" aria-live="polite"></div><div class="calc-num" id="calcNum">0</div></div>
       <div class="calc-teclas" id="calcTeclas">
         <button type="button" data-k="C" class="fn">C</button><button type="button" data-k="back" class="fn" aria-label="Apagar">⌫</button><button type="button" data-k="%" class="fn">%</button><button type="button" data-k="/" class="op" aria-label="Dividir">÷</button>
@@ -1811,6 +1892,12 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button><button type="button" data-k="+" class="op" aria-label="Mais">+</button>
         <button type="button" data-k="00">00</button><button type="button" data-k="0">0</button><button type="button" data-k=",">,</button><button type="button" data-k="=" class="igual" aria-label="Igual">=</button>
       </div>
+      </div>
+      <section class="calc-hist" aria-labelledby="tCalcHist">
+        <div class="calc-hist-topo"><h3 id="tCalcHist">Histórico</h3><button type="button" class="link-btn" id="calcLimparHist">Limpar</button></div>
+        <p class="dica" style="margin:0 0 8px">Toque numa conta para continuar dela.</p>
+        <ul class="calc-hist-lista" id="calcHist"></ul>
+      </section>
     </div>
   </div>
 </dialog>
@@ -1863,6 +1950,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
     </div>
     <div class="dlg-corpo pd-corpo" id="pdCorpo">
+      <nav class="pd-deps" id="pdDeps" aria-label="Departamentos"></nav>
       <div id="pdMontar"><button type="button" class="btn btn-sec pd-sugeridos" id="btnPdSugeridos" hidden>Adicionar todos os sugeridos</button><ul class="pd-lista" id="pdLista"></ul></div>
       <div id="pdRevisao" hidden></div>
     </div>
@@ -3638,6 +3726,7 @@ function avaliarPulverizacao(c) {
     : `<p class="cl-pulv ok"><b>Pulverizar agora: condições boas.</b> Vento ${Math.round(v)} km/h, ${Math.round(t)} °C, umidade ${Math.round(u)}%.</p>`;
 }
 function renderClima() {
+  renderCenaClima();
   const box = $("#iniClima"), d = clima.dados;
   if (!d) { box.innerHTML = `<p class="ini-clima-msg">${clima.carregando ? "Carregando o tempo…" : "Previsão do tempo indisponível agora."}</p>`; return; }
   const c = d.current, dd = d.daily;
@@ -4094,10 +4183,20 @@ function escalarPrevia() {
   const box = $("#tbPrevia"); if (!box.isConnected || !$("#dlgTabela").open) return;
   const folha = box.querySelector(".folha"); if (!folha) return;
   const w = folha.offsetWidth, h = folha.offsetHeight;   // A4 em px (210×297 mm)
-  const k = Math.min(1, (box.clientWidth - 32) / w);
+  const n = box.querySelectorAll(".tb-pag").length, livreW = box.clientWidth - 40, livreH = box.clientHeight - 40;
+  // "Ajustar": no celular, a largura da folha; no computador, a folha inteira na altura (e as duas lado a lado se couberem)
+  const auto = mqLargo.matches ? Math.min(livreH / h, livreW / w) : livreW / w; // as folhas ficam lado a lado sozinhas quando cabem
+  if (tabUi.zoom == null) tabUi.k = auto;
+  const k = Math.max(.2, Math.min(2.5, tabUi.k));
+  $("#tbZoomTxt").textContent = Math.round(k * 100) + "%";
   box.querySelectorAll(".tb-pag").forEach(pg => { pg.style.width = w * k + "px"; pg.style.height = h * k + "px"; pg.firstElementChild.style.transform = `scale(${k})`; });
 }
+function zoomTabela(acao) {
+  if (acao === "ajustar") { tabUi.zoom = null; escalarPrevia(); return; }
+  tabUi.zoom = 1; tabUi.k = (tabUi.k || 1) * (acao === "+" ? 1.2 : 1 / 1.2); escalarPrevia();
+}
 function abrirTabelaMudas() {
+  tabUi.zoom = null;
   $("#dlgTabela").showModal();
   renderTabelaMudas();
 }
@@ -4112,6 +4211,8 @@ function ligarEventosTabela() {
   $("#tbOcultas").addEventListener("change", renderTabelaMudas);
   $("#btnImprimirTabela").addEventListener("click", imprimirTabelaMudas);
   window.addEventListener("resize", escalarPrevia);
+  document.querySelector(".tb-zoom").addEventListener("click", e => { const b = e.target.closest("[data-tb-zoom]"); if (b) zoomTabela(b.dataset.tbZoom); });
+  $("#tbPrevia").addEventListener("wheel", e => { if (!e.ctrlKey) return; e.preventDefault(); zoomTabela(e.deltaY < 0 ? "+" : "-"); }, { passive: false });
 }
 
 /* ---------- vendas de mudas (Início): hoje e nesta semana, pelos pedidos salvos ---------- */
@@ -4194,6 +4295,27 @@ function calcAvaliar(e) { // + − × ÷ com prioridade; sem eval
   return o2.reduce((acc, o, k) => o === "+" ? acc + n2[k + 1] : acc - n2[k + 1], n2[0]);
 }
 function calcFmt(v) { if (!isFinite(v)) return "Erro"; return Number(v.toPrecision(12)).toLocaleString("pt-BR", { maximumFractionDigits: 10 }); }
+const CALC_HIST_MAX = 30;
+const calcHist = () => { const v = lerJSON("defema-calc-hist"); return Array.isArray(v) ? v : []; };
+function salvarCalc() { gravarJSON("defema-calc-atual", { expr: calc.expr, fim: !!calc.fim, visor: $("#calcNum").textContent, conta: $("#calcConta").textContent }); }
+function abrirCalculadora() {
+  const a = lerJSON("defema-calc-atual"); // volta exatamente para a conta que estava aberta
+  if (a) { calc.expr = a.expr || ""; calc.fim = !!a.fim; calc.ultimo = ""; renderCalc(); if (a.fim) { $("#calcNum").textContent = a.visor; $("#calcConta").textContent = a.conta; } }
+  else { calc.expr = ""; calc.ultimo = ""; renderCalc(); }
+  renderCalcHist();
+  $("#dlgCalc").showModal();
+}
+function renderCalcHist() {
+  const h = calcHist();
+  $("#calcHist").innerHTML = h.length ? h.map((x, i) => `<li><button type="button" data-calc-hist="${i}"><span>${esc(calcTexto(x.expr))} =</span><b>${esc(x.res)}</b><small>${quando(x.em)}</small></button></li>`).join("")
+    : '<li class="ini-vazio">As contas que você fechar com “=” aparecem aqui.</li>';
+  $("#calcLimparHist").hidden = !h.length;
+}
+function guardarNoHistCalc(expr, res) {
+  const h = calcHist().filter(x => x.expr !== expr);
+  h.unshift({ expr, res, em: new Date().toISOString() });
+  gravarJSON("defema-calc-hist", h.slice(0, CALC_HIST_MAX)); renderCalcHist();
+}
 function renderCalc() {
   const ult = (calc.expr.match(/(\d+(?:\.\d*)?|\.\d*)$/) || [""])[0];
   $("#calcNum").textContent = ult ? ult.replace(".", ",") : (calc.expr ? calcTexto(calc.expr).trim() : "0");
@@ -4209,6 +4331,7 @@ function calcTecla(k) {
     const v = calcAvaliar(e.replace(/[+\-*/]$/, ""));
     $("#calcConta").textContent = calcTexto(e) + " =";
     $("#calcNum").textContent = calcFmt(v);
+    if (isFinite(v) && /[+\-*/]/.test(e.replace(/[+\-*/]$/, "").slice(1))) guardarNoHistCalc(e.replace(/[+\-*/]$/, ""), calcFmt(v));
     calc.expr = isFinite(v) ? String(Number(v.toPrecision(12))) : "";
     calc.fim = true; return;
   }
@@ -4387,7 +4510,7 @@ function ligarEventosMais() {
     pedidos: daMais(abrirPedidosFeitos),
     "pedido-repor": daMais(() => abrirPedido("repor")),
     camera: daMais(novoPelaCamera),
-    calculadora: daMais(() => { calc.expr = ""; calc.ultimo = ""; renderCalc(); $("#dlgCalc").showModal(); }),
+    calculadora: daMais(abrirCalculadora),
     planilha: daMais(abrirPlanilha),
     config: daMais(() => { renderConfig(); $("#dlgConfig").showModal(); }),
     instalar: daMais(instalarPainel),
@@ -4403,11 +4526,18 @@ function ligarEventosMais() {
   $("#cfgEstilo").addEventListener("click", e => { const b = e.target.closest("[data-estilo]"); if (b) aplicarEstilo(b.dataset.estilo); });
   $("#cfgModo").addEventListener("click", e => { const b = e.target.closest("[data-modo]"); if (b) aplicarModo(b.dataset.modo); });
   $("#btnTema").addEventListener("click", () => requestAnimationFrame(atualizarCorBarra));
-  $("#calcTeclas").addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) calcTecla(b.dataset.k); });
+  $("#calcTeclas").addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) { calcTecla(b.dataset.k); salvarCalc(); } });
+  $("#calcHist").addEventListener("click", e => {
+    const b = e.target.closest("[data-calc-hist]"); if (!b) return;
+    const x = calcHist()[+b.dataset.calcHist]; if (!x) return;
+    calc.expr = x.expr; calc.fim = false; calc.ultimo = ""; renderCalc(); salvarCalc(); // volta para a conta, pronta para continuar
+  });
+  $("#calcLimparHist").addEventListener("click", () => { if (confirm("Apagar o histórico da calculadora?")) { gravarJSON("defema-calc-hist", []); renderCalcHist(); } });
+  $("#dlgCalc").addEventListener("close", salvarCalc);
   $("#dlgCalc").addEventListener("keydown", e => {
     const m = { Enter: "=", "=": "=", Backspace: "back", Delete: "C", Escape: null, ".": ",", ",": ",", x: "*", X: "*" };
     const k = e.key in m ? m[e.key] : /^[0-9+\-*/%]$/.test(e.key) ? e.key : undefined;
-    if (k) { e.preventDefault(); calcTecla(k); }
+    if (k) { e.preventDefault(); calcTecla(k); salvarCalc(); }
   });
   $("#btnBaixarPlanilha").addEventListener("click", baixarPlanilha);
   $("#plArquivo").addEventListener("change", async e => { const f = e.target.files[0]; e.target.value = ""; await receberPlanilha(f); });
@@ -4568,7 +4698,7 @@ function renderEstoqueInicio() {
    O pedido em montagem fica salvo neste aparelho até gerar/limpar.
    ===================================================================== */
 const EMBALAGENS = ["Unidade", "Caixa", "Saco", "Pacote", "Fardo", "Frasco", "Galão", "Rolo", "Metro", "Bandeja", "Dúzia"];
-const pdUi = { etapa: 1, filtro: "todos", q: "", itens: {}, pdf: null };
+const pdUi = { etapa: 1, filtro: "todos", q: "", dep: "", itens: {}, pdf: null };
 const lerPedidoCompra = () => { const v = lerJSON("defema-pedido-compra"); return v && typeof v === "object" ? v : { itens: {}, fornecedor: "", obs: "" }; };
 function gravarPedidoCompra() { gravarJSON("defema-pedido-compra", { itens: pdUi.itens, fornecedor: pdUi.fornecedor || "", obs: pdUi.obs || "", reg: pdUi.reg || null }); }
 const prefsPedido = () => lerJSON("defema-pedido-pref") || {};
@@ -4593,7 +4723,7 @@ function abrirPedido(filtro) {
   const salvo = lerPedidoCompra();
   pdUi.itens = salvo.itens || {}; pdUi.fornecedor = salvo.fornecedor || ""; pdUi.obs = salvo.obs || ""; pdUi.reg = salvo.reg || null;
   for (const id of Object.keys(pdUi.itens)) if (!ui.produtos.some(p => String(p.id) === id)) delete pdUi.itens[id];
-  pdUi.etapa = 1; pdUi.filtro = filtro || "todos"; pdUi.q = ""; $("#pdBusca").value = "";
+  pdUi.etapa = 1; pdUi.filtro = filtro || "todos"; pdUi.q = ""; pdUi.dep = ""; $("#pdBusca").value = "";
   renderPedido();
   $("#dlgPedido").showModal();
 }
@@ -4610,7 +4740,8 @@ function renderResumoPedido() {
 function renderPedido() {
   const rev = pdUi.etapa === 2;
   $("#tPedido").textContent = rev ? "Revisar pedido" : "Pedir produtos";
-  $("#pdFerr").hidden = rev; $("#pdMontar").hidden = rev; $("#pdRevisao").hidden = !rev;
+  $("#pdFerr").hidden = rev; $("#pdMontar").hidden = rev; $("#pdRevisao").hidden = !rev; $("#pdDeps").hidden = rev;
+  $("#pdCorpo").classList.toggle("pd-montando", !rev);
   $("#btnPdLimpar").hidden = !rev;
   $("#btnPdLimpar").textContent = pdUi.reg ? "Concluir" : "Limpar";
   $("#btnPdEnviar").hidden = !rev || !(navigator.canShare && window.File);
@@ -4630,13 +4761,19 @@ function htmlPdItem(p) {
 function renderMontar() {
   document.querySelectorAll("[data-pd-filtro]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pdFiltro === pdUi.filtro)));
   let lista = ui.produtos.filter(p => pdUi.filtro === "repor" ? sugestaoPedido(p) > 0 : pdUi.filtro === "pedido" ? (pdUi.itens[p.id]?.qtd > 0) : true);
+  const antesDep = lista;
+  if (pdUi.dep) lista = lista.filter(p => p.dep === pdUi.dep);
   if (pdUi.q.trim()) lista = filtrarBusca(lista, pdUi.q).itens;
+  const noPed = d => Object.keys(pdUi.itens).filter(id => pdUi.itens[id].qtd > 0 && ui.produtos.find(p => String(p.id) === id)?.dep === d).length;
+  $("#pdDeps").innerHTML = [["", "Todos", antesDep.length, Object.keys(pdUi.itens).length], ...ui.deps.map(d => [d.nome, d.nome, antesDep.filter(p => p.dep === d.nome).length, noPed(d.nome)])]
+    .filter(([v, , n]) => !v || n).map(([v, rot, n, np]) => `<button type="button" data-pd-dep="${esc(v)}" aria-pressed="${pdUi.dep === v}"><span>${esc(rot)}</span><small>${n}${np ? ` · <b>${np} no pedido</b>` : ""}</small></button>`).join("");
   lista.sort((a, b) => ordemDep(a.dep) - ordemDep(b.dep) || a.nome.localeCompare(b.nome, "pt-BR"));
   const sugeridos = lista.filter(p => sugestaoPedido(p) > 0 && !(pdUi.itens[p.id]?.qtd > 0));
   $("#btnPdSugeridos").hidden = pdUi.filtro !== "repor" || !sugeridos.length;
   let dep = null;
-  $("#pdLista").innerHTML = lista.length ? lista.map(p => { const cab = p.dep !== dep ? `<li class="m-grupo">${esc(p.dep || "Sem departamento")}</li>` : ""; dep = p.dep; return cab + htmlPdItem(p); }).join("")
-    : `<li class="vazio">${pdUi.filtro === "repor" ? "Nenhum produto precisando repor. (Coloque o estoque e o “avisar em” nos produtos.)" : pdUi.filtro === "pedido" ? "O pedido está vazio." : "Nenhum produto encontrado."}</li>`;
+  const porDep = new Map(); lista.forEach(p => porDep.set(p.dep, (porDep.get(p.dep) || 0) + 1));
+  $("#pdLista").innerHTML = lista.length ? lista.map(p => { const cab = p.dep !== dep ? `<li class="m-grupo pd-dep-tit"><span>${esc(p.dep || "Sem departamento")}</span><small>${porDep.get(p.dep)} produto${porDep.get(p.dep) === 1 ? "" : "s"}</small></li>` : ""; dep = p.dep; return cab + htmlPdItem(p); }).join("")
+    : `<li class="vazio">${pdUi.dep && !pdUi.q ? "Nada neste departamento com esse filtro." : pdUi.filtro === "repor" ? "Nenhum produto precisando repor. (Coloque o estoque e o “avisar em” nos produtos.)" : pdUi.filtro === "pedido" ? "O pedido está vazio." : "Nenhum produto encontrado."}</li>`;
 }
 function mudarQtdPedido(li, q) {
   const id = li.dataset.pd, p = ui.produtos.find(x => String(x.id) === id); if (!p) return;
@@ -4770,6 +4907,7 @@ async function enviarPdfPedido() {
 }
 function ligarEventosPedido() {
   $("#pdBusca").addEventListener("input", e => { pdUi.q = e.target.value; renderMontar(); });
+  $("#pdDeps").addEventListener("click", e => { const b = e.target.closest("[data-pd-dep]"); if (!b) return; pdUi.dep = b.dataset.pdDep === pdUi.dep ? "" : b.dataset.pdDep; renderMontar(); $("#pdCorpo").scrollTop = 0; });
   document.querySelector(".pd-filtros").addEventListener("click", e => { const b = e.target.closest("[data-pd-filtro]"); if (b) { pdUi.filtro = b.dataset.pdFiltro; renderMontar(); } });
   $("#btnPdSugeridos").addEventListener("click", () => {
     let n = 0;
@@ -4955,6 +5093,40 @@ function ligarEventosChegada() {
   });
   $("#chCorpo").addEventListener("change", e => { const li = e.target.closest("[data-ch]"); if (li && e.target.dataset.chCampo) mudarChegada(li, e.target.dataset.chCampo, Number(String(e.target.value).replace(/\D/g, ""))); });
   $("#btnChConfirmar").addEventListener("click", confirmarChegada);
+}
+
+
+/* ---------- cena do tempo: sol, nuvens, chuva, tempestade, neblina ou lua ---------- */
+function cenaNuvem(x, y, k, op, cls) {
+  return `<g class="cn-nuvem ${cls || ""}" style="opacity:${op}"><g transform="translate(${x} ${y}) scale(${k})"><path d="M30 70h120a32 32 0 0 0 4-63.7A46 46 0 0 0 66 18 36 36 0 0 0 30 70z" fill="#fff"/></g></g>`;
+}
+function renderCenaClima() {
+  const box = $("#iniCena"); if (!box) return;
+  const d = clima.dados; if (!d) { box.innerHTML = ""; box.className = "cena"; return; }
+  const [tipo] = tipoClima(d.current.weather_code);
+  const h = Math.floor(agoraLoja().min / 60), noite = h >= 18 || h < 6;
+  const sol = noite
+    ? `<g class="cn-lua"><circle cx="700" cy="95" r="44" fill="#fff4cf"/><circle cx="722" cy="80" r="40" fill="var(--cena-fundo,#163a22)"/></g>
+       ${[[560, 60], [640, 160], [820, 50], [880, 140], [600, 230], [760, 220]].map(([x, y], i) => `<circle class="cn-estrela" cx="${x}" cy="${y}" r="2.4" fill="#fff" style="animation-delay:${i * .5}s"/>`).join("")}`
+    : `<g class="cn-brilho"><circle cx="700" cy="110" r="95" fill="#ffd54a" opacity=".12"/><circle cx="700" cy="110" r="66" fill="#ffd54a" opacity=".18"/></g>
+       <g class="cn-sol"><circle cx="700" cy="110" r="44" fill="#ffd54a"/>${Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6; return `<line x1="${700 + Math.cos(a) * 58}" y1="${110 + Math.sin(a) * 58}" x2="${700 + Math.cos(a) * 76}" y2="${110 + Math.sin(a) * 76}" stroke="#ffd54a" stroke-width="7" stroke-linecap="round"/>`; }).join("")}</g>`;
+  const nuvens = (n, op) => [cenaNuvem(520, 30, 1.1, op, ""), cenaNuvem(700, 130, .8, op * .8, "d2"), cenaNuvem(400, 170, .9, op * .7, "d3")].slice(0, n).join("");
+  const chuva = forte => Array.from({ length: forte ? 46 : 28 }, (_, i) => {
+    const x = 120 + (i * 37) % 860, y = 90 + (i * 53) % 90, atraso = ((i * 0.137) % 1.1).toFixed(2);
+    return `<line class="cn-gota" x1="${x}" y1="${y}" x2="${x - 5}" y2="${y + 18}" stroke="#cfe6ff" stroke-width="2.4" stroke-linecap="round" style="animation-delay:-${atraso}s;opacity:.0"/>`;
+  }).join("");
+  const raio = `<path class="cn-raio" d="M620 120l-34 70h30l-22 64 64-90h-32l26-44z" fill="#fff6a8"/>`;
+  const nevoa = [70, 130, 190, 240].map((y, i) => `<rect class="cn-nevoa" x="${80 + i * 40}" y="${y}" width="${640 - i * 60}" height="16" rx="8" fill="#fff" opacity="${.18 - i * .02}" style="animation-delay:-${i * 3}s"/>`).join("");
+  const partes = {
+    sol: sol,
+    solnuvem: sol + nuvens(2, .55),
+    nuvem: (noite ? sol : "") + nuvens(3, .5),
+    neblina: nevoa + nuvens(1, .3),
+    chuva: nuvens(3, .55) + chuva(false),
+    raio: nuvens(3, .45) + chuva(true) + raio,
+  }[tipo] || "";
+  box.className = "cena" + (tipo === "raio" ? " cena-raio" : "");
+  box.innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMaxYMin slice">${partes}</svg>`;
 }
 
 /* ---------- LOGIN ---------- */
@@ -5203,7 +5375,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610231043"; window.VERSAO_APP = VERSAO;
+  const VERSAO = "202610231050"; window.VERSAO_APP = VERSAO;
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
