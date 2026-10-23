@@ -35,3 +35,33 @@ create policy "estoque: admin altera" on public.estoque
 drop policy if exists "estoque: admin apaga" on public.estoque;
 create policy "estoque: admin apaga" on public.estoque
   for delete to authenticated using (public.eh_admin());
+
+-- ---------------------------------------------------------------------
+-- Pedidos de compra ao fornecedor (só painel)
+-- itens = [{produto_id, nome, marca, emb, qtd, custo, recebido, fator}]
+-- status: aguardando → parcial (chegou parte) → recebido | cancelado
+-- ---------------------------------------------------------------------
+create table if not exists public.pedidos_compra (
+  id           uuid primary key default gen_random_uuid(),
+  numero       text not null,
+  fornecedor   text null,
+  obs          text null,
+  itens        jsonb not null default '[]'::jsonb,
+  total        numeric(12,2) null,
+  status       text not null default 'aguardando' check (status in ('aguardando','parcial','recebido','cancelado')),
+  criado_em    timestamptz not null default now(),
+  criado_por   uuid null default auth.uid(),
+  recebido_em  timestamptz null
+);
+create index if not exists pedidos_compra_status_idx on public.pedidos_compra (status, criado_em desc);
+grant select, insert, update, delete on public.pedidos_compra to authenticated;
+revoke all on public.pedidos_compra from anon;
+alter table public.pedidos_compra enable row level security;
+drop policy if exists "pedidos: admin lê" on public.pedidos_compra;
+create policy "pedidos: admin lê" on public.pedidos_compra for select to authenticated using (public.eh_admin());
+drop policy if exists "pedidos: admin grava" on public.pedidos_compra;
+create policy "pedidos: admin grava" on public.pedidos_compra for insert to authenticated with check (public.eh_admin());
+drop policy if exists "pedidos: admin altera" on public.pedidos_compra;
+create policy "pedidos: admin altera" on public.pedidos_compra for update to authenticated using (public.eh_admin()) with check (public.eh_admin());
+drop policy if exists "pedidos: admin apaga" on public.pedidos_compra;
+create policy "pedidos: admin apaga" on public.pedidos_compra for delete to authenticated using (public.eh_admin());
