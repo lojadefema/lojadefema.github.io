@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="fvT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a6a3e"/><stop offset="1" stop-color="#163a22"/></linearGradient>
+    <linearGradient id="fvC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffef8"/><stop offset=".7" stop-color="#fff3cc"/><stop offset="1" stop-color="#ffe08a"/></linearGradient>
+  </defs>
+  <!-- computador -->
+  <rect x="1" y="4" width="50" height="35" rx="5" fill="#163a22"/>
+  <rect x="5" y="8" width="42" height="27" rx="2.5" fill="url(#fvT)"/>
+  <path d="M9 14h20M9 19h14M9 24h12" stroke="#7fbf8c" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+  <path d="M18 39h12l2 8H16z" fill="#163a22"/>
+  <rect x="10" y="46" width="28" height="4" rx="2" fill="#163a22"/>
+  <!-- símbolo Defema na frente -->
+  <g transform="translate(26.6 27)">
+    <path d="M1 25 A17 17 0 0 1 35 25 L28 33 H8 Z" fill="url(#fvC)" stroke="#2b2b2b" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M1 25 H35" stroke="#2b2b2b" stroke-width="1.4"/>
+    <rect x="8" y="25" width="20" height="8" fill="#141414"/>
+    <g stroke="#e2404e" stroke-width="1.7" stroke-linecap="round">
+      <path d="M8.6 22.2 5.2 21.4"/><path d="M10 18.6 7 16.8"/><path d="M12.6 15.6 10.4 13"/><path d="M16 13.8 15 10.6"/>
+      <path d="M20 13.8 21 10.6"/><path d="M23.4 15.6 25.6 13"/><path d="M26 18.6 29 16.8"/><path d="M27.4 22.2 30.8 21.4"/>
+    </g>
+    <path d="M18 25 V18.5" stroke="#23944a" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 19 C17 16 14.5 15 12.5 15.5 C13 18 15.5 19.5 18 19Z M18 19 C19 16 21.5 15 23.5 15.5 C23 18 20.5 19.5 18 19Z" fill="#23944a"/>
+  </g>
+</svg>
