@@ -922,6 +922,52 @@ html:has(dialog[open]){overflow:hidden}
 .filtro-op[aria-checked="true"]{background:var(--leaf-soft);border-color:var(--leaf-ink);color:var(--leaf-ink)}
 .filtro-op[aria-checked="true"] .ok{border-color:var(--leaf-ink);background:var(--leaf-ink)}
 .filtro-op[aria-checked="true"] .ok::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--surface)}
+
+/* ---------- estoque ---------- */
+.est{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12px;color:var(--muted);min-width:0}
+.est-barra{flex:none;width:56px;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.est-barra span{display:block;height:100%;border-radius:999px}
+.est-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.est-txt b{color:var(--fg);font-weight:700}
+.est-ok .est-barra span{background:#1d9a50}
+.est-acabando .est-barra span{background:#e0a100}
+.est-repor .est-barra span,.est-sem .est-barra span{background:#d93025}
+.est-acabando .est-txt{color:#9a6b00}
+.est-repor .est-txt,.est-sem .est-txt{color:#c5221f;font-weight:600}
+[data-theme="dark"] .est-acabando .est-txt{color:#ffc95c}
+[data-theme="dark"] .est-repor .est-txt,[data-theme="dark"] .est-sem .est-txt{color:#ff8a80}
+.est-g .est-barra{width:90px;height:8px}
+.est-g{font-size:13px;margin-top:0}
+.est-campos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.est-campos{grid-template-columns:1fr}}
+.est-campos .campo{margin:0}
+.est-passo{display:flex;gap:6px}
+.est-passo .inp{flex:1;min-width:0;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.est-passo button{flex:none;width:46px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--leaf-ink);font-size:22px;font-weight:700;cursor:pointer}
+.est-dica{margin:6px 0 0}
+.pr-estoque{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.pr-est-tit{margin:0 0 8px;font-weight:700;font-size:15px}
+.est-nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:10px}
+.est-num{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 10px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;text-align:left;color:var(--fg)}
+.est-num b{font:700 24px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.est-num span{font-size:12px;font-weight:600;color:var(--muted);line-height:1.2}
+.est-num.vermelho b{color:#d93025}.est-num.amarelo b{color:#c68a00}.est-num.verde b{color:#1d9a50}
+.est-num.vermelho:not(.zero){border-color:#f2b8b5;background:#fdf1f0}
+[data-theme="dark"] .est-num.vermelho:not(.zero){border-color:#5c2622;background:#2a1715}
+.est-num.zero b{color:var(--muted)}
+@media (max-width:420px){.est-nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.est-lista{list-style:none;margin:0;padding:0;display:grid}
+.est-lista li+li{border-top:1px solid var(--line)}
+.est-lista button{display:flex;flex-direction:column;align-items:stretch;gap:4px;width:100%;padding:9px 2px;border:0;background:none;color:var(--fg);cursor:pointer;text-align:left;font-size:14px}
+.est-lista .est{width:100%}
+.est-lista .est-g .est-barra{flex:1;width:auto}
+.est-nome{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.est-lista .est{margin:0}
+.aviso-n{position:absolute;top:2px;right:calc(50% - 26px);min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#d93025;color:#fff;font:700 11px/19px var(--body);text-align:center;box-shadow:0 0 0 2px var(--surface)}
+.barra-baixo .aba-btn,.abas-topo button{position:relative}
+.abas-topo .aviso-n{top:2px;right:2px;box-shadow:none}
+:root[data-estilo="pb"] .est-ok .est-barra span{background:#000}
+:root[data-estilo="pb"][data-theme="dark"] .est-ok .est-barra span{background:#fff}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1081,6 +1127,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <div class="ini-card-topo"><h3 id="tIniCat">Catálogo</h3><button type="button" class="link-btn" data-aba="produtos">Ver produtos</button></div>
         <div class="ini-nums" id="iniNums"></div>
       </section>
+      <section class="ini-card ini-estoque" aria-labelledby="tIniEst">
+        <div class="ini-card-topo"><h3 id="tIniEst">Estoque</h3><button type="button" class="link-btn" data-chip-ini-link="e-repor" data-aba="produtos">Ver produtos</button></div>
+        <div id="iniEstoque"><p class="ini-vazio">Carregando…</p></div>
+      </section>
       <section class="ini-card" aria-labelledby="tIniAtalhos">
         <h3 id="tIniAtalhos">Atalhos</h3>
         <div class="ini-atalhos">
@@ -1225,6 +1275,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
           <span class="rot">Mais fotos <small>(carrossel no site)</small></span>
           <ul class="extras" id="extras"></ul>
         </div>
+      </div>
+      <div class="secao" id="secEstoque">
+        <h3>Estoque</h3>
+        <div id="eEstoque"></div>
       </div>
       <div class="secao">
         <h3>Situação e selos</h3>
@@ -1921,6 +1975,15 @@ function criarApiDemo() {
       persistir();
       return alteracoes.length;
     },
+    async listarEstoque() {
+      return lerJSON("defema-demo-estoque") || {};
+    },
+    async salvarEstoque(id, quantidade, minimo) {
+      await espera(150);
+      const m = lerJSON("defema-demo-estoque") || {};
+      if (quantidade == null && minimo == null) delete m[id]; else m[id] = { quantidade, minimo, atualizado_em: new Date().toISOString() };
+      gravarJSON("defema-demo-estoque", m);
+    },
     async atualizarCampos(id, campos) {
       await espera(200);
       const p = estado.produtos.find(x => x.id === id);
@@ -2114,6 +2177,24 @@ function criarApiSupabase(url, chave) {
       falhou(error, "Não foi possível excluir.");
       if (doStorage(fotoPath)) sb.storage.from(BUCKET).remove([fotoPath.replace(/^produtos\//, "")]).catch(() => {});
     },
+    async listarEstoque() {
+      const { data, error } = await sb.from("estoque").select("produto_id,quantidade,minimo,atualizado_em").limit(10000);
+      if (error && (error.code === "42P01" || error.code === "PGRST205" || /estoque/.test(error.message || "")))
+        throw new Error("O controle de estoque ainda não foi ativado no banco (falta rodar o 13_estoque.sql no Supabase).");
+      falhou(error, "Não foi possível carregar o estoque.");
+      const m = {};
+      for (const r of data) m[r.produto_id] = { quantidade: r.quantidade == null ? null : Number(r.quantidade), minimo: r.minimo == null ? null : Number(r.minimo), atualizado_em: r.atualizado_em };
+      return m;
+    },
+    async salvarEstoque(id, quantidade, minimo) {
+      if (quantidade == null && minimo == null) {
+        const { error } = await sb.from("estoque").delete().eq("produto_id", id);
+        falhou(error, "Não foi possível salvar o estoque."); return;
+      }
+      const { data, error } = await sb.from("estoque").upsert({ produto_id: id, quantidade, minimo, atualizado_em: new Date().toISOString() }).select("produto_id");
+      falhou(error, "Não foi possível salvar o estoque.");
+      if (!data || !data.length) throw new Error(NAO_GRAVOU);
+    },
     async atualizarCampos(id, campos) {
       // .select() devolve as linhas alteradas: se a RLS barrar, vem vazio SEM erro
       const { data, error } = await sb.from("produtos").update(campos).eq("id", id).select("id");
@@ -2293,9 +2374,10 @@ function irPara(aba, { historico = true } = {}) {
 }
 
 async function recarregar() {
-  const r = await api.listar();
+  const [r, est] = await Promise.all([api.listar(), api.listarEstoque().then(m => { ui.estoqueErro = ""; return m; }, e => { ui.estoqueErro = e.message; return {}; })]);
   ui.deps = r.departamentos.sort((a, b) => a.ordem - b.ordem);
   ui.produtos = r.produtos;
+  for (const p of ui.produtos) { const e = est[p.id]; p.estoque = e ? e.quantidade : null; p.estoque_min = e ? e.minimo : null; p.estoque_em = e ? e.atualizado_em : null; }
   montarFiltroDeps();
   renderLista();
 }
@@ -2315,6 +2397,10 @@ const CHIPS = [
   ["sempreco", "Sem preço", p => p.preco == null],
   ["destaque", "Destaque", p => p.destaque],
   ["novo", "Novidade", p => p.novidade],
+  ["e-ok", "Em estoque", p => p.estoque != null && p.estoque > 0],
+  ["e-acabando", "Estoque acabando", p => situacaoEstoque(p)?.cls === "acabando"],
+  ["e-repor", "Precisa repor", p => situacaoEstoque(p)?.cls === "repor"],
+  ["e-sem", "Sem estoque", p => situacaoEstoque(p)?.cls === "sem"],
 ];
 
 function ordemDep(nome) { const i = ui.deps.findIndex(d => d.nome === nome); return i < 0 ? 999 : i; }
@@ -2376,6 +2462,7 @@ function htmlAcoes(p) {
 
 function renderLista() {
   renderListaBase();
+  renderAvisoEstoque();
   if (ui.aba === "precos" && prUi.aberto == null) { montarDepsPrecos(); renderPrecos(); }
   if (ui.aba === "inicio") renderInicio();
 }
@@ -2426,7 +2513,7 @@ function linhaCompacta(p) {
       <span class="thumb">${thumb}</span>
       <span class="item-txt"><span class="item-nome">${esc(p.nome)}</span>
         <span class="item-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}</span>
-        ${tags.length ? `<span class="tags">${tags.join("")}</span>` : ""}</span>
+        ${tags.length ? `<span class="tags">${tags.join("")}</span>` : ""}${htmlBarraEstoque(p)}</span>
       </button>${htmlAcoes(p)}</li>`;
   })[0];
 }
@@ -2623,6 +2710,7 @@ function abrirEditor(p) {
   limparErros();
   ed.extras = (p?.fotos_extras || []).map((path, i) => ({ path, url: (p.fotos_extras_publicas || [])[i] || path })); ed.extrasMudou = false;
   renderOpcoes(); renderFoto(); renderExtras(); atualizarPromo(); atualizarAtivo(); atualizarBandeja(); mostrarOpcoes(ed.opcoes.length > 0);
+  $("#eEstoque").innerHTML = htmlCampoEstoque(p, "eE");
   $("#dlgEditor").showModal();
   $("#dlgEditor .dlg-corpo").scrollTop = 0;
   if (novo) $("#eNome").focus(); else $("#dlgEditor [data-fechar]").focus();
@@ -2808,7 +2896,13 @@ async function salvarEditor(ev) {
   if (!p) { toast("Confira os campos destacados.", "erro"); return; }
   salvando = true; $("#btnSalvar").disabled = true; $("#btnSalvar").textContent = "Salvando…";
   try {
-    await comFeedback("Salvando…", "Salvo ✓", () => api.salvar(p, ed.foto));
+    const qTxt = $("#eEQ").value, mTxt = $("#eEM").value;
+    if (Number.isNaN(lerQtd(qTxt)) || Number.isNaN(lerQtd(mTxt))) { toast("Estoque: use só números, ex.: 12 ou 2,5.", "erro"); $(Number.isNaN(lerQtd(qTxt)) ? "#eEQ" : "#eEM").focus(); return; }
+    await comFeedback("Salvando…", "Salvo ✓", async () => {
+      const salvo = await api.salvar(p, ed.foto);
+      await salvarEstoqueSeMudou({ id: salvo.id, estoque: ed.produto?.estoque ?? null, estoque_min: ed.produto?.estoque_min ?? null }, qTxt, mTxt);
+      return salvo;
+    });
     $("#dlgEditor").close();
     await recarregar();
   } catch { /* toast já mostrado */ }
@@ -3410,6 +3504,7 @@ function quando(iso) {
 }
 function renderInicio() {
   renderHeroInicio();
+  renderEstoqueInicio();
   renderClima();
   const ps = ui.produtos, carregado = ps.length > 0;
   const n = f => carregado ? ps.filter(f).length : "–";
@@ -3520,6 +3615,7 @@ function htmlFormPr(p) {
         <label class="pr-chk" style="margin-top:10px"><input type="checkbox" name="ativo"${p.ativo ? " checked" : ""}><span>Aparece no site<small>Desmarque se acabou o estoque</small></span></label>
       </div>
     </div>
+    <div class="pr-estoque"><p class="pr-est-tit">Estoque</p>${htmlCampoEstoque(p, "prE" + id)}</div>
     <p class="pr-erro" role="alert" hidden></p>
     <p class="pr-info">Deixe o preço vazio para mostrar “Consultar” no site.</p>
     <div class="pr-pe">
@@ -3558,7 +3654,7 @@ function renderPrecos() {
     return `<li class="pr-item${aberto ? " aberto" : ""}${p.ativo ? "" : " inativo"}">
       <button type="button" class="pr-linha" data-pr="${esc(p.id)}" aria-expanded="${aberto}">
         <span class="thumb">${thumb}</span>
-        <span class="pr-txt"><span class="pr-nome">${esc(p.nome)}</span><span class="pr-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}${p.ativo ? "" : " · oculto no site"}</span>${htmlDataPr(p)}</span>
+        <span class="pr-txt"><span class="pr-nome">${esc(p.nome)}</span><span class="pr-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}${p.ativo ? "" : " · oculto no site"}</span>${htmlDataPr(p)}${htmlBarraEstoque(p)}</span>
         <span class="pr-valor">${htmlValorPr(p)}</span>${seta}
       </button>${aberto ? htmlFormPr(p) : ""}</li>`;
   }).join("") + (total > PR_MAX ? `<li class="pr-mais">Mostrando ${PR_MAX} de ${total}. Digite mais do nome para achar mais rápido.</li>` : "");
@@ -3601,13 +3697,20 @@ async function salvarPr(form) {
     if (bandeja !== p.preco_bandeja) campos.preco_bandeja = bandeja;
   }
   if (el.ativo.checked !== p.ativo) campos.ativo = el.ativo.checked;
-  if (!Object.keys(campos).length) { fecharPr(); toast("Nada mudou."); return; }
+  const qE = lerQtd(el.estoque.value), mE = lerQtd(el.estoque_min.value);
+  if (Number.isNaN(qE)) return erroPr(form, "Quantidade em estoque inválida. Use só números, ex.: 12 ou 2,5.", el.estoque);
+  if (Number.isNaN(mE)) return erroPr(form, "Quantidade para avisar inválida. Use só números, ex.: 5.", el.estoque_min);
+  const mudouEst = qE !== (p.estoque ?? null) || mE !== (p.estoque_min ?? null);
+  if (!Object.keys(campos).length && !mudouEst) { fecharPr(); toast("Nada mudou."); return; }
   const btn = form.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = "Salvando…";
   const msg = campos.preco_antigo === null && p.preco_antigo != null ? "Salvo ✓ (promoção encerrada)"
     : campos.preco_antigo != null && p.preco_antigo == null ? "Salvo ✓ — promoção no ar" : "Salvo ✓ — já está no site";
   try {
-    await comFeedback("Salvando…", msg, () => api.atualizarCampos(p.id, campos));
-    Object.assign(p, campos, { atualizado_em: new Date().toISOString() });
+    await comFeedback("Salvando…", Object.keys(campos).length ? msg : "Estoque salvo ✓", async () => {
+      if (Object.keys(campos).length) await api.atualizarCampos(p.id, campos);
+      if (mudouEst) await salvarEstoqueSeMudou(p, el.estoque.value, el.estoque_min.value);
+    });
+    if (Object.keys(campos).length) Object.assign(p, campos, { atualizado_em: new Date().toISOString() });
     if ("preco" in campos || "preco_antigo" in campos) prUi.ultPreco.set(String(p.id), p.atualizado_em);
     ini.em = 0; // o Início busca o histórico de novo na próxima vez
     prUi.aberto = null;
@@ -3635,6 +3738,7 @@ function ligarEventosAbas() {
   ligarEventosTabela();
   ligarEventosMais();
   ligarEventosFiltros();
+  ligarEventosEstoque();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -3937,7 +4041,7 @@ function carregarXLSX() {
     document.head.appendChild(sc);
   });
 }
-const PL_COLS = ["Produto", "Marca", "Departamento", "Seção", "Unidade", "Preço (R$)", "Preço antes da promoção (R$)", "Bandeja fechada (R$)", "No site", "Código (não mexer)"];
+const PL_COLS = ["Produto", "Marca", "Departamento", "Seção", "Unidade", "Preço (R$)", "Preço antes da promoção (R$)", "Bandeja fechada (R$)", "No site", "Estoque", "Avisar repor em", "Código (não mexer)"];
 const plUi = { mudancas: [] };
 function abrirPlanilha() {
   $("#plDep").innerHTML = '<option value="">Todos os departamentos</option>' + ui.deps.map(d => `<option value="${esc(d.nome)}">${esc(d.nome)}</option>`).join("");
@@ -3951,14 +4055,14 @@ async function baixarPlanilha() {
     const dep = $("#plDep").value;
     const lista = ui.produtos.filter(p => !dep || p.dep === dep)
       .sort((a, b) => ordemDep(a.dep) - ordemDep(b.dep) || ordemSub(a.dep, a.sub) - ordemSub(b.dep, b.sub) || a.nome.localeCompare(b.nome, "pt-BR"));
-    const linhas = lista.map(p => [p.nome, p.marca || "", p.dep, p.sub, p.unidade || "", p.preco, p.preco_antigo, tamBandeja(p.sub) ? p.preco_bandeja : null, p.ativo ? "Sim" : "Não", String(p.id)]);
+    const linhas = lista.map(p => [p.nome, p.marca || "", p.dep, p.sub, p.unidade || "", p.preco, p.preco_antigo, tamBandeja(p.sub) ? p.preco_bandeja : null, p.ativo ? "Sim" : "Não", p.estoque, p.estoque_min, String(p.id)]);
     const ws = X.utils.aoa_to_sheet([PL_COLS, ...linhas]);
-    ws["!cols"] = [{ wch: 42 }, { wch: 16 }, { wch: 18 }, { wch: 22 }, { wch: 26 }, { wch: 12 }, { wch: 14 }, { wch: 13 }, { wch: 8 }, { wch: 38 }];
+    ws["!cols"] = [{ wch: 42 }, { wch: 16 }, { wch: 18 }, { wch: 22 }, { wch: 26 }, { wch: 12 }, { wch: 14 }, { wch: 13 }, { wch: 8 }, { wch: 9 }, { wch: 14 }, { wch: 38 }];
     for (let r = 1; r <= linhas.length; r++) for (const c of [5, 6, 7]) { const cel = ws[X.utils.encode_cell({ r, c })]; if (cel && typeof cel.v === "number") cel.z = '"R$" #,##0.00'; }
     const ajuda = X.utils.aoa_to_sheet([
       ["Como usar esta planilha"], [""],
       ["1. Mude só as colunas: Preço, Preço antes da promoção, Bandeja fechada e No site (Sim/Não)."],
-      ["2. Preço vazio = aparece “Consultar” no site."],
+      ["2. Preço vazio = aparece “Consultar” no site. Estoque vazio = não controla o estoque desse produto."],
       ["3. Promoção: coloque o preço novo em “Preço” e o antigo em “Preço antes da promoção”. Para tirar a promoção, apague o preço antes."],
       ["4. Não apague nem mude a coluna “Código”. É por ela que o painel acha o produto."],
       ["5. Produtos novos se cadastram pelo painel (a planilha só altera os que já existem)."],
@@ -3994,7 +4098,7 @@ async function lerPlanilha(arq) {
   const iCab = rows.findIndex(r => r && r.some(c => norm(c).startsWith("codigo")));
   if (iCab < 0) throw new Error("Não achei a coluna “Código” na planilha. Use a planilha baixada pelo painel.");
   const cab = rows[iCab].map(norm), col = pre => cab.findIndex(c => c.startsWith(pre));
-  const C = { cod: col("codigo"), nome: col("produto"), preco: cab.findIndex(c => c.startsWith("preco") && !c.includes("antes")), antigo: col("preco antes"), bandeja: col("bandeja"), site: col("no site") };
+  const C = { cod: col("codigo"), nome: col("produto"), preco: cab.findIndex(c => c.startsWith("preco") && !c.includes("antes")), antigo: col("preco antes"), bandeja: col("bandeja"), site: col("no site"), est: cab.findIndex(c => c === "estoque"), min: col("avisar") };
   const porId = new Map(ui.produtos.map(p => [String(p.id), p]));
   const mudancas = [], erros = [], naoAchados = [];
   rows.slice(iCab + 1).forEach((r, k) => {
@@ -4020,7 +4124,16 @@ async function lerPlanilha(arq) {
       if (a === null) { erros.push(`Linha ${linha} (${p.nome}): em “No site” escreva Sim ou Não.`); return; }
       if (a !== undefined && a !== p.ativo) { campos.ativo = a; desc.push(["No site", p.ativo ? "Sim" : "Não", a ? "Sim" : "Não"]); }
     }
-    if (desc.length) mudancas.push({ p, campos, desc });
+    let est = null;
+    if (C.est >= 0 || C.min >= 0) {
+      const lq = v => v == null || v === "" ? null : typeof v === "number" ? (v >= 0 ? Math.round(v * 1000) / 1000 : NaN) : lerQtd(v);
+      const q = C.est >= 0 ? lq(r[C.est]) : (p.estoque ?? null), m = C.min >= 0 ? lq(r[C.min]) : (p.estoque_min ?? null);
+      if (Number.isNaN(q) || Number.isNaN(m)) { erros.push(`Linha ${linha} (${p.nome}): estoque precisa ser um número.`); return; }
+      if (q !== (p.estoque ?? null)) desc.push(["Estoque", qtdTxt(p.estoque, p), qtdTxt(q, p)]);
+      if (m !== (p.estoque_min ?? null)) desc.push(["Avisar repor em", qtdTxt(p.estoque_min, p), qtdTxt(m, p)]);
+      if (q !== (p.estoque ?? null) || m !== (p.estoque_min ?? null)) est = { q, m };
+    }
+    if (desc.length) mudancas.push({ p, campos, desc, est });
   });
   return { mudancas, erros, naoAchados };
 }
@@ -4054,7 +4167,10 @@ async function aplicarPlanilha() {
     await comFeedback("Gravando…", `${lista.length} produto(s) atualizados ✓`, async () => {
       let n = 0;
       for (let i = 0; i < lista.length; i += 6) {
-        await Promise.all(lista.slice(i, i + 6).map(m => api.atualizarCampos(m.p.id, m.campos)));
+        await Promise.all(lista.slice(i, i + 6).map(async m => {
+          if (Object.keys(m.campos).length) await api.atualizarCampos(m.p.id, m.campos);
+          if (m.est) await api.salvarEstoque(m.p.id, m.est.q, m.est.m);
+        }));
         n += Math.min(6, lista.length - i);
       }
       return n;
@@ -4150,6 +4266,92 @@ function ligarEventosFiltros() {
     ui.filtro.dep = b.dataset.depLat === ui.filtro.dep ? "" : b.dataset.depLat; $("#filtroDep").value = ui.filtro.dep; ui.pagina = 1; renderLista();
     $(`[data-dep-lat="${CSS.escape(ui.filtro.dep)}"]`)?.focus();
   });
+}
+
+
+/* =====================================================================
+   ESTOQUE — quantidade por produto e ponto de reposição.
+   Verde: tranquilo · Amarelo: acabando (até 2× o mínimo) · Vermelho: repor / sem estoque
+   ===================================================================== */
+const qtdTxt = (v, p) => v == null ? "—" : Number(v).toLocaleString("pt-BR", { maximumFractionDigits: 3 }) + (p && p.por_metro ? " m" : "");
+function lerQtd(txt) { // "12" | "2,5" | "" → número; vazio = null; inválido = NaN
+  const t = String(txt ?? "").trim().replace(/\s/g, ""); if (!t) return null;
+  const v = Number(t.replace(/\./g, "").replace(",", "."));
+  return Number.isFinite(v) && v >= 0 && v < 1e9 ? Math.round(v * 1000) / 1000 : NaN;
+}
+function situacaoEstoque(p) {
+  if (p.estoque == null) return null;
+  const q = p.estoque, m = p.estoque_min || 0;
+  const pct = m > 0 ? Math.max(0, Math.min(1, q / (m * 3))) : (q > 0 ? 1 : 0);
+  if (q <= 0) return { cls: "sem", txt: "Sem estoque", pct: 0 };
+  if (m > 0 && q <= m) return { cls: "repor", txt: "Repor", pct };
+  if (m > 0 && q <= m * 2) return { cls: "acabando", txt: "Acabando", pct };
+  return { cls: "ok", txt: "Em estoque", pct };
+}
+function htmlBarraEstoque(p, grande) {
+  const s = situacaoEstoque(p); if (!s) return "";
+  return `<span class="est${grande ? " est-g" : ""} est-${s.cls}" title="${s.txt}: ${qtdTxt(p.estoque, p)}${p.estoque_min ? ` (repor em ${qtdTxt(p.estoque_min, p)})` : ""}">
+    <span class="est-barra" aria-hidden="true"><span style="width:${(s.pct * 100).toFixed(0)}%"></span></span>
+    <span class="est-txt"><b>${qtdTxt(p.estoque, p)}</b> ${s.cls === "ok" ? "" : s.txt.toLowerCase()}</span></span>`;
+}
+const precisaRepor = p => { const s = situacaoEstoque(p); return !!s && (s.cls === "repor" || s.cls === "sem"); };
+function renderAvisoEstoque() { // bolinha vermelha nas abas "Produtos" e "Início"
+  const n = ui.produtos.filter(precisaRepor).length;
+  document.querySelectorAll('#barraBaixo [data-aba="produtos"], #abasTopo [data-aba="produtos"]').forEach(b => {
+    let bol = b.querySelector(".aviso-n");
+    if (!n) { bol?.remove(); return; }
+    if (!bol) { bol = document.createElement("span"); bol.className = "aviso-n"; b.appendChild(bol); }
+    bol.textContent = n > 99 ? "99+" : n; bol.setAttribute("aria-label", `${n} para repor`);
+  });
+}
+function htmlCampoEstoque(p, pref) { // usado no editor e no "Alterar preço"
+  return `<div class="est-campos">
+      <div class="campo"><label for="${pref}Q">Quantidade em estoque</label>
+        <div class="est-passo"><button type="button" data-est-passo="-1" data-alvo="${pref}Q" aria-label="Um a menos">−</button>
+          <input class="inp" id="${pref}Q" name="estoque" inputmode="decimal" autocomplete="off" placeholder="Não controla" value="${p && p.estoque != null ? qtdTxt(p.estoque) : ""}">
+          <button type="button" data-est-passo="1" data-alvo="${pref}Q" aria-label="Um a mais">+</button></div></div>
+      <div class="campo"><label for="${pref}M">Avisar para repor quando chegar em</label>
+        <input class="inp" id="${pref}M" name="estoque_min" inputmode="decimal" autocomplete="off" placeholder="ex.: 5" value="${p && p.estoque_min != null ? qtdTxt(p.estoque_min) : ""}"></div>
+    </div>
+    <p class="dica est-dica">Deixe a quantidade vazia se não quiser controlar o estoque deste produto.</p>`;
+}
+async function salvarEstoqueSeMudou(p, qTxt, mTxt) { // devolve true se gravou
+  const q = lerQtd(qTxt), m = lerQtd(mTxt);
+  if (Number.isNaN(q)) throw new Error("Quantidade em estoque inválida. Use só números, ex.: 12 ou 2,5.");
+  if (Number.isNaN(m)) throw new Error("Quantidade para avisar inválida. Use só números, ex.: 5.");
+  if (q === (p.estoque ?? null) && m === (p.estoque_min ?? null)) return false;
+  await api.salvarEstoque(p.id, q, m);
+  p.estoque = q; p.estoque_min = m; p.estoque_em = new Date().toISOString();
+  return true;
+}
+function ligarEventosEstoque() {
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-est-passo]"); if (!b) return;
+    const inp = document.getElementById(b.dataset.alvo); if (!inp) return;
+    const v = lerQtd(inp.value);
+    inp.value = qtdTxt(Math.max(0, (Number.isNaN(v) || v == null ? 0 : v) + Number(b.dataset.estPasso)));
+    inp.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  $("#iniEstoque").addEventListener("click", e => {
+    const b = e.target.closest("[data-chip-ini]"); if (b) { ui.filtro = { q: "", dep: "", chip: b.dataset.chipIni }; ui.pagina = 1; $("#busca").value = ""; irPara("produtos"); return; }
+    const pr = e.target.closest("[data-pr-abrir]"); if (!pr) return;
+    const p = ui.produtos.find(x => String(x.id) === pr.dataset.prAbrir); if (!p) return;
+    prUi.q = p.nome; prUi.dep = ""; $("#prBusca").value = p.nome; prUi.aberto = null; irPara("precos"); abrirPr(String(p.id));
+  });
+}
+function renderEstoqueInicio() {
+  const box = $("#iniEstoque");
+  if (ui.estoqueErro) { box.innerHTML = `<p class="ini-vazio">${esc(ui.estoqueErro)}</p>`; return; }
+  const ctl = ui.produtos.filter(p => p.estoque != null);
+  if (!ctl.length) { box.innerHTML = '<p class="ini-vazio">Nenhum produto com estoque ainda. Coloque a quantidade em “Alterar preço”, no cadastro do produto ou pela planilha.</p>'; return; }
+  const cont = c => ctl.filter(p => situacaoEstoque(p).cls === c).length;
+  const nums = [["e-sem", cont("sem"), "Sem estoque", "vermelho"], ["e-repor", cont("repor"), "Repor", "vermelho"], ["e-acabando", cont("acabando"), "Acabando", "amarelo"], ["e-ok", cont("ok"), "Em estoque", "verde"]];
+  const ordem = { sem: 0, repor: 1, acabando: 2, ok: 3 };
+  const piores = ctl.filter(p => situacaoEstoque(p).cls !== "ok")
+    .sort((a, b) => ordem[situacaoEstoque(a).cls] - ordem[situacaoEstoque(b).cls] || situacaoEstoque(a).pct - situacaoEstoque(b).pct).slice(0, 6);
+  box.innerHTML = `<div class="est-nums">${nums.map(([chip, n, rot, cor]) => `<button type="button" class="est-num ${cor}${n ? "" : " zero"}" data-chip-ini="${chip}"><b>${n}</b><span>${rot}</span></button>`).join("")}</div>
+    ${piores.length ? `<ul class="est-lista">${piores.map(p => `<li><button type="button" data-pr-abrir="${esc(p.id)}"><span class="est-nome">${esc(p.nome)}</span>${htmlBarraEstoque(p, true)}</button></li>`).join("")}</ul>`
+      : '<p class="ini-vazio">Tudo em dia: nenhum produto precisando repor.</p>'}`;
 }
 
 /* ---------- LOGIN ---------- */
