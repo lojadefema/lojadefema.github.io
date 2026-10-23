@@ -575,7 +575,7 @@ html:has(dialog[open]){overflow:hidden}
 .ini-data{margin:0 0 2px;font-size:14px;font-weight:600;opacity:.8}
 .ini-hero h2{font-size:30px;color:#fff;margin:0 0 10px}
 .ini-status{display:inline-flex;align-items:center;gap:8px;margin:0;padding:5px 12px 5px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:700;font-size:14px}
-.ini-status .ponto{width:9px;height:9px;border-radius:50%;background:#f0a39a;flex:none}
+.ini-status .ponto{width:10px;height:10px;border-radius:50%;background:#ff5a4e;box-shadow:0 0 0 3px rgba(255,90,78,.25);flex:none}
 .ini-status.aberto .ponto{background:#7be3a0;box-shadow:0 0 0 3px rgba(123,227,160,.25)}
 .ini-horario{margin:8px 0 0;font-size:13px;opacity:.75}
 .ini-clima{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;position:relative;z-index:1;min-width:0}
@@ -588,6 +588,10 @@ html:has(dialog[open]){overflow:hidden}
 .cl-desc b{display:block;font-size:15px}
 .cl-desc small{opacity:.8}
 .cl-linha{margin:10px 0 0;font-size:13.5px;opacity:.92;font-variant-numeric:tabular-nums}
+.cl-dados{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px}
+.cl-dados span{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.08);font-size:12px;opacity:.95;line-height:1.2}
+.cl-dados svg{width:16px;height:16px;color:#bfe3c8;margin-bottom:2px}
+.cl-dados b{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
 .cl-pulv{margin:10px 0 0;padding:8px 10px;border-radius:10px;font-size:13.5px;line-height:1.35;background:rgba(0,0,0,.16)}
 .cl-pulv b{font-weight:700}
 .cl-pulv.ok b{color:#9bf0b8}
@@ -618,6 +622,7 @@ html:has(dialog[open]){overflow:hidden}
 .ini-at{display:flex;align-items:center;gap:10px;min-height:52px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font-weight:600;font-size:14.5px;cursor:pointer;text-align:left;text-decoration:none;line-height:1.2}
 .ini-at:hover{border-color:var(--leaf-ink);color:var(--leaf-ink)}
 .ini-at svg{width:20px;height:20px;flex:none;color:var(--leaf-ink)}
+.ini-atalhos>:last-child:nth-child(odd){grid-column:1/-1}
 .ini-at.pri{background:var(--leaf);border-color:var(--leaf);color:#fff}
 .ini-at.pri svg{color:#fff}
 .ini-at.pri:hover{background:var(--leaf-2);color:#fff}
@@ -655,6 +660,8 @@ html:has(dialog[open]){overflow:hidden}
 .pr-txt{flex:1;min-width:0}
 .pr-nome{font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .pr-sub{display:block;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr-data{display:inline-block;margin-top:3px;font-size:12px;font-weight:600;color:var(--soil);background:var(--soil-soft);border-radius:6px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.pr-data.sem{background:none;color:var(--muted);font-weight:500;padding:0}
 .pr-valor{flex:none;text-align:right;font-variant-numeric:tabular-nums;line-height:1.2;display:flex;flex-direction:column;align-items:flex-end}
 .pr-valor b{font-size:18px;color:var(--leaf-ink)}
 .pr-valor s{font-size:12.5px;color:var(--muted)}
@@ -689,8 +696,11 @@ html:has(dialog[open]){overflow:hidden}
 /* ---------- mudas: escolha da bandeja, quantidade unitária e calculadora ---------- */
 .m-sec-topo{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .m-sec-topo h3{margin:0}
-.m-calc-btn{min-height:40px;padding:6px 12px;font-size:14px}
-.m-calc-btn svg{width:18px;height:18px}
+.m-calc-btn{width:100%;min-height:64px;justify-content:flex-start;gap:14px;padding:10px 16px;font-size:18px;margin-bottom:14px;border-radius:14px;text-align:left;white-space:normal}
+.m-calc-btn svg{width:30px;height:30px}
+.m-calc-btn span{display:flex;flex-direction:column;line-height:1.2}
+.m-calc-btn small{font-size:13px;font-weight:500;opacity:.8}
+.m-ou{font-size:16px !important;color:var(--muted) !important;margin:0 0 8px !important}
 .m-passo{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--muted)}
 .m-escolha{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-bottom:12px}
 .m-grupo{grid-column:1/-1;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 2px 0}
@@ -877,7 +887,6 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <p class="ini-data" id="iniData"></p>
         <h2 id="tInicio">Bom dia!</h2>
         <p class="ini-status" id="iniStatus"><span class="ponto" aria-hidden="true"></span><span id="iniStatusTxt"></span></p>
-        <p class="ini-horario" id="iniHorario"></p>
       </div>
       <div class="ini-clima" id="iniClima" aria-live="polite"><p class="ini-clima-msg">Carregando o tempo…</p></div>
     </div>
@@ -892,8 +901,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
           <button type="button" class="ini-at pri" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg><span>Alterar preço</span></button>
           <button type="button" class="ini-at" data-acao="novo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Novo produto</span></button>
           <button type="button" class="ini-at" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg><span>Mudas – balcão</span></button>
-          <button type="button" class="ini-at" data-acao="reajuste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg><span>Reajuste em lote</span></button>
-          <button type="button" class="ini-at" data-acao="historico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>Histórico de preços</span></button>
+                    <button type="button" class="ini-at" data-acao="historico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>Histórico de preços</span></button>
           <button type="button" class="ini-at" data-acao="secoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Seções</span></button>
           <button type="button" class="ini-at" data-acao="carrossel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="11" rx="2"/><path d="M2 8v5M22 8v5"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="12" cy="20" r="1" fill="currentColor"/><circle cx="15" cy="20" r="1" fill="currentColor"/></svg><span>Carrossel do site</span></button>
           <a class="ini-at" href="../" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg><span>Ver o site</span></a>
@@ -917,7 +925,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <h2 id="tPrecos">Alterar preço</h2>
         <p class="dica">Busque o produto, toque nele, mude o preço e salve. O site atualiza na hora.</p>
       </div>
-      <button class="btn btn-sec" type="button" id="btnReajuste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Reajuste em lote</button>
+      <span id="btnReajuste" hidden></span>
     </div>
     <div class="ferr">
       <div class="busca">
@@ -943,7 +951,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <div class="lat-acoes">
         <button class="lat-btn pri" id="btnNovoTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Novo produto</button>
         <button class="lat-btn" id="btnMudasTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas – balcão</button>
-        <button class="lat-btn" id="btnReajusteTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Reajuste em lote</button>
+        <button class="lat-btn" id="btnReajusteTopo" type="button" hidden data-sempre-oculto><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 19L19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Reajuste em lote</button>
         <button class="lat-btn" id="btnHistTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Histórico de preços</button>
         <button class="lat-btn" id="btnCarrosselTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="11" rx="2"/><path d="M2 8v5M22 8v5"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="12" cy="20" r="1" fill="currentColor"/><circle cx="15" cy="20" r="1" fill="currentColor"/></svg>Carrossel do site</button>
         <button class="lat-btn" id="btnDepsTopo" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Departamentos</button>
@@ -1189,12 +1197,9 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     <div class="dlg-corpo m-grade">
       <div class="ed-col m-col">
         <form class="secao" id="formMuda" novalidate>
-          <div class="m-sec-topo">
-            <h3>Registrar venda</h3>
-            <button class="btn btn-sec m-calc-btn" type="button" id="btnCalcMudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5v.01M15.5 13v3.5" stroke-width="2.6" stroke-linecap="round"/></svg>Calculadora</button>
-          </div>
+          <button class="btn btn-pri m-calc-btn" type="button" id="btnCalcMudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5v.01M15.5 13v3.5" stroke-width="2.6" stroke-linecap="round"/></svg><span>Calculadora de mudas<small>Monte o pedido inteiro de uma vez</small></span></button>
+          <h3 class="m-ou">Ou registre uma muda</h3>
           <div id="mPasso1">
-            <p class="m-passo">Toque na muda:</p>
             <div class="m-escolha" id="mEscolha" role="radiogroup" aria-label="Escolha a muda"></div>
           </div>
           <div class="m-qtd-box" id="mQtdBox" hidden>
@@ -1936,7 +1941,7 @@ function mostrarTela(nome) {
   $("#telaPrecos").hidden = nome !== "precos";
   const logado = nome !== "login";
   ui.logado = logado;
-  ["#btnSair", "#btnNovoTopo", "#btnReajusteTopo", "#btnDepsTopo", "#btnMudasTopo", "#btnHistTopo", "#btnCarrosselTopo", "#barraBaixo", "#abasTopo"].forEach(s => $(s).hidden = !logado);
+  ["#btnSair", "#btnNovoTopo", "#btnDepsTopo", "#btnMudasTopo", "#btnHistTopo", "#btnCarrosselTopo", "#barraBaixo", "#abasTopo"].forEach(s => $(s).hidden = !logado);
   document.querySelectorAll("#barraBaixo [data-aba], #abasTopo [data-aba]").forEach(b => {
     if (b.dataset.aba === nome) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
   });
@@ -1958,7 +1963,7 @@ function irPara(aba, { historico = true } = {}) {
   }
   mostrarTela(aba);
   if (aba === "inicio") { renderInicio(); carregarExtrasInicio(); }
-  if (aba === "precos") { montarDepsPrecos(); renderPrecos(); }
+  if (aba === "precos") { montarDepsPrecos(); renderPrecos(); carregarHistPrecos(); }
   if (aba === "produtos") renderListaBase();
   if (antes !== aba) window.scrollTo(0, 0);
   if (aba === "precos" && antes !== "precos" && mqLargo.matches) focarDepois("#prBusca");
@@ -2973,10 +2978,8 @@ function renderHeroInicio() {
   $("#tInicio").textContent = (h >= 5 && h < 12 ? "Bom dia" : h >= 12 && h < 18 ? "Boa tarde" : "Boa noite") + "!";
   $("#iniData").textContent = maiuscula(new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo", weekday: "long", day: "numeric", month: "long" }));
   const st = situacaoDaLoja();
-  $("#iniStatusTxt").textContent = st.texto;
+  $("#iniStatusTxt").textContent = st.aberto ? "Loja aberta" : "Loja fechada";
   $("#iniStatus").classList.toggle("aberto", st.aberto);
-  const hj = HORARIO_LOJA[dia];
-  $("#iniHorario").textContent = (hj ? `Hoje: das ${hj[0]}h às ${hj[1]}h` : "Domingo: loja fechada") + " · Seg. a sex. 8h–17h · Sáb. 8h–12h".replace(/ (?=\d|a )/g, "\u00a0");
 }
 
 /* ---------- tempo (Open-Meteo, sem chave). Guarda 30 min neste aparelho. ---------- */
@@ -3009,7 +3012,10 @@ function svgClima(tipo, cls = "") {
   const cor = tipo === "sol" || tipo === "solnuvem" ? "" : " nuvem";
   return `<svg class="${cls}${cls ? cor : ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${corpo}</svg>`;
 }
-/* recomendação usual para aplicar defensivos: vento entre 3 e 10 km/h, abaixo de 30 °C, umidade acima de 55%, sem chuva */
+const svgVento = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8.5h11a2.5 2.5 0 1 0-2.5-2.5M3 12.5h16a2.5 2.5 0 1 1-2.5 2.5M3 16.5h8"/></svg>';
+const svgGota = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5s6 6.4 6 10.6a6 6 0 0 1-12 0C6 9.9 12 3.5 12 3.5z"/></svg>';
+const svgChuva = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 14h10.2a3.8 3.8 0 0 0 .4-7.6 5.6 5.6 0 0 0-10.8 1.4A3.1 3.1 0 0 0 7 14z"/><path d="M8.5 17.5l-1 2.5M12.5 17.5l-1 2.5M16.5 17.5l-1 2.5"/></svg>';
+/* (não usado na tela) recomendação usual para aplicar defensivos: vento entre 3 e 10 km/h, abaixo de 30 °C, umidade acima de 55%, sem chuva */
 function avaliarPulverizacao(c) {
   const v = c.wind_speed_10m, t = c.temperature_2m, u = c.relative_humidity_2m, problemas = [];
   if (c.precipitation > 0) problemas.push("está chovendo");
@@ -3034,8 +3040,12 @@ function renderClima() {
   }).join("");
   box.innerHTML = `<div class="cl-agora">${svgClima(tipo, "cl-ico")}<span class="cl-temp">${Math.round(c.temperature_2m)}°</span>
       <span class="cl-desc"><b>${desc}</b><small>Pirapozinho, agora</small></span></div>
-    <p class="cl-linha">Hoje: máx. ${Math.round(dd.temperature_2m_max[0])}° · mín. ${Math.round(dd.temperature_2m_min[0])}° · chuva ${chuvaHoje ?? 0}%${dd.precipitation_sum[0] >= 0.5 ? ` (${String(Math.round(dd.precipitation_sum[0] * 10) / 10).replace(".", ",")} mm)` : ""}</p>
-    ${avaliarPulverizacao(c)}
+    <p class="cl-linha">Hoje: máx. ${Math.round(dd.temperature_2m_max[0])}° · mín. ${Math.round(dd.temperature_2m_min[0])}°${dd.precipitation_sum[0] >= 0.5 ? ` (${String(Math.round(dd.precipitation_sum[0] * 10) / 10).replace(".", ",")} mm)` : ""}</p>
+    <div class="cl-dados">
+      <span>${svgVento}<b>${Math.round(c.wind_speed_10m)} km/h</b>vento</span>
+      <span>${svgGota}<b>${Math.round(c.relative_humidity_2m)}%</b>umidade</span>
+      <span>${svgChuva}<b>${chuvaHoje ?? 0}%</b>chuva hoje</span>
+    </div>
     <div class="cl-dias">${dias}</div>
     <small class="cl-fonte">Previsão: Open-Meteo</small>`;
 }
@@ -3130,12 +3140,29 @@ const ICONE_NF = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" st
 /* =====================================================================
    ALTERAR PREÇO — busca + edição rápida de preço, promoção e "no site"
    ===================================================================== */
-const prUi = { q: "", dep: "", aberto: null };
+const prUi = { q: "", dep: "", aberto: null, ultPreco: new Map(), histEm: 0 }; // ultPreco: id → data da última mudança de preço
+async function carregarHistPrecos(forcar) {
+  if (!forcar && Date.now() - prUi.histEm < 120000) return;
+  prUi.histEm = Date.now();
+  try {
+    const itens = await api.listarHistorico(new Date(Date.now() - 365 * 864e5).toISOString()); // mais novo primeiro
+    const m = new Map();
+    for (const h of itens) if ((h.campo === "preco" || h.campo === "preco_antigo") && !m.has(String(h.produto_id))) m.set(String(h.produto_id), h.alterado_em);
+    prUi.ultPreco = m;
+    if (ui.aba === "precos" && prUi.aberto == null) renderPrecos();
+  } catch (e) { console.warn(e); }
+}
+const dataPreco = p => prUi.ultPreco.get(String(p.id)) || null;
 const PR_MAX = 40;
 function montarDepsPrecos() {
   const sel = $("#prDep"), atual = prUi.dep;
   sel.innerHTML = '<option value="">Todos os departamentos</option>' + ui.deps.map(d => `<option value="${esc(d.nome)}">${esc(d.nome)}</option>`).join("");
   sel.value = ui.deps.some(d => d.nome === atual) ? atual : "";
+}
+function htmlDataPr(p) {
+  const d = dataPreco(p);
+  if (d) return `<span class="pr-data">Preço alterado em ${dataBR(d)}</span>`;
+  return p.atualizado_em ? `<span class="pr-data sem">Atualizado em ${dataBR(p.atualizado_em)}</span>` : "";
 }
 function htmlValorPr(p) {
   if (p.preco == null) return '<span class="consultar">Sem preço</span>';
@@ -3169,7 +3196,7 @@ function htmlFormPr(p) {
       </div>
     </div>
     <p class="pr-erro" role="alert" hidden></p>
-    <p class="pr-info">Deixe o preço vazio para mostrar “Consultar” no site.${p.atualizado_em ? ` Última alteração: ${dataBR(p.atualizado_em)}.` : ""}</p>
+    <p class="pr-info">Deixe o preço vazio para mostrar “Consultar” no site.</p>
     <div class="pr-pe">
       <button type="button" class="btn btn-sec pr-editar" data-pr-editar="${id}">Editar tudo (foto, descrição…)</button>
       <button type="button" class="btn btn-sec" data-pr-fechar>Cancelar</button>
@@ -3182,8 +3209,10 @@ function renderPrecos() {
   const q = prUi.q.trim();
   let itens, titulo = "", parecidos = false;
   if (!q && !prUi.dep) {
-    itens = [...base].sort((a, b) => String(b.atualizado_em || "").localeCompare(String(a.atualizado_em || ""))).slice(0, 10);
-    titulo = "Mexidos por último";
+    const comHist = base.filter(dataPreco);
+    itens = (comHist.length ? comHist.sort((a, b) => String(dataPreco(b)).localeCompare(String(dataPreco(a))))
+                            : [...base].sort((a, b) => String(b.atualizado_em || "").localeCompare(String(a.atualizado_em || "")))).slice(0, 15);
+    titulo = "Histórico de alteração de preço";
   } else {
     const r = filtrarBusca(base, q);
     parecidos = r.parecidos;
@@ -3194,7 +3223,7 @@ function renderPrecos() {
   }
   const total = itens.length, mostra = itens.slice(0, PR_MAX);
   $("#prResumo").textContent = !ui.produtos.length ? "Carregando produtos…"
-    : !q && !prUi.dep ? "Digite o nome do produto para buscar. Abaixo, os últimos que foram alterados."
+    : !q && !prUi.dep ? "Digite o nome do produto para buscar. Abaixo, os últimos preços alterados."
     : `${total} produto${total === 1 ? "" : "s"}${parecidos ? " parecido" + (total === 1 ? "" : "s") + " (nenhum resultado exato)" : ""}`;
   if (!total) { $("#prLista").innerHTML = `<li class="vazio">Nenhum produto encontrado.${q ? "<br>Tente outra palavra ou só parte do nome." : ""}</li>`; return; }
   const seta = '<svg class="pr-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
@@ -3204,7 +3233,7 @@ function renderPrecos() {
     return `<li class="pr-item${aberto ? " aberto" : ""}${p.ativo ? "" : " inativo"}">
       <button type="button" class="pr-linha" data-pr="${esc(p.id)}" aria-expanded="${aberto}">
         <span class="thumb">${thumb}</span>
-        <span class="pr-txt"><span class="pr-nome">${esc(p.nome)}</span><span class="pr-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}${p.ativo ? "" : " · oculto no site"}</span></span>
+        <span class="pr-txt"><span class="pr-nome">${esc(p.nome)}</span><span class="pr-sub">${esc([p.marca, p.sub].filter(Boolean).join(" · "))}${p.ativo ? "" : " · oculto no site"}</span>${htmlDataPr(p)}</span>
         <span class="pr-valor">${htmlValorPr(p)}</span>${seta}
       </button>${aberto ? htmlFormPr(p) : ""}</li>`;
   }).join("") + (total > PR_MAX ? `<li class="pr-mais">Mostrando ${PR_MAX} de ${total}. Digite mais do nome para achar mais rápido.</li>` : "");
@@ -3254,6 +3283,7 @@ async function salvarPr(form) {
   try {
     await comFeedback("Salvando…", msg, () => api.atualizarCampos(p.id, campos));
     Object.assign(p, campos, { atualizado_em: new Date().toISOString() });
+    if ("preco" in campos || "preco_antigo" in campos) prUi.ultPreco.set(String(p.id), p.atualizado_em);
     ini.em = 0; // o Início busca o histórico de novo na próxima vez
     prUi.aberto = null;
     renderListaBase(); renderPrecos();
@@ -3348,6 +3378,7 @@ async function posLogin(sessao) {
   irPara(abaIni, { historico: false });
   try { await recarregar(); } catch (e) { toast(e.message || "Erro ao carregar.", "erro"); }
   if (ui.aba === "inicio") carregarExtrasInicio(true);
+  if (ui.aba === "precos") carregarHistPrecos(true);
 }
 
 /* ---------- EVENTOS ---------- */
@@ -3571,7 +3602,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230836";
+  const VERSAO = "202610230849";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
