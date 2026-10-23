@@ -968,6 +968,50 @@ html:has(dialog[open]){overflow:hidden}
 .abas-topo .aviso-n{top:2px;right:2px;box-shadow:none}
 :root[data-estilo="pb"] .est-ok .est-barra span{background:#000}
 :root[data-estilo="pb"][data-theme="dark"] .est-ok .est-barra span{background:#fff}
+
+/* ---------- pedido de compra ---------- */
+@media (min-width:760px){#dlgPedido{width:min(860px,94vw);height:92vh}#dlgPedido .dlg{height:100%}}
+.ini-pedir{width:100%;margin-top:12px;min-height:46px}
+.pd-ferr{display:grid;gap:8px;padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--line);flex:none}
+.pd-filtros{display:flex !important;flex-wrap:wrap}
+.pd-filtros span{font-variant-numeric:tabular-nums}
+.pd-corpo{padding:10px 12px 16px !important}
+.pd-sugeridos{width:100%;margin-bottom:10px}
+.pd-lista{list-style:none;margin:0;padding:0;display:grid;gap:6px;grid-template-columns:minmax(0,1fr)}
+.pd-rev{grid-template-columns:minmax(0,1fr)}
+.pd-lista .m-grupo{list-style:none}
+.pd-item{min-width:0;display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.pd-item.tem{border-color:var(--leaf-ink);background:var(--leaf-soft)}
+.pd-info{flex:1;min-width:0}
+.pd-info>b{display:block;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pd-info>small{display:block;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-sug{margin-top:4px;border:1.5px dashed var(--soil);background:none;color:var(--soil);border-radius:8px;padding:2px 8px;font-size:12.5px;font-weight:700;cursor:pointer}
+.pd-passo{flex:none;display:flex;align-items:center;gap:4px}
+.pd-passo button{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--leaf-ink);font-size:22px;font-weight:700;cursor:pointer;padding:0;line-height:1}
+.pd-passo input{width:54px;height:40px;border:1.5px solid var(--campo-line);border-radius:10px;background:var(--campo);text-align:center;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;padding:0 2px;color:var(--fg)}
+.pd-pe{align-items:center;flex-wrap:wrap}
+.pd-res{margin-right:auto;display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.pd-res b{font-size:16px}
+.pd-res small{color:var(--muted);font-size:13px}
+.pd-cab{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px}
+@media (min-width:640px){.pd-cab{grid-template-columns:1fr 1fr}}
+.pd-cab .campo{margin:0}
+.pd-cab textarea.inp{min-height:48px;resize:vertical}
+.pd-rev{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pd-rev li{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.pd-rev-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
+.pd-rev-top b{flex:1;min-width:0;line-height:1.25}
+.pd-rev-top small{display:block;color:var(--muted);font-weight:500;font-size:12.5px}
+.pd-rev-top .btn-x{flex:none}
+.pd-rev-campos{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:end}
+@media (max-width:420px){.pd-rev-campos{grid-template-columns:1fr 1fr}.pd-rev-campos .pd-c-qtd{grid-column:1/-1}}
+.pd-rev-campos label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.pd-rev-campos .inp{min-height:42px;padding:6px 10px}
+.pd-rev-sub{margin-top:6px;text-align:right;font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.pd-rev-sub b{color:var(--leaf-ink);font-size:15px}
+.pd-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.pd-total strong{font-size:24px;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.pd-aviso{font-size:13px;color:var(--muted);margin:8px 0 0}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1130,6 +1174,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <section class="ini-card ini-estoque" aria-labelledby="tIniEst">
         <div class="ini-card-topo"><h3 id="tIniEst">Estoque</h3><button type="button" class="link-btn" data-chip-ini-link="e-repor" data-aba="produtos">Ver produtos</button></div>
         <div id="iniEstoque"><p class="ini-vazio">Carregando…</p></div>
+        <button type="button" class="btn btn-sec ini-pedir" data-acao="pedido-repor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Fazer pedido de reposição</button>
       </section>
       <section class="ini-card" aria-labelledby="tIniAtalhos">
         <h3 id="tIniAtalhos">Atalhos</h3>
@@ -1623,6 +1668,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
       <p class="mais-tit">Ferramentas</p>
       <div class="mais-grade">
+        <button type="button" class="mais-tile" data-acao="pedido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg><span>Pedir produtos</span></button>
         <button type="button" class="mais-tile" data-acao="calculadora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-width="2.6"/></svg><span>Calculadora</span></button>
         <button type="button" class="mais-tile" data-acao="tabela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/></svg><span>Tabela de preços</span></button>
         <button type="button" class="mais-tile" data-acao="planilha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 9v11.5"/></svg><span>Planilha (Excel)</span></button>
@@ -1716,6 +1762,33 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <div class="dlg">
     <div class="dlg-topo"><h2 id="tFiltro">Filtrar</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="dlg-corpo filtro-corpo"><div class="filtro-lista" id="filtroLista" role="radiogroup"></div></div>
+  </div>
+</dialog>
+<dialog id="dlgPedido" aria-labelledby="tPedido">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tPedido">Pedir produtos</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="pd-ferr" id="pdFerr">
+      <div class="busca">
+        <label for="pdBusca" class="sr">Buscar produto para o pedido</label>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input class="inp" id="pdBusca" type="search" placeholder="Buscar produto…" autocomplete="off" enterkeyhint="search">
+      </div>
+      <div class="vistas hist-periodo pd-filtros" role="group" aria-label="Mostrar">
+        <button type="button" data-pd-filtro="todos" aria-pressed="true">Todos</button>
+        <button type="button" data-pd-filtro="repor" aria-pressed="false">Precisa repor <span id="pdNRepor"></span></button>
+        <button type="button" data-pd-filtro="pedido" aria-pressed="false">No pedido <span id="pdNPedido"></span></button>
+      </div>
+    </div>
+    <div class="dlg-corpo pd-corpo" id="pdCorpo">
+      <div id="pdMontar"><button type="button" class="btn btn-sec pd-sugeridos" id="btnPdSugeridos" hidden>Adicionar todos os sugeridos</button><ul class="pd-lista" id="pdLista"></ul></div>
+      <div id="pdRevisao" hidden></div>
+    </div>
+    <div class="dlg-pe pd-pe">
+      <div class="pd-res"><b id="pdResumo">Nenhum item</b><small id="pdResumo2"></small></div>
+      <button class="btn btn-sec" type="button" id="btnPdLimpar" hidden>Limpar</button>
+      <button class="btn btn-sec" type="button" id="btnPdEnviar" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Enviar</button>
+      <button class="btn btn-pri" type="button" id="btnPdAvancar" disabled>Revisar pedido</button>
+    </div>
   </div>
 </dialog>
 <div id="impressao" aria-hidden="true"></div>
@@ -3739,6 +3812,7 @@ function ligarEventosAbas() {
   ligarEventosMais();
   ligarEventosFiltros();
   ligarEventosEstoque();
+  ligarEventosPedido();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -3808,6 +3882,7 @@ const dlgNav = { pilha: [], ignorar: 0 };
 function voltarDentroDe(d) { // true = voltou um passo e a janela continua aberta
   if (d.id === "dlgMudas" && mudasUi.sel) { voltarEscolhaMuda(); return true; }
   if (d.id === "dlgPlanilha" && !$("#plPrevia").hidden) { voltarPlanilha(); return true; }
+  if (d.id === "dlgPedido" && pdUi.etapa === 2) { pdUi.etapa = 1; renderPedido(); return true; }
   return false;
 }
 function padronizarVoltar() {
@@ -4184,6 +4259,8 @@ async function aplicarPlanilha() {
 function ligarEventosMais() {
   const acoes = {
     mais: abrirMais,
+    pedido: daMais(() => abrirPedido()),
+    "pedido-repor": daMais(() => abrirPedido("repor")),
     camera: daMais(novoPelaCamera),
     calculadora: daMais(() => { calc.expr = ""; calc.ultimo = ""; renderCalc(); $("#dlgCalc").showModal(); }),
     planilha: daMais(abrirPlanilha),
@@ -4353,6 +4430,235 @@ function renderEstoqueInicio() {
     ${piores.length ? `<ul class="est-lista">${piores.map(p => `<li><button type="button" data-pr-abrir="${esc(p.id)}"><span class="est-nome">${esc(p.nome)}</span>${htmlBarraEstoque(p, true)}</button></li>`).join("")}</ul>`
       : '<p class="ini-vazio">Tudo em dia: nenhum produto precisando repor.</p>'}`;
 }
+
+
+/* =====================================================================
+   PEDIR PRODUTOS — monta o pedido ao fornecedor, revisa e gera PDF.
+   O pedido em montagem fica salvo neste aparelho até gerar/limpar.
+   ===================================================================== */
+const EMBALAGENS = ["Unidade", "Caixa", "Saco", "Pacote", "Fardo", "Frasco", "Galão", "Rolo", "Metro", "Bandeja", "Dúzia"];
+const pdUi = { etapa: 1, filtro: "todos", q: "", itens: {}, pdf: null };
+const lerPedidoCompra = () => { const v = lerJSON("defema-pedido-compra"); return v && typeof v === "object" ? v : { itens: {}, fornecedor: "", obs: "" }; };
+function gravarPedidoCompra() { gravarJSON("defema-pedido-compra", { itens: pdUi.itens, fornecedor: pdUi.fornecedor || "", obs: pdUi.obs || "" }); }
+const prefsPedido = () => lerJSON("defema-pedido-pref") || {};
+function embPadrao(p) {
+  const pref = prefsPedido()[p.id]; if (pref && pref.emb) return pref.emb;
+  const u = semAcento((p.unidade || "") + " " + p.nome);
+  if (tamBandeja(p.sub)) return "Bandeja";
+  if (/saco/.test(u)) return "Saco";
+  if (p.por_metro || /rolo/.test(u)) return "Rolo";
+  if (/caixa|\bcx\b/.test(u)) return "Caixa";
+  if (/galao/.test(u)) return "Galão";
+  if (/frasco/.test(u)) return "Frasco";
+  if (/pacote|envelope/.test(u)) return "Pacote";
+  return "Unidade";
+}
+function sugestaoPedido(p) { // quanto pedir para voltar a 3× o ponto de reposição
+  if (p.estoque == null || !(p.estoque_min > 0)) return 0;
+  const s = situacaoEstoque(p); if (!s || s.cls === "ok") return 0;
+  return Math.max(1, Math.ceil(p.estoque_min * 3 - p.estoque));
+}
+function abrirPedido(filtro) {
+  const salvo = lerPedidoCompra();
+  pdUi.itens = salvo.itens || {}; pdUi.fornecedor = salvo.fornecedor || ""; pdUi.obs = salvo.obs || "";
+  for (const id of Object.keys(pdUi.itens)) if (!ui.produtos.some(p => String(p.id) === id)) delete pdUi.itens[id];
+  pdUi.etapa = 1; pdUi.filtro = filtro || "todos"; pdUi.q = ""; $("#pdBusca").value = "";
+  renderPedido();
+  $("#dlgPedido").showModal();
+}
+function itensPedido() { return Object.entries(pdUi.itens).map(([id, it]) => ({ p: ui.produtos.find(x => String(x.id) === id), ...it })).filter(x => x.p && x.qtd > 0); }
+function renderResumoPedido() {
+  const its = itensPedido(), total = its.reduce((s0, x) => s0 + (x.custo != null ? x.custo * x.qtd : 0), 0);
+  $("#pdResumo").textContent = its.length ? `${its.length} ite${its.length === 1 ? "m" : "ns"} no pedido` : "Nenhum item";
+  $("#pdResumo2").textContent = pdUi.etapa === 2 && total ? "Total " + moeda(r2(total)) : its.length ? its.reduce((s0, x) => s0 + x.qtd, 0) + " volumes" : "Toque em + para adicionar";
+  $("#pdNPedido").textContent = its.length ? `(${its.length})` : "";
+  const nRep = ui.produtos.filter(p => sugestaoPedido(p) > 0).length;
+  $("#pdNRepor").textContent = nRep ? `(${nRep})` : "";
+  $("#btnPdAvancar").disabled = !its.length;
+}
+function renderPedido() {
+  const rev = pdUi.etapa === 2;
+  $("#tPedido").textContent = rev ? "Revisar pedido" : "Pedir produtos";
+  $("#pdFerr").hidden = rev; $("#pdMontar").hidden = rev; $("#pdRevisao").hidden = !rev;
+  $("#btnPdLimpar").hidden = !rev;
+  $("#btnPdEnviar").hidden = !rev || !(navigator.canShare && window.File);
+  $("#btnPdAvancar").innerHTML = rev ? `${ICO_PDF_PED}Gerar PDF` : "Revisar pedido";
+  if (rev) renderRevisao(); else renderMontar();
+  renderResumoPedido();
+}
+function htmlPdItem(p) {
+  const it = pdUi.itens[p.id], q = it ? it.qtd : 0, sug = sugestaoPedido(p);
+  return `<li class="pd-item${q ? " tem" : ""}" data-pd="${esc(p.id)}">
+    <span class="pd-info"><b>${esc(p.nome)}</b><small>${esc([p.marca, p.unidade || p.sub].filter(Boolean).join(" · "))}</small>${htmlBarraEstoque(p)}
+      ${sug && !q ? `<button type="button" class="pd-sug" data-pd-sug="${sug}">Sugerido: pedir ${sug}</button>` : ""}</span>
+    <span class="pd-passo"><button type="button" data-pd-passo="-1" aria-label="Menos ${esc(p.nome)}">−</button>
+      <input inputmode="numeric" autocomplete="off" aria-label="Quantidade de ${esc(p.nome)}" value="${q || ""}" placeholder="0">
+      <button type="button" data-pd-passo="1" aria-label="Mais ${esc(p.nome)}">+</button></span></li>`;
+}
+function renderMontar() {
+  document.querySelectorAll("[data-pd-filtro]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pdFiltro === pdUi.filtro)));
+  let lista = ui.produtos.filter(p => pdUi.filtro === "repor" ? sugestaoPedido(p) > 0 : pdUi.filtro === "pedido" ? (pdUi.itens[p.id]?.qtd > 0) : true);
+  if (pdUi.q.trim()) lista = filtrarBusca(lista, pdUi.q).itens;
+  lista.sort((a, b) => ordemDep(a.dep) - ordemDep(b.dep) || a.nome.localeCompare(b.nome, "pt-BR"));
+  const sugeridos = lista.filter(p => sugestaoPedido(p) > 0 && !(pdUi.itens[p.id]?.qtd > 0));
+  $("#btnPdSugeridos").hidden = pdUi.filtro !== "repor" || !sugeridos.length;
+  let dep = null;
+  $("#pdLista").innerHTML = lista.length ? lista.map(p => { const cab = p.dep !== dep ? `<li class="m-grupo">${esc(p.dep || "Sem departamento")}</li>` : ""; dep = p.dep; return cab + htmlPdItem(p); }).join("")
+    : `<li class="vazio">${pdUi.filtro === "repor" ? "Nenhum produto precisando repor. (Coloque o estoque e o “avisar em” nos produtos.)" : pdUi.filtro === "pedido" ? "O pedido está vazio." : "Nenhum produto encontrado."}</li>`;
+}
+function mudarQtdPedido(li, q) {
+  const id = li.dataset.pd, p = ui.produtos.find(x => String(x.id) === id); if (!p) return;
+  q = Math.max(0, Math.min(99999, Math.round(q || 0)));
+  if (q) pdUi.itens[id] = { ...(pdUi.itens[id] || { emb: embPadrao(p), custo: prefsPedido()[id]?.custo ?? null }), qtd: q };
+  else delete pdUi.itens[id];
+  gravarPedidoCompra();
+  const inp = li.querySelector("input"); if (document.activeElement !== inp) inp.value = q || "";
+  li.classList.toggle("tem", !!q);
+  li.querySelector(".pd-sug")?.remove();
+  renderResumoPedido();
+}
+function renderRevisao() {
+  const its = itensPedido().sort((a, b) => ordemDep(a.p.dep) - ordemDep(b.p.dep) || a.p.nome.localeCompare(b.p.nome, "pt-BR"));
+  const total = its.reduce((s0, x) => s0 + (x.custo != null ? x.custo * x.qtd : 0), 0), semPreco = its.some(x => x.custo == null);
+  $("#pdRevisao").innerHTML = `<div class="pd-cab">
+      <div class="campo"><label for="pdForn">Fornecedor</label><input class="inp" id="pdForn" autocomplete="off" placeholder="Opcional" value="${esc(pdUi.fornecedor || "")}"></div>
+      <div class="campo"><label for="pdObs">Observações</label><textarea class="inp" id="pdObs" rows="2" placeholder="Opcional (prazo, forma de pagamento…)">${esc(pdUi.obs || "")}</textarea></div>
+    </div>
+    <ul class="pd-rev">${its.map(({ p, qtd, emb, custo }) => `<li data-pd-rev="${esc(p.id)}">
+      <div class="pd-rev-top"><b>${esc(p.nome)}<small>${esc([p.marca, p.unidade].filter(Boolean).join(" · "))}</small></b>
+        <button class="btn-x" type="button" data-pd-tirar aria-label="Tirar ${esc(p.nome)} do pedido">✕</button></div>
+      <div class="pd-rev-campos">
+        <div class="pd-c-qtd"><label>Quantidade</label><span class="pd-passo"><button type="button" data-pd-passo="-1" aria-label="Menos">−</button><input inputmode="numeric" data-pd-campo="qtd" value="${qtd}" aria-label="Quantidade"><button type="button" data-pd-passo="1" aria-label="Mais">+</button></span></div>
+        <div><label for="pdE-${esc(p.id)}">Embalagem</label><select class="inp" id="pdE-${esc(p.id)}" data-pd-campo="emb">${[...new Set([emb, ...EMBALAGENS])].map(e => `<option${e === emb ? " selected" : ""}>${esc(e)}</option>`).join("")}</select></div>
+        <div><label for="pdC-${esc(p.id)}">Preço de custo (R$)</label><input class="inp" id="pdC-${esc(p.id)}" data-pd-campo="custo" inputmode="decimal" placeholder="—" value="${custo != null ? num2(custo) : ""}"></div>
+      </div>
+      <p class="pd-rev-sub">${custo != null ? `${qtd} × ${moeda(custo)} = <b>${moeda(r2(qtd * custo))}</b>` : "Sem preço de custo"}</p></li>`).join("")}</ul>
+    <div class="pd-total"><span>Total do pedido${semPreco ? " (itens com preço)" : ""}</span><strong>${moeda(r2(total))}</strong></div>
+    <p class="pd-aviso">O preço de custo é opcional. O que você digitar aqui fica lembrado para o próximo pedido.</p>`;
+}
+function atualizarItemRevisao(li) {
+  const id = li.dataset.pdRev, it = pdUi.itens[id]; if (!it) return;
+  const q = Number(li.querySelector('[data-pd-campo="qtd"]').value.replace(/\D/g, "")) || 0;
+  const c = lerPreco(li.querySelector('[data-pd-campo="custo"]').value);
+  it.qtd = Math.max(1, Math.min(99999, q || 1));
+  it.emb = li.querySelector('[data-pd-campo="emb"]').value;
+  it.custo = Number.isNaN(c) ? it.custo : c;
+  li.querySelector(".pd-rev-sub").innerHTML = it.custo != null ? `${it.qtd} × ${moeda(it.custo)} = <b>${moeda(r2(it.qtd * it.custo))}</b>` : "Sem preço de custo";
+  const its = itensPedido(), total = its.reduce((s0, x) => s0 + (x.custo != null ? x.custo * x.qtd : 0), 0);
+  $("#pdRevisao .pd-total strong").textContent = moeda(r2(total));
+  $("#pdRevisao .pd-total span").textContent = "Total do pedido" + (its.some(x => x.custo == null) ? " (itens com preço)" : "");
+  gravarPedidoCompra(); renderResumoPedido();
+}
+
+/* ---------- PDF (jsPDF) ---------- */
+let pdfCarregando = null;
+function carregarJsPDF() {
+  if (window.jspdf && window.jspdf.jsPDF && window.jspdf.jsPDF.API.autoTable) return Promise.resolve(window.jspdf.jsPDF);
+  const sc = src => new Promise((ok, falha) => { const e = document.createElement("script"); e.src = src; e.onload = ok; e.onerror = () => falha(new Error("Não foi possível carregar o gerador de PDF. Verifique a internet.")); document.head.appendChild(e); });
+  return pdfCarregando ||= sc("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+    .then(() => sc("https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"))
+    .then(() => window.jspdf.jsPDF, e => { pdfCarregando = null; throw e; });
+}
+async function montarPdfPedido() {
+  const jsPDF = await carregarJsPDF();
+  const its = itensPedido().sort((a, b) => ordemDep(a.p.dep) - ordemDep(b.p.dep) || a.p.nome.localeCompare(b.p.nome, "pt-BR"));
+  const agora = new Date(), tz = { timeZone: "America/Sao_Paulo" };
+  const num = agora.toLocaleDateString("sv-SE", tz).replace(/-/g, "") + "-" + agora.toLocaleTimeString("pt-BR", { ...tz, hour: "2-digit", minute: "2-digit" }).replace(":", "");
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, verde = [22, 58, 34];
+  doc.setFillColor(...verde); doc.rect(0, 0, W, 30, "F");
+  doc.setTextColor(255, 248, 230); doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.text("Defema", 14, 19);
+  doc.setFontSize(15); doc.text("Pedido de compra", W - 14, 15, { align: "right" });
+  doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.text(`Nº ${num}`, W - 14, 22, { align: "right" });
+  doc.setTextColor(30, 30, 30); doc.setFontSize(10.5);
+  let y = 40;
+  const linha = (rot, val) => { doc.setFont("helvetica", "bold"); doc.text(rot, 14, y); doc.setFont("helvetica", "normal"); doc.text(val, 44, y); y += 6; };
+  linha("Data:", agora.toLocaleDateString("pt-BR", tz) + " às " + agora.toLocaleTimeString("pt-BR", { ...tz, hour: "2-digit", minute: "2-digit" }));
+  linha("Fornecedor:", (pdUi.fornecedor || "").trim() || "—");
+  linha("Loja:", "Defema · Rua Tiradentes, 535 – Centro, Pirapozinho/SP");
+  const total = its.reduce((s0, x) => s0 + (x.custo != null ? x.custo * x.qtd : 0), 0);
+  doc.autoTable({
+    startY: y + 2,
+    head: [["#", "Produto", "Embalagem", "Qtd.", "Preço un.", "Total"]],
+    body: its.map((x, i) => [i + 1, x.p.nome + (x.p.marca ? ` (${x.p.marca})` : ""), x.emb || "Unidade", x.qtd,
+      x.custo != null ? moeda(x.custo) : "—", x.custo != null ? moeda(r2(x.custo * x.qtd)) : "—"]),
+    foot: [["", "", "", its.reduce((s0, x) => s0 + x.qtd, 0), "Total", total ? moeda(r2(total)) : "—"]],
+    theme: "grid", styles: { fontSize: 10, cellPadding: 2.4, lineColor: [220, 214, 200], lineWidth: .2, textColor: [30, 30, 30] },
+    headStyles: { fillColor: verde, textColor: 255, fontStyle: "bold" },
+    footStyles: { fillColor: [246, 239, 229], textColor: [30, 30, 30], fontStyle: "bold" },
+    alternateRowStyles: { fillColor: [250, 248, 243] },
+    columnStyles: { 0: { cellWidth: 9, halign: "center" }, 2: { cellWidth: 26 }, 3: { cellWidth: 15, halign: "right" }, 4: { cellWidth: 26, halign: "right" }, 5: { cellWidth: 28, halign: "right" } },
+    margin: { left: 14, right: 14 },
+  });
+  y = doc.lastAutoTable.finalY + 8;
+  if ((pdUi.obs || "").trim()) {
+    doc.setFont("helvetica", "bold"); doc.text("Observações:", 14, y); doc.setFont("helvetica", "normal");
+    doc.text(doc.splitTextToSize(pdUi.obs.trim(), W - 28), 14, y + 6);
+  }
+  const pags = doc.getNumberOfPages();
+  for (let i = 1; i <= pags; i++) { doc.setPage(i); doc.setFontSize(8.5); doc.setTextColor(120); doc.text(`Defema · pedido ${num} · página ${i} de ${pags}`, W / 2, 290, { align: "center" }); }
+  const nome = `pedido-defema-${agora.toLocaleDateString("sv-SE", tz)}.pdf`;
+  return { doc, nome };
+}
+function guardarPrefsPedido() {
+  const pr = prefsPedido();
+  for (const x of itensPedido()) pr[x.p.id] = { emb: x.emb, custo: x.custo ?? pr[x.p.id]?.custo ?? null };
+  gravarJSON("defema-pedido-pref", pr);
+}
+async function gerarPdfPedido() {
+  const btn = $("#btnPdAvancar"); btn.disabled = true;
+  try {
+    const { doc, nome } = await comFeedback("Gerando PDF…", "PDF do pedido gerado ✓", montarPdfPedido);
+    doc.save(nome);
+    guardarPrefsPedido();
+  } catch {} finally { btn.disabled = false; }
+}
+async function enviarPdfPedido() {
+  try {
+    const { doc, nome } = await montarPdfPedido();
+    const arq = new File([doc.output("blob")], nome, { type: "application/pdf" });
+    if (navigator.canShare && navigator.canShare({ files: [arq] })) { await navigator.share({ files: [arq], title: "Pedido Defema" }); guardarPrefsPedido(); }
+    else { doc.save(nome); toast("Seu aparelho não envia direto; o PDF foi baixado.", "ok", 3500); }
+  } catch (e) { if (e && e.name !== "AbortError") toast(e.message || "Não foi possível enviar.", "erro"); }
+}
+function ligarEventosPedido() {
+  $("#pdBusca").addEventListener("input", e => { pdUi.q = e.target.value; renderMontar(); });
+  document.querySelector(".pd-filtros").addEventListener("click", e => { const b = e.target.closest("[data-pd-filtro]"); if (b) { pdUi.filtro = b.dataset.pdFiltro; renderMontar(); } });
+  $("#btnPdSugeridos").addEventListener("click", () => {
+    let n = 0;
+    for (const p of ui.produtos) { const s0 = sugestaoPedido(p); if (s0 && !(pdUi.itens[p.id]?.qtd > 0)) { pdUi.itens[p.id] = { qtd: s0, emb: embPadrao(p), custo: prefsPedido()[p.id]?.custo ?? null }; n++; } }
+    gravarPedidoCompra(); renderMontar(); renderResumoPedido(); toast(`${n} produto${n === 1 ? "" : "s"} adicionado${n === 1 ? "" : "s"} com a quantidade sugerida`, "ok");
+  });
+  $("#pdLista").addEventListener("click", e => {
+    const li = e.target.closest("[data-pd]"); if (!li) return;
+    const sg = e.target.closest("[data-pd-sug]"); if (sg) { mudarQtdPedido(li, Number(sg.dataset.pdSug)); return; }
+    const b = e.target.closest("[data-pd-passo]"); if (b) mudarQtdPedido(li, (pdUi.itens[li.dataset.pd]?.qtd || 0) + Number(b.dataset.pdPasso));
+  });
+  $("#pdLista").addEventListener("input", e => { const li = e.target.closest("[data-pd]"); if (!li) return; e.target.value = e.target.value.replace(/\D/g, "").slice(0, 5); mudarQtdPedido(li, Number(e.target.value)); });
+  $("#pdLista").addEventListener("focusin", e => { if (e.target.matches("input")) e.target.select(); });
+  $("#pdRevisao").addEventListener("input", e => {
+    if (e.target.id === "pdForn") { pdUi.fornecedor = e.target.value; gravarPedidoCompra(); return; }
+    if (e.target.id === "pdObs") { pdUi.obs = e.target.value; gravarPedidoCompra(); return; }
+    const li = e.target.closest("[data-pd-rev]"); if (li) atualizarItemRevisao(li);
+  });
+  $("#pdRevisao").addEventListener("change", e => { const li = e.target.closest("[data-pd-rev]"); if (li) atualizarItemRevisao(li); });
+  $("#pdRevisao").addEventListener("click", e => {
+    const li = e.target.closest("[data-pd-rev]"); if (!li) return;
+    if (e.target.closest("[data-pd-tirar]")) { delete pdUi.itens[li.dataset.pdRev]; gravarPedidoCompra(); if (!itensPedido().length) { pdUi.etapa = 1; } renderPedido(); return; }
+    const b = e.target.closest("[data-pd-passo]"); if (!b) return;
+    const inp = li.querySelector('[data-pd-campo="qtd"]'); inp.value = Math.max(1, (Number(inp.value) || 0) + Number(b.dataset.pdPasso)); atualizarItemRevisao(li);
+  });
+  $("#btnPdAvancar").addEventListener("click", () => {
+    if (pdUi.etapa === 1) { pdUi.etapa = 2; renderPedido(); $("#pdCorpo").scrollTop = 0; carregarJsPDF().catch(() => {}); return; }
+    gerarPdfPedido();
+  });
+  $("#btnPdEnviar").addEventListener("click", enviarPdfPedido);
+  $("#btnPdLimpar").addEventListener("click", () => {
+    if (!confirm("Limpar o pedido inteiro?")) return;
+    pdUi.itens = {}; pdUi.obs = ""; gravarPedidoCompra(); pdUi.etapa = 1; renderPedido();
+  });
+}
+const ICO_PDF_PED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 15h6M12 12v6"/></svg>';
 
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
