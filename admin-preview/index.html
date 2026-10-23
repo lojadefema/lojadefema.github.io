@@ -947,7 +947,7 @@ html:has(dialog[open]){overflow:hidden}
 .est-dica{margin:6px 0 0}
 .pr-estoque{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
 .pr-est-tit{margin:0 0 8px;font-weight:700;font-size:15px}
-.est-nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:10px}
+.est-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:10px}
 .est-num{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:8px 10px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;text-align:left;color:var(--fg)}
 .est-num b{font:700 24px/1.1 var(--display);font-variant-numeric:tabular-nums}
 .est-num span{font-size:12px;font-weight:600;color:var(--muted);line-height:1.2}
@@ -955,7 +955,7 @@ html:has(dialog[open]){overflow:hidden}
 .est-num.vermelho:not(.zero){border-color:#f2b8b5;background:#fdf1f0}
 [data-theme="dark"] .est-num.vermelho:not(.zero){border-color:#5c2622;background:#2a1715}
 .est-num.zero b{color:var(--muted)}
-@media (max-width:420px){.est-nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 .est-lista{list-style:none;margin:0;padding:0;display:grid}
 .est-lista li+li{border-top:1px solid var(--line)}
 .est-lista button{display:flex;flex-direction:column;align-items:stretch;gap:4px;width:100%;padding:9px 2px;border:0;background:none;color:var(--fg);cursor:pointer;text-align:left;font-size:14px}
@@ -1054,6 +1054,36 @@ html:has(dialog[open]){overflow:hidden}
 .ch-resto{margin-right:auto}
 .pd-reg{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--leaf-soft);color:var(--leaf-ink);margin-bottom:12px;font-size:14px}
 .pd-reg b{font-weight:700}
+
+/* ---------- telas grandes (computador 1920×1080) ---------- */
+.abas-topo .aba-extra{display:none !important}
+@media (min-width:1500px){
+  .abas-topo .aba-extra{display:inline-flex !important}
+  .abas-topo{gap:2px}
+  .abas-topo button{padding:8px 11px;font-size:14.5px}
+}
+@media (min-width:1500px) and (max-width:1759px){ .abas-topo .aba-extra svg{display:none} }
+.mais-versao{margin:18px 2px 0;font-size:12.5px;color:var(--muted);text-align:center}
+@media (min-width:1500px){
+  .tela-pag{max-width:1560px}
+  .ini-grade{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ini-hero{padding:28px 34px}
+  .pr-lista{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .pr-lista .grupo-tit,.pr-lista .pr-mais,.pr-lista .vazio,.pr-lista .pr-item.aberto{grid-column:1/-1}
+  #dlgPedido{width:min(1240px,92vw)}
+  .pd-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pd-lista .m-grupo,.pd-lista .vazio{grid-column:1/-1}
+  .pd-rev{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  #dlgChegada{width:min(1100px,92vw)}
+  .ch-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #dlgPedidos{width:min(900px,92vw)}
+  #dlgMudas{width:min(1640px,94vw)}
+  .m-grade{max-height:960px}
+}
+@media (min-width:1700px){ .lista:not(.det){grid-template-columns:repeat(4,minmax(0,1fr))} }
+/* barra de estoque: o amarelo vai alaranjando perto do ponto de repor */
+.est-acabando .est-barra span{background:var(--est-cor,#e0a100)}
+.est-acabando .est-txt{color:var(--est-cor-txt,#9a6b00)}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1169,6 +1199,11 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <button type="button" data-aba="produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Produtos</button>
       <button type="button" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg>Alterar preço</button>
       <button type="button" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
+      <button type="button" class="aba-extra" data-acao="pedido" title="Pedir produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Pedir produtos</button>
+      <button type="button" class="aba-extra" data-acao="calculadora" title="Calculadora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-width="2.6"/></svg>Calculadora</button>
+      <button type="button" class="aba-extra" data-acao="tabela" title="Tabela de preços das mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/></svg>Tabela de preços</button>
+      <button type="button" class="aba-extra" data-acao="planilha" title="Planilha (Excel)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 9v11.5"/></svg>Planilha</button>
+      <button type="button" class="aba-extra" data-acao="historico" title="Histórico de preços"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Histórico</button>
       <button type="button" data-acao="mais" aria-label="Mais opções"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>Mais</button>
     </nav>
     <button class="btn btn-claro btn-ico" id="btnTema" type="button" aria-label="Mudar para modo escuro"><svg class="ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -1730,9 +1765,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <p class="mais-tit">Aplicativo</p>
       <div class="mais-grade">
         <button type="button" class="mais-tile" data-acao="config"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Configurações</span></button>
-        <button type="button" class="mais-tile" data-acao="instalar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3"/></svg><span>Instalar no celular</span></button>
+        <button type="button" class="mais-tile" data-acao="instalar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3"/></svg><span>Baixar o aplicativo</span></button>
         <button type="button" class="mais-tile" data-acao="sair"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"/></svg><span>Sair</span></button>
       </div>
+      <p class="mais-versao" id="maisVersao"></p>
     </div>
   </div>
 </dialog>
@@ -2555,9 +2591,7 @@ const CHIPS = [
   ["destaque", "Destaque", p => p.destaque],
   ["novo", "Novidade", p => p.novidade],
   ["e-ok", "Em estoque", p => p.estoque != null && p.estoque > 0],
-  ["e-acabando", "Estoque acabando", p => situacaoEstoque(p)?.cls === "acabando"],
-  ["e-repor", "Precisa repor", p => situacaoEstoque(p)?.cls === "repor"],
-  ["e-sem", "Sem estoque", p => situacaoEstoque(p)?.cls === "sem"],
+  ["e-repor", "Precisa repor", p => { const s0 = situacaoEstoque(p); return !!s0 && s0.cls !== "ok"; }],
 ];
 
 function ordemDep(nome) { const i = ui.deps.findIndex(d => d.nome === nome); return i < 0 ? 999 : i; }
@@ -4105,7 +4139,11 @@ function htmlVendasMudas() {
 /* =====================================================================
    MAIS OPÇÕES (botão "Mais" da barra de baixo)
    ===================================================================== */
-function abrirMais() { $("#dlgMais [data-acao=instalar]").hidden = jaInstalado(); $("#dlgMais").showModal(); }
+function abrirMais() {
+  const v = String(window.VERSAO_APP || ""), m = /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/.exec(v);
+  $("#maisVersao").textContent = `Painel Defema${/admin-preview/.test(location.pathname) ? " (versão de teste)" : ""} · versão ${m ? `${m[3]}/${m[2]}/${m[1]} ${m[4]}:${m[5]}` : v || "—"}${jaInstalado() ? " · aplicativo instalado" : ""}`;
+  $("#dlgMais").showModal();
+}
 function daMais(fn) { return (...a) => { if ($("#dlgMais").open) $("#dlgMais").close(); fn(...a); }; }
 function novoPelaCamera() {
   abrirEditor(null);
@@ -4454,11 +4492,17 @@ function situacaoEstoque(p) {
 }
 function htmlBarraEstoque(p, grande) {
   const s = situacaoEstoque(p); if (!s) return "";
-  return `<span class="est${grande ? " est-g" : ""} est-${s.cls}" title="${s.txt}: ${qtdTxt(p.estoque, p)}${p.estoque_min ? ` (repor em ${qtdTxt(p.estoque_min, p)})` : ""}">
+  let cor = "";
+  if (s.cls === "acabando") { // t = 0 no dobro do mínimo (amarelo) → 1 no mínimo (laranja forte)
+    const m = p.estoque_min || 1, t = Math.max(0, Math.min(1, (m * 2 - p.estoque) / m));
+    const h = Math.round(46 - 30 * t), escuro = document.documentElement.getAttribute("data-theme") === "dark";
+    cor = ` style="--est-cor:hsl(${h} 92% ${50 - 6 * t}%);--est-cor-txt:hsl(${h} ${escuro ? "95% 68%" : "90% 30%"})"`;
+  }
+  return `<span class="est${grande ? " est-g" : ""} est-${s.cls}"${cor} title="${s.txt}: ${qtdTxt(p.estoque, p)}${p.estoque_min ? ` (repor em ${qtdTxt(p.estoque_min, p)})` : ""}">
     <span class="est-barra" aria-hidden="true"><span style="width:${(s.pct * 100).toFixed(0)}%"></span></span>
     <span class="est-txt"><b>${qtdTxt(p.estoque, p)}</b> ${s.cls === "ok" ? "" : s.txt.toLowerCase()}</span></span>`;
 }
-const precisaRepor = p => { const s = situacaoEstoque(p); return !!s && (s.cls === "repor" || s.cls === "sem"); };
+const precisaRepor = p => { const s = situacaoEstoque(p); return !!s && s.cls !== "ok"; }; // acabando, repor ou sem estoque
 function renderAvisoEstoque() { // bolinha vermelha nas abas "Produtos" e "Início"
   const n = ui.produtos.filter(precisaRepor).length;
   document.querySelectorAll('#barraBaixo [data-aba="produtos"], #abasTopo [data-aba="produtos"]').forEach(b => {
@@ -4509,7 +4553,7 @@ function renderEstoqueInicio() {
   const ctl = ui.produtos.filter(p => p.estoque != null);
   if (!ctl.length) { box.innerHTML = '<p class="ini-vazio">Nenhum produto com estoque ainda. Coloque a quantidade em “Alterar preço”, no cadastro do produto ou pela planilha.</p>'; return; }
   const cont = c => ctl.filter(p => situacaoEstoque(p).cls === c).length;
-  const nums = [["e-sem", cont("sem"), "Sem estoque", "vermelho"], ["e-repor", cont("repor"), "Repor", "vermelho"], ["e-acabando", cont("acabando"), "Acabando", "amarelo"], ["e-ok", cont("ok"), "Em estoque", "verde"]];
+  const nums = [["e-repor", cont("sem") + cont("repor") + cont("acabando"), "Precisa repor", "vermelho"], ["e-repor", cont("sem"), "Sem estoque", "vermelho"], ["e-ok", ctl.filter(p => p.estoque > 0).length, "Em estoque", "verde"]];
   const ordem = { sem: 0, repor: 1, acabando: 2, ok: 3 };
   const piores = ctl.filter(p => situacaoEstoque(p).cls !== "ok")
     .sort((a, b) => ordem[situacaoEstoque(a).cls] - ordem[situacaoEstoque(b).cls] || situacaoEstoque(a).pct - situacaoEstoque(b).pct).slice(0, 6);
@@ -5159,7 +5203,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230952";
+  const VERSAO = "202610231043"; window.VERSAO_APP = VERSAO;
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
