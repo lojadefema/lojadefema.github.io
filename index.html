@@ -1002,7 +1002,7 @@ const PRODUTOS = [
   {nome:"Muda de pimenta malagueta", dep:"Sementes e mudas", sub:"Mudas unitárias", un:"Muda pequena, tamanho de bandeja", preco:1.0, ilu:["vaso","malagueta"]},
   {nome:"Muda de pimenta dedo-de-moça", dep:"Sementes e mudas", sub:"Mudas unitárias", un:"Muda pequena, tamanho de bandeja", preco:1.0, ilu:["vaso","dedo"]},
   {nome:"Muda de café", dep:"Sementes e mudas", sub:"Mudas unitárias", un:"Tubete plástico de ~15 cm", preco:7.0, ilu:["vaso","cafe"]},
-  {nome:"Muda de maracujá azedo", dep:"Sementes e mudas", sub:"Mudas unitárias", un:"Saquinho 30 × 25 cm · para suco", preco:15.0, ilu:["vaso","maracuja"]},
+  {nome:"Muda de maracujá azedo para suco", dep:"Sementes e mudas", sub:"Mudas unitárias", un:"Saquinho 30 × 25 cm · para suco", preco:15.0, ilu:["vaso","maracuja"]},
 
   /* Ferragens e EPIs (itens do cartão da loja — confirmar modelos e preços) */
   {nome:"Botina de segurança com elástico", dep:"Ferragens e EPIs", sub:"EPIs", un:"Couro · vários números", preco:null, foto:"img/botina-seguranca.jpg"},
@@ -1270,7 +1270,7 @@ function descricao(p){
   if(p.bandeja) return `Mudas prontas para transplante para o canteiro ou para o vaso. Na loja vendemos por muda, na quantidade que você precisar. A bandeja fechada com ${p.bandeja} mudas é por encomenda: chega na semana seguinte, junto com o nosso pedido semanal.`;
   if(p.nome.includes("pimenta")) return "Muda pequena, do tamanho das de bandeja, pronta para plantar em vaso ou canteiro.";
   if(p.nome==="Muda de café") return "Muda de café em tubete plástico de cerca de 15 cm, pronta para plantio.";
-  if(p.nome==="Muda de maracujá azedo") return "Muda de maracujá azedo (para suco) em saquinho de 30 × 25 cm. Precisa de espaldeira ou cerca para subir.";
+  if(p.nome==="Muda de maracujá azedo para suco") return "Muda de maracujá azedo (para suco) em saquinho de 30 × 25 cm. Precisa de espaldeira ou cerca para subir.";
   if(p.dep==="Ferragens e EPIs") return p.sub==="EPIs" ? "Equipamento de proteção individual para o trabalho no campo e na aplicação de produtos. Consulte modelos e tamanhos disponíveis." : "Ferramenta de mão para o dia a dia no sítio e na obra. Consulte modelos disponíveis.";
   return "Consulte mais informações sobre este produto pelo WhatsApp.";
 }
@@ -2242,7 +2242,7 @@ if(TEM_SUPABASE){
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230913";
+  const VERSAO = "202610230952";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();

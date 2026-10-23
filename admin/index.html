@@ -3491,16 +3491,18 @@ function padronizarVoltar() {
    ===================================================================== */
 const tabUi = { folha: "ambas" };
 const ehMuda = p => tamBandeja(p.sub) || /^muda de /i.test(p.nome);
-function folhaHTML({ titulo, sub, grupos, preco }) {
+const MINUSC = new Set(["de", "da", "do", "das", "dos", "e"]);
+const nomeTitulo = t => t.toLocaleLowerCase("pt-BR").split(" ").map((w, i) => i && MINUSC.has(w) ? w : w.split("-").map((x, j) => j && MINUSC.has(x) ? x : x.charAt(0).toLocaleUpperCase("pt-BR") + x.slice(1)).join("-")).join(" ");
+function folhaHTML({ titulo, sub, grupos, preco, nomeTitulo: tituloNomes }) {
   const hoje = new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
   const itens = grupos.reduce((n, g) => n + g.itens.length, 0);
-  const linhas = itens + grupos.length * 0.8;          // título de grupo ocupa quase uma linha
+  const linhas = itens + grupos.filter(g => g.nome).length * 0.8;          // título de grupo ocupa quase uma linha
   const duas = linhas > 24;                            // muitas mudas: duas colunas
   const porColuna = duas ? Math.ceil(linhas / 2) + 0.6 : linhas;
   const lh = Math.max(7.2, Math.min(16, 228 / Math.max(porColuna, 1)));  // altura da linha em mm
   const fs = Math.max(3.6, Math.min(duas ? 4.6 : 7.2, lh * (duas ? .4 : .46))); // letra em mm
-  const corpo = itens ? grupos.filter(g => g.itens.length).map(g => `<section class="f-grupo"><h2>${esc(g.nome)}</h2>
-      ${g.itens.map(p => `<div class="f-lin"><span class="f-nome">${esc(nomeMuda(p))}${g.detalhe ? `<small>${esc(g.detalhe(p))}</small>` : ""}</span>${preco(p)}</div>`).join("")}</section>`).join("")
+  const corpo = itens ? grupos.filter(g => g.itens.length).map(g => `<section class="f-grupo">${g.nome ? `<h2>${esc(g.nome)}</h2>` : ""}
+      ${g.itens.map(p => `<div class="f-lin"><span class="f-nome">${esc(tituloNomes ? nomeTitulo(nomeMuda(p)) : nomeMuda(p))}${g.detalhe ? `<small>${esc(g.detalhe(p))}</small>` : ""}</span>${preco(p)}</div>`).join("")}</section>`).join("")
     : '<p class="f-vazio">Nenhuma muda cadastrada.</p>';
   return `<section class="folha">
     <header class="f-topo"><div class="f-marca">Defema</div>
@@ -3518,11 +3520,8 @@ function montarFolhas() {
   const folhas = [];
   if (tabUi.folha !== "bandejas") folhas.push(folhaHTML({
     titulo: "Mudas", sub: "Preço por muda · leve a quantidade que precisar",
-    grupos: [
-      { nome: "Bandeja de 200", itens: mudas.filter(p => tamBandeja(p.sub) === 200) },
-      { nome: "Bandeja de 128", itens: mudas.filter(p => tamBandeja(p.sub) === 128) },
-      { nome: "Outras mudas", itens: mudas.filter(p => !tamBandeja(p.sub)), detalhe: p => p.unidade || "" },
-    ],
+    grupos: [{ nome: "", itens: [...mudas].sort((a, b) => nomeMuda(a).localeCompare(nomeMuda(b), "pt-BR")) }], // uma lista só, em ordem alfabética
+    nomeTitulo: true,
     preco: p => precoTxt(p.preco, tamBandeja(p.sub) ? "a muda" : "cada"),
   }));
   if (tabUi.folha !== "mudas") {
@@ -3835,7 +3834,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230913";
+  const VERSAO = "202610230952";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
