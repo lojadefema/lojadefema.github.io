@@ -1012,6 +1012,48 @@ html:has(dialog[open]){overflow:hidden}
 .pd-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
 .pd-total strong{font-size:24px;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
 .pd-aviso{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+/* ---------- pedidos feitos e chegada ---------- */
+@media (min-width:760px){#dlgPedidos{width:min(720px,94vw)}#dlgChegada{width:min(760px,94vw);height:92vh}#dlgChegada .dlg{height:100%}}
+.ini-chegando{margin-bottom:14px;border-color:#e0a100;background:linear-gradient(0deg,var(--surface),var(--surface)),#fff8e6}
+.ini-chegando h3{display:flex;align-items:center;gap:8px}
+.ini-chegando h3 svg{width:22px;height:22px;color:#c68a00}
+.cheg-lista,.pds-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.cheg-item,.pds-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.pds-item{background:var(--surface);flex-wrap:wrap}
+.cheg-txt,.pds-txt{flex:1;min-width:0;line-height:1.3}
+.cheg-txt b,.pds-txt b{display:block}
+.cheg-txt small,.pds-txt small{display:block;color:var(--muted);font-size:13px}
+.cheg-item .btn,.pds-acoes .btn{min-height:42px;padding:6px 12px;font-size:14px}
+.pds-acoes{display:flex;gap:6px;flex-wrap:wrap;flex:1 1 auto;justify-content:flex-end}
+.pds-item .pds-txt{flex:1 1 260px}
+.pds-st{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+.pds-st.aguardando{background:#fff1c9;color:#7a5600}.pds-st.parcial{background:#ffe2c2;color:#8a4500}
+.pds-st.recebido{background:var(--leaf-soft);color:var(--leaf-ink)}.pds-st.cancelado{background:#eee;color:#666}
+[data-theme="dark"] .pds-st.aguardando{background:#3a3120;color:#ffd77a}[data-theme="dark"] .pds-st.parcial{background:#3a2716;color:#ffb877}
+.ch-corpo{padding:12px !important}
+.ch-info{margin:0 0 10px;font-size:14px;color:var(--muted)}
+.ch-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+.ch-item{padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.ch-item.ok{border-color:#1d9a50}
+.ch-item.falta{border-color:#e0a100}
+.ch-item.nada{border-color:#d93025}
+.ch-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
+.ch-top b{flex:1;min-width:0;line-height:1.25}
+.ch-top small{display:block;color:var(--muted);font-weight:500;font-size:12.5px}
+.ch-pedido{flex:none;text-align:right;font-size:13px;color:var(--muted);line-height:1.25}
+.ch-pedido b{display:block;color:var(--fg);font-size:15px}
+.ch-campos{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:flex-end}
+.ch-campos label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.ch-rapido{display:flex;gap:6px}
+.ch-rapido button{min-height:40px;padding:4px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;font-size:13px;cursor:pointer;color:var(--fg)}
+.ch-fator{width:74px;height:40px;border:1.5px solid var(--campo-line);border-radius:10px;background:var(--campo);text-align:center;font-weight:700;font-size:16px;color:var(--fg)}
+.ch-entra{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+.ch-entra b{color:#1d9a50}
+.ch-pe{flex-wrap:wrap;align-items:center}
+.ch-resto{margin-right:auto}
+.pd-reg{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--leaf-soft);color:var(--leaf-ink);margin-bottom:12px;font-size:14px}
+.pd-reg b{font-weight:700}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1166,6 +1208,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
       <div class="ini-clima" id="iniClima" aria-live="polite"><p class="ini-clima-msg">Carregando o tempo…</p></div>
     </div>
+    <section class="ini-card ini-chegando" id="iniChegando" hidden aria-labelledby="tIniCheg">
+      <div class="ini-card-topo"><h3 id="tIniCheg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Pedidos a caminho</h3><button type="button" class="link-btn" data-acao="pedidos">Ver todos</button></div>
+      <ul class="cheg-lista" id="iniChegLista"></ul>
+    </section>
     <div class="ini-grade">
       <section class="ini-card ini-cat" aria-labelledby="tIniCat">
         <div class="ini-card-topo"><h3 id="tIniCat">Catálogo</h3><button type="button" class="link-btn" data-aba="produtos">Ver produtos</button></div>
@@ -1668,6 +1714,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
       <p class="mais-tit">Ferramentas</p>
       <div class="mais-grade">
+        <button type="button" class="mais-tile" data-acao="pedidos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" stroke-width="2.4"/></svg><span>Pedidos feitos</span></button>
         <button type="button" class="mais-tile" data-acao="pedido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg><span>Pedir produtos</span></button>
         <button type="button" class="mais-tile" data-acao="calculadora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-width="2.6"/></svg><span>Calculadora</span></button>
         <button type="button" class="mais-tile" data-acao="tabela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/></svg><span>Tabela de preços</span></button>
@@ -1788,6 +1835,22 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <button class="btn btn-sec" type="button" id="btnPdLimpar" hidden>Limpar</button>
       <button class="btn btn-sec" type="button" id="btnPdEnviar" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Enviar</button>
       <button class="btn btn-pri" type="button" id="btnPdAvancar" disabled>Revisar pedido</button>
+    </div>
+  </div>
+</dialog>
+<dialog id="dlgPedidos" aria-labelledby="tPedidos">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tPedidos">Pedidos feitos</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="dlg-corpo pds-corpo"><ul class="pds-lista" id="pdsLista"><li class="ini-vazio">Carregando…</li></ul></div>
+  </div>
+</dialog>
+<dialog id="dlgChegada" aria-labelledby="tChegada">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tChegada">Conferir chegada</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="dlg-corpo ch-corpo" id="chCorpo"></div>
+    <div class="dlg-pe ch-pe">
+      <label class="check-mini ch-resto" id="chRestoBox" hidden><input type="checkbox" id="chResto"> O que faltou ainda vai chegar</label>
+      <button class="btn btn-pri" type="button" id="btnChConfirmar">Confirmar chegada</button>
     </div>
   </div>
 </dialog>
@@ -2048,6 +2111,14 @@ function criarApiDemo() {
       persistir();
       return alteracoes.length;
     },
+    async listarPedidosCompra() { return (lerJSON("defema-demo-pedidos") || []).slice().sort((a, b) => String(b.criado_em).localeCompare(String(a.criado_em))); },
+    async salvarPedidoCompra(dados, id) {
+      await espera(150);
+      const l = lerJSON("defema-demo-pedidos") || [];
+      if (id) { const x = l.find(y => y.id === id); if (!x) throw new Error("Pedido não encontrado."); Object.assign(x, dados); gravarJSON("defema-demo-pedidos", l); return x; }
+      const novo = { id: novoId(), status: "aguardando", criado_em: new Date().toISOString(), ...dados };
+      l.push(novo); gravarJSON("defema-demo-pedidos", l); return novo;
+    },
     async listarEstoque() {
       return lerJSON("defema-demo-estoque") || {};
     },
@@ -2249,6 +2320,19 @@ function criarApiSupabase(url, chave) {
       const { error } = await sb.from("produtos").delete().eq("id", id);
       falhou(error, "Não foi possível excluir.");
       if (doStorage(fotoPath)) sb.storage.from(BUCKET).remove([fotoPath.replace(/^produtos\//, "")]).catch(() => {});
+    },
+    async listarPedidosCompra() {
+      const { data, error } = await sb.from("pedidos_compra").select("*").order("criado_em", { ascending: false }).limit(300);
+      if (error && (error.code === "42P01" || error.code === "PGRST205")) throw new Error("Os pedidos ainda não foram ativados no banco (falta a tabela pedidos_compra).");
+      falhou(error, "Não foi possível carregar os pedidos.");
+      return data;
+    },
+    async salvarPedidoCompra(dados, id) {
+      const q = id ? sb.from("pedidos_compra").update(dados).eq("id", id) : sb.from("pedidos_compra").insert(dados);
+      const { data, error } = await q.select("*");
+      falhou(error, "Não foi possível salvar o pedido.");
+      if (!data || !data.length) throw new Error(NAO_GRAVOU);
+      return data[0];
     },
     async listarEstoque() {
       const { data, error } = await sb.from("estoque").select("produto_id,quantidade,minimo,atualizado_em").limit(10000);
@@ -3560,6 +3644,7 @@ async function carregarClima() {
 const ini = { hist: null, histErro: "", mudasOk: false, mudasErro: "", em: 0 };
 async function carregarExtrasInicio(forcar) {
   carregarClima();
+  carregarPedidosCompra(forcar);
   if (!forcar && Date.now() - ini.em < 90000) return;
   ini.em = Date.now();
   const desde = new Date(Date.now() - 14 * 864e5).toISOString();
@@ -3813,6 +3898,7 @@ function ligarEventosAbas() {
   ligarEventosFiltros();
   ligarEventosEstoque();
   ligarEventosPedido();
+  ligarEventosChegada();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -4260,6 +4346,7 @@ function ligarEventosMais() {
   const acoes = {
     mais: abrirMais,
     pedido: daMais(() => abrirPedido()),
+    pedidos: daMais(abrirPedidosFeitos),
     "pedido-repor": daMais(() => abrirPedido("repor")),
     camera: daMais(novoPelaCamera),
     calculadora: daMais(() => { calc.expr = ""; calc.ultimo = ""; renderCalc(); $("#dlgCalc").showModal(); }),
@@ -4439,7 +4526,7 @@ function renderEstoqueInicio() {
 const EMBALAGENS = ["Unidade", "Caixa", "Saco", "Pacote", "Fardo", "Frasco", "Galão", "Rolo", "Metro", "Bandeja", "Dúzia"];
 const pdUi = { etapa: 1, filtro: "todos", q: "", itens: {}, pdf: null };
 const lerPedidoCompra = () => { const v = lerJSON("defema-pedido-compra"); return v && typeof v === "object" ? v : { itens: {}, fornecedor: "", obs: "" }; };
-function gravarPedidoCompra() { gravarJSON("defema-pedido-compra", { itens: pdUi.itens, fornecedor: pdUi.fornecedor || "", obs: pdUi.obs || "" }); }
+function gravarPedidoCompra() { gravarJSON("defema-pedido-compra", { itens: pdUi.itens, fornecedor: pdUi.fornecedor || "", obs: pdUi.obs || "", reg: pdUi.reg || null }); }
 const prefsPedido = () => lerJSON("defema-pedido-pref") || {};
 function embPadrao(p) {
   const pref = prefsPedido()[p.id]; if (pref && pref.emb) return pref.emb;
@@ -4460,7 +4547,7 @@ function sugestaoPedido(p) { // quanto pedir para voltar a 3× o ponto de reposi
 }
 function abrirPedido(filtro) {
   const salvo = lerPedidoCompra();
-  pdUi.itens = salvo.itens || {}; pdUi.fornecedor = salvo.fornecedor || ""; pdUi.obs = salvo.obs || "";
+  pdUi.itens = salvo.itens || {}; pdUi.fornecedor = salvo.fornecedor || ""; pdUi.obs = salvo.obs || ""; pdUi.reg = salvo.reg || null;
   for (const id of Object.keys(pdUi.itens)) if (!ui.produtos.some(p => String(p.id) === id)) delete pdUi.itens[id];
   pdUi.etapa = 1; pdUi.filtro = filtro || "todos"; pdUi.q = ""; $("#pdBusca").value = "";
   renderPedido();
@@ -4481,6 +4568,7 @@ function renderPedido() {
   $("#tPedido").textContent = rev ? "Revisar pedido" : "Pedir produtos";
   $("#pdFerr").hidden = rev; $("#pdMontar").hidden = rev; $("#pdRevisao").hidden = !rev;
   $("#btnPdLimpar").hidden = !rev;
+  $("#btnPdLimpar").textContent = pdUi.reg ? "Concluir" : "Limpar";
   $("#btnPdEnviar").hidden = !rev || !(navigator.canShare && window.File);
   $("#btnPdAvancar").innerHTML = rev ? `${ICO_PDF_PED}Gerar PDF` : "Revisar pedido";
   if (rev) renderRevisao(); else renderMontar();
@@ -4520,7 +4608,7 @@ function mudarQtdPedido(li, q) {
 function renderRevisao() {
   const its = itensPedido().sort((a, b) => ordemDep(a.p.dep) - ordemDep(b.p.dep) || a.p.nome.localeCompare(b.p.nome, "pt-BR"));
   const total = its.reduce((s0, x) => s0 + (x.custo != null ? x.custo * x.qtd : 0), 0), semPreco = its.some(x => x.custo == null);
-  $("#pdRevisao").innerHTML = `<div class="pd-cab">
+  $("#pdRevisao").innerHTML = (pdUi.reg ? `<div class="pd-reg">✓<span><b>Pedido Nº ${esc(pdUi.reg.numero)} registrado.</b> Quando a mercadoria chegar, confirme em Início › Pedidos a caminho. Se mudar algo aqui, gere o PDF de novo.</span></div>` : "") + `<div class="pd-cab">
       <div class="campo"><label for="pdForn">Fornecedor</label><input class="inp" id="pdForn" autocomplete="off" placeholder="Opcional" value="${esc(pdUi.fornecedor || "")}"></div>
       <div class="campo"><label for="pdObs">Observações</label><textarea class="inp" id="pdObs" rows="2" placeholder="Opcional (prazo, forma de pagamento…)">${esc(pdUi.obs || "")}</textarea></div>
     </div>
@@ -4563,7 +4651,7 @@ async function montarPdfPedido() {
   const jsPDF = await carregarJsPDF();
   const its = itensPedido().sort((a, b) => ordemDep(a.p.dep) - ordemDep(b.p.dep) || a.p.nome.localeCompare(b.p.nome, "pt-BR"));
   const agora = new Date(), tz = { timeZone: "America/Sao_Paulo" };
-  const num = agora.toLocaleDateString("sv-SE", tz).replace(/-/g, "") + "-" + agora.toLocaleTimeString("pt-BR", { ...tz, hour: "2-digit", minute: "2-digit" }).replace(":", "");
+  const num = pdUi.reg?.numero || (agora.toLocaleDateString("sv-SE", tz).replace(/-/g, "") + "-" + agora.toLocaleTimeString("pt-BR", { ...tz, hour: "2-digit", minute: "2-digit" }).replace(":", ""));
   const doc = new jsPDF({ unit: "mm", format: "a4" });
   const W = 210, verde = [22, 58, 34];
   doc.setFillColor(...verde); doc.rect(0, 0, W, 30, "F");
@@ -4598,7 +4686,17 @@ async function montarPdfPedido() {
   const pags = doc.getNumberOfPages();
   for (let i = 1; i <= pags; i++) { doc.setPage(i); doc.setFontSize(8.5); doc.setTextColor(120); doc.text(`Defema · pedido ${num} · página ${i} de ${pags}`, W / 2, 290, { align: "center" }); }
   const nome = `pedido-defema-${agora.toLocaleDateString("sv-SE", tz)}.pdf`;
-  return { doc, nome };
+  return { doc, nome, num, total };
+}
+async function registrarPedidoCompra(num, total) {
+  const pref = prefsPedido();
+  const dados = {
+    numero: num, fornecedor: (pdUi.fornecedor || "").trim() || null, obs: (pdUi.obs || "").trim() || null, total: total ? r2(total) : null,
+    itens: itensPedido().map(x => ({ produto_id: x.p.id, nome: x.p.nome, marca: x.p.marca || null, emb: x.emb || "Unidade", qtd: x.qtd, custo: x.custo ?? null, recebido: 0, fator: pref[x.p.id]?.fator ?? (x.emb === "Unidade" || !x.emb ? 1 : null) })),
+  };
+  const r = await api.salvarPedidoCompra(dados, pdUi.reg?.id);
+  pdUi.reg = { id: r.id, numero: r.numero }; gravarPedidoCompra();
+  pedUi.em = 0;
 }
 function guardarPrefsPedido() {
   const pr = prefsPedido();
@@ -4608,15 +4706,20 @@ function guardarPrefsPedido() {
 async function gerarPdfPedido() {
   const btn = $("#btnPdAvancar"); btn.disabled = true;
   try {
-    const { doc, nome } = await comFeedback("Gerando PDF…", "PDF do pedido gerado ✓", montarPdfPedido);
+    const novo = !pdUi.reg;
+    const { doc, nome, num, total } = await comFeedback("Gerando PDF…", "", montarPdfPedido);
     doc.save(nome);
     guardarPrefsPedido();
+    try { await registrarPedidoCompra(num, total); toast(novo ? `PDF gerado e pedido Nº ${num} registrado ✓` : "PDF gerado e pedido atualizado ✓", "ok", 3500); }
+    catch (e) { toast("PDF gerado, mas o pedido não foi registrado: " + (e.message || "erro"), "erro"); }
+    renderPedido();
   } catch {} finally { btn.disabled = false; }
 }
 async function enviarPdfPedido() {
   try {
-    const { doc, nome } = await montarPdfPedido();
+    const { doc, nome, num, total } = await montarPdfPedido();
     const arq = new File([doc.output("blob")], nome, { type: "application/pdf" });
+    registrarPedidoCompra(num, total).then(() => renderPedido()).catch(e => toast("O pedido não foi registrado: " + (e.message || "erro"), "erro"));
     if (navigator.canShare && navigator.canShare({ files: [arq] })) { await navigator.share({ files: [arq], title: "Pedido Defema" }); guardarPrefsPedido(); }
     else { doc.save(nome); toast("Seu aparelho não envia direto; o PDF foi baixado.", "ok", 3500); }
   } catch (e) { if (e && e.name !== "AbortError") toast(e.message || "Não foi possível enviar.", "erro"); }
@@ -4654,11 +4757,161 @@ function ligarEventosPedido() {
   });
   $("#btnPdEnviar").addEventListener("click", enviarPdfPedido);
   $("#btnPdLimpar").addEventListener("click", () => {
+    if (pdUi.reg) { // pedido já registrado: concluir = começar um pedido novo
+      const n = pdUi.reg.numero;
+      pdUi.itens = {}; pdUi.obs = ""; pdUi.fornecedor = ""; pdUi.reg = null; gravarPedidoCompra(); pdUi.etapa = 1;
+      $("#dlgPedido").close(); toast(`Pedido Nº ${n} guardado em “Pedidos feitos”.`, "ok", 3500); renderInicio(); return;
+    }
     if (!confirm("Limpar o pedido inteiro?")) return;
     pdUi.itens = {}; pdUi.obs = ""; gravarPedidoCompra(); pdUi.etapa = 1; renderPedido();
   });
 }
 const ICO_PDF_PED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 15h6M12 12v6"/></svg>';
+
+
+/* =====================================================================
+   PEDIDOS FEITOS e CONFERÊNCIA DE CHEGADA
+   Confirma o que chegou de verdade, soma no estoque e registra.
+   ===================================================================== */
+const pedUi = { lista: [], em: 0, erro: "", atual: null, cheg: {} };
+async function carregarPedidosCompra(forcar) {
+  if (!forcar && Date.now() - pedUi.em < 60000) return;
+  pedUi.em = Date.now();
+  try { pedUi.lista = await api.listarPedidosCompra(); pedUi.erro = ""; }
+  catch (e) { pedUi.lista = []; pedUi.erro = e.message; }
+  renderChegandoInicio();
+  if ($("#dlgPedidos").open) renderPedidosFeitos();
+}
+const faltaItem = it => Math.max(0, (it.qtd || 0) - (it.recebido || 0));
+const aCaminho = pd => pd.status === "aguardando" || pd.status === "parcial";
+function quandoCurto(iso) {
+  const d = new Date(iso), dias = Math.floor((Date.now() - d) / 864e5);
+  return dias <= 0 ? "hoje" : dias === 1 ? "ontem" : `há ${dias} dias`;
+}
+function renderChegandoInicio() {
+  const l = pedUi.lista.filter(aCaminho);
+  $("#iniChegando").hidden = !l.length;
+  $("#iniChegLista").innerHTML = l.slice(0, 5).map(pd => `<li class="cheg-item"><span class="cheg-txt"><b>Nº ${esc(pd.numero)}${pd.status === "parcial" ? '<span class="pds-st parcial">chegou parte</span>' : ""}</b>
+      <small>${esc(pd.fornecedor || "Sem fornecedor")} · ${pd.itens.length} ite${pd.itens.length === 1 ? "m" : "ns"} · pedido ${quandoCurto(pd.criado_em)}</small></span>
+      <button type="button" class="btn btn-pri" data-chegou="${esc(pd.id)}">Chegou? Conferir</button></li>`).join("");
+}
+function renderPedidosFeitos() {
+  const ST = { aguardando: "A caminho", parcial: "Chegou parte", recebido: "Recebido", cancelado: "Cancelado" };
+  $("#pdsLista").innerHTML = pedUi.erro ? `<li class="ini-vazio">${esc(pedUi.erro)}</li>` : !pedUi.lista.length ? '<li class="ini-vazio">Nenhum pedido ainda. Monte um em Mais › Pedir produtos.</li>'
+    : pedUi.lista.map(pd => `<li class="pds-item"><span class="pds-txt"><b>Nº ${esc(pd.numero)}<span class="pds-st ${pd.status}">${ST[pd.status] || pd.status}</span></b>
+        <small>${esc(pd.fornecedor || "Sem fornecedor")} · ${pd.itens.length} ite${pd.itens.length === 1 ? "m" : "ns"}${pd.total ? " · " + moeda(Number(pd.total)) : ""}</small>
+        <small>Feito em ${dataBR(pd.criado_em)}${pd.recebido_em ? ` · conferido em ${dataBR(pd.recebido_em)}` : ""}</small></span>
+      <span class="pds-acoes">${aCaminho(pd) ? `<button type="button" class="btn btn-pri" data-chegou="${esc(pd.id)}">Conferir chegada</button>` : ""}
+        <button type="button" class="btn btn-sec" data-pds-pdf="${esc(pd.id)}">PDF</button>
+        ${pd.status === "aguardando" ? `<button type="button" class="btn btn-sec" data-pds-cancelar="${esc(pd.id)}">Cancelar</button>` : ""}</span></li>`).join("");
+}
+async function abrirPedidosFeitos() { renderPedidosFeitos(); $("#dlgPedidos").showModal(); await carregarPedidosCompra(true); }
+
+/* --- conferência --- */
+function abrirChegada(id) {
+  const pd = pedUi.lista.find(x => String(x.id) === id); if (!pd) return;
+  pedUi.atual = pd; pedUi.cheg = {};
+  const pref = prefsPedido();
+  pd.itens.forEach((it, i) => { pedUi.cheg[i] = { chegou: faltaItem(it), fator: it.fator ?? pref[it.produto_id]?.fator ?? (it.emb === "Unidade" ? 1 : 1) }; });
+  $("#tChegada").textContent = `Conferir chegada · Nº ${pd.numero}`;
+  renderChegada();
+  if ($("#dlgPedidos").open) $("#dlgPedidos").close();
+  $("#dlgChegada").showModal();
+}
+function htmlChItem(it, i) {
+  const c = pedUi.cheg[i], falta = faltaItem(it), p = ui.produtos.find(x => String(x.id) === String(it.produto_id));
+  const cls = c.chegou >= falta ? "ok" : c.chegou > 0 ? "falta" : "nada";
+  const unid = it.emb && it.emb !== "Unidade";
+  return `<li class="ch-item ${falta ? cls : "ok"}" data-ch="${i}">
+    <div class="ch-top"><b>${esc(it.nome)}<small>${esc([it.marca, p ? "" : "produto excluído"].filter(Boolean).join(" · "))}</small></b>
+      <span class="ch-pedido">Pedido<b>${it.qtd} ${esc((it.emb || "Unidade").toLowerCase())}${it.qtd > 1 && it.emb && !/s$/.test(it.emb) ? "s" : ""}</b>${it.recebido ? `já chegou ${it.recebido}` : ""}</span></div>
+    ${falta ? `<div class="ch-campos">
+      <div><label>Chegou agora</label><span class="pd-passo"><button type="button" data-ch-passo="-1" aria-label="Menos">−</button><input inputmode="numeric" data-ch-campo="chegou" value="${c.chegou}" aria-label="Quantidade que chegou"><button type="button" data-ch-passo="1" aria-label="Mais">+</button></span></div>
+      <div class="ch-rapido"><button type="button" data-ch-tudo>Tudo (${falta})</button><button type="button" data-ch-nada>Não veio</button></div>
+      ${unid ? `<div><label>Unidades por ${esc(it.emb.toLowerCase())}</label><input class="ch-fator" inputmode="numeric" data-ch-campo="fator" value="${c.fator}"></div>` : ""}
+    </div>
+    <p class="ch-entra">${p ? (c.chegou ? `Entra no estoque: <b>+${qtdTxt(c.chegou * c.fator, p)}</b>${p.estoque != null ? ` (fica ${qtdTxt((p.estoque || 0) + c.chegou * c.fator, p)})` : ""}` : "Nada entra no estoque.") : "Produto excluído: não mexe no estoque."}</p>`
+    : '<p class="ch-entra">Já chegou tudo deste item.</p>'}
+  </li>`;
+}
+function renderChegada() {
+  const pd = pedUi.atual;
+  $("#chCorpo").innerHTML = `<p class="ch-info">${esc(pd.fornecedor || "Sem fornecedor")} · feito em ${dataBR(pd.criado_em)}. Confira o que chegou de verdade: o que você confirmar entra no estoque.</p>
+    <ul class="ch-lista">${pd.itens.map(htmlChItem).join("")}</ul>`;
+  atualizarRestoChegada();
+}
+function atualizarRestoChegada() {
+  const pd = pedUi.atual, falta = pd.itens.some((it, i) => pedUi.cheg[i].chegou < faltaItem(it));
+  $("#chRestoBox").hidden = !falta;
+}
+function mudarChegada(liOuI, campo, valor) {
+  const i = typeof liOuI === "number" ? liOuI : +liOuI.dataset.ch, c = pedUi.cheg[i], it = pedUi.atual.itens[i];
+  if (campo === "chegou") c.chegou = Math.max(0, Math.min(99999, Math.round(valor || 0)));
+  else c.fator = Math.max(1, Math.min(100000, Math.round(valor || 1)));
+  const li = document.querySelector(`#chCorpo [data-ch="${i}"]`); if (!li || mudarChegada.ocupado) return; // pega o atual (o "change" do campo pode ter redesenhado)
+  mudarChegada.ocupado = true; setTimeout(() => { mudarChegada.ocupado = false; });
+
+  const novo = document.createElement("div"); novo.innerHTML = htmlChItem(it, i);
+  const foco = document.activeElement && li.contains(document.activeElement) ? document.activeElement.dataset.chCampo : null;
+  li.replaceWith(novo.firstElementChild);
+  if (foco) { const el = document.querySelector(`[data-ch="${i}"] [data-ch-campo="${foco}"]`); if (el) { el.focus(); const v = el.value; el.value = ""; el.value = v; } }
+  atualizarRestoChegada();
+}
+async function confirmarChegada() {
+  const pd = pedUi.atual; if (!pd) return;
+  const total = pd.itens.reduce((s0, it, i) => s0 + pedUi.cheg[i].chegou, 0);
+  if (!total && !confirm("Nada foi marcado como chegou. Registrar mesmo assim?")) return;
+  const resto = !$("#chRestoBox").hidden && $("#chResto").checked;
+  const btn = $("#btnChConfirmar"); btn.disabled = true;
+  try {
+    await comFeedback("Registrando chegada…", "Chegada registrada ✓ estoque atualizado", async () => {
+      const pref = prefsPedido();
+      for (const [i, it] of pd.itens.entries()) { // soma no estoque
+        const c = pedUi.cheg[i]; if (!c.chegou) continue;
+        const p = ui.produtos.find(x => String(x.id) === String(it.produto_id));
+        if (p) { const novo = Math.round(((p.estoque || 0) + c.chegou * c.fator) * 1000) / 1000; await api.salvarEstoque(p.id, novo, p.estoque_min ?? null); p.estoque = novo; }
+        if (it.emb && it.emb !== "Unidade") pref[it.produto_id] = { ...(pref[it.produto_id] || {}), fator: c.fator };
+      }
+      gravarJSON("defema-pedido-pref", pref);
+      const itens = pd.itens.map((it, i) => ({ ...it, recebido: (it.recebido || 0) + pedUi.cheg[i].chegou, fator: pedUi.cheg[i].fator }));
+      const completo = itens.every(it => it.recebido >= it.qtd);
+      const r = await api.salvarPedidoCompra({ itens, status: completo || !resto ? "recebido" : "parcial", recebido_em: new Date().toISOString() }, pd.id);
+      Object.assign(pd, r);
+    });
+    $("#dlgChegada").close();
+    renderLista(); carregarPedidosCompra(true);
+  } catch {} finally { btn.disabled = false; }
+}
+async function pdfPedidoFeito(id) {
+  const pd = pedUi.lista.find(x => String(x.id) === id); if (!pd) return;
+  const salvo = { itens: pdUi.itens, fornecedor: pdUi.fornecedor, obs: pdUi.obs, reg: pdUi.reg };
+  try { // reaproveita o gerador usando os dados do pedido guardado
+    pdUi.itens = Object.fromEntries(pd.itens.filter(it => ui.produtos.some(p => String(p.id) === String(it.produto_id))).map(it => [it.produto_id, { qtd: it.qtd, emb: it.emb, custo: it.custo }]));
+    pdUi.fornecedor = pd.fornecedor || ""; pdUi.obs = pd.obs || ""; pdUi.reg = { id: pd.id, numero: pd.numero };
+    const { doc, nome } = await comFeedback("Gerando PDF…", "PDF baixado ✓", montarPdfPedido);
+    doc.save(nome.replace(".pdf", "-" + pd.numero + ".pdf"));
+  } catch {} finally { Object.assign(pdUi, salvo); }
+}
+async function cancelarPedidoFeito(id) {
+  const pd = pedUi.lista.find(x => String(x.id) === id); if (!pd || !confirm(`Cancelar o pedido Nº ${pd.numero}? Ele sai da lista de “a caminho”.`)) return;
+  try { await comFeedback("Cancelando…", "Pedido cancelado", () => api.salvarPedidoCompra({ status: "cancelado" }, pd.id)); pd.status = "cancelado"; renderPedidosFeitos(); renderChegandoInicio(); } catch {}
+}
+function ligarEventosChegada() {
+  document.addEventListener("click", e => { const b = e.target.closest("[data-chegou]"); if (b && ui.logado) abrirChegada(b.dataset.chegou); });
+  $("#pdsLista").addEventListener("click", e => {
+    const f = e.target.closest("[data-pds-pdf]"); if (f) { pdfPedidoFeito(f.dataset.pdsPdf); return; }
+    const c = e.target.closest("[data-pds-cancelar]"); if (c) cancelarPedidoFeito(c.dataset.pdsCancelar);
+  });
+  $("#chCorpo").addEventListener("click", e => {
+    const li = e.target.closest("[data-ch]"); if (!li) return;
+    const i = +li.dataset.ch, falta = faltaItem(pedUi.atual.itens[i]);
+    const b = e.target.closest("[data-ch-passo]"); if (b) { mudarChegada(i, "chegou", pedUi.cheg[i].chegou + Number(b.dataset.chPasso)); return; }
+    if (e.target.closest("[data-ch-tudo]")) { mudarChegada(i, "chegou", falta); return; }
+    if (e.target.closest("[data-ch-nada]")) mudarChegada(i, "chegou", 0);
+  });
+  $("#chCorpo").addEventListener("change", e => { const li = e.target.closest("[data-ch]"); if (li && e.target.dataset.chCampo) mudarChegada(li, e.target.dataset.chCampo, Number(String(e.target.value).replace(/\D/g, ""))); });
+  $("#btnChConfirmar").addEventListener("click", confirmarChegada);
+}
 
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
