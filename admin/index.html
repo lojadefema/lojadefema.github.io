@@ -629,6 +629,11 @@ html:has(dialog[open]){overflow:hidden}
 .ini-at.pri{background:var(--leaf);border-color:var(--leaf);color:#fff}
 .ini-at.pri svg{color:#fff}
 .ini-at.pri:hover{background:var(--leaf-2);color:#fff}
+.ini-vendas{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.ini-venda{display:flex;flex-direction:column;gap:1px;padding:10px 12px;border-radius:12px;background:var(--leaf-soft);color:var(--leaf-ink)}
+.ini-venda span{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.8}
+.ini-venda b{font:700 24px/1.15 var(--display);font-variant-numeric:tabular-nums}
+.ini-venda small{font-size:13px;color:var(--muted)}
 .ini-nf{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);margin-bottom:10px;font-size:14.5px}
 .ini-nf b{font-weight:700}
 .ini-prog{list-style:none;margin:0;padding:0;display:grid;gap:8px}
@@ -752,6 +757,49 @@ html:has(dialog[open]){overflow:hidden}
 .mc-total span{font-size:13px;color:var(--muted);font-weight:600}
 .mc-total strong{font-size:24px;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
 @media (max-width:420px){.mc-passo button.dez{display:none}.mc-passo input{width:52px}}
+
+/* ---------- tabela de preços das mudas (A4) ---------- */
+.m-tab-btn{width:100%;margin:-4px 0 14px;min-height:44px;font-size:15px}
+.tb-ferr{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--line);flex:none}
+.tb-ferr .tb-folhas{flex-wrap:wrap;max-width:100%}
+.tb-corpo{background:#8a8579;padding:16px !important;display:flex;flex-direction:column;align-items:center;gap:16px}
+[data-theme="dark"] .tb-corpo{background:#05080a}
+.tb-pag{flex:none;box-shadow:0 6px 24px rgba(0,0,0,.35);background:#fff;overflow:hidden}
+.tb-pag>.folha{transform-origin:0 0}
+.tb-dica{margin:0 auto 0 0;align-self:center}
+@media (min-width:760px){#dlgTabela{width:min(900px,94vw);height:92vh}#dlgTabela .dlg{height:100%}}
+#impressao{display:none}
+
+.folha{width:210mm;height:297mm;padding:12mm 13mm 10mm;box-sizing:border-box;background:#fff;color:#1b2a1f;display:flex;flex-direction:column;font-family:var(--body);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.f-topo{display:flex;align-items:center;gap:6mm;padding-bottom:5mm;border-bottom:1.2mm solid #163a22}
+.f-marca{flex:none;height:18mm;padding:0 4.5mm;border-radius:4mm;background:#163a22;color:#fff8e6;display:grid;place-items:center;font:700 7mm/1 var(--display)}
+.f-tit{flex:1;min-width:0}
+.f-tit h1{font:700 12mm/1 var(--display);color:#163a22;margin:0}
+.f-tit p{margin:1.8mm 0 0;font-size:4.2mm;color:#5b5348}
+.f-data{flex:none;text-align:right;font-size:3.4mm;color:#5b5348;line-height:1.35}
+.f-data b{display:block;font-size:4.2mm;color:#1b2a1f}
+.f-corpo{flex:1;min-height:0;padding-top:4mm;font-size:var(--fs,6mm)}
+.f-corpo.duas{column-count:2;column-gap:9mm;column-rule:.3mm solid #e2dccf}
+.f-grupo{margin:0}
+.f-grupo h2{break-after:avoid;break-inside:avoid;font:700 calc(var(--fs,6mm)*.62)/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:#7b5434;margin:3mm 0 1.2mm;padding-top:1mm}
+.f-grupo:first-child h2{margin-top:0}
+.f-lin{break-inside:avoid;display:flex;align-items:baseline;gap:2.5mm;height:var(--lh,13mm);align-items:center;border-bottom:.3mm dashed #d9d2c3}
+.f-nome{flex:1;min-width:0;font-weight:600;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.f-nome small{display:block;font-weight:500;font-size:.6em;color:#6b6357;margin-top:.6mm}
+.f-preco{flex:none;font:700 1.15em/1 var(--body);color:#163a22;font-variant-numeric:tabular-nums;white-space:nowrap}
+.f-preco small{font-size:.5em;font-weight:600;color:#6b6357;margin-left:1mm}
+.f-preco.consultar{font-size:.7em;color:#7b5434}
+.f-rodape{flex:none;display:flex;justify-content:space-between;gap:6mm;padding-top:3mm;border-top:.4mm solid #e2dccf;font-size:3.2mm;color:#6b6357}
+.f-vazio{font-size:5mm;color:#6b6357}
+
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html,body{background:#fff !important;margin:0 !important;padding:0 !important;min-height:0 !important}
+  body>*:not(#impressao){display:none !important}
+  #impressao{display:block !important}
+  #impressao .folha{break-after:page;page-break-after:always}
+  #impressao .folha:last-child{break-after:auto;page-break-after:auto}
+}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -912,12 +960,13 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
           <button type="button" class="ini-at" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg><span>Mudas – balcão</span></button>
                     <button type="button" class="ini-at" data-acao="historico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>Histórico de preços</span></button>
           <button type="button" class="ini-at" data-acao="secoes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Seções</span></button>
+          <button type="button" class="ini-at" data-acao="tabela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/><path d="M17.5 11h.01" stroke-width="2.6" stroke-linecap="round"/></svg><span>Tabela de preços das mudas</span></button>
           <button type="button" class="ini-at" data-acao="carrossel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="11" rx="2"/><path d="M2 8v5M22 8v5"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="12" cy="20" r="1" fill="currentColor"/><circle cx="15" cy="20" r="1" fill="currentColor"/></svg><span>Carrossel do site</span></button>
           <a class="ini-at" href="../" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg><span>Ver o site</span></a>
         </div>
       </section>
       <section class="ini-card" aria-labelledby="tIniMudas">
-        <div class="ini-card-topo"><h3 id="tIniMudas">Mudas de bandeja</h3><button type="button" class="link-btn" data-acao="mudas">Abrir</button></div>
+        <div class="ini-card-topo"><h3 id="tIniMudas">Mudas</h3><button type="button" class="link-btn" data-acao="mudas">Abrir</button></div>
         <div id="iniMudas"><p class="ini-vazio">Carregando…</p></div>
       </section>
       <section class="ini-card" aria-labelledby="tIniHist">
@@ -1207,6 +1256,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <div class="ed-col m-col">
         <form class="secao" id="formMuda" novalidate>
           <button class="btn btn-pri m-calc-btn" type="button" id="btnCalcMudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5v.01M15.5 13v3.5" stroke-width="2.6" stroke-linecap="round"/></svg><span>Calculadora de mudas<small>Monte o pedido inteiro de uma vez</small></span></button>
+          <button class="btn btn-sec m-tab-btn" type="button" data-acao="tabela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/><path d="M17.5 11h.01" stroke-width="2.6" stroke-linecap="round"/></svg>Tabela de preços para imprimir</button>
           <h3 class="m-ou">Ou registre uma muda</h3>
           <div id="mPasso1">
             <div class="m-escolha" id="mEscolha" role="radiogroup" aria-label="Escolha a muda"></div>
@@ -1352,6 +1402,28 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   </div>
 </dialog>
 
+<dialog id="dlgTabela" aria-labelledby="tTabela">
+  <div class="dlg">
+    <div class="dlg-topo">
+      <h2 id="tTabela">Tabela de preços das mudas</h2>
+      <button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="tb-ferr">
+      <div class="vistas hist-periodo tb-folhas" role="group" aria-label="Qual folha">
+        <button type="button" data-tb-folha="ambas" aria-pressed="true">As duas</button>
+        <button type="button" data-tb-folha="mudas" aria-pressed="false">Preço por muda</button>
+        <button type="button" data-tb-folha="bandejas" aria-pressed="false">Bandejas fechadas</button>
+      </div>
+      <label class="check-mini"><input type="checkbox" id="tbOcultas"> Incluir mudas ocultas no site</label>
+    </div>
+    <div class="dlg-corpo tb-corpo" id="tbPrevia"></div>
+    <div class="dlg-pe">
+      <p class="dica tb-dica">Os preços vêm do cadastro. Mudou um preço? A tabela já sai atualizada.</p>
+      <button class="btn btn-pri" type="button" id="btnImprimirTabela"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3.5h10V8"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v6.5H7z"/><path d="M17.5 11h.01" stroke-width="2.6" stroke-linecap="round"/></svg>Imprimir</button>
+    </div>
+  </div>
+</dialog>
+<div id="impressao" aria-hidden="true"></div>
 <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
 <!-- Dados de exemplo para o modo demonstração. Gerado por build.mjs a partir de ../dados/produtos.json — não edite à mão. -->
@@ -3118,7 +3190,7 @@ function renderInicio() {
     }
     prog.sort((a, b) => b.r / b.t - a.r / a.t);
     const pend = lerPedidoMudas().reduce((s1, it) => s1 + it.mudas, 0);
-    $("#iniMudas").innerHTML = (prontas.length
+    $("#iniMudas").innerHTML = htmlVendasMudas() + (prontas.length
         ? (() => { const tot = prontas.reduce((a, x) => a + x.n, 0);
             return `<div class="ini-nf">${ICONE_NF}<span><b>${tot} bandeja${tot > 1 ? "s prontas" : " pronta"} para nota fiscal:</b> ${prontas.map(x => `${x.n > 1 ? x.n + "× " : ""}${esc(x.nome)}`).join(", ")}</span></div>`; })() : "")
       + (prog.length
@@ -3304,7 +3376,7 @@ function ligarEventosAbas() {
     const a = e.target.closest("[data-aba]");
     if (a && ui.logado) { e.preventDefault(); irPara(a.dataset.aba); return; }
     const ac = e.target.closest("[data-acao]"); if (!ac || !ui.logado) return;
-    ({ novo: () => abrirEditor(null), mudas: abrirMudas, reajuste: abrirReajuste, historico: abrirHistorico, secoes: abrirDeps, carrossel: abrirCarrossel })[ac.dataset.acao]?.();
+    ({ novo: () => abrirEditor(null), mudas: abrirMudas, reajuste: abrirReajuste, historico: abrirHistorico, secoes: abrirDeps, carrossel: abrirCarrossel, tabela: abrirTabelaMudas })[ac.dataset.acao]?.();
   });
   window.addEventListener("popstate", () => {
     if (dlgNav.ignorar > 0) { dlgNav.ignorar--; return; }
@@ -3315,6 +3387,7 @@ function ligarEventosAbas() {
     }
     if (ui.logado) irPara(abaDoEndereco(), { historico: false });
   });
+  ligarEventosTabela();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -3408,6 +3481,112 @@ function padronizarVoltar() {
     abrir.call(this);
     if (!dlgNav.pilha.includes(this)) { dlgNav.pilha.push(this); history.pushState({ ...(history.state || {}), dlg: this.id }, "", location.href); }
   };
+}
+
+
+/* =====================================================================
+   TABELA DE PREÇOS DAS MUDAS — duas folhas A4 para imprimir:
+   1) preço por muda (bandeja aberta + avulsas)   2) bandejas fechadas (encomenda)
+   O tamanho da letra se ajusta à quantidade de mudas para caber numa folha só.
+   ===================================================================== */
+const tabUi = { folha: "ambas" };
+const ehMuda = p => tamBandeja(p.sub) || /^muda de /i.test(p.nome);
+function folhaHTML({ titulo, sub, grupos, preco }) {
+  const hoje = new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  const itens = grupos.reduce((n, g) => n + g.itens.length, 0);
+  const linhas = itens + grupos.length * 0.8;          // título de grupo ocupa quase uma linha
+  const duas = linhas > 24;                            // muitas mudas: duas colunas
+  const porColuna = duas ? Math.ceil(linhas / 2) + 0.6 : linhas;
+  const lh = Math.max(7.2, Math.min(16, 228 / Math.max(porColuna, 1)));  // altura da linha em mm
+  const fs = Math.max(3.6, Math.min(duas ? 4.6 : 7.2, lh * (duas ? .4 : .46))); // letra em mm
+  const corpo = itens ? grupos.filter(g => g.itens.length).map(g => `<section class="f-grupo"><h2>${esc(g.nome)}</h2>
+      ${g.itens.map(p => `<div class="f-lin"><span class="f-nome">${esc(nomeMuda(p))}${g.detalhe ? `<small>${esc(g.detalhe(p))}</small>` : ""}</span>${preco(p)}</div>`).join("")}</section>`).join("")
+    : '<p class="f-vazio">Nenhuma muda cadastrada.</p>';
+  return `<section class="folha">
+    <header class="f-topo"><div class="f-marca">Defema</div>
+      <div class="f-tit"><h1>${titulo}</h1><p>${sub}</p></div>
+      <div class="f-data">Preços de<b>${hoje}</b></div></header>
+    <div class="f-corpo${duas ? " duas" : ""}" style="--lh:${lh.toFixed(2)}mm;--fs:${fs.toFixed(2)}mm">${corpo}</div>
+    <footer class="f-rodape"><span>Defema · Rua Tiradentes, 535 – Centro, Pirapozinho/SP</span><span>Preços sujeitos a alteração</span></footer>
+  </section>`;
+}
+function montarFolhas() {
+  const ocultas = $("#tbOcultas").checked;
+  const mudas = ui.produtos.filter(p => ehMuda(p) && (ocultas || p.ativo))
+    .sort((a, b) => (tamBandeja(b.sub) || 0) - (tamBandeja(a.sub) || 0) || nomeMuda(a).localeCompare(nomeMuda(b), "pt-BR"));
+  const precoTxt = (v, suf) => v == null ? '<span class="f-preco consultar">Consultar</span>' : `<span class="f-preco">${moeda(v)}${suf ? `<small>${suf}</small>` : ""}</span>`;
+  const folhas = [];
+  if (tabUi.folha !== "bandejas") folhas.push(folhaHTML({
+    titulo: "Mudas", sub: "Preço por muda · leve a quantidade que precisar",
+    grupos: [
+      { nome: "Bandeja de 200", itens: mudas.filter(p => tamBandeja(p.sub) === 200) },
+      { nome: "Bandeja de 128", itens: mudas.filter(p => tamBandeja(p.sub) === 128) },
+      { nome: "Outras mudas", itens: mudas.filter(p => !tamBandeja(p.sub)), detalhe: p => p.unidade || "" },
+    ],
+    preco: p => precoTxt(p.preco, tamBandeja(p.sub) ? "a muda" : "cada"),
+  }));
+  if (tabUi.folha !== "mudas") {
+    const band = mudas.filter(p => tamBandeja(p.sub));
+    folhas.push(folhaHTML({
+      titulo: "Bandejas fechadas", sub: "Por encomenda · chega na semana seguinte, com o nosso pedido semanal",
+      grupos: [
+        { nome: "Bandeja com 200 mudas", itens: band.filter(p => tamBandeja(p.sub) === 200) },
+        { nome: "Bandeja com 128 mudas", itens: band.filter(p => tamBandeja(p.sub) === 128) },
+      ],
+      preco: p => precoTxt(p.preco_bandeja, "a bandeja"),
+    }));
+  }
+  return folhas.join("");
+}
+function renderTabelaMudas() {
+  document.querySelectorAll("[data-tb-folha]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tbFolha === tabUi.folha)));
+  const box = $("#tbPrevia");
+  box.innerHTML = montarFolhas().replace(/<section class="folha">/g, '<div class="tb-pag"><section class="folha">').replace(/<\/footer>\s*<\/section>/g, "</footer></section></div>");
+  escalarPrevia();
+}
+function escalarPrevia() {
+  const box = $("#tbPrevia"); if (!box.isConnected || !$("#dlgTabela").open) return;
+  const folha = box.querySelector(".folha"); if (!folha) return;
+  const w = folha.offsetWidth, h = folha.offsetHeight;   // A4 em px (210×297 mm)
+  const k = Math.min(1, (box.clientWidth - 32) / w);
+  box.querySelectorAll(".tb-pag").forEach(pg => { pg.style.width = w * k + "px"; pg.style.height = h * k + "px"; pg.firstElementChild.style.transform = `scale(${k})`; });
+}
+function abrirTabelaMudas() {
+  $("#dlgTabela").showModal();
+  renderTabelaMudas();
+}
+function imprimirTabelaMudas() {
+  $("#impressao").innerHTML = montarFolhas();
+  const limpar = () => { $("#impressao").innerHTML = ""; window.removeEventListener("afterprint", limpar); };
+  window.addEventListener("afterprint", limpar);
+  window.print();
+}
+function ligarEventosTabela() {
+  document.querySelector("#dlgTabela .tb-folhas").addEventListener("click", e => { const b = e.target.closest("[data-tb-folha]"); if (!b) return; tabUi.folha = b.dataset.tbFolha; renderTabelaMudas(); });
+  $("#tbOcultas").addEventListener("change", renderTabelaMudas);
+  $("#btnImprimirTabela").addEventListener("click", imprimirTabelaMudas);
+  window.addEventListener("resize", escalarPrevia);
+}
+
+/* ---------- vendas de mudas (Início): hoje e nesta semana, pelos pedidos salvos ---------- */
+function resumoVendasMudas() {
+  const agora = new Date(), ini = new Date(agora); ini.setHours(0, 0, 0, 0);
+  const seg = new Date(ini); seg.setDate(seg.getDate() - ((seg.getDay() + 6) % 7)); // segunda-feira
+  const porId = new Map(ui.produtos.map(p => [String(p.id), p]));
+  const r = { hoje: { n: 0, v: 0 }, semana: { n: 0, v: 0 } };
+  for (const m of mudasUi.movs) {
+    if (m.tipo !== "venda") continue;
+    const d = new Date(m.criado_em); if (d < seg) continue;
+    const v = m.valor != null ? Number(m.valor) : (valorVenda(porId.get(String(m.produto_id)), m.mudas) || 0);
+    r.semana.n += m.mudas; r.semana.v += v;
+    if (d >= ini) { r.hoje.n += m.mudas; r.hoje.v += v; }
+  }
+  return r;
+}
+function htmlVendasMudas() {
+  const r = resumoVendasMudas();
+  const bloco = (rot, x) => `<div class="ini-venda"><span>${rot}</span><b>${moeda(r2(x.v))}</b><small>${x.n} muda${x.n === 1 ? "" : "s"}</small></div>`;
+  return `<div class="ini-vendas">${bloco("Vendido hoje", r.hoje)}${bloco("Nesta semana", r.semana)}</div>`;
 }
 
 /* ---------- LOGIN ---------- */
@@ -3656,7 +3835,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230902";
+  const VERSAO = "202610230913";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
