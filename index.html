@@ -707,6 +707,69 @@ details[open] > summary .dep-nome{color:var(--leaf-2)}
 .btn-repetir svg{width:24px;height:24px;flex:0 0 auto;fill:none;stroke:var(--leaf-2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn-repetir small{display:block;font-weight:500;font-size:.8rem;color:var(--muted)}
 .aviso-rep{margin:12px 0 0;font-size:.82rem;background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:8px;padding:8px 10px}
+
+/* ===== CALCULADORAS DO CAMPO ===== */
+body.pg-calc .layout{grid-template-columns:minmax(0,1fr)}
+body.pg-calc .layout>div:first-child{display:none}
+body.pg-calc main{grid-column:1/-1}
+.calc-abas{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
+.calc-abas button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;color:var(--fg)}
+.calc-abas button svg{width:20px;height:20px;color:var(--leaf-2)}
+.calc-abas button[aria-pressed="true"]{background:var(--leaf-2);border-color:var(--leaf-2);color:#fff}
+.calc-abas button[aria-pressed="true"] svg{color:#fff1c9}
+.calc-abas button:focus-visible{outline:3px solid var(--seed);outline-offset:2px}
+.calc-grade{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px;align-items:start}
+.calc-form,.calc-res{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.calc-form h3,.calc-res h3{font-family:var(--display);font-size:1.15rem;margin:0 0 4px;color:var(--leaf-2)}
+.calc-form .intro{margin:0 0 16px;color:var(--muted);font-size:.93rem}
+.cf{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.cf>span{font-weight:700;font-size:.92rem}
+.cf small{color:var(--muted);font-size:.8rem;line-height:1.35}
+.cf input,.cf select{font:inherit;min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg,#fff);color:var(--fg);width:100%;box-sizing:border-box}
+.cf input:focus,.cf select:focus{outline:3px solid var(--seed);border-color:var(--leaf-2)}
+.cf-linha{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.cf-un{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px}
+.cf-modo{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cf-modo label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-weight:600;font-size:.92rem}
+.cf-modo label:has(input:checked){border-color:var(--leaf-2);background:color-mix(in srgb,var(--leaf-2) 10%,transparent)}
+.cf-modo input{accent-color:var(--leaf-2);width:18px;height:18px}
+.calc-res{position:sticky;top:calc(var(--hdr,0px) + 14px)}
+.res-num{font-family:var(--display);font-size:clamp(2rem,4vw,2.8rem);line-height:1.05;color:var(--leaf-2);margin:6px 0 2px}
+.res-sub{color:var(--muted);margin:0 0 14px;font-size:.92rem}
+.res-prod{display:flex;gap:12px;align-items:center;padding:10px;border-radius:12px;background:var(--soil-soft);margin:12px 0}
+.res-prod img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:8px;flex:0 0 auto}
+.res-prod b{display:block;font-size:.95rem}
+.res-prod span{font-size:.85rem;color:var(--muted)}
+.res-total{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;margin:4px 0 12px}
+.res-total b{font-family:var(--display);font-size:1.4rem;color:var(--fg)}
+.res-btns{display:flex;flex-direction:column;gap:8px}
+.res-btns .btn-calc{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;min-height:46px;padding:11px 14px;border-radius:10px;font-weight:700;background:var(--leaf-2);color:#fff}
+.res-btns .btn-calc.sec{background:transparent;color:var(--leaf-2);box-shadow:inset 0 0 0 1.5px var(--leaf-2)}
+.res-btns .btn-calc:focus-visible{outline:3px solid var(--seed);outline-offset:2px}
+.res-ok{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--leaf-2) 12%,transparent);font-weight:600;font-size:.92rem;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.res-ok button{all:unset;cursor:pointer;text-decoration:underline;font-weight:700;color:var(--leaf-2)}
+.res-vazio{color:var(--muted);margin:8px 0 0}
+.res-aviso{font-size:.8rem;color:var(--muted);line-height:1.4;margin:14px 0 0;border-top:1px dashed var(--line);padding-top:10px}
+.res-alerta{background:var(--warn-bg,#fff6dd);border:1px solid var(--warn-line,#ecd9a6);border-radius:10px;padding:10px 12px;font-size:.9rem;margin:8px 0 0}
+.calc-chamada{margin-top:26px}
+.calc-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.calc-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:14px;align-items:center;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);transition:transform .18s,box-shadow .18s,border-color .18s}
+.calc-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,50,30,.12);border-color:var(--leaf-2)}
+.calc-card:focus-visible{outline:3px solid var(--leaf-2);outline-offset:2px}
+.calc-card .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--leaf-2) 12%,transparent);color:var(--leaf-2);flex:0 0 auto}
+.calc-card .ic svg{width:26px;height:26px}
+.calc-card b{display:block;font-size:1rem}
+.calc-card span.t{font-size:.85rem;color:var(--muted)}
+.det-calc{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-weight:700}
+:root[data-theme="dark"] .res-btns .btn-calc:not(.sec),:root[data-theme="dark"] .calc-abas button[aria-pressed="true"]{background:#2a7a44;border-color:#2a7a44;color:#fff}
+:root[data-theme="dark"] .res-btns .btn-calc.sec{color:#9fd6aa;box-shadow:inset 0 0 0 1.5px #9fd6aa}
+@media (max-width:860px){
+  .calc-grade{grid-template-columns:1fr}
+  .calc-res{position:static}
+  .calc-cards{grid-template-columns:1fr;gap:8px}
+  .calc-card{padding:12px 14px}
+  .calc-abas button{flex:1 1 auto;justify-content:center;padding:8px 12px}
+}
 </style>
 </head>
 <body>
@@ -1399,6 +1462,7 @@ function abrirDetalhe(p){
       ${p.restrito?`<span class="restr">Venda restrita a empresas de controle de pragas e órgãos públicos, com autorização de engenheiro agrônomo.</span>`:""}
       ${p.dep==="Defensivos"&&!p.restrito?`<p class="obs">Leia e siga sempre as instruções do rótulo.</p>`:""}
       <div class="acoes" data-acoes="${p.id}">${acoes(p)}</div>
+      ${calcDoProduto(p) ? `<button class="link det-calc" data-go="calculadoras" data-calc="${calcDoProduto(p)}" data-calc-prod="${esc(p.nome)}">Calcular quanto eu preciso →</button>` : ""}
       ${p.restrito?"":`<a class="link so-este" href="${waLink(msgUnica(p))}" target="_blank" rel="noopener">ou perguntar só sobre este produto no WhatsApp →</a>`}
       <button class="link copiar-link" data-copiar="${p.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Copiar link deste produto</button>
     </div>`;
@@ -1528,12 +1592,225 @@ function viewInicio(){
         <span class="cat-info"><b>Promoções da semana</b><span>${promo.length} ite${promo.length===1?"m":"ns"} com desconto</span></span></button>
     </div>
   </section>
+  <section class="calc-chamada">
+    <div class="sec-head"><h2>Calcule antes de comprar</h2><button class="link" data-go="calculadoras">Ver calculadoras →</button></div>
+    <div class="calc-cards">
+      ${CALC_TIPOS.map(([k,t,d,ic])=>`<button class="calc-card" data-go="calculadoras" data-calc="${k}"><span class="ic">${ic}</span><span><b>${t}</b><span class="t">${d}</span></span></button>`).join("")}
+    </div>
+  </section>
   <section class="vantagens">
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.7 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg><p style="margin:0"><b>Pedido pelo WhatsApp</b><span>Monte a lista aqui e mande de uma vez</span></p></div>
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 4l9 6v10H3z"/><path d="M9 20v-6h6v6"/></svg><p style="margin:0"><b>Retire na loja</b><span>Rua Tiradentes, 535 · Centro</span></p></div>
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p style="margin:0"><b>Seg a sex 8h–17h</b><span>Sábado 8h–12h</span><span class="selo-hora" data-hora></span></p></div>
   </section>`;
 }
+/* ===== CALCULADORAS DO CAMPO =====
+   Contas simples para o cliente saber quanto levar. Sempre com aviso:
+   a dose certa vem da análise de solo, do agrônomo ou da embalagem. */
+const IC_CALC = {
+  calcario:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 7h12l1.5 13h-15z"/><path d="M8 7l1-3h6l1 3M9 12h6M9 15.5h6"/></svg>',
+  adubo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c0-4.5 3-7.5 8-7.5 0 4.5-3 7.5-8 7.5zM12 15c0-3.5-2.4-6-6.5-6 0 3.5 2.4 6 6.5 6z"/><path d="M4 21h16"/></svg>',
+  mudas:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="18" height="8" rx="1.5"/><path d="M7 12V9M12 12V8M17 12V9M7 9c0-2 1.4-3.4 3.4-3.4M12 8c0-2.4 1.6-4 4-4M17 9c0-1.8-1.2-3-3-3"/></svg>'
+};
+const CALC_TIPOS = [
+  ["calcario","Calcário","Quanto calcário para corrigir o solo",IC_CALC.calcario],
+  ["adubo","Adubo","Quantos sacos para a sua área",IC_CALC.adubo],
+  ["mudas","Mudas por canteiro","Quantas mudas cabem no canteiro",IC_CALC.mudas]
+];
+const CALC = {
+  aba:"calcario", ok:null,
+  calcario:{prod:"", un:"cl", c:"10", l:"1.2", area:"", modo:"sem", v1:"", v2:"70", t:""},
+  adubo:{prod:"", un:"cl", c:"10", l:"1.2", area:"", dose:"", doseUn:"gm2"},
+  mudas:{prod:"", qtd:"1", c:"5", l:"1.2", el:"", ep:""}
+};
+const ALQUEIRE = 24200;   // alqueire paulista em m²
+const num = v => { const n = parseFloat(String(v??"").replace(",", ".")); return isFinite(n) ? n : NaN; };
+const fmtN = (n, d=0) => n.toLocaleString("pt-BR",{maximumFractionDigits:d, minimumFractionDigits:0});
+const kgDoSaco = p => { const m = /(\d+(?:[.,]\d+)?)\s*kg/i.exec(p.un||""); return m ? num(m[1]) : NaN; };
+const prntDe = p => { const m = /PRNT\s*(\d+)/i.exec(p.nome+" "+(p.un||"")); return m ? +m[1] : 90; };
+const prodsCalc = {
+  calcario: () => PRODUTOS.filter(p=>p.sub==="Calcário" || /calc[aá]rio/i.test(p.nome)),
+  adubo: () => PRODUTOS.filter(p=>p.sub==="Adubos"),
+  mudas: () => PRODUTOS.filter(p=>p.bandeja || (p.sub==="Mudas unitárias" && /pimenta/i.test(p.nome)))
+};
+function calcDoProduto(p){
+  if(prodsCalc.calcario().includes(p)) return "calcario";
+  if(prodsCalc.adubo().includes(p)) return "adubo";
+  if(prodsCalc.mudas().includes(p)) return "mudas";
+  return "";
+}
+/* espaçamento de referência (cm): [entre linhas, entre plantas] */
+const ESPACO = [
+  [/americana/i,[30,30]],[/alface/i,[30,30]],[/r[uú]cula/i,[20,10]],[/coentro/i,[20,10]],[/salsa/i,[25,10]],
+  [/cebolinha/i,[25,15]],[/almeir[aã]o/i,[30,25]],[/piment[aã]o/i,[100,50]],[/berinjela/i,[100,70]],
+  [/couve/i,[80,50]],[/jil[oó]/i,[100,70]],[/pimenta/i,[100,60]]
+];
+const espacoDe = p => (ESPACO.find(([r])=>r.test(p.nome))||[0,[30,30]])[1];
+function prodCalc(tipo){
+  const l = prodsCalc[tipo](), st = CALC[tipo];
+  return l.find(p=>p.nome===st.prod) || l[0] || null;
+}
+function areaM2(st){
+  if(st.un==="cl") return num(st.c) * num(st.l);
+  const a = num(st.area);
+  return st.un==="ha" ? a*10000 : st.un==="alq" ? a*ALQUEIRE : a;
+}
+const opcoesProd = (l, sel) => l.map(p=>`<option value="${esc(p.nome)}" ${p===sel?"selected":""}>${esc(p.nome)}${p.marca?" · "+esc(p.marca):""}</option>`).join("");
+const campo = (rot, html, dica="") => `<label class="cf"><span>${rot}</span>${html}${dica?`<small>${dica}</small>`:""}</label>`;
+const inp = (tipo, k, extra="") => `<input inputmode="decimal" autocomplete="off" data-cf="${tipo}.${k}" value="${esc(CALC[tipo][k])}" ${extra}>`;
+function campoArea(tipo){
+  const st = CALC[tipo];
+  return `${campo("Tamanho da área", `<div class="cf-un">
+      ${st.un==="cl" ? `<div class="cf-linha" style="grid-template-columns:1fr 1fr">${inp(tipo,"c",'aria-label="Comprimento em metros" placeholder="comprimento"')}${inp(tipo,"l",'aria-label="Largura em metros" placeholder="largura"')}</div>` : inp(tipo,"area",'aria-label="Tamanho" placeholder="0"')}
+      <select data-cf="${tipo}.un" aria-label="Unidade da área">
+        <option value="cl" ${st.un==="cl"?"selected":""}>metros (compr. × larg.)</option>
+        <option value="m2" ${st.un==="m2"?"selected":""}>m²</option>
+        <option value="ha" ${st.un==="ha"?"selected":""}>hectares</option>
+        <option value="alq" ${st.un==="alq"?"selected":""}>alqueires paulistas</option>
+      </select></div>`, st.un==="cl" ? "Comprimento × largura, em metros. Ex.: canteiro de 10 m por 1,2 m." : st.un==="alq" ? "1 alqueire paulista = 24.200 m² (2,42 ha)." : "")}`;
+}
+function formCalc(){
+  const a = CALC.aba;
+  if(a==="calcario"){
+    const st = CALC.calcario, p = prodCalc("calcario");
+    return `<h3>Calcário</h3><p class="intro">Corrige a acidez do solo. A conta mais segura usa a análise de solo; sem ela, dá para estimar só para horta e jardim.</p>
+      ${campo("Produto", `<select data-cf="calcario.prod">${opcoesProd(prodsCalc.calcario(), p)}</select>`, p?`PRNT ${prntDe(p)}% · ${esc(p.un)}`:"")}
+      ${campoArea("calcario")}
+      <div class="cf-modo" role="radiogroup" aria-label="Tem análise de solo?">
+        <label><input type="radio" name="cmodo" data-cf="calcario.modo" value="com" ${st.modo==="com"?"checked":""}> Tenho análise de solo</label>
+        <label><input type="radio" name="cmodo" data-cf="calcario.modo" value="sem" ${st.modo==="sem"?"checked":""}> Não tenho</label>
+      </div>
+      ${st.modo==="com" ? `<div class="cf-linha">
+        ${campo("V% atual", inp("calcario","v1",'placeholder="ex.: 40"'), "Saturação por bases, no laudo.")}
+        ${campo("V% desejado", inp("calcario","v2"), "O agrônomo indica. Hortaliças costumam usar 70 a 80%.")}
+        ${campo("CTC (T)", inp("calcario","t",'placeholder="ex.: 7,5"'), "CTC a pH 7, em cmolc/dm³.")}
+      </div>` : ""}`;
+  }
+  if(a==="adubo"){
+    const st = CALC.adubo, p = prodCalc("adubo");
+    return `<h3>Adubo</h3><p class="intro">Diga o tamanho da área e a dose. A conta mostra quantos quilos e quantos sacos levar.</p>
+      ${campo("Produto", `<select data-cf="adubo.prod">${opcoesProd(prodsCalc.adubo(), p)}</select>`, p?esc(p.un):"")}
+      ${campoArea("adubo")}
+      ${campo("Dose", `<div class="cf-un">${inp("adubo","dose",'placeholder="ex.: 150"')}
+        <select data-cf="adubo.doseUn" aria-label="Unidade da dose"><option value="gm2" ${st.doseUn==="gm2"?"selected":""}>gramas por m²</option><option value="kgha" ${st.doseUn==="kgha"?"selected":""}>kg por hectare</option></select></div>`,
+        "Use a dose da análise de solo, do agrônomo ou da embalagem. Na dúvida, pergunte no WhatsApp.")}`;
+  }
+  const st = CALC.mudas, p = prodCalc("mudas");
+  const [el, ep] = p ? espacoDe(p) : [30,30];
+  return `<h3>Mudas por canteiro</h3><p class="intro">Quantas mudas cabem nos seus canteiros, com o espaçamento de cada cultura.</p>
+    ${campo("Muda", `<select data-cf="mudas.prod">${opcoesProd(prodsCalc.mudas(), p)}</select>`, p?esc(p.un):"")}
+    <div class="cf-linha">
+      ${campo("Canteiros", inp("mudas","qtd",'inputmode="numeric"'))}
+      ${campo("Comprimento (m)", inp("mudas","c"))}
+      ${campo("Largura (m)", inp("mudas","l"))}
+    </div>
+    <div class="cf-linha">
+      ${campo("Entre linhas (cm)", inp("mudas","el",`placeholder="${el}"`))}
+      ${campo("Entre plantas (cm)", inp("mudas","ep",`placeholder="${ep}"`))}
+    </div>
+    <p class="intro" style="margin:-4px 0 0;font-size:.82rem">Espaçamento de referência para ${p?esc(p.nome.replace(/^Muda de /,"")):"a muda"}: ${el} × ${ep} cm. Deixe em branco para usar ele, ou mude se plantar diferente.</p>`;
+}
+function resProd(p, qtdTxt, op){
+  const pr = precoDe(p, op);
+  return `<div class="res-prod">${p.foto?`<img src="${p.foto}" alt="">`:""}<div><b>${esc(p.nome)}</b><span>${qtdTxt}${pr!=null?` · ${brl(pr)} cada`:" · preço sob consulta"}</span></div></div>`;
+}
+function botaoAdd(p, n, op, rot){
+  return `<button class="btn-calc${op&&ehEncomenda(p,op)?" sec":""}" data-calc-add="${p.id}" data-n="${n}" ${op?`data-calc-op="${esc(op)}"`:""}>${rot}</button>`;
+}
+function totalTxt(p, n, op){ const pr = precoDe(p, op); return pr!=null ? `<div class="res-total"><span>Total estimado</span><b>${brl(pr*n)}</b></div>` : ""; }
+function resultadoCalc(){
+  const a = CALC.aba, aviso = `<p class="res-aviso">Conta de referência, não substitui a análise de solo nem a orientação de um engenheiro agrônomo. Confira sempre a embalagem.</p>`;
+  const vazio = t => `<h3>Resultado</h3><p class="res-vazio">${t}</p>${aviso}`;
+  if(a==="calcario" || a==="adubo"){
+    const st = CALC[a], p = prodCalc(a), m2 = areaM2(st);
+    if(!p) return vazio("Nenhum produto disponível no catálogo agora.");
+    if(!(m2>0)) return vazio("Preencha o tamanho da área.");
+    let kg, sub;
+    if(a==="calcario"){
+      if(st.modo==="com"){
+        const v1 = num(st.v1), v2 = num(st.v2), t = num(st.t);
+        if(![v1,v2,t].every(x=>x>=0) || !(t>0)) return vazio("Preencha V% atual, V% desejado e CTC, que estão no laudo da análise.");
+        const nc = (v2 - v1) * t / prntDe(p);     // t/ha (camada de 0 a 20 cm)
+        if(nc <= 0) return `<h3>Resultado</h3><p class="res-num">Não precisa</p><p class="res-sub">O V% atual já está igual ou acima do desejado. Não é preciso aplicar calcário agora.</p>${aviso}`;
+        kg = nc * 1000 * m2 / 10000;
+        sub = `Dose: ${fmtN(nc,2)} t/ha (${fmtN(nc*100,0)} g/m²), para incorporar de 0 a 20 cm.`;
+      } else {
+        if(m2 > 2000) return `<h3>Resultado</h3><p class="res-alerta">Para lavoura ou pasto, faça a análise de solo antes. A dose pode ir de zero a várias toneladas por hectare, e errar sai caro. A loja ajuda a indicar onde fazer.</p>${aviso}`;
+        kg = 0.15 * m2;
+        sub = "Estimativa de 150 g por m², comum em hortas e jardins sem análise de solo.";
+      }
+    } else {
+      const d = num(st.dose);
+      if(!(d>0)) return vazio("Preencha a dose recomendada.");
+      const gm2 = st.doseUn==="kgha" ? d/10 : d;
+      kg = gm2 * m2 / 1000;
+      sub = `${fmtN(gm2,1)} g/m² em ${fmtN(m2,m2<100?1:0)} m² (${st.doseUn==="kgha"?fmtN(d,0)+" kg/ha":fmtN(gm2*10,0)+" kg/ha"}).`;
+    }
+    const saco = kgDoSaco(p), sacos = saco>0 ? Math.max(1, Math.ceil(kg/saco - 1e-9)) : 0;
+    return `<h3>Resultado</h3>
+      <p class="res-num">${kg<10?fmtN(kg,1):fmtN(kg,0)} kg</p><p class="res-sub">${sub}</p>
+      ${saco>0 ? `${resProd(p, `${sacos} saco${sacos>1?"s":""} de ${fmtN(saco,0)} kg`)}${totalTxt(p,sacos)}
+      ${kg < saco*0.5 ? `<p class="res-alerta">Vai sobrar: o saco tem ${fmtN(saco,0)} kg e você precisa de ${kg<10?fmtN(kg,1):fmtN(kg,0)} kg. Guarde bem fechado para a próxima aplicação, ou pergunte no WhatsApp se tem embalagem menor.</p>` : ""}
+      <div class="res-btns">${botaoAdd(p, sacos, null, `Adicionar ${sacos} saco${sacos>1?"s":""} ao pedido`)}</div>` : ""}
+      ${CALC.ok ? `<div class="res-ok"><span>✓ ${esc(CALC.ok)}</span><button data-abrir-pedido>Ver pedido</button></div>` : ""}${aviso}`;
+  }
+  const st = CALC.mudas, p = prodCalc("mudas");
+  if(!p) return vazio("Nenhuma muda disponível no catálogo agora.");
+  const [el0, ep0] = espacoDe(p);
+  const el = num(st.el) > 0 ? num(st.el) : el0, ep = num(st.ep) > 0 ? num(st.ep) : ep0;
+  const q = Math.max(1, Math.round(num(st.qtd)||1)), c = num(st.c), l = num(st.l);
+  if(!(c>0 && l>0)) return vazio("Preencha o comprimento e a largura do canteiro.");
+  const linhas = Math.max(1, Math.floor(l*100/el + 1e-9)), porLinha = Math.max(1, Math.floor(c*100/ep + 1e-9));
+  const total = linhas * porLinha * q;
+  let compra = "";
+  if(p.bandeja){
+    const lotes = Math.ceil(total / p.lote), opL = p.opcoes[0], opB = p.opcoes[1];
+    const bandejas = Math.ceil(total / p.bandeja);
+    compra = `${resProd(p, `${lotes} lote${lotes>1?"s":""} de ${p.lote} = ${lotes*p.lote} mudas`, opL)}${totalTxt(p,lotes,opL)}
+      <div class="res-btns">${botaoAdd(p, lotes, opL, `Adicionar ${lotes} lote${lotes>1?"s":""} (${lotes*p.lote} mudas)`)}
+      ${total >= p.bandeja*0.6 ? botaoAdd(p, bandejas, opB, `Encomendar ${bandejas} bandeja${bandejas>1?"s":""} fechada${bandejas>1?"s":""} (${bandejas*p.bandeja} mudas)`) : ""}</div>`;
+  } else {
+    compra = `${resProd(p, `${total} muda${total>1?"s":""}`)}${totalTxt(p,total)}<div class="res-btns">${botaoAdd(p, total, null, `Adicionar ${total} mudas ao pedido`)}</div>`;
+  }
+  return `<h3>Resultado</h3>
+    <p class="res-num">${fmtN(total)} muda${total>1?"s":""}</p>
+    <p class="res-sub">${linhas} linha${linhas>1?"s":""} × ${porLinha} plantas${q>1?` × ${q} canteiros`:""}, com ${fmtN(el)} × ${fmtN(ep)} cm.</p>
+    ${compra}
+    ${CALC.ok ? `<div class="res-ok"><span>✓ ${esc(CALC.ok)}</span><button data-abrir-pedido>Ver pedido</button></div>` : ""}
+    <p class="res-aviso">Espaçamento de referência; confira o indicado para a sua variedade. Vale levar algumas mudas a mais para repor as que não pegarem.</p>`;
+}
+function viewCalc(){
+  return `<div class="crumb">Início › Calculadoras do campo</div>
+    <div class="sec-head"><h2>Calculadoras do campo</h2></div>
+    <div class="calc-abas" role="group" aria-label="Escolha a calculadora">
+      ${CALC_TIPOS.map(([k,t,,ic])=>`<button type="button" data-calc-aba="${k}" aria-pressed="${CALC.aba===k}">${ic}${t}</button>`).join("")}
+    </div>
+    <div class="calc-grade">
+      <form class="calc-form" id="calcForm" onsubmit="return false">${formCalc()}</form>
+      <section class="calc-res" id="calcRes" aria-live="polite">${resultadoCalc()}</section>
+    </div>`;
+}
+function atualizarCalc(refazerForm){
+  if(refazerForm){ const f = document.getElementById("calcForm"); if(f) f.innerHTML = formCalc(); }
+  const r = document.getElementById("calcRes"); if(r) r.innerHTML = resultadoCalc();
+}
+document.addEventListener("input", e=>{
+  const el = e.target.closest("[data-cf]"); if(!el || state.page!=="calculadoras") return;
+  const [tipo, k] = el.dataset.cf.split(".");
+  CALC[tipo][k] = el.value; CALC.ok = null;
+  // trocar unidade, modo ou produto muda os campos do formulário
+  atualizarCalc(el.tagName==="SELECT" || el.type==="radio");
+});
+document.addEventListener("click", e=>{
+  const ab = e.target.closest("[data-calc-aba]");
+  if(ab){ CALC.aba = ab.dataset.calcAba; CALC.ok = null; render(); return; }
+  const b = e.target.closest("[data-calc-add]"); if(!b) return;
+  const p = PRODUTOS[b.dataset.calcAdd], n = +b.dataset.n, op = b.dataset.calcOp || null;
+  if(!p || !(n>0)) return;
+  mudarQtd(p, n, op ? chave(p, op) : chave(p));
+  CALC.ok = `${n} ${op && ehEncomenda(p,op) ? (n>1?"bandejas":"bandeja") : p.bandeja ? (n>1?"lotes":"lote") : /kg/i.test(p.un||"") ? (n>1?"sacos":"saco") : (n>1?"unidades":"unidade")} de ${p.nome} no pedido`;
+  atualizarCalc(false);
+});
 function viewInicioAntiga(){
   /* até 10 em cada bloco = duas fileiras de 5 no computador */
   const promosTodas = promocoes();
@@ -1729,8 +2006,9 @@ function renderAtalhos(){
 function render(){
   document.body.classList.toggle("pg-inicio", state.page==="inicio");
   document.body.classList.toggle("pg-sobre", state.page==="sobre");
+  document.body.classList.toggle("pg-calc", state.page==="calculadoras");
   document.querySelectorAll(".shortcut").forEach(b=>b.classList.toggle("on", state.page==="produtos" && b.dataset.dep===state.dep));
-  document.getElementById("view").innerHTML = {inicio:viewInicio, produtos:viewProdutos, sobre:viewSobre}[state.page]();
+  document.getElementById("view").innerHTML = {inicio:viewInicio, produtos:viewProdutos, sobre:viewSobre, calculadoras:viewCalc}[state.page]();
   document.querySelectorAll(".chips-linha .on").forEach(el=>{ const l=el.parentElement; l.scrollLeft = el.offsetLeft - (l.clientWidth - el.offsetWidth)/2; });
   fecharMenuProd(); iniciarHero(); if(typeof atualizarHora==="function") atualizarHora();
   document.querySelectorAll("nav.main > a, .menu-gatilho").forEach(a=>{ a.dataset.go===state.page ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current"); });
@@ -1761,7 +2039,9 @@ document.addEventListener("click", e=>{
     if(ds.fechar!=null) return t.closest("dialog").close();
   }
   const g = e.target.closest("[data-go]");
-  if(g){ e.preventDefault(); state.q=""; document.getElementById("q").value=""; go(g.dataset.go,{dep:null,sub:null,sec:g.dataset.sec||null}); return; }
+  if(g){ e.preventDefault(); state.q=""; document.getElementById("q").value=""; const dl=g.closest("dialog"); if(dl) dl.close();
+    if(g.dataset.calc){ CALC.aba = g.dataset.calc; if(g.dataset.calcProd) CALC[g.dataset.calc].prod = g.dataset.calcProd; CALC.ok = null; }
+    go(g.dataset.go,{dep:null,sub:null,sec:g.dataset.sec||null}); return; }
   const d = e.target.closest("button[data-dep],a[data-dep]");
   if(d){ e.preventDefault(); document.getElementById("q").value=""; go("produtos",{dep:d.dataset.dep, sub:d.dataset.sub||null, q:"", sec:null});
     if(innerWidth<=860){document.getElementById("deps").classList.remove("open");document.getElementById("depToggle").setAttribute("aria-expanded","false");} }
@@ -1871,6 +2151,7 @@ function renderMenuProd(){
     <a href="#produtos" data-go="produtos" data-sec="top">${mi('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',"#fff1c9","#7b5434")}Mais procurados<small>${top}</small></a>
     <a href="#produtos" data-go="produtos" data-sec="todos">${mi('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>',"#e3f1e5","#1f4d2d")}Todos os produtos<small>${PRODUTOS.length}</small></a>
     <a href="#produtos" data-dep="Sementes e mudas" data-sub="Mudas">${mi('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 10c0-3.5 2.5-6 7-6 0 4-3 6-7 6z"/></svg>',"#e3f1e5","#1f4d2d")}Mudas<small>${todasMudas().length}</small></a>
+    <a href="#calculadoras" data-go="calculadoras">${mi('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h3.5"/></svg>',"#e6f0f5","#1d5577")}Calculadoras do campo</a>
     <hr><span class="menu-rot">Departamentos</span>
     ${Object.keys(DEPS).map(d=>`<button data-dep="${d}">${mi(icon(d),TINT[d],INK[d])}${d}<small>${PRODUTOS.filter(p=>p.dep===d).length}</small></button>`).join("")}`;
 }
@@ -1904,7 +2185,7 @@ try{ new IntersectionObserver(([e])=>document.getElementById("waFloat").classLis
   .observe(document.querySelector("footer")); }catch(_){}
 
 const h = location.hash.replace("#","");
-if(["inicio","produtos","sobre"].includes(h)) state.page = h;
+if(["inicio","produtos","sobre","calculadoras"].includes(h)) state.page = h;
 /* departamento novo criado no painel: usa ícone e cores padrão */
 function coresPadrao(){
   Object.keys(DEPS).forEach(d=>{ ICON[d] ??= ICON["Ferramentas"]; TINT[d] ??= "#eef0ec"; INK[d] ??= "#1f4d2d"; });
@@ -1961,7 +2242,7 @@ if(TEM_SUPABASE){
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610160124";
+  const VERSAO = "202610230756";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();

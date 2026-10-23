@@ -9,6 +9,12 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Painel Defema</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Defema">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap">
@@ -245,6 +251,12 @@ dialog::backdrop{background:rgba(15,30,20,.5)}
 @media (max-width:380px){.foto-area{grid-template-columns:104px minmax(0,1fr)}}
 .foto-prev{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:12px;background:var(--foto);display:grid;place-items:center;overflow:hidden;color:#6b6357;font-size:13px;text-align:center;position:relative}
 .foto-prev img{width:100%;height:100%;object-fit:contain}
+.foto-prev.ajustavel{cursor:grab;touch-action:none}
+.foto-prev.ajustavel:active{cursor:grabbing}
+.foto-prev.ajustavel::after{content:"";position:absolute;inset:6%;border:1.5px dashed rgba(31,77,45,.35);border-radius:6px;pointer-events:none}
+.foto-ajuste{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.fa-zoom{display:flex;align-items:center;gap:8px;flex:1 1 180px;font-size:14px;font-weight:600}
+.fa-zoom input{flex:1;accent-color:var(--leaf-2);min-height:32px}
 .foto-prev .selo{position:absolute;left:6px;top:6px;background:var(--seed);color:var(--seed-ink);font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px}
 .foto-btns{display:grid;gap:8px}
 .foto-btns .btn{width:100%;justify-content:flex-start;white-space:normal;text-align:left;padding:8px 12px;line-height:1.2}
@@ -550,6 +562,12 @@ html:has(dialog[open]){overflow:hidden}
 .ed-grade .mais-fotos-ed{margin-top:-4px}
 /* ---------- histórico ---------- */
 #dlgHist .dlg{max-height:inherit}
+.btn-instalar{display:inline-flex;align-items:center;gap:6px}
+.btn-instalar svg{width:18px;height:18px}
+@media (max-width:420px){ .btn-instalar span{display:none} }
+.inst-corpo ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:12px;font-size:1rem;line-height:1.45}
+.inst-corpo .ico-share{display:inline-block;width:20px;height:20px;vertical-align:-4px;color:#1a73e8}
+.inst-corpo p{color:var(--muted);margin:14px 0 0}
 @media (min-width:1024px){ #dlgCarrossel{width:min(1040px,94vw);height:min(86vh,760px)} #dlgCarrossel .dlg{height:100%} }
 #dlgCarrossel .dlg{max-height:inherit}
 .car-corpo{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start}
@@ -629,6 +647,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
     </div>
     <button class="btn btn-claro btn-ico" id="btnTema" type="button" aria-label="Mudar para modo escuro"><svg class="ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <button class="btn btn-claro btn-instalar" id="btnInstalar" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3M10.5 18.5h3"/></svg><span>Instalar</span></button>
     <button class="btn btn-claro" id="btnSair" type="button" hidden>Sair</button>
   </div>
 </header>
@@ -734,9 +753,13 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
               Escolher arquivo
               <input type="file" accept="image/*" id="fotoArquivo" aria-label="Escolher foto da galeria ou arquivo">
             </label>
-            <label class="check-mini"><input type="checkbox" id="fotoRecorte" checked> Recortar fundo branco</label>
+            <label class="check-mini"><input type="checkbox" id="fotoRecorte" checked> Fundo branco e recorte automático</label>
             <button class="btn btn-perigo" type="button" id="btnTirarFoto" hidden>Remover foto</button>
           </div>
+        </div>
+        <div class="foto-ajuste" id="fotoAjuste" hidden>
+          <label class="fa-zoom"><span>Tamanho</span><input type="range" id="fotoZoom" min="50" max="200" step="1" value="100" aria-label="Tamanho do produto na foto"></label>
+          <button class="btn btn-sec" type="button" id="fotoCentro">Centralizar</button>
         </div>
         <p class="dica" id="fotoDica" style="margin:10px 0 12px">A foto é ajustada para um quadrado branco (500×500).</p>
         <div class="mais-fotos-ed">
@@ -958,6 +981,20 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   </div>
 </dialog>
 
+<!-- INSTALAR NO CELULAR (iPhone / navegadores sem botão automático) -->
+<dialog id="dlgInstalar" aria-labelledby="tInst">
+  <div class="dlg">
+    <div class="dlg-topo">
+      <h2 id="tInst">Instalar o painel no celular</h2>
+      <button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="dlg-corpo inst-corpo" id="instCorpo"></div>
+    <div class="dlg-pe"><button class="btn btn-pri" type="button" data-fechar>Entendi</button></div>
+  </div>
+</dialog>
+
 <!-- CARROSSEL DA PÁGINA INICIAL -->
 <dialog id="dlgCarrossel" aria-labelledby="tCar">
   <div class="dlg">
@@ -1088,7 +1125,34 @@ function caixaConteudo(ctx, w, h) {
   return { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
 }
 
-async function processarFoto(arquivo, recortar = true) {
+/** Fundo claro (folha, mesa, parede) vira branco: estima a cor do fundo pelas bordas,
+ *  corrige o tom (balanço de branco) e clareia o que está perto da cor do fundo. */
+function branquearFundo(ctx, w, h) {
+  const im = ctx.getImageData(0, 0, w, h), d = im.data;
+  const faixa = Math.max(2, Math.round(Math.min(w, h) * 0.03));
+  const rs = [], gs = [], bs = [];
+  const amostra = (x, y) => { const i = (y * w + x) * 4; rs.push(d[i]); gs.push(d[i + 1]); bs.push(d[i + 2]); };
+  const passo = Math.max(1, Math.round(Math.max(w, h) / 300));
+  for (let x = 0; x < w; x += passo) for (let y = 0; y < faixa; y += 2) { amostra(x, y); amostra(x, h - 1 - y); }
+  for (let y = 0; y < h; y += passo) for (let x = 0; x < faixa; x += 2) { amostra(x, y); amostra(w - 1 - x, y); }
+  const med = a => { a.sort((p, q) => p - q); return a[a.length >> 1] || 0; };
+  const R = med(rs), G = med(gs), B = med(bs);
+  const lum = 0.299 * R + 0.587 * G + 0.114 * B, sat = Math.max(R, G, B) - Math.min(R, G, B);
+  if (lum < 120 || sat > 70) return false;           // fundo escuro ou colorido: não mexe
+  const gr = Math.min(1.9, 252 / Math.max(R, 1)), gg = Math.min(1.9, 252 / Math.max(G, 1)), gb = Math.min(1.9, 252 / Math.max(B, 1));
+  const T0 = 26, T1 = 62;                             // até T0 vira branco; entre T0 e T1, transição suave
+  for (let i = 0; i < d.length; i += 4) {
+    const r = Math.min(255, d[i] * gr), g = Math.min(255, d[i + 1] * gg), b = Math.min(255, d[i + 2] * gb);
+    const dist = Math.max(255 - r, 255 - g, 255 - b);
+    const t = dist <= T0 ? 1 : dist >= T1 ? 0 : 1 - (dist - T0) / (T1 - T0);
+    d[i] = r + (255 - r) * t; d[i + 1] = g + (255 - g) * t; d[i + 2] = b + (255 - b) * t;
+  }
+  ctx.putImageData(im, 0, 0);
+  return true;
+}
+
+/** Etapa 1: abre a foto, deixa o fundo branco e acha o produto. */
+async function prepararFoto(arquivo, recortar = true) {
   if (!arquivo || !/^image\//.test(arquivo.type || "image/")) throw new Error("Escolha um arquivo de imagem.");
   const img = await carregarImagem(arquivo);
   // trabalha numa cópia reduzida (fotos de celular são enormes)
@@ -1100,19 +1164,31 @@ async function processarFoto(arquivo, recortar = true) {
   const tctx = tmp.getContext("2d", { willReadFrequently: true });
   tctx.fillStyle = "#fff"; tctx.fillRect(0, 0, w, h);
   tctx.drawImage(img, 0, 0, w, h);
+  const branqueou = recortar ? branquearFundo(tctx, w, h) : false;
   const cx = recortar ? caixaConteudo(tctx, w, h) : { x: 0, y: 0, w, h };
+  return { tmp, cx, branqueou, original: { w: img.naturalWidth, h: img.naturalHeight } };
+}
 
+/** Etapa 2: monta o quadrado branco 500×500. ajuste = { zoom, dx, dy } (dx/dy em px da foto final). */
+function montarFoto(prep, ajuste = { zoom: 1, dx: 0, dy: 0 }) {
+  const { tmp, cx } = prep;
   const out = document.createElement("canvas");
   out.width = out.height = FOTO_LADO;
   const octx = out.getContext("2d");
   octx.fillStyle = "#fff"; octx.fillRect(0, 0, FOTO_LADO, FOTO_LADO);
   octx.imageSmoothingEnabled = true; octx.imageSmoothingQuality = "high";
   const util = FOTO_LADO * (1 - 2 * FOTO_MARGEM);
-  const k = Math.min(util / cx.w, util / cx.h);
+  const k = Math.min(util / cx.w, util / cx.h) * (ajuste.zoom || 1);
   const dw = cx.w * k, dh = cx.h * k;
-  octx.drawImage(tmp, cx.x, cx.y, cx.w, cx.h, (FOTO_LADO - dw) / 2, (FOTO_LADO - dh) / 2, dw, dh);
-  const blob = await new Promise((ok, falha) => out.toBlob(b => b ? ok(b) : falha(new Error("Falha ao gerar a foto.")), "image/jpeg", FOTO_QUALIDADE));
-  return { blob, url: URL.createObjectURL(blob), recorte: cx, original: { w: img.naturalWidth, h: img.naturalHeight } };
+  octx.drawImage(tmp, cx.x, cx.y, cx.w, cx.h, (FOTO_LADO - dw) / 2 + (ajuste.dx || 0), (FOTO_LADO - dh) / 2 + (ajuste.dy || 0), dw, dh);
+  return out;
+}
+const canvasParaBlob = c => new Promise((ok, falha) => c.toBlob(b => b ? ok(b) : falha(new Error("Falha ao gerar a foto.")), "image/jpeg", FOTO_QUALIDADE));
+
+async function processarFoto(arquivo, recortar = true) {
+  const prep = await prepararFoto(arquivo, recortar);
+  const blob = await canvasParaBlob(montarFoto(prep));
+  return { blob, url: URL.createObjectURL(blob), recorte: prep.cx, original: prep.original, prep };
 }
 
 const blobParaDataURL = b => new Promise((ok, falha) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = falha; r.readAsDataURL(b); });
@@ -1940,8 +2016,11 @@ function renderFoto() {
   else if (ed.foto === undefined && ed.produto?.foto_publica) url = ed.produto.foto_publica;
   box.innerHTML = url ? `<img src="${esc(url)}" alt="Foto do produto${selo ? " (prévia)" : ""}">${selo ? `<span class="selo">${selo}</span>` : ""}` : "Sem foto";
   $("#btnTirarFoto").hidden = !url;
+  const ajustavel = ed.foto instanceof Blob && !!ed.prep;
+  box.classList.toggle("ajustavel", ajustavel); $("#fotoAjuste").hidden = !ajustavel;
   $("#fotoDica").textContent = ed.foto instanceof Blob ? "Prévia da foto ajustada. Ela só será enviada quando você tocar em Salvar."
-    : ed.foto === null ? "A foto será removida ao salvar." : "A foto é ajustada para um quadrado branco (500×500).";
+    : ed.foto === null ? "A foto será removida ao salvar." : "A foto é ajustada para um quadrado branco (500×500). Dica: fotografe em cima de uma folha branca, com boa luz.";
+  if (ajustavel) $("#fotoDica").textContent = "Prévia. Arraste a foto para mover e use Tamanho para aproximar. Ela só será enviada quando você tocar em Salvar.";
 }
 async function escolherFoto(arquivo) {
   if (!arquivo) return;
@@ -1954,9 +2033,39 @@ async function refazerFoto() {
   try {
     const r = await processarFoto(ed.fotoArquivo, $("#fotoRecorte").checked);
     limparPreview(); ed.foto = r.blob; ed.previewURL = r.url; ed.ultimoRecorte = r;
+    ed.prep = r.prep; ed.ajuste = { zoom: 1, dx: 0, dy: 0 }; $("#fotoZoom").value = 100;
     renderFoto();
+    if ($("#fotoRecorte").checked && !r.prep.branqueou) toast("O fundo da foto é escuro ou colorido. Dica: fotografe em cima de uma folha ou pano branco, com boa luz.", "", 6000);
   } catch (e) { toast(e.message, "erro"); }
   finally { t.fechar(); }
+}
+
+/* ajuste manual do enquadramento (arrastar e tamanho) */
+let ajusteRAF = 0;
+function desenharAjuste(final) {
+  if (!ed.prep) return;
+  const c = montarFoto(ed.prep, ed.ajuste);
+  const img = $("#fotoPrev img"); if (img) img.src = c.toDataURL("image/jpeg", 0.8);
+  if (final) canvasParaBlob(c).then(b => { limparPreview(); ed.foto = b; ed.previewURL = URL.createObjectURL(b); if (img) img.src = ed.previewURL; });
+}
+function agendarAjuste(final) { cancelAnimationFrame(ajusteRAF); ajusteRAF = requestAnimationFrame(() => desenharAjuste(final)); }
+function ligarAjusteFoto() {
+  const box = $("#fotoPrev"); let ini = null;
+  box.addEventListener("pointerdown", e => {
+    if (!box.classList.contains("ajustavel")) return;
+    box.setPointerCapture(e.pointerId);
+    ini = { x: e.clientX, y: e.clientY, dx: ed.ajuste.dx, dy: ed.ajuste.dy, esc: FOTO_LADO / box.getBoundingClientRect().width };
+  });
+  box.addEventListener("pointermove", e => {
+    if (!ini) return;
+    ed.ajuste.dx = ini.dx + (e.clientX - ini.x) * ini.esc; ed.ajuste.dy = ini.dy + (e.clientY - ini.y) * ini.esc;
+    agendarAjuste(false);
+  });
+  const soltar = () => { if (!ini) return; ini = null; agendarAjuste(true); };
+  box.addEventListener("pointerup", soltar); box.addEventListener("pointercancel", soltar);
+  $("#fotoZoom").addEventListener("input", e => { ed.ajuste.zoom = e.target.value / 100; agendarAjuste(false); });
+  $("#fotoZoom").addEventListener("change", () => agendarAjuste(true));
+  $("#fotoCentro").addEventListener("click", () => { ed.ajuste = { zoom: 1, dx: 0, dy: 0 }; $("#fotoZoom").value = 100; agendarAjuste(true); });
 }
 
 function atualizarVoltarPreco() {
@@ -2413,6 +2522,31 @@ async function salvarCarrossel() {
   } catch {}
 }
 
+/* ---------- INSTALAR COMO APLICATIVO ---------- */
+let pedidoInstalar = null;
+const jaInstalado = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const ehIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+function mostrarBotaoInstalar() { $("#btnInstalar").hidden = jaInstalado() || !(pedidoInstalar || ehIOS()); }
+if ("serviceWorker" in navigator && location.protocol === "https:") {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(e => console.warn("SW não registrado", e)));
+}
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); pedidoInstalar = e; mostrarBotaoInstalar(); });
+addEventListener("appinstalled", () => { pedidoInstalar = null; mostrarBotaoInstalar(); toast("Painel instalado ✓ Procure o ícone Defema na tela inicial.", "ok"); });
+async function instalarPainel() {
+  if (pedidoInstalar) {
+    pedidoInstalar.prompt();
+    const r = await pedidoInstalar.userChoice.catch(() => null);
+    if (r && r.outcome === "accepted") pedidoInstalar = null;
+    mostrarBotaoInstalar();
+    return;
+  }
+  const share = '<svg class="ico-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Compartilhar"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+  $("#instCorpo").innerHTML = ehIOS()
+    ? `<ol><li>Abra este painel no <b>Safari</b>.</li><li>Toque em ${share} <b>Compartilhar</b>, na barra de baixo.</li><li>Role e toque em <b>Adicionar à Tela de Início</b>.</li><li>Toque em <b>Adicionar</b>. O ícone Defema aparece junto dos seus aplicativos.</li></ol><p>Depois é só abrir pelo ícone, como um aplicativo. O login continua salvo.</p>`
+    : `<ol><li>Abra o menu do navegador (⋮ no canto de cima).</li><li>Toque em <b>Instalar aplicativo</b> ou <b>Adicionar à tela inicial</b>.</li><li>Confirme. O ícone Defema aparece junto dos seus aplicativos.</li></ol>`;
+  $("#dlgInstalar").showModal();
+}
+
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
   ev.preventDefault();
@@ -2479,6 +2613,8 @@ function ligarEventos() {
   ["#btnDeps", "#btnDepsTopo"].forEach(s => $(s).addEventListener("click", abrirDeps));
   ["#btnHist", "#btnHistTopo"].forEach(s => $(s).addEventListener("click", abrirHistorico));
   $("#btnCarrosselTopo").addEventListener("click", abrirCarrossel);
+  $("#btnInstalar").addEventListener("click", instalarPainel);
+  mostrarBotaoInstalar();
   $("#btnSalvarCar").addEventListener("click", salvarCarrossel);
   $("#carBusca").addEventListener("input", e => { car.q = e.target.value; renderCarrossel(); });
   $("#dlgCarrossel").addEventListener("click", e => {
@@ -2560,12 +2696,13 @@ function ligarEventos() {
   });
   ["#fotoCamera", "#fotoArquivo"].forEach(s => $(s).addEventListener("change", async e => { await escolherFoto(e.target.files[0]); e.target.value = ""; }));
   $("#fotoRecorte").addEventListener("change", refazerFoto);
+  ligarAjusteFoto();
   $("#btnTirarFoto").addEventListener("click", () => {
     limparPreview(); ed.fotoArquivo = null;
     ed.foto = ed.produto?.foto_url ? null : undefined; renderFoto();
   });
   $("#btnExcluir").addEventListener("click", excluirProduto);
-  $("#dlgEditor").addEventListener("close", () => { limparPreview(); ed.fotoArquivo = null; });
+  $("#dlgEditor").addEventListener("close", () => { limparPreview(); ed.fotoArquivo = null; ed.prep = null; });
   document.querySelectorAll("dialog").forEach(d => d.addEventListener("close", posicionarToasts));
 
   // mudas – balcão
@@ -2640,7 +2777,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610160124";
+  const VERSAO = "202610230756";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
