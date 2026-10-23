@@ -685,6 +685,60 @@ html:has(dialog[open]){overflow:hidden}
 .pr-pe .btn-pri{min-width:130px}
 @media (max-width:420px){.pr-pe .pr-editar{flex-basis:100%;order:3}.pr-pe .btn{flex:1}}
 .pr-mais{text-align:center;color:var(--muted);font-size:14px;padding:6px 0 0;list-style:none}
+
+/* ---------- mudas: escolha da bandeja, quantidade unitária e calculadora ---------- */
+.m-sec-topo{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.m-sec-topo h3{margin:0}
+.m-calc-btn{min-height:40px;padding:6px 12px;font-size:14px}
+.m-calc-btn svg{width:18px;height:18px}
+.m-passo{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--muted)}
+.m-escolha{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-bottom:12px}
+.m-grupo{grid-column:1/-1;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 2px 0}
+.m-chip{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:48px;padding:6px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;line-height:1.2;min-width:0}
+.m-chip b{font-weight:600;font-size:14px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-chip small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.m-chip:hover{border-color:var(--leaf-ink)}
+.m-chip:active{transform:scale(.98)}
+.m-qtd-box{margin-bottom:12px}
+.m-sel{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--leaf-soft);color:var(--leaf-ink);margin-bottom:12px}
+.m-sel b{display:block;font-size:16px}
+.m-sel small{display:block;font-size:13px;color:var(--fg);opacity:.75}
+.m-qtd-rot{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.m-stepper{display:flex;gap:8px;align-items:stretch}
+.m-stepper .inp{flex:1;min-width:0;text-align:center;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;min-height:56px}
+.m-stepper button{flex:none;width:56px;min-height:56px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--leaf-ink);font-size:28px;font-weight:700;cursor:pointer;line-height:1}
+.m-stepper button:hover{border-color:var(--leaf-ink)}
+.m-stepper button:active{transform:scale(.96)}
+.m-somas{margin-top:8px}
+.m-subtotal{margin:10px 0 0;font-size:15px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.m-subtotal b{color:var(--leaf-ink);font-size:20px}
+.m-qtd-acoes{display:flex;gap:8px;margin-top:12px}
+.m-qtd-acoes .btn-pri{flex:1}
+@media (min-width:1024px){
+  .m-escolha{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .m-chip{min-height:44px}
+  .m-col .m-stepper .inp,.m-stepper button{min-height:50px}
+}
+/* calculadora */
+#dlgCalcMudas .dlg-corpo{padding:14px 16px}
+@media (min-width:760px){#dlgCalcMudas{width:min(640px,94vw);height:min(88vh,820px)}#dlgCalcMudas .dlg{height:100%}}
+.mc-lista{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mc-lista .m-grupo{margin-top:8px}
+.mc-item{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nome passo" "preco sub";gap:2px 10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.mc-item.tem{border-color:var(--leaf-ink);background:var(--leaf-soft)}
+.mc-nome{grid-area:nome;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-preco{grid-area:preco;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mc-sub{grid-area:sub;text-align:right;font-weight:700;font-size:14px;color:var(--leaf-ink);font-variant-numeric:tabular-nums;min-height:1.2em}
+.mc-passo{grid-area:passo;display:flex;align-items:center;gap:4px}
+.mc-passo button{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--leaf-ink);font-size:22px;font-weight:700;cursor:pointer;line-height:1;padding:0}
+.mc-passo button.dez{width:auto;padding:0 8px;font-size:13px}
+.mc-passo input{width:58px;height:40px;border:1.5px solid var(--campo-line);border-radius:10px;background:var(--campo);text-align:center;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;padding:0 4px}
+.mc-passo input:focus{border-color:var(--leaf-ink);outline:none}
+.mc-pe{align-items:center;flex-wrap:wrap}
+.mc-total{display:flex;flex-direction:column;margin-right:auto;line-height:1.15}
+.mc-total span{font-size:13px;color:var(--muted);font-weight:600}
+.mc-total strong{font-size:24px;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+@media (max-width:420px){.mc-passo button.dez{display:none}.mc-passo input{width:52px}}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1106,6 +1160,24 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
 </dialog>
 
 <!-- MUDAS – BALCÃO -->
+<dialog id="dlgCalcMudas" aria-labelledby="tCalcMudas">
+  <div class="dlg">
+    <div class="dlg-topo">
+      <h2 id="tCalcMudas">Calculadora de mudas</h2>
+      <button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="dlg-corpo mc-corpo">
+      <p class="dica" style="margin:0 0 10px">Toque em + ou digite quantas de cada. O valor soma sozinho pelo preço de cada muda.</p>
+      <ul class="mc-lista" id="mcLista"></ul>
+    </div>
+    <div class="dlg-pe mc-pe">
+      <div class="mc-total"><span id="mcQtd">0 mudas</span><strong id="mcTotal">R$ 0,00</strong></div>
+      <button class="btn btn-sec" type="button" id="mcZerar">Zerar</button>
+      <button class="btn btn-pri" type="button" id="mcLancar" disabled>Lançar no pedido</button>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="dlgMudas" aria-labelledby="tMudas">
   <div class="dlg">
     <div class="dlg-topo">
@@ -1117,19 +1189,30 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     <div class="dlg-corpo m-grade">
       <div class="ed-col m-col">
         <form class="secao" id="formMuda" novalidate>
-          <h3>Registrar venda</h3>
-          <div class="campo">
-            <label for="mProduto">Muda</label>
-            <select class="inp" id="mProduto"></select>
+          <div class="m-sec-topo">
+            <h3>Registrar venda</h3>
+            <button class="btn btn-sec m-calc-btn" type="button" id="btnCalcMudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5v.01M15.5 13v3.5" stroke-width="2.6" stroke-linecap="round"/></svg>Calculadora</button>
           </div>
-          <div class="campo">
-            <label for="mQtd">Quantas mudas?</label>
-            <div class="m-qtd-linha">
-              <input class="inp" id="mQtd" inputmode="numeric" enterkeyhint="done" placeholder="ex.: 20" autocomplete="off" aria-describedby="mQtdDica">
-              <button class="btn btn-pri" type="submit" id="btnRegistrar">Adicionar</button>
+          <div id="mPasso1">
+            <p class="m-passo">Toque na muda:</p>
+            <div class="m-escolha" id="mEscolha" role="radiogroup" aria-label="Escolha a muda"></div>
+          </div>
+          <div class="m-qtd-box" id="mQtdBox" hidden>
+            <div class="m-sel" id="mSel"></div>
+            <label for="mQtd" class="m-qtd-rot">Quantas mudas?</label>
+            <div class="m-stepper">
+              <button type="button" data-passo="-1" aria-label="Uma muda a menos">−</button>
+              <input class="inp" id="mQtd" inputmode="numeric" enterkeyhint="done" autocomplete="off" value="1">
+              <button type="button" data-passo="1" aria-label="Uma muda a mais">+</button>
             </div>
-            <div class="atalhos" id="mAtalhos" aria-label="Atalhos de quantidade"></div>
-            <p class="dica" id="mQtdDica" style="margin:4px 0 0"></p>
+            <div class="atalhos m-somas" id="mAtalhos" aria-label="Somar mudas">
+              <button type="button" data-soma="5">+5</button><button type="button" data-soma="10">+10</button><button type="button" data-soma="20">+20</button><button type="button" data-soma="50">+50</button>
+            </div>
+            <p class="m-subtotal" id="mSubtotal" aria-live="polite"></p>
+            <div class="m-qtd-acoes">
+              <button class="btn btn-sec" type="button" id="btnTrocarMuda">Voltar</button>
+              <button class="btn btn-pri" type="submit" id="btnRegistrar">Adicionar ao pedido</button>
+            </div>
           </div>
         </form>
         <div class="secao m-pedido">
@@ -1795,10 +1878,9 @@ const semBiblioteca = !!(SUPABASE_URL && SUPABASE_ANON_KEY && !usarSupabase);
 if (semBiblioteca) console.error("supabase-js não carregou; o painel não pode entrar.");
 const api = usarSupabase ? criarApiSupabase(SUPABASE_URL, SUPABASE_ANON_KEY) : criarApiDemo();
 
-/* ---------- mudas de bandeja: 200 → lote de 10, 128 → lote de 4 ---------- */
+/* ---------- mudas de bandeja (200 ou 128): no balcão vendidas POR MUDA; preco = preço de uma muda ---------- */
 const novoId = () => (crypto.randomUUID ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx".replace(/x/g, () => (Math.random() * 16 | 0).toString(16)));
 function tamBandeja(sub) { const m = /^Bandeja (\d+) mudas$/.exec(sub || ""); return m ? +m[1] : 0; }
-const loteDe = t => t === 128 ? 4 : 10;
 
 /* =====================================================================
    INTERFACE
@@ -1948,7 +2030,7 @@ function htmlPreco(p) {
   if (p.preco == null) return '<span class="consultar">Consultar</span>';
   const t = tamBandeja(p.sub);
   return (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s>` : "") + `<b>${moeda(p.preco)}</b>` + (p.por_metro ? "<small>por metro</small>" : "")
-    + (t ? `<small>${loteDe(t)} mudas</small>` : "");
+    + (t ? "<small>por muda</small>" : "");
 }
 function htmlAcoes(p) {
   const nomeTxt = esc(p.nome + (p.marca ? " " + p.marca : ""));
@@ -2037,7 +2119,7 @@ function renderDetalhe(vis) {
     if (!p.foto_publica) selos.push('<span class="tag semfoto">Sem foto</span>');
     const linhas = [
       ["Unidade", p.unidade || "—"],
-      [t ? `Lote (${loteDe(t)} mudas)` : "Preço", p.preco == null ? '<span class="det-consultar">Consultar preço</span>'
+      [t ? "Preço por muda" : "Preço", p.preco == null ? '<span class="det-consultar">Consultar preço</span>'
         : (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s> ` : "") + `<b>${moeda(p.preco)}</b>` + (p.por_metro ? " por metro" : ""), true],
     ];
     if (t) linhas.push([`Bandeja fechada (${t})`, p.preco_bandeja != null ? `<b>${moeda(p.preco_bandeja)}</b> · encomenda` : '<span class="det-consultar">Consultar</span> · encomenda', true]);
@@ -2336,7 +2418,7 @@ function atualizarBandeja() {
   $("#campoBandeja").hidden = !t;
   if (t) { $("#blocoOpcoes").hidden = true; $("#btnMostrarOpcoes").hidden = true; }
   else if ($("#blocoOpcoes").hidden) $("#btnMostrarOpcoes").hidden = false;
-  $("#ePrecoRot").textContent = t ? `Preço do lote (${loteDe(t)} mudas)` : "Preço";
+  $("#ePrecoRot").textContent = t ? "Preço por muda" : "Preço";
   $("#eBandejaRot").textContent = t ? `Preço da bandeja fechada (${t} mudas) · encomenda` : "Preço da bandeja fechada";
 }
 function atualizarAtivo() {
@@ -2495,7 +2577,7 @@ const produtosBandeja = () => ui.produtos.filter(p => tamBandeja(p.sub))
   .sort((a, b) => tamBandeja(b.sub) - tamBandeja(a.sub) || a.nome.localeCompare(b.nome, "pt-BR"));
 const maiuscula = s => s ? s.charAt(0).toLocaleUpperCase("pt-BR") + s.slice(1) : s;
 const nomeMuda = p => p ? maiuscula(p.nome.replace(/^Muda de /i, "")) : "(muda excluída)";
-const valorVenda = (p, mudas) => { const t = tamBandeja(p?.sub); return p && t && p.preco != null ? r2(mudas / loteDe(t) * p.preco) : null; };
+const valorVenda = (p, mudas) => p && tamBandeja(p.sub) && p.preco != null ? r2(mudas * p.preco) : null;
 function saldoMudas(comPedido) {
   const s = new Map();
   for (const m of mudasUi.movs) s.set(m.produto_id, (s.get(m.produto_id) || 0) + (m.tipo === "venda" ? m.mudas : -m.mudas));
@@ -2519,11 +2601,46 @@ function svgBandeja(t, vendidas, pendentes) {
   }
   return `<svg class="bandeja-svg" viewBox="0 0 ${w.toFixed(1)} ${h.toFixed(1)}" aria-hidden="true"><rect class="bd" x=".3" y=".3" width="${(w - .6).toFixed(1)}" height="${(h - .6).toFixed(1)}" rx="2.5"/>${r}</svg>`;
 }
-function renderAtalhosMuda() {
-  const p = ui.produtos.find(x => String(x.id) === $("#mProduto").value);
-  const t = p ? tamBandeja(p.sub) : 0, l = loteDe(t);
-  $("#mAtalhos").innerHTML = t ? [1, 2, 3, 4, 5].map(k => `<button type="button" data-qtd="${k * l}">${k * l}</button>`).join("") : "";
-  $("#mQtdDica").textContent = t ? `Bandeja de ${t} · vendida de ${l} em ${l}${p.preco != null ? ` · ${moeda(p.preco)} o lote` : " · preço a consultar"}` : "";
+const precoMudaTxt = p => p.preco != null ? `${moeda(p.preco)} a muda` : "preço a consultar";
+function htmlGruposMudas(lista, item) { // separa por tamanho de bandeja
+  let tAtual = 0;
+  return lista.map(p => {
+    const t = tamBandeja(p.sub), cab = t !== tAtual ? `<${item === "li" ? "li" : "p"} class="m-grupo">Bandeja de ${t}</${item === "li" ? "li" : "p"}>` : "";
+    tAtual = t; return cab + mudasUi.htmlItem(p);
+  }).join("");
+}
+function renderEscolhaMuda() {
+  const lista = produtosBandeja(), p = ui.produtos.find(x => String(x.id) === mudasUi.sel);
+  if (mudasUi.sel && !p) mudasUi.sel = null;
+  $("#mPasso1").hidden = !!p;
+  $("#mQtdBox").hidden = !p;
+  if (!p) {
+    mudasUi.htmlItem = q => `<button type="button" class="m-chip" role="radio" aria-checked="false" data-muda="${esc(q.id)}">
+      <b>${esc(nomeMuda(q))}</b><small>${q.preco != null ? moeda(q.preco) : "consultar"}${q.ativo ? "" : " · oculta"}</small></button>`;
+    $("#mEscolha").innerHTML = lista.length ? htmlGruposMudas(lista) : '<p class="nf-vazio">Nenhuma muda de bandeja cadastrada.</p>';
+    return;
+  }
+  const t = tamBandeja(p.sub);
+  $("#mSel").innerHTML = `${svgBandeja(t, 0, 0)}<span><b>${esc(nomeMuda(p))}</b><small>${precoMudaTxt(p)} · bandeja de ${t}</small></span>`;
+  atualizarSubtotalMuda();
+}
+function lerQtdMuda() { const v = String($("#mQtd").value).trim(); return /^\d+$/.test(v) ? Number(v) : NaN; }
+function atualizarSubtotalMuda() {
+  const p = ui.produtos.find(x => String(x.id) === mudasUi.sel); if (!p) return;
+  const q = lerQtdMuda();
+  $("#mSubtotal").innerHTML = q >= 1 ? `${q} muda${q > 1 ? "s" : ""} × ${p.preco != null ? moeda(p.preco) : "consultar"} = <b>${p.preco != null ? moeda(valorVenda(p, q)) : "a consultar"}</b>` : "Digite quantas mudas.";
+  $("#btnRegistrar").textContent = q >= 1 ? `Adicionar ${q} ao pedido` : "Adicionar ao pedido";
+}
+function escolherMuda(id) {
+  mudasUi.sel = id;
+  $("#mQtd").value = "1"; $("#mQtd").removeAttribute("aria-invalid");
+  renderEscolhaMuda();
+  // só agora abre o teclado, já com o 1 selecionado (é só digitar por cima)
+  requestAnimationFrame(() => { const q = $("#mQtd"); q.focus({ preventScroll: true }); q.select(); $("#mQtdBox").scrollIntoView({ block: "nearest", behavior: "smooth" }); });
+}
+function voltarEscolhaMuda() {
+  const id = mudasUi.sel; mudasUi.sel = null; renderEscolhaMuda();
+  if (id) focarDepois(`[data-muda="${CSS.escape(id)}"]`);
 }
 function renderPedidoMudas() {
   const porId = new Map(ui.produtos.map(p => [String(p.id), p]));
@@ -2533,7 +2650,7 @@ function renderPedidoMudas() {
     return `<li><span class="m-txt"><b>${it.mudas} × ${esc(nomeMuda(p))}</b></span>
       <span class="m-num">${it.valor != null ? moeda(it.valor) : "consultar"}</span>
       <button class="btn-x" type="button" data-tirar="${i}" aria-label="Tirar ${esc(nomeMuda(p))} do pedido">✕</button></li>`;
-  }).join("") : '<li class="nf-vazio">Nenhuma muda no pedido. Adicione ao lado.</li>';
+  }).join("") : '<li class="nf-vazio">Nenhuma muda no pedido ainda.</li>';
   const total = itens.reduce((s, it) => s + (it.valor || 0), 0);
   const semPreco = itens.some(it => it.valor == null);
   $("#mTotal").textContent = moeda(r2(total)) + (semPreco ? " + consultar" : "");
@@ -2544,11 +2661,7 @@ function renderPedidoMudas() {
 }
 function renderMudas() {
   const lista = produtosBandeja();
-  const sel = $("#mProduto"), atual = sel.value;
-  sel.innerHTML = lista.length ? lista.map(p => `<option value="${esc(p.id)}">${esc(nomeMuda(p))} · bandeja ${tamBandeja(p.sub)}${p.ativo ? "" : " (oculta no site)"}</option>`).join("")
-    : '<option value="">Nenhuma muda de bandeja cadastrada</option>';
-  if (lista.some(p => String(p.id) === atual)) sel.value = atual;
-  renderAtalhosMuda();
+  renderEscolhaMuda();
   renderPedidoMudas();
   const saldo = saldoMudas(false), pend = new Map();
   for (const it of mudasUi.pedido) pend.set(String(it.produto_id), (pend.get(String(it.produto_id)) || 0) + it.mudas);
@@ -2594,26 +2707,75 @@ function renderHistMudas() {
 async function recarregarMudas() { mudasUi.movs = await api.listarMudas(); renderMudas(); }
 async function abrirMudas() {
   mudasUi.pedido = lerPedidoMudas();
+  for (const it of mudasUi.pedido) it.valor = valorVenda(ui.produtos.find(x => String(x.id) === String(it.produto_id)), it.mudas);
+  gravarPedidoMudas();
+  mudasUi.sel = null;
   renderMudas();
   $("#dlgMudas").showModal();
-  $("#mQtd").value = "";
   try { await comFeedback("Carregando vendas…", "", recarregarMudas); } catch { /* toast já mostrado */ }
-  $("#mQtd").focus();
 }
 function adicionarAoPedido(ev) {
   ev.preventDefault();
-  const id = $("#mProduto").value, p = ui.produtos.find(x => String(x.id) === id);
-  const txt = $("#mQtd").value.trim(), qtd = Number(txt);
+  const p = ui.produtos.find(x => String(x.id) === mudasUi.sel);
+  const qtd = lerQtdMuda();
   if (!p) { toast("Escolha a muda.", "erro"); return; }
-  if (!/^\d+$/.test(txt) || qtd < 1 || qtd > 10000) { $("#mQtd").setAttribute("aria-invalid", "true"); toast("Digite quantas mudas (ex.: 20).", "erro"); $("#mQtd").focus(); return; }
+  if (!(qtd >= 1 && qtd <= 10000)) { $("#mQtd").setAttribute("aria-invalid", "true"); toast("Digite quantas mudas (ex.: 7).", "erro"); $("#mQtd").focus(); return; }
   $("#mQtd").removeAttribute("aria-invalid");
   const ja = mudasUi.pedido.find(it => String(it.produto_id) === String(p.id));
   if (ja) { ja.mudas += qtd; ja.valor = valorVenda(p, ja.mudas); }
   else mudasUi.pedido.push({ produto_id: p.id, mudas: qtd, valor: valorVenda(p, qtd) });
   gravarPedidoMudas();
-  $("#mQtd").value = "";
+  mudasUi.sel = null;
   renderMudas();
-  $("#mQtd").focus();
+  $("#mQtd").blur();
+  toast(`${qtd} muda${qtd > 1 ? "s" : ""} de ${nomeMuda(p).toLocaleLowerCase("pt-BR")} no pedido`, "ok");
+}
+
+/* ---------- calculadora de mudas: várias de uma vez, soma pelo preço de cada ---------- */
+const calcMudas = new Map(); // id → quantidade
+function renderCalcMudas() {
+  const lista = produtosBandeja();
+  mudasUi.htmlItem = p => { const q = calcMudas.get(String(p.id)) || 0, id = esc(p.id);
+    return `<li class="mc-item${q ? " tem" : ""}" data-mc="${id}">
+      <span class="mc-nome">${esc(nomeMuda(p))}</span>
+      <span class="mc-preco">${precoMudaTxt(p)}</span>
+      <span class="mc-passo"><button type="button" data-mc-passo="-1" aria-label="Uma ${esc(nomeMuda(p))} a menos">−</button>
+        <input inputmode="numeric" autocomplete="off" aria-label="Quantidade de ${esc(nomeMuda(p))}" value="${q || ""}" placeholder="0">
+        <button type="button" data-mc-passo="1" aria-label="Uma ${esc(nomeMuda(p))} a mais">+</button><button type="button" class="dez" data-mc-passo="10" aria-label="Dez ${esc(nomeMuda(p))} a mais">+10</button></span>
+      <span class="mc-sub">${q && p.preco != null ? moeda(valorVenda(p, q)) : ""}</span></li>`; };
+  $("#mcLista").innerHTML = lista.length ? htmlGruposMudas(lista, "li") : '<li class="nf-vazio">Nenhuma muda de bandeja cadastrada.</li>';
+  totalCalcMudas();
+}
+function totalCalcMudas() {
+  let n = 0, t = 0, consultar = false;
+  for (const [id, q] of calcMudas) { const p = ui.produtos.find(x => String(x.id) === id); if (!p || !q) continue; n += q; const v = valorVenda(p, q); if (v == null) consultar = true; else t += v; }
+  $("#mcQtd").textContent = `${n} muda${n === 1 ? "" : "s"}`;
+  $("#mcTotal").textContent = moeda(r2(t)) + (consultar ? " + consultar" : "");
+  $("#mcLancar").disabled = !n; $("#mcZerar").disabled = !n;
+}
+function mudarCalcMuda(li, q) {
+  const id = li.dataset.mc, p = ui.produtos.find(x => String(x.id) === id);
+  q = Math.max(0, Math.min(10000, q || 0));
+  if (q) calcMudas.set(id, q); else calcMudas.delete(id);
+  const inp = li.querySelector("input"); if (document.activeElement !== inp || String(Number(inp.value) || 0) !== String(q)) inp.value = q || "";
+  li.classList.toggle("tem", !!q);
+  li.querySelector(".mc-sub").textContent = q && p && p.preco != null ? moeda(valorVenda(p, q)) : "";
+  totalCalcMudas();
+}
+function abrirCalcMudas() { renderCalcMudas(); $("#dlgCalcMudas").showModal(); }
+function lancarCalcMudas() {
+  let n = 0;
+  for (const [id, q] of calcMudas) {
+    const p = ui.produtos.find(x => String(x.id) === id); if (!p || !q) continue;
+    const ja = mudasUi.pedido.find(it => String(it.produto_id) === id);
+    if (ja) { ja.mudas += q; ja.valor = valorVenda(p, ja.mudas); } else mudasUi.pedido.push({ produto_id: p.id, mudas: q, valor: valorVenda(p, q) });
+    n += q;
+  }
+  if (!n) return;
+  gravarPedidoMudas(); calcMudas.clear();
+  $("#dlgCalcMudas").close();
+  renderMudas();
+  toast(`${n} mudas lançadas no pedido`, "ok");
 }
 async function salvarPedidoMudas() {
   if (!mudasUi.pedido.length) return;
@@ -2979,7 +3141,7 @@ function htmlValorPr(p) {
   if (p.preco == null) return '<span class="consultar">Sem preço</span>';
   const t = tamBandeja(p.sub);
   return (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s>` : "") + `<b>${moeda(p.preco)}</b>`
-    + (p.por_metro ? "<small>por metro</small>" : "") + (t ? `<small>${loteDe(t)} mudas</small>` : "")
+    + (p.por_metro ? "<small>por metro</small>" : "") + (t ? "<small>por muda</small>" : "")
     + (p.preco_antigo != null ? `<span class="tag promo">Promoção</span>` : "");
 }
 function htmlFormPr(p) {
@@ -2987,7 +3149,7 @@ function htmlFormPr(p) {
   return `<form class="pr-form" data-pr-form="${id}" novalidate>
     <div class="pr-campos">
       <div class="campo">
-        <label for="prP-${id}"><span class="pr-rot">${promo ? "Preço da promoção" : "Preço"}</span>${t ? ` (lote de ${loteDe(t)} mudas)` : p.por_metro ? " (por metro)" : ""}</label>
+        <label for="prP-${id}"><span class="pr-rot">${promo ? "Preço da promoção" : "Preço"}</span>${t ? " (por muda)" : p.por_metro ? " (por metro)" : ""}</label>
         <div class="preco-box"><span>R$</span><input class="inp" id="prP-${id}" name="preco" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="Consultar" value="${p.preco != null ? num2(p.preco) : ""}"></div>
         <div class="pr-ajustes" role="group" aria-label="Ajuste rápido do preço">
           <button type="button" class="menos" data-aj="-10">−10%</button><button type="button" class="menos" data-aj="-5">−5%</button>
@@ -3332,12 +3494,23 @@ function ligarEventos() {
   $("#btnSalvarPedido").addEventListener("click", salvarPedidoMudas);
   $("#btnLimparPedido").addEventListener("click", () => {
     if (!confirm("Limpar o pedido atual (ainda não salvo)?")) return;
-    mudasUi.pedido = []; gravarPedidoMudas(); renderMudas(); $("#mQtd").focus();
+    mudasUi.pedido = []; gravarPedidoMudas(); renderMudas();
   });
   $("#mPedido").addEventListener("click", e => { const b = e.target.closest("[data-tirar]"); if (b) { mudasUi.pedido.splice(+b.dataset.tirar, 1); gravarPedidoMudas(); renderMudas(); } });
-  $("#mProduto").addEventListener("change", renderAtalhosMuda);
-  $("#mQtd").addEventListener("input", () => $("#mQtd").removeAttribute("aria-invalid"));
-  $("#mAtalhos").addEventListener("click", e => { const b = e.target.closest("[data-qtd]"); if (b) { $("#mQtd").value = b.dataset.qtd; $("#mQtd").focus(); } });
+  $("#mEscolha").addEventListener("click", e => { const b = e.target.closest("[data-muda]"); if (b) escolherMuda(b.dataset.muda); });
+  $("#btnTrocarMuda").addEventListener("click", voltarEscolhaMuda);
+  $("#mQtd").addEventListener("input", () => { $("#mQtd").removeAttribute("aria-invalid"); atualizarSubtotalMuda(); });
+  $("#mQtd").addEventListener("keydown", e => { if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); voltarEscolhaMuda(); } });
+  const somarQtd = d => { const q = lerQtdMuda(); $("#mQtd").value = Math.max(1, Math.min(10000, (q >= 0 ? q : 0) + d)); $("#mQtd").removeAttribute("aria-invalid"); atualizarSubtotalMuda(); };
+  document.querySelector(".m-stepper").addEventListener("click", e => { const b = e.target.closest("[data-passo]"); if (b) somarQtd(+b.dataset.passo); });
+  $("#mAtalhos").addEventListener("click", e => { const b = e.target.closest("[data-soma]"); if (b) somarQtd(+b.dataset.soma); });
+  // calculadora
+  $("#btnCalcMudas").addEventListener("click", abrirCalcMudas);
+  $("#mcLista").addEventListener("click", e => { const b = e.target.closest("[data-mc-passo]"); if (!b) return; const li = b.closest("[data-mc]"); mudarCalcMuda(li, (calcMudas.get(li.dataset.mc) || 0) + Number(b.dataset.mcPasso)); });
+  $("#mcLista").addEventListener("input", e => { const li = e.target.closest("[data-mc]"); if (!li) return; e.target.value = e.target.value.replace(/\D/g, "").slice(0, 5); mudarCalcMuda(li, Number(e.target.value)); });
+  $("#mcLista").addEventListener("focusin", e => { if (e.target.matches("input")) e.target.select(); });
+  $("#mcZerar").addEventListener("click", () => { calcMudas.clear(); renderCalcMudas(); });
+  $("#mcLancar").addEventListener("click", lancarCalcMudas);
   $("#mNF").addEventListener("click", e => { const b = e.target.closest("[data-nf]"); if (b) marcarNF(b.dataset.nf, b); });
   $("#mHist").addEventListener("click", e => {
     const g = e.target.closest("[data-desfazer-pedido]"); if (g) { desfazerPedido(g.dataset.desfazerPedido, g); return; }
@@ -3398,7 +3571,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230826";
+  const VERSAO = "202610230836";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();

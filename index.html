@@ -1026,17 +1026,17 @@ const PRODUTOS = [
   {nome:"Chave combinada", dep:"Ferramentas", sub:"Chaves", un:"Boca e estria · unitária", preco:null, opcoes:["6 mm","7 mm","8 mm","9 mm","10 mm","11 mm","12 mm","13 mm","14 mm","15 mm","16 mm","17 mm","18 mm","19 mm","20 mm","21 mm","22 mm","23 mm","24 mm","25 mm","26 mm","27 mm","28 mm","30 mm","32 mm"], opNome:"Medida", foto:"img/chave-combinada.jpg"},
 ];
 /* ===== Mudas de bandeja =====
-   Na loja: bandeja aberta vendida em lotes (10 mudas na de 200, 4 na de 128).
-   Bandeja fechada só por encomenda (chega na semana seguinte). preco = lote; precoBandeja = bandeja. */
+   Na loja: bandeja aberta vendida por muda (qualquer quantidade).
+   Bandeja fechada só por encomenda (chega na semana seguinte). preco = uma muda; precoBandeja = bandeja. */
 const TAM_BANDEJA = p => { const m = /^Bandeja (\d+) mudas$/.exec(p.sub||""); return m ? +m[1] : 0; };
 const OP_BANDEJA = "Bandeja fechada";
 function prepararMuda(p){
   const t = TAM_BANDEJA(p); if(!t || p.bandeja) return p;
-  p.bandeja = t; p.lote = t===128 ? 4 : 10;
+  p.bandeja = t; p.lote = 1;
   if(p.precoBandeja===undefined) p.precoBandeja = null;
-  p.opcoes = [`${p.lote} mudas`, `${OP_BANDEJA} (${t})`];
+  p.opcoes = ["Por muda", `${OP_BANDEJA} (${t})`];
   p.opNome = "Quantidade";
-  p.un = `Vendemos de ${p.lote} em ${p.lote} · bandeja com ${t}`;
+  p.un = `Vendida por muda · bandeja com ${t}`;
   return p;
 }
 const ehEncomenda = (p, op) => !!(p.bandeja && op && op.startsWith(OP_BANDEJA));
@@ -1267,7 +1267,7 @@ function descricao(p){
   if(DESC[p.nome]) return DESC[p.nome];
   if(NPK[p.nome]) return `Adubo mineral NPK. Os números são as porcentagens de nitrogênio (N), fósforo (P) e potássio (K). ${NPK[p.nome]}`;
   if(/^Sementes de/.test(p.sub) || p.dep==="Sementes") return "Semente de hortaliça Isla em envelope. No verso do envelope você encontra a época de plantio da sua região, o espaçamento e o tempo até a colheita.";
-  if(p.bandeja) return `Mudas prontas para transplante para o canteiro ou para o vaso. Na loja vendemos de ${p.lote} em ${p.lote} mudas. A bandeja fechada com ${p.bandeja} mudas é por encomenda: chega na semana seguinte, junto com o nosso pedido semanal.`;
+  if(p.bandeja) return `Mudas prontas para transplante para o canteiro ou para o vaso. Na loja vendemos por muda, na quantidade que você precisar. A bandeja fechada com ${p.bandeja} mudas é por encomenda: chega na semana seguinte, junto com o nosso pedido semanal.`;
   if(p.nome.includes("pimenta")) return "Muda pequena, do tamanho das de bandeja, pronta para plantar em vaso ou canteiro.";
   if(p.nome==="Muda de café") return "Muda de café em tubete plástico de cerca de 15 cm, pronta para plantio.";
   if(p.nome==="Muda de maracujá azedo") return "Muda de maracujá azedo (para suco) em saquinho de 30 × 25 cm. Precisa de espaldeira ou cerca para subir.";
@@ -1329,8 +1329,8 @@ function selo(p){
 const precoHTML = p => p.bandeja ? precoMudaHTML(p) : p.preco==null ? '<span class="ask">Consultar preço</span>'
     : `${p.antigo?`<s>${brl(p.antigo)}</s>`:''}<strong>${brl(p.preco)}</strong>${p.porMetro?' <span class="unit">/ metro</span>':""}`;
 function precoMudaHTML(p){
-  const lote = p.preco==null ? '<span class="ask">Consultar preço</span>' : `${p.antigo?`<s>${brl(p.antigo)}</s>`:''}<strong>${brl(p.preco)}</strong> <span class="unit">/ ${p.lote} mudas</span>`;
-  return `${lote}<span class="enc-preco">Bandeja fechada (${p.bandeja}): ${p.precoBandeja!=null?brl(p.precoBandeja):"consultar"} · encomenda</span>`;
+  const muda = p.preco==null ? '<span class="ask">Consultar preço</span>' : `${p.antigo?`<s>${brl(p.antigo)}</s>`:''}<strong>${brl(p.preco)}</strong> <span class="unit">/ muda</span>`;
+  return `${muda}<span class="enc-preco">Bandeja fechada (${p.bandeja}): ${p.precoBandeja!=null?brl(p.precoBandeja):"consultar"} · encomenda</span>`;
 }
 const fundo = p => p.foto||p.ilu ? " has-photo" : "";
 function card(p){
@@ -1418,7 +1418,7 @@ function desenharPedido(){
     const linhas = it.map(({p,op,q})=>{
       const v = precoDe(p,op);
       if(ehEncomenda(p,op)) return `• ${q}x ENCOMENDA: ${op} de ${nomeCompleto(p)} – ${v==null?"consultar preço":brl(v*q)}`;
-      if(p.bandeja) return `• ${q}x lote de ${op} – ${nomeCompleto(p)} – ${v==null?"consultar preço":brl(v*q)}`;
+      if(p.bandeja){ const nm = nomeCompleto(p); return `• ${q} muda${q>1?"s":""} ${/^Muda de /.test(nm) ? nm.replace(/^Muda de /,"de ") : `– ${nm}`} – ${v==null?"consultar preço":brl(v*q)}`; }
       return `• ${q}${p.porMetro?" m de":"x"} ${nomeCompleto(p)}${op?` – ${p.opNome||"opção"}: ${op}`:""} – ${p.un} – ${v==null?"consultar preço":brl(v*q)}`;
     });
     const temEnc = it.some(x=>ehEncomenda(x.p,x.op));
@@ -1764,10 +1764,10 @@ function resultadoCalc(){
   const total = linhas * porLinha * q;
   let compra = "";
   if(p.bandeja){
-    const lotes = Math.ceil(total / p.lote), opL = p.opcoes[0], opB = p.opcoes[1];
+    const opM = p.opcoes[0], opB = p.opcoes[1];
     const bandejas = Math.ceil(total / p.bandeja);
-    compra = `${resProd(p, `${lotes} lote${lotes>1?"s":""} de ${p.lote} = ${lotes*p.lote} mudas`, opL)}${totalTxt(p,lotes,opL)}
-      <div class="res-btns">${botaoAdd(p, lotes, opL, `Adicionar ${lotes} lote${lotes>1?"s":""} (${lotes*p.lote} mudas)`)}
+    compra = `${resProd(p, `${total} muda${total>1?"s":""}`, opM)}${totalTxt(p,total,opM)}
+      <div class="res-btns">${botaoAdd(p, total, opM, `Adicionar ${total} muda${total>1?"s":""} ao pedido`)}
       ${total >= p.bandeja*0.6 ? botaoAdd(p, bandejas, opB, `Encomendar ${bandejas} bandeja${bandejas>1?"s":""} fechada${bandejas>1?"s":""} (${bandejas*p.bandeja} mudas)`) : ""}</div>`;
   } else {
     compra = `${resProd(p, `${total} muda${total>1?"s":""}`)}${totalTxt(p,total)}<div class="res-btns">${botaoAdd(p, total, null, `Adicionar ${total} mudas ao pedido`)}</div>`;
@@ -1808,7 +1808,7 @@ document.addEventListener("click", e=>{
   const p = PRODUTOS[b.dataset.calcAdd], n = +b.dataset.n, op = b.dataset.calcOp || null;
   if(!p || !(n>0)) return;
   mudarQtd(p, n, op ? chave(p, op) : chave(p));
-  CALC.ok = `${n} ${op && ehEncomenda(p,op) ? (n>1?"bandejas":"bandeja") : p.bandeja ? (n>1?"lotes":"lote") : /kg/i.test(p.un||"") ? (n>1?"sacos":"saco") : (n>1?"unidades":"unidade")} de ${p.nome} no pedido`;
+  CALC.ok = `${n} ${op && ehEncomenda(p,op) ? (n>1?"bandejas":"bandeja") : p.bandeja ? (n>1?"mudas":"muda") : /kg/i.test(p.un||"") ? (n>1?"sacos":"saco") : (n>1?"unidades":"unidade")} de ${p.bandeja && !(op && ehEncomenda(p,op)) ? p.nome.replace(/^Muda de /,"") : p.nome} no pedido`;
   atualizarCalc(false);
 });
 function viewInicioAntiga(){
@@ -2242,7 +2242,7 @@ if(TEM_SUPABASE){
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230826";
+  const VERSAO = "202610230836";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
