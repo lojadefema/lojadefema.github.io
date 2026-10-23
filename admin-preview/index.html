@@ -885,6 +885,43 @@ html:has(dialog[open]){overflow:hidden}
 :root[data-estilo="pb"] .cl-ico,:root[data-estilo="pb"] .cl-dia svg,:root[data-estilo="pb"] .cl-dados svg{color:#fff}
 :root[data-estilo="pb"] .abas-topo button[aria-current="page"]{box-shadow:inset 0 -3px 0 #fff}
 :root[data-estilo="pb"] .ini-status.aberto .ponto{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
+
+/* ---------- Produtos: filtros em submenu (celular) e departamentos na lateral (computador) ---------- */
+.filtros-cel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 10px}
+.filtro-btn{display:flex;align-items:center;justify-content:space-between;gap:4px;min-height:52px;padding:6px 8px 6px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;min-width:0}
+.filtro-btn span{min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.filtro-btn small{font-size:11.5px;color:var(--muted);font-weight:600}
+.filtro-btn b{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.filtro-btn .f-seta{width:16px;height:16px;flex:none;color:var(--muted)}
+.filtro-btn.ativo{border-color:var(--leaf-ink);background:var(--leaf-soft)}
+.filtro-btn.ativo b{color:var(--leaf-ink)}
+.lat-deps .n{min-width:1.6em;text-align:right}
+@media (max-width:1023px){
+  .filtros-cel{order:2}
+  .lateral .chips,.lateral .lat-tit{display:none !important}
+  .resumo .ordem{display:none}
+}
+@media (min-width:1024px){
+  .filtros-cel{display:none}
+  .lateral .chips.lat-deps{margin-bottom:8px}
+  .lat-tit.lat-so-largo{margin-top:14px}
+}
+@media (max-width:759px){
+  #dlgFiltro{height:auto;max-height:85vh;margin:auto 0 0;border-radius:20px 20px 0 0}
+  #dlgFiltro .dlg{max-height:85vh}
+}
+@media (min-width:760px){#dlgFiltro{width:min(460px,94vw)}}
+.filtro-corpo{padding:10px 12px calc(16px + env(safe-area-inset-bottom)) !important}
+.filtro-lista{display:grid;gap:4px}
+.filtro-op{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 14px;border-radius:12px;border:1.5px solid transparent;background:none;color:var(--fg);font-size:16px;font-weight:600;cursor:pointer;text-align:left;width:100%}
+.filtro-op:hover{background:var(--surface);border-color:var(--line)}
+.filtro-op .nome{flex:1;min-width:0}
+.filtro-op .nome small{display:block;font-size:12.5px;font-weight:500;color:var(--muted)}
+.filtro-op .n{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.filtro-op .ok{width:22px;height:22px;border-radius:50%;border:2px solid var(--campo-line);flex:none;display:grid;place-items:center}
+.filtro-op[aria-checked="true"]{background:var(--leaf-soft);border-color:var(--leaf-ink);color:var(--leaf-ink)}
+.filtro-op[aria-checked="true"] .ok{border-color:var(--leaf-ink);background:var(--leaf-ink)}
+.filtro-op[aria-checked="true"] .ok::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--surface)}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -931,7 +968,7 @@ html:has(dialog[open]){overflow:hidden}
 .car-item span.nm{flex:1;min-width:0}
 .car-item b{display:block;font-weight:600;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .car-item small{color:var(--muted);font-size:.8rem}
-.car-item .pct{background:var(--promo);color:#fff;font-weight:700;font-size:.78rem;border-radius:99px;padding:2px 8px;flex:0 0 auto}
+.car-item .pct{background:var(--promo);color:var(--surface);font-weight:700;font-size:.78rem;border-radius:99px;padding:2px 8px;flex:0 0 auto}
 .car-grupo{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:8px 4px 2px}
 .car-slide{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--surface);cursor:pointer}
 .car-slide input{width:20px;height:20px;accent-color:var(--leaf-2)}
@@ -963,8 +1000,12 @@ html:has(dialog[open]){overflow:hidden}
 /* toast */
 .toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom));z-index:100;display:grid;gap:8px;width:min(92vw,420px);pointer-events:none}
 .toast{background:#1b2a1f;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-weight:600;display:flex;gap:10px;align-items:center;animation:sobe .2s ease-out}
-.toast.ok{background:var(--ok)}
-.toast.erro{background:var(--erro)}
+.toast.ok{background:#1d7a45}
+.toast.erro{background:#b3261e}
+:root[data-estilo="pb"] .toast,:root[data-estilo="pb"] .toast.ok,:root[data-estilo="pb"] .toast.erro{background:#000;color:#fff;border:2px solid #fff}
+:root[data-estilo="pb"][data-theme="dark"] .toast,:root[data-estilo="pb"][data-theme="dark"] .toast.ok,:root[data-estilo="pb"][data-theme="dark"] .toast.erro{background:#fff;color:#000;border-color:#000}
+:root[data-estilo="pb"][data-theme="dark"] .toast .spin{border-color:rgba(0,0,0,.3);border-top-color:#000}
+:root[data-estilo="pb"] .toast.erro{text-decoration:underline}
 .toast .spin{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:gira .8s linear infinite;flex:none}
 @keyframes gira{to{transform:rotate(360deg)}}
 @keyframes sobe{from{opacity:0;transform:translateY(8px)}}
@@ -1091,7 +1132,9 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <!-- LISTA -->
   <section id="telaLista" class="painel" hidden aria-label="Produtos">
     <aside class="lateral" aria-label="Filtros e ações">
-      <p class="lat-tit">Produtos</p>
+      <p class="lat-tit">Departamentos</p>
+      <div class="chips lat-deps" id="chipsDep" role="group" aria-label="Filtrar por departamento"></div>
+      <p class="lat-tit lat-so-largo">Mostrar</p>
       <div class="chips" id="chips" role="group" aria-label="Filtrar por situação"></div>
       <p class="lat-tit lat-so-largo">Ações</p>
       <div class="lat-acoes">
@@ -1110,14 +1153,19 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
         <input class="inp" id="busca" type="search" placeholder="Buscar por nome ou marca…" autocomplete="off" enterkeyhint="search">
       </div>
-      <div>
+      <div hidden>
         <label for="filtroDep" class="sr">Departamento</label>
         <select class="inp" id="filtroDep"><option value="">Todos os departamentos</option></select>
       </div>
     </div>
+    <div class="filtros-cel" id="filtrosCel">
+      <button type="button" class="filtro-btn" data-filtro="dep"><span><small>Departamento</small><b id="fDepTxt">Todos</b></span><svg class="f-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button type="button" class="filtro-btn" data-filtro="chip"><span><small>Mostrar</small><b id="fChipTxt">Todos</b></span><svg class="f-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button type="button" class="filtro-btn" data-filtro="ordem"><span><small>Ordenar por</small><b id="fOrdemTxt">Departamento</b></span><svg class="f-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    </div>
     <div class="resumo"><span id="resumo" aria-live="polite"></span>
       <label class="ordem"><span>Ordenar</span><select id="ordem">
-        <option value="az">Nome (A–Z)</option><option value="preco">Menor preço</option><option value="preco-desc">Maior preço</option>
+        <option value="dep">Departamento</option><option value="az">Nome (A–Z)</option><option value="marca">Marca</option>
       </select></label>
       <div class="vistas" role="group" aria-label="Modo de exibição">
         <button type="button" data-vista="compacta" aria-pressed="true" title="Compacto: 4 por linha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Compacto</button>
@@ -1608,6 +1656,12 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <button class="btn btn-sec" type="button" id="btnPlCancelar">Cancelar</button>
       <button class="btn btn-pri" type="button" id="btnPlAplicar">Aplicar</button>
     </div>
+  </div>
+</dialog>
+<dialog id="dlgFiltro" aria-labelledby="tFiltro">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tFiltro">Filtrar</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="dlg-corpo filtro-corpo"><div class="filtro-lista" id="filtroLista" role="radiogroup"></div></div>
   </div>
 </dialog>
 <div id="impressao" aria-hidden="true"></div>
@@ -2161,14 +2215,16 @@ const ui = { deps: [], produtos: [], filtro: { q: "", dep: "", chip: "todos" }, 
 function lerVista() { try { return localStorage.getItem("defema-admin-vista") === "detalhe" ? "detalhe" : "compacta"; } catch { return "compacta"; } }
 const mqLargo = window.matchMedia("(min-width:1024px)");
 const POR_PAGINA = 6;
-ui.ordem = (() => { try { return localStorage.getItem("defema-admin-ordem") || "az"; } catch { return "az"; } })();
+const ORDENS = [["dep", "Departamento", "Separados por departamento, A–Z dentro de cada um"], ["az", "Nome", "Todos em ordem alfabética"], ["marca", "Marca", "Separados por marca"]];
+ui.ordem = (() => { try { const o = localStorage.getItem("defema-admin-ordem2"); return ORDENS.some(x => x[0] === o) ? o : "dep"; } catch { return "dep"; } })();
+const marcaDe = p => (p.marca || "").trim() || "Sem marca";
 function compararOrdem(a, b) {
   const nome = a.nome.localeCompare(b.nome, "pt-BR") || (a.marca || "").localeCompare(b.marca || "", "pt-BR");
-  if (ui.ordem === "az") return nome;
-  // preço: sem preço ("consultar") vai para o fim
-  if (a.preco == null || b.preco == null) return (a.preco == null) - (b.preco == null) || nome;
-  return (ui.ordem === "preco" ? a.preco - b.preco : b.preco - a.preco) || nome;
+  if (ui.ordem === "dep") return ordemDep(a.dep) - ordemDep(b.dep) || nome;
+  if (ui.ordem === "marca") return (marcaDe(a) === "Sem marca") - (marcaDe(b) === "Sem marca") || marcaDe(a).localeCompare(marcaDe(b), "pt-BR") || nome;
+  return nome;
 }
+const grupoDe = p => ui.ordem === "dep" ? (p.dep || "Sem departamento") : ui.ordem === "marca" ? marcaDe(p) : null;
 const vistaDetalhe = () => ui.vista === "detalhe" && mqLargo.matches;
 
 /* ---------- toasts ----------
@@ -2331,7 +2387,8 @@ function renderListaBase() {
   $("#chips").innerHTML = CHIPS.map(([id, rot, f]) =>
     `<button type="button" class="chip" data-chip="${id}" aria-pressed="${chip === id}"><span class="chip-rot">${rot}</span> <span class="n">${ui.produtos.filter(f).length}</span></button>`).join("");
   const filtroChip = CHIPS.find(c => c[0] === chip)[2];
-  const vis = base.filter(filtroChip).sort((a, b) => ordemDep(a.dep) - ordemDep(b.dep) || compararOrdem(a, b));
+  const vis = base.filter(filtroChip).sort(compararOrdem);
+  renderFiltrosProdutos();
   $("#ordem").value = ui.ordem;
   const filtros = [dep && `em ${dep}`, q.trim() && `buscando “${q.trim()}”`].filter(Boolean).join(", ");
   $("#resumo").textContent = (vis.length === ui.produtos.length ? `${vis.length} produtos` : `Mostrando ${vis.length} de ${ui.produtos.length} produtos`) + (filtros ? ` · ${filtros}` : "")
@@ -2345,12 +2402,13 @@ function renderListaBase() {
     return;
   }
   if (det) { renderDetalhe(vis); return; }
-  const porDep = new Map();
-  vis.forEach(p => porDep.set(p.dep, (porDep.get(p.dep) || 0) + 1));
-  let depAtual = null;
+  const porGrupo = new Map();
+  vis.forEach(p => { const g = grupoDe(p); porGrupo.set(g, (porGrupo.get(g) || 0) + 1); });
+  let gAtual;
   $("#lista").innerHTML = vis.map(p => {
     let cab = "";
-    if (p.dep !== depAtual) { depAtual = p.dep; cab = `<li class="grupo-tit"><h3>${esc(p.dep || "Sem departamento")}</h3><span>${porDep.get(p.dep)} produto${porDep.get(p.dep) === 1 ? "" : "s"}</span></li>`; }
+    const g = grupoDe(p);
+    if (g !== null && g !== gAtual) { gAtual = g; cab = `<li class="grupo-tit"><h3>${esc(g)}</h3><span>${porGrupo.get(g)} produto${porGrupo.get(g) === 1 ? "" : "s"}</span></li>`; }
     return cab + linhaCompacta(p);
   }).join("");
 }
@@ -3576,6 +3634,7 @@ function ligarEventosAbas() {
   });
   ligarEventosTabela();
   ligarEventosMais();
+  ligarEventosFiltros();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -4039,6 +4098,60 @@ function ligarEventosMais() {
   atualizarCorBarra();
 }
 
+
+/* ---------- Produtos: filtros (departamento, mostrar, ordenar) em submenu ---------- */
+function renderFiltrosProdutos() {
+  const { dep, chip } = ui.filtro;
+  // lateral do computador: departamentos sempre atualizados (um novo aparece sozinho)
+  $("#chipsDep").innerHTML = [["", "Todos", ui.produtos.length], ...ui.deps.map(d => [d.nome, d.nome, ui.produtos.filter(p => p.dep === d.nome).length])]
+    .map(([v, rot, n]) => `<button type="button" class="chip" data-dep-lat="${esc(v)}" aria-pressed="${dep === v}"><span class="chip-rot">${esc(rot)}</span> <span class="n">${n}</span></button>`).join("");
+  // celular: três botões
+  $("#fDepTxt").textContent = dep || "Todos";
+  $("#fChipTxt").textContent = (CHIPS.find(c => c[0] === chip) || CHIPS[0])[1];
+  $("#fOrdemTxt").textContent = ({ dep: "Depto.", az: "Nome", marca: "Marca" })[ui.ordem] || "Depto.";
+  document.querySelector('[data-filtro="dep"]').classList.toggle("ativo", !!dep);
+  document.querySelector('[data-filtro="chip"]').classList.toggle("ativo", chip !== "todos");
+}
+const filtroUi = { tipo: null };
+function abrirFiltro(tipo) {
+  filtroUi.tipo = tipo;
+  const op = (v, nome, sub, n, marcado) => `<button type="button" class="filtro-op" role="radio" aria-checked="${marcado}" data-op="${esc(v)}">
+      <span class="ok" aria-hidden="true"></span><span class="nome">${esc(nome)}${sub ? `<small>${esc(sub)}</small>` : ""}</span>${n != null ? `<span class="n">${n}</span>` : ""}</button>`;
+  let titulo, html;
+  if (tipo === "dep") {
+    titulo = "Departamento";
+    html = op("", "Todos os departamentos", "", ui.produtos.length, !ui.filtro.dep)
+      + ui.deps.map(d => op(d.nome, d.nome, d.info || "", ui.produtos.filter(p => p.dep === d.nome).length, ui.filtro.dep === d.nome)).join("");
+  } else if (tipo === "chip") {
+    titulo = "Mostrar";
+    html = CHIPS.map(([id, rot, f]) => op(id, rot, "", ui.produtos.filter(f).length, ui.filtro.chip === id)).join("");
+  } else {
+    titulo = "Ordenar por";
+    html = ORDENS.map(([id, rot, sub]) => op(id, rot, sub, null, ui.ordem === id)).join("");
+  }
+  $("#tFiltro").textContent = titulo;
+  $("#filtroLista").innerHTML = html;
+  $("#dlgFiltro").showModal();
+  requestAnimationFrame(() => $('#filtroLista [aria-checked="true"]')?.focus());
+}
+function escolherFiltro(v) {
+  if (filtroUi.tipo === "dep") { ui.filtro.dep = v; $("#filtroDep").value = v; }
+  else if (filtroUi.tipo === "chip") ui.filtro.chip = v;
+  else { ui.ordem = v; $("#ordem").value = v; try { localStorage.setItem("defema-admin-ordem2", v); } catch {} }
+  ui.pagina = 1;
+  $("#dlgFiltro").close();
+  renderLista();
+}
+function ligarEventosFiltros() {
+  $("#filtrosCel").addEventListener("click", e => { const b = e.target.closest("[data-filtro]"); if (b) abrirFiltro(b.dataset.filtro); });
+  $("#filtroLista").addEventListener("click", e => { const b = e.target.closest("[data-op]"); if (b) escolherFiltro(b.dataset.op); });
+  $("#chipsDep").addEventListener("click", e => {
+    const b = e.target.closest("[data-dep-lat]"); if (!b) return;
+    ui.filtro.dep = b.dataset.depLat === ui.filtro.dep ? "" : b.dataset.depLat; $("#filtroDep").value = ui.filtro.dep; ui.pagina = 1; renderLista();
+    $(`[data-dep-lat="${CSS.escape(ui.filtro.dep)}"]`)?.focus();
+  });
+}
+
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
   ev.preventDefault();
@@ -4090,7 +4203,7 @@ function ligarEventos() {
   mqLargo.addEventListener?.("change", renderLista);
   $("#ordem").addEventListener("change", e => {
     ui.ordem = e.target.value; ui.pagina = 1;
-    try { localStorage.setItem("defema-admin-ordem", ui.ordem); } catch {}
+    try { localStorage.setItem("defema-admin-ordem2", ui.ordem); } catch {}
     renderLista();
   });
   $("#chips").addEventListener("click", e => {
