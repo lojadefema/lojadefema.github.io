@@ -1157,6 +1157,19 @@ html:has(dialog[open]){overflow:hidden}
   .calc-teclas button{min-height:68px;font-size:26px}
   .calc-num{font-size:46px}
 }
+
+/* ---------- Pix x cartão ---------- */
+.preco-btn small.cartao,.pr-valor small.cartao{color:var(--muted);font-weight:600}
+.pr-dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pr-mini{display:block;font-size:12px;font-weight:700;color:var(--muted);margin:0 0 3px}
+.pr-cartao{font-size:17px !important;font-weight:600 !important;color:var(--muted)}
+.pr-band-dica{margin:6px 0 0 !important}
+.pr-band-dica b,.ed-cartao b,#eBandejaAuto b{color:var(--leaf-ink)}
+.m-total span small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.m-cartao{color:var(--muted);font-size:13px}
+.mc-total small{font-size:12.5px;color:var(--muted);font-weight:600}
+.f-preco em{display:block;font-style:normal;font-size:.48em;font-weight:600;color:#6b6357;text-align:right;margin-top:.5mm}
+.f-preco{text-align:right}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1553,12 +1566,14 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
             <div class="preco-linha"><div class="preco-box"><span aria-hidden="true">R$</span><input class="inp" id="eAntigo" inputmode="decimal" placeholder="—" autocomplete="off" aria-describedby="ePrecoDica ePrecoErro"></div><div class="ajuste" role="group" aria-label="Ajustar 5%"><button type="button" data-ajuste="eAntigo" data-pct="-5" aria-label="Diminuir 5%">−5%</button><button type="button" data-ajuste="eAntigo" data-pct="5" aria-label="Aumentar 5%">+5%</button></div></div>
           </div>
         </div>
+        <p class="dica ed-cartao" id="eCartao" style="margin:-6px 0 8px"></p>
         <p class="dica" id="ePrecoDica" style="margin:-6px 0 12px">Preço vazio = “Consultar preço”. Preencha o preço antigo para mostrar como <b>promoção</b>.</p>
         <p class="erro-txt" id="ePrecoErro" hidden style="margin:-4px 0 12px"></p>
         <div class="promo-prev" id="promoPrev" hidden></div>
         <div class="campo" id="campoBandeja" hidden>
           <label for="eBandeja" id="eBandejaRot">Preço da bandeja fechada (encomenda)</label>
           <div class="preco-linha"><div class="preco-box"><span aria-hidden="true">R$</span><input class="inp" id="eBandeja" inputmode="decimal" placeholder="Consultar" autocomplete="off" aria-describedby="eBandejaDica ePrecoErro"></div><div class="ajuste" role="group" aria-label="Ajustar 5%"><button type="button" data-ajuste="eBandeja" data-pct="-5" aria-label="Diminuir 5%">−5%</button><button type="button" data-ajuste="eBandeja" data-pct="5" aria-label="Aumentar 5%">+5%</button></div></div>
+          <p class="dica" id="eBandejaAuto" style="margin:6px 0 0"></p>
           <p class="dica" id="eBandejaDica" style="margin:6px 0 0">No site aparece como opção “Bandeja fechada”, por encomenda (chega na semana seguinte). Vazio = consultar.</p>
         </div>
       </div>
@@ -1627,7 +1642,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <ul class="mc-lista" id="mcLista"></ul>
     </div>
     <div class="dlg-pe mc-pe">
-      <div class="mc-total"><span id="mcQtd">0 mudas</span><strong id="mcTotal">R$ 0,00</strong></div>
+      <div class="mc-total"><span id="mcQtd">0 mudas</span><strong id="mcTotal">R$ 0,00</strong><small id="mcCartao"></small></div>
       <button class="btn btn-sec" type="button" id="mcZerar">Zerar</button>
       <button class="btn btn-pri" type="button" id="mcLancar" disabled>Lançar no pedido</button>
     </div>
@@ -1671,7 +1686,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
         <div class="secao m-pedido">
           <h3>Pedido atual <small id="mPedQtd"></small></h3>
           <ul class="m-lista m-ped-lista" id="mPedido"></ul>
-          <div class="m-total"><span>Total</span><strong id="mTotal">R$ 0,00</strong></div>
+          <div class="m-total"><span>Total<small id="mTotalCartao">Pix/dinheiro</small></span><strong id="mTotal">R$ 0,00</strong></div>
           <div class="m-ped-acoes">
             <button class="btn btn-sec" type="button" id="btnLimparPedido">Limpar</button>
             <button class="btn btn-pri" type="button" id="btnSalvarPedido">Salvar pedido</button>
@@ -2723,7 +2738,7 @@ function htmlPreco(p) {
   if (p.preco == null) return '<span class="consultar">Consultar</span>';
   const t = tamBandeja(p.sub);
   return (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s>` : "") + `<b>${moeda(p.preco)}</b>` + (p.por_metro ? "<small>por metro</small>" : "")
-    + (t ? "<small>por muda</small>" : "");
+    + (t ? "<small>por muda</small>" : "") + `<small class="cartao">${moeda(cartao(p.preco))} cartão</small>`;
 }
 function htmlAcoes(p) {
   const nomeTxt = esc(p.nome + (p.marca ? " " + p.marca : ""));
@@ -2977,6 +2992,7 @@ function abrirEditor(p) {
   $("#ePreco").value = p?.preco != null ? num2(p.preco) : "";
   $("#eAntigo").value = p?.preco_antigo != null ? num2(p.preco_antigo) : "";
   $("#eBandeja").value = p?.preco_bandeja != null ? num2(p.preco_bandeja) : "";
+  delete $("#eBandeja").dataset.manual;
   ed.precosIniciais = { ePreco: $("#ePreco").value, eAntigo: $("#eAntigo").value, eBandeja: $("#eBandeja").value };
   $("#btnVoltarPreco").hidden = true;
   $("#eOpNome").value = p?.op_nome || "";
@@ -3109,13 +3125,21 @@ function mostrarOpcoes(sim) {
   $("#blocoOpcoes").hidden = !sim || !!bandeja;
   $("#btnMostrarOpcoes").hidden = sim || !!bandeja;
 }
+function atualizarPrecosEditor(deOnde) { // cartão (+10%) e bandeja automática a partir do preço da muda
+  const sub = $("#eSub").value === NOVA_SUB ? $("#eSubNova").value.trim() : $("#eSub").value, t = tamBandeja(sub);
+  const v = lerPreco($("#ePreco").value), ok = v != null && !Number.isNaN(v);
+  $("#eCartao").innerHTML = ok ? `No cartão (+10%): <b>${moeda(cartao(v))}</b>${t ? " a muda" : ""}` : "";
+  if (t && deOnde === "preco" && !$("#eBandeja").dataset.manual && ok) $("#eBandeja").value = num2(bandejaAuto(v, t));
+  $("#eBandejaAuto").innerHTML = t ? dicaBandejaAuto(ok ? v : null, t) : "";
+}
 function atualizarBandeja() {
   const sub = $("#eSub").value === NOVA_SUB ? $("#eSubNova").value.trim() : $("#eSub").value;
   const t = tamBandeja(sub);
   $("#campoBandeja").hidden = !t;
   if (t) { $("#blocoOpcoes").hidden = true; $("#btnMostrarOpcoes").hidden = true; }
   else if ($("#blocoOpcoes").hidden) $("#btnMostrarOpcoes").hidden = false;
-  $("#ePrecoRot").textContent = t ? "Preço por muda" : "Preço";
+  $("#ePrecoRot").textContent = t ? "Preço por muda (Pix/dinheiro)" : "Preço (Pix/dinheiro)";
+  atualizarPrecosEditor();
   $("#eBandejaRot").textContent = t ? `Preço da bandeja fechada (${t} mudas) · encomenda` : "Preço da bandeja fechada";
 }
 function atualizarAtivo() {
@@ -3331,7 +3355,7 @@ function lerQtdMuda() { const v = String($("#mQtd").value).trim(); return /^\d+$
 function atualizarSubtotalMuda() {
   const p = ui.produtos.find(x => String(x.id) === mudasUi.sel); if (!p) return;
   const q = lerQtdMuda();
-  $("#mSubtotal").innerHTML = q >= 1 ? `${q} muda${q > 1 ? "s" : ""} × ${p.preco != null ? moeda(p.preco) : "consultar"} = <b>${p.preco != null ? moeda(valorVenda(p, q)) : "a consultar"}</b>` : "Digite quantas mudas.";
+  $("#mSubtotal").innerHTML = q >= 1 ? `${q} muda${q > 1 ? "s" : ""} × ${p.preco != null ? moeda(p.preco) : "consultar"} = <b>${p.preco != null ? moeda(valorVenda(p, q)) : "a consultar"}</b>${p.preco != null ? ` <span class="m-cartao">· ${moeda(cartao(valorVenda(p, q)))} no cartão</span>` : ""}` : "Digite quantas mudas.";
   $("#btnRegistrar").textContent = q >= 1 ? `Adicionar ${q} ao pedido` : "Adicionar ao pedido";
 }
 function escolherMuda(id) {
@@ -3357,6 +3381,7 @@ function renderPedidoMudas() {
   const total = itens.reduce((s, it) => s + (it.valor || 0), 0);
   const semPreco = itens.some(it => it.valor == null);
   $("#mTotal").textContent = moeda(r2(total)) + (semPreco ? " + consultar" : "");
+  $("#mTotalCartao").textContent = total ? `Pix/dinheiro · ${moeda(cartao(r2(total)))} no cartão` : "Pix/dinheiro";
   const n = itens.reduce((s, it) => s + it.mudas, 0);
   $("#mPedQtd").textContent = n ? `· ${n} mudas` : "";
   $("#btnSalvarPedido").disabled = !itens.length;
@@ -3454,6 +3479,7 @@ function totalCalcMudas() {
   for (const [id, q] of calcMudas) { const p = ui.produtos.find(x => String(x.id) === id); if (!p || !q) continue; n += q; const v = valorVenda(p, q); if (v == null) consultar = true; else t += v; }
   $("#mcQtd").textContent = `${n} muda${n === 1 ? "" : "s"}`;
   $("#mcTotal").textContent = moeda(r2(t)) + (consultar ? " + consultar" : "");
+  $("#mcCartao").textContent = t ? `${moeda(cartao(r2(t)))} no cartão` : "";
   $("#mcLancar").disabled = !n; $("#mcZerar").disabled = !n;
 }
 function mudarCalcMuda(li, q) {
@@ -3869,7 +3895,7 @@ function htmlValorPr(p) {
   if (p.preco == null) return '<span class="consultar">Sem preço</span>';
   const t = tamBandeja(p.sub);
   return (p.preco_antigo != null ? `<s>${moeda(p.preco_antigo)}</s>` : "") + `<b>${moeda(p.preco)}</b>`
-    + (p.por_metro ? "<small>por metro</small>" : "") + (t ? "<small>por muda</small>" : "")
+    + (p.por_metro ? "<small>por metro</small>" : "") + (t ? "<small>por muda</small>" : "") + `<small class="cartao">${moeda(cartao(p.preco))} no cartão</small>`
     + (p.preco_antigo != null ? `<span class="tag promo">Promoção</span>` : "");
 }
 function htmlFormPr(p) {
@@ -3878,7 +3904,10 @@ function htmlFormPr(p) {
     <div class="pr-campos">
       <div class="campo">
         <label for="prP-${id}"><span class="pr-rot">${promo ? "Preço da promoção" : "Preço"}</span>${t ? " (por muda)" : p.por_metro ? " (por metro)" : ""}</label>
-        <div class="preco-box"><span>R$</span><input class="inp" id="prP-${id}" name="preco" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="Consultar" value="${p.preco != null ? num2(p.preco) : ""}"></div>
+        <div class="pr-dois">
+          <div><small class="pr-mini">Pix / dinheiro</small><div class="preco-box"><span>R$</span><input class="inp" id="prP-${id}" name="preco" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="Consultar" value="${p.preco != null ? num2(p.preco) : ""}"></div></div>
+          <div><label class="pr-mini" for="prK-${id}">Cartão (+10%)</label><div class="preco-box"><span>R$</span><input class="inp pr-cartao" id="prK-${id}" name="cartao" inputmode="decimal" autocomplete="off" placeholder="—" value="${p.preco != null ? num2(cartao(p.preco)) : ""}"></div></div>
+        </div>
         <div class="pr-ajustes" role="group" aria-label="Ajuste rápido do preço">
           <button type="button" class="menos" data-aj="-10">−10%</button><button type="button" class="menos" data-aj="-5">−5%</button>
           <button type="button" class="mais" data-aj="5">+5%</button><button type="button" class="mais" data-aj="10">+10%</button>
@@ -3892,7 +3921,8 @@ function htmlFormPr(p) {
           <div class="preco-box"><span>R$</span><input class="inp" id="prA-${id}" name="antigo" inputmode="decimal" autocomplete="off" value="${promo ? num2(p.preco_antigo) : ""}"></div>
         </div>
         ${t ? `<div class="campo" style="margin:10px 0 0"><label for="prB-${id}">Bandeja fechada de ${t} (encomenda)</label>
-          <div class="preco-box"><span>R$</span><input class="inp" id="prB-${id}" name="bandeja" inputmode="decimal" autocomplete="off" placeholder="Consultar" value="${p.preco_bandeja != null ? num2(p.preco_bandeja) : ""}"></div></div>` : ""}
+          <div class="preco-box"><span>R$</span><input class="inp" id="prB-${id}" name="bandeja" inputmode="decimal" autocomplete="off" placeholder="Consultar" value="${p.preco_bandeja != null ? num2(p.preco_bandeja) : ""}"></div>
+          <p class="pr-info pr-band-dica" data-band-dica>${dicaBandejaAuto(p.preco, t)}</p></div>` : ""}
         <label class="pr-chk" style="margin-top:10px"><input type="checkbox" name="ativo"${p.ativo ? " checked" : ""}><span>Aparece no site<small>Desmarque se acabou o estoque</small></span></label>
       </div>
     </div>
@@ -4055,10 +4085,11 @@ function ligarEventosAbas() {
     const aj = e.target.closest("[data-aj]");
     if (aj) {
       const form = aj.closest("form"), p = ui.produtos.find(x => String(x.id) === form.dataset.prForm), inp = form.elements.preco;
-      if (aj.dataset.aj === "desfazer") { inp.value = p && p.preco != null ? num2(p.preco) : ""; inp.focus(); return; }
+      if (aj.dataset.aj === "desfazer") { inp.value = p && p.preco != null ? num2(p.preco) : ""; inp.dispatchEvent(new Event("input", { bubbles: true })); inp.focus(); return; }
       const atual = lerPreco(inp.value);
       if (atual == null || Number.isNaN(atual)) { erroPr(form, "Digite um preço primeiro para aplicar a porcentagem.", inp); return; }
       inp.value = num2(r2(atual * (1 + Number(aj.dataset.aj) / 100)));
+      inp.dispatchEvent(new Event("input", { bubbles: true }));
       inp.removeAttribute("aria-invalid"); form.querySelector(".pr-erro").hidden = true;
     }
   });
@@ -4076,7 +4107,19 @@ function ligarEventosAbas() {
   });
   $("#prLista").addEventListener("submit", e => { const f = e.target.closest("[data-pr-form]"); if (!f) return; e.preventDefault(); salvarPr(f); });
   $("#prLista").addEventListener("keydown", e => { if (e.key === "Escape" && e.target.closest("[data-pr-form]")) { e.preventDefault(); fecharPr(); } });
-  $("#prLista").addEventListener("input", e => { if (e.target.matches(".inp")) e.target.removeAttribute("aria-invalid"); });
+  $("#prLista").addEventListener("input", e => {
+    if (e.target.matches(".inp")) e.target.removeAttribute("aria-invalid");
+    const form = e.target.closest("[data-pr-form]"); if (!form) return;
+    const el = form.elements, p = ui.produtos.find(x => String(x.id) === form.dataset.prForm), t = p ? tamBandeja(p.sub) : 0;
+    if (e.target.name === "bandeja") { e.target.dataset.manual = "1"; return; }
+    if (e.target.name === "cartao") { const k = lerPreco(el.cartao.value); if (k != null && !Number.isNaN(k)) el.preco.value = num2(pixDoCartao(k)); else if (k == null) el.preco.value = ""; }
+    if (e.target.name === "preco" || e.target.name === "cartao") {
+      const v = lerPreco(el.preco.value);
+      if (e.target.name === "preco") el.cartao.value = v != null && !Number.isNaN(v) ? num2(cartao(v)) : "";
+      if (t && el.bandeja && !el.bandeja.dataset.manual && !Number.isNaN(v)) el.bandeja.value = v != null ? num2(bandejaAuto(v, t)) : ""; // a bandeja acompanha o preço da muda
+      const dica = form.querySelector("[data-band-dica]"); if (dica) dica.innerHTML = dicaBandejaAuto(Number.isNaN(v) ? null : v, t);
+    }
+  });
 }
 
 
@@ -4152,10 +4195,10 @@ function montarFolhas() {
   const ocultas = $("#tbOcultas").checked;
   const mudas = ui.produtos.filter(p => ehMuda(p) && (ocultas || p.ativo))
     .sort((a, b) => (tamBandeja(b.sub) || 0) - (tamBandeja(a.sub) || 0) || nomeMuda(a).localeCompare(nomeMuda(b), "pt-BR"));
-  const precoTxt = (v, suf) => v == null ? '<span class="f-preco consultar">Consultar</span>' : `<span class="f-preco">${moeda(v)}${suf ? `<small>${suf}</small>` : ""}</span>`;
+  const precoTxt = (v, suf) => v == null ? '<span class="f-preco consultar">Consultar</span>' : `<span class="f-preco">${moeda(v)}${suf ? `<small>${suf}</small>` : ""}<em>${moeda(cartao(v))} no cartão</em></span>`;
   const folhas = [];
   if (tabUi.folha !== "bandejas") folhas.push(folhaHTML({
-    titulo: "Mudas", sub: "Preço por muda · leve a quantidade que precisar",
+    titulo: "Mudas", sub: "Preço por muda no Pix/dinheiro · no cartão +10%",
     grupos: [{ nome: "", itens: [...mudas].sort((a, b) => nomeMuda(a).localeCompare(nomeMuda(b), "pt-BR")) }], // uma lista só, em ordem alfabética
     nomeTitulo: true,
     preco: p => precoTxt(p.preco, tamBandeja(p.sub) ? "a muda" : "cada"),
@@ -4163,7 +4206,7 @@ function montarFolhas() {
   if (tabUi.folha !== "mudas") {
     const band = mudas.filter(p => tamBandeja(p.sub));
     folhas.push(folhaHTML({
-      titulo: "Bandejas fechadas", sub: "Por encomenda · chega na semana seguinte, com o nosso pedido semanal",
+      titulo: "Bandejas fechadas", sub: "Por encomenda · chega na semana seguinte · Pix/dinheiro (no cartão +10%)",
       grupos: [
         { nome: "Bandeja com 200 mudas", itens: band.filter(p => tamBandeja(p.sub) === 200) },
         { nome: "Bandeja com 128 mudas", itens: band.filter(p => tamBandeja(p.sub) === 128) },
@@ -4436,9 +4479,10 @@ async function lerPlanilha(arq) {
     if (antigo != null && (novo == null || antigo <= novo)) { erros.push(`Linha ${linha} (${p.nome}): o preço antes da promoção precisa ser maior que o preço.`); return; }
     if (novo !== p.preco) { campos.preco = novo; desc.push(["Preço", p.preco, novo]); }
     if (antigo !== p.preco_antigo) { campos.preco_antigo = antigo; desc.push(["Preço antes", p.preco_antigo, antigo]); }
-    if (tamBandeja(p.sub) && C.bandeja >= 0) {
-      const b = celPreco(r[C.bandeja]);
+    if (tamBandeja(p.sub)) {
+      let b = C.bandeja >= 0 ? celPreco(r[C.bandeja]) : p.preco_bandeja;
       if (Number.isNaN(b)) { erros.push(`Linha ${linha} (${p.nome}): bandeja “${r[C.bandeja]}” não é um número.`); return; }
+      if (novo !== p.preco && b === p.preco_bandeja) b = bandejaAuto(novo, tamBandeja(p.sub)); // mudou só a muda: a bandeja acompanha
       if (b !== p.preco_bandeja) { campos.preco_bandeja = b; desc.push(["Bandeja fechada", p.preco_bandeja, b]); }
     }
     if (C.site >= 0) {
@@ -5129,6 +5173,22 @@ function renderCenaClima() {
   box.innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMaxYMin slice">${partes}</svg>`;
 }
 
+
+/* =====================================================================
+   PREÇOS: Pix/dinheiro x cartão e bandeja fechada automática
+   - Todo preço cadastrado é o do Pix/dinheiro. No cartão (crédito ou débito) é sempre +10%.
+   - Bandeja fechada = preço da muda × tamanho da bandeja − 5% (ex.: 200 × 0,20 = 40,00 → 38,00).
+   ===================================================================== */
+const TAXA_CARTAO = 0.10, DESCONTO_BANDEJA = 0.05;
+const cartao = v => v == null ? null : r2(v * (1 + TAXA_CARTAO));
+const pixDoCartao = v => v == null ? null : r2(v / (1 + TAXA_CARTAO));
+const bandejaAuto = (preco, t) => preco == null || !t ? null : r2(preco * t * (1 - DESCONTO_BANDEJA));
+const txtCartao = v => v == null ? "" : `${moeda(cartao(v))} no cartão`;
+function dicaBandejaAuto(preco, t) {
+  if (preco == null || !t) return "Coloque o preço da muda para calcular a bandeja.";
+  return `Automático: ${t} × ${moeda(preco)} = ${moeda(r2(preco * t))} − 5% = <b>${moeda(bandejaAuto(preco, t))}</b> no Pix · ${moeda(cartao(bandejaAuto(preco, t)))} no cartão`;
+}
+
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
   ev.preventDefault();
@@ -5239,11 +5299,12 @@ function ligarEventos() {
   $("#eSub").addEventListener("change", () => { atualizarSubNova(); atualizarBandeja(); if ($("#eSub").value === NOVA_SUB) $("#eSubNova").focus(); });
   $("#eSubNova").addEventListener("input", atualizarBandeja);
   ["#ePreco", "#eAntigo", "#eBandeja"].forEach(s => {
-    $(s).addEventListener("input", () => { $(s).removeAttribute("aria-invalid"); $("#ePrecoErro").hidden = true; atualizarPromo(); });
+    $(s).addEventListener("input", () => { $(s).removeAttribute("aria-invalid"); $("#ePrecoErro").hidden = true; atualizarPromo(); if (s === "#eBandeja") $("#eBandeja").dataset.manual = "1"; if (s === "#ePreco") atualizarPrecosEditor("preco"); });
     $(s).addEventListener("blur", () => { const v = lerPreco($(s).value); if (v != null && !Number.isNaN(v)) $(s).value = num2(v); });
   });
   $("#eNome").addEventListener("input", () => { $("#eNome").removeAttribute("aria-invalid"); $("#eNomeErro").hidden = true; });
   $("#eAtivo").addEventListener("change", atualizarAtivo);
+  $("#formEditor").addEventListener("click", e => { const b = e.target.closest('[data-ajuste="ePreco"]'); if (b) setTimeout(() => atualizarPrecosEditor("preco")); });
   $("#formEditor").addEventListener("click", e => {
     const b = e.target.closest("[data-ajuste]"); if (!b) return;
     const inp = document.getElementById(b.dataset.ajuste), v = lerPreco(inp.value);
@@ -5375,7 +5436,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610231050"; window.VERSAO_APP = VERSAO;
+  const VERSAO = "202610231102"; window.VERSAO_APP = VERSAO;
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
