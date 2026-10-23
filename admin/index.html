@@ -214,6 +214,9 @@ dialog::backdrop{background:rgba(15,30,20,.5)}
 .dlg{display:flex;flex-direction:column;height:100%;max-height:inherit}
 .dlg-topo{display:flex;align-items:center;gap:8px;padding:10px 12px 10px 18px;padding-top:max(10px,env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--line);flex:none}
 .dlg-topo h2{font-size:22px;color:var(--leaf-ink);margin-right:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dlg-topo{padding-left:10px}
+.btn-voltar{flex:none;min-height:44px;padding:6px 14px 6px 8px;gap:4px;border-radius:12px;font-size:15px;font-weight:700}
+.btn-voltar svg{width:22px;height:22px}
 .dlg-corpo{overflow-y:auto;padding:16px 18px 24px;flex:1;-webkit-overflow-scrolling:touch}
 .dlg-pe{flex:none;display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line)}
 .dlg-pe .btn-pri{flex:1}
@@ -772,7 +775,13 @@ html:has(dialog[open]){overflow:hidden}
 @media (min-width:1024px){ #dlgCarrossel{width:min(1040px,94vw);height:min(86vh,760px)} #dlgCarrossel .dlg{height:100%} }
 #dlgCarrossel .dlg{max-height:inherit}
 .car-corpo{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start}
-@media (max-width:760px){ .car-corpo{grid-template-columns:1fr} }
+@media (max-width:1023px){
+  .car-corpo{display:block}
+  .car-oferta{display:block;margin-bottom:22px}
+  .car-lista{max-height:none;overflow:visible;padding-right:0}
+  .car-atual{flex-wrap:wrap}
+  .car-atual .btn{margin-left:0;width:100%}
+}
 .car-corpo h3{font-family:var(--display);font-size:1.15rem;margin:0 0 4px;color:var(--leaf-ink)}
 .car-dica{margin:0 0 10px;color:var(--muted);font-size:.9rem}
 .car-oferta{display:flex;flex-direction:column;min-height:0}
@@ -1215,7 +1224,6 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
             </div>
             <p class="m-subtotal" id="mSubtotal" aria-live="polite"></p>
             <div class="m-qtd-acoes">
-              <button class="btn btn-sec" type="button" id="btnTrocarMuda">Voltar</button>
               <button class="btn btn-pri" type="submit" id="btnRegistrar">Adicionar ao pedido</button>
             </div>
           </div>
@@ -2871,7 +2879,7 @@ async function abrirHistorico() {
 /* ---------- CARROSSEL DA PÁGINA INICIAL ---------- */
 const SLIDES_CAR = [
   ["boasVindas", "Boas-vindas", "Bem-vindo à Defema, com foto"],
-  ["oferta", "Oferta destaque", "O produto escolhido aqui ao lado"],
+  ["oferta", "Oferta destaque", "O produto escolhido nesta tela"],
   ["mudas", "Mudas novas toda semana", "Ver mudas e Encomende já"],
   ["criacao", "Criação e campo", "Produtos veterinários e cercas"],
 ];
@@ -3298,7 +3306,16 @@ function ligarEventosAbas() {
     const ac = e.target.closest("[data-acao]"); if (!ac || !ui.logado) return;
     ({ novo: () => abrirEditor(null), mudas: abrirMudas, reajuste: abrirReajuste, historico: abrirHistorico, secoes: abrirDeps, carrossel: abrirCarrossel })[ac.dataset.acao]?.();
   });
-  window.addEventListener("popstate", () => { if (ui.logado) irPara(abaDoEndereco(), { historico: false }); });
+  window.addEventListener("popstate", () => {
+    if (dlgNav.ignorar > 0) { dlgNav.ignorar--; return; }
+    const d = dlgNav.pilha[dlgNav.pilha.length - 1];
+    if (d) { // voltar do celular com uma janela aberta: volta um passo ou fecha a janela
+      if (voltarDentroDe(d)) { history.pushState({ ...(history.state || {}), dlg: d.id }, "", location.href); return; }
+      dlgNav.pilha.pop(); d.close(); return;
+    }
+    if (ui.logado) irPara(abaDoEndereco(), { historico: false });
+  });
+  padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
     const b = e.target.closest("[data-chip-ini]"); if (!b) return;
@@ -3353,6 +3370,44 @@ function ligarEventosAbas() {
   $("#prLista").addEventListener("submit", e => { const f = e.target.closest("[data-pr-form]"); if (!f) return; e.preventDefault(); salvarPr(f); });
   $("#prLista").addEventListener("keydown", e => { if (e.key === "Escape" && e.target.closest("[data-pr-form]")) { e.preventDefault(); fecharPr(); } });
   $("#prLista").addEventListener("input", e => { if (e.target.matches(".inp")) e.target.removeAttribute("aria-invalid"); });
+}
+
+
+/* =====================================================================
+   VOLTAR PADRÃO: toda janela tem o mesmo botão "← Voltar" no canto de
+   cima, à esquerda. Dentro de uma etapa (ex.: quantidade de mudas) ele
+   volta para a etapa anterior; senão fecha a janela. O botão voltar do
+   celular faz a mesma coisa.
+   ===================================================================== */
+const ICO_VOLTAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+const dlgNav = { pilha: [], ignorar: 0 };
+function voltarDentroDe(d) { // true = voltou um passo e a janela continua aberta
+  if (d.id === "dlgMudas" && mudasUi.sel) { voltarEscolhaMuda(); return true; }
+  return false;
+}
+function padronizarVoltar() {
+  document.querySelectorAll("dialog .dlg-topo").forEach(topo => {
+    const b = topo.querySelector("[data-fechar]"); if (!b) return;
+    b.classList.remove("btn-ico"); b.classList.add("btn-voltar");
+    b.innerHTML = ICO_VOLTAR + "<span>Voltar</span>";
+    b.setAttribute("aria-label", "Voltar");
+    topo.prepend(b);
+    // dentro de uma etapa, volta só a etapa (roda antes do "fechar" normal)
+    b.addEventListener("click", e => { const d = b.closest("dialog"); if (voltarDentroDe(d)) e.stopImmediatePropagation(); }, true);
+  });
+  document.querySelectorAll("dialog").forEach(d => {
+    d.addEventListener("cancel", e => { if (voltarDentroDe(d)) e.preventDefault(); }); // tecla Esc
+    d.addEventListener("close", () => {
+      const i = dlgNav.pilha.indexOf(d); if (i < 0) return;
+      dlgNav.pilha.splice(i, 1);
+      if (history.state && history.state.dlg === d.id) { dlgNav.ignorar++; history.back(); }
+    });
+  });
+  const abrir = HTMLDialogElement.prototype.showModal;
+  HTMLDialogElement.prototype.showModal = function () {
+    abrir.call(this);
+    if (!dlgNav.pilha.includes(this)) { dlgNav.pilha.push(this); history.pushState({ ...(history.state || {}), dlg: this.id }, "", location.href); }
+  };
 }
 
 /* ---------- LOGIN ---------- */
@@ -3529,7 +3584,6 @@ function ligarEventos() {
   });
   $("#mPedido").addEventListener("click", e => { const b = e.target.closest("[data-tirar]"); if (b) { mudasUi.pedido.splice(+b.dataset.tirar, 1); gravarPedidoMudas(); renderMudas(); } });
   $("#mEscolha").addEventListener("click", e => { const b = e.target.closest("[data-muda]"); if (b) escolherMuda(b.dataset.muda); });
-  $("#btnTrocarMuda").addEventListener("click", voltarEscolhaMuda);
   $("#mQtd").addEventListener("input", () => { $("#mQtd").removeAttribute("aria-invalid"); atualizarSubtotalMuda(); });
   $("#mQtd").addEventListener("keydown", e => { if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); voltarEscolhaMuda(); } });
   const somarQtd = d => { const q = lerQtdMuda(); $("#mQtd").value = Math.max(1, Math.min(10000, (q >= 0 ? q : 0) + d)); $("#mQtd").removeAttribute("aria-invalid"); atualizarSubtotalMuda(); };
@@ -3602,7 +3656,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610230849";
+  const VERSAO = "202610230902";
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
