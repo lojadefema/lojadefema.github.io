@@ -1177,7 +1177,7 @@ html:has(dialog[open]){overflow:hidden}
 .mais-pedcli span{flex:1;text-align:left}
 .pc-n{min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:#d93025;color:#fff;font:700 13px/24px var(--body);text-align:center}
 .pc-n:empty{display:none}
-.ini-pedcli{margin-bottom:14px;border:2px solid var(--leaf-ink)}
+.ini-pedcli{border:1px solid var(--line)}
 .ini-pedcli h3{display:flex;align-items:center;gap:8px}
 .ini-pedcli h3 svg{width:22px;height:22px}
 .pc-mini{list-style:none;margin:0;padding:0;display:grid;gap:8px}
@@ -1237,6 +1237,7 @@ html:has(dialog[open]){overflow:hidden}
 .pc-tot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);flex-wrap:wrap}
 .pc-tot strong{font-size:26px;color:var(--leaf-ink);font-variant-numeric:tabular-nums;line-height:1}
 .pc-tot small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.pc-pix{font-style:normal;font-size:17px}
 .pc-pe{flex-wrap:wrap;align-items:center}
 .pc-pe .pc-progtxt{margin-right:auto;font-weight:700;font-size:15px}
 .pc-pe .btn{min-height:48px}
@@ -1252,6 +1253,23 @@ html:has(dialog[open]){overflow:hidden}
 @keyframes pcEntra{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
 @keyframes pcSino{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-5deg)}}
 @media (prefers-reduced-motion:reduce){.pc-aviso,.pc-aviso .sino{animation:none}}
+
+/* pedidos: itens em linhas, cartões crescem conforme o número de itens */
+.pc-lista{align-items:start}
+.pc-linhas{list-style:none;margin:4px 0 0;padding:0;border-top:1px solid var(--line)}
+.pc-linhas li{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.pc-linhas .q{flex:none;min-width:38px;font-weight:700;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.pc-linhas .nm{flex:1;min-width:0}
+.pc-linhas .nm small{color:var(--muted)}
+.pc-linhas .vl{flex:none;color:var(--muted);font-variant-numeric:tabular-nums;font-size:13.5px}
+.pc-linhas li.ok .nm{text-decoration:line-through;text-decoration-color:rgba(29,154,80,.7);color:var(--muted)}
+.pc-linhas li.ok .q{color:#1d9a50}
+.pc-rod{flex-wrap:wrap;gap:4px 16px !important;margin-top:10px !important}
+.pc-rod .tot{font-size:19px}
+.pc-rod .tot em{font-style:normal;font-size:15px;font-weight:700}
+.pc-rod small{font-size:14px;font-weight:400}
+.ini-pedcli{border-width:1px}
+.ini-pedcli .pc-mini{grid-template-columns:minmax(0,1fr) !important}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1413,24 +1431,11 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
       <div class="ini-clima" id="iniClima" aria-live="polite"><p class="ini-clima-msg">Carregando o tempo…</p></div>
     </div>
-    <section class="ini-card ini-pedcli" id="iniPedCli" hidden aria-labelledby="tIniPc">
-      <div class="ini-card-topo"><h3 id="tIniPc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg>Pedidos de clientes</h3><button type="button" class="link-btn" data-acao="pedcli">Abrir todos</button></div>
-      <ul class="pc-mini" id="iniPcLista"></ul>
-    </section>
     <section class="ini-card ini-chegando" id="iniChegando" hidden aria-labelledby="tIniCheg">
       <div class="ini-card-topo"><h3 id="tIniCheg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Pedidos a caminho</h3><button type="button" class="link-btn" data-acao="pedidos">Ver todos</button></div>
       <ul class="cheg-lista" id="iniChegLista"></ul>
     </section>
     <div class="ini-grade">
-      <section class="ini-card ini-cat" aria-labelledby="tIniCat">
-        <div class="ini-card-topo"><h3 id="tIniCat">Catálogo</h3><button type="button" class="link-btn" data-aba="produtos">Ver produtos</button></div>
-        <div class="ini-nums" id="iniNums"></div>
-      </section>
-      <section class="ini-card ini-estoque" aria-labelledby="tIniEst">
-        <div class="ini-card-topo"><h3 id="tIniEst">Estoque</h3><button type="button" class="link-btn" data-chip-ini-link="e-repor" data-aba="produtos">Ver produtos</button></div>
-        <div id="iniEstoque"><p class="ini-vazio">Carregando…</p></div>
-        <button type="button" class="btn btn-sec ini-pedir" data-acao="pedido-repor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Fazer pedido de reposição</button>
-      </section>
       <section class="ini-card" aria-labelledby="tIniAtalhos">
         <h3 id="tIniAtalhos">Atalhos</h3>
         <div class="ini-atalhos">
@@ -1443,6 +1448,19 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
           <button type="button" class="ini-at" data-acao="carrossel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="11" rx="2"/><path d="M2 8v5M22 8v5"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="12" cy="20" r="1" fill="currentColor"/><circle cx="15" cy="20" r="1" fill="currentColor"/></svg><span>Carrossel do site</span></button>
           <a class="ini-at" href="../" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg><span>Ver o site</span></a>
         </div>
+      </section>
+      <section class="ini-card ini-estoque" aria-labelledby="tIniEst">
+        <div class="ini-card-topo"><h3 id="tIniEst">Estoque</h3><button type="button" class="link-btn" data-chip-ini-link="e-repor" data-aba="produtos">Ver produtos</button></div>
+        <div id="iniEstoque"><p class="ini-vazio">Carregando…</p></div>
+        <button type="button" class="btn btn-sec ini-pedir" data-acao="pedido-repor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Fazer pedido de reposição</button>
+      </section>
+      <section class="ini-card ini-pedcli" id="iniPedCli" aria-labelledby="tIniPc">
+        <div class="ini-card-topo"><h3 id="tIniPc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg>Pedidos</h3><button type="button" class="link-btn" data-acao="pedcli">Abrir todos</button></div>
+        <ul class="pc-mini" id="iniPcLista"></ul>
+      </section>
+      <section class="ini-card ini-cat" aria-labelledby="tIniCat">
+        <div class="ini-card-topo"><h3 id="tIniCat">Catálogo</h3><button type="button" class="link-btn" data-aba="produtos">Ver produtos</button></div>
+        <div class="ini-nums" id="iniNums"></div>
       </section>
       <section class="ini-card" aria-labelledby="tIniMudas">
         <div class="ini-card-topo"><h3 id="tIniMudas">Mudas</h3><button type="button" class="link-btn" data-acao="mudas">Abrir</button></div>
@@ -1925,7 +1943,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <div class="dlg">
     <div class="dlg-topo"><h2 id="tMais">Mais opções</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="dlg-corpo mais-corpo">
-      <button type="button" class="mais-tile mais-pedcli" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg><span>Pedidos de clientes</span><b class="pc-n" data-pc-n></b></button>
+      <button type="button" class="mais-tile mais-pedcli" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg><span>Pedidos</span><b class="pc-n" data-pc-n></b></button>
       <div class="mais-grade mais-pri">
         <button type="button" class="mais-tile pri" data-acao="novo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Novo produto</span></button>
         <button type="button" class="mais-tile pri" data-acao="camera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Novo pela câmera</span></button>
@@ -2083,7 +2101,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
 </dialog>
 <dialog id="dlgPedCli" aria-labelledby="tPedCli">
   <div class="dlg">
-    <div class="dlg-topo"><h2 id="tPedCli">Pedidos de clientes</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="dlg-topo"><h2 id="tPedCli">Pedidos</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="pc-abas" id="pcAbas" role="group" aria-label="Situação"></div>
     <div class="dlg-corpo pc-corpo" id="pcCorpo"></div>
     <div class="dlg-pe pc-pe" id="pcPe" hidden></div>
@@ -5358,11 +5376,12 @@ function renderPcResumo() {
     bol.textContent = novos;
   });
   // cartão do Início
-  $("#iniPedCli").hidden = !ab.length;
+  $("#iniPedCli").hidden = false;
   const ordem = { novo: 0, separando: 1, pronto: 2 };
   $("#iniPcLista").innerHTML = ab.slice().sort((a, b) => ordem[a.status] - ordem[b.status] || String(a.criado_em).localeCompare(String(b.criado_em))).slice(0, 6)
     .map(p => `<li><button type="button" data-pc-abrir="${esc(p.id)}"><span class="pc-st ${p.status}">${PC_ST[p.status]}</span>
-      <span class="t"><b>Nº ${p.numero} · ${esc(p.cliente_nome || "Cliente")}</b><small>${p.itens.length} ite${p.itens.length === 1 ? "m" : "ns"} · ${moeda(Number(p.total_pix || 0))} · ${pcHora(p.criado_em)}</small></span></button></li>`).join("");
+      <span class="t"><b>Nº ${p.numero} · ${esc(p.cliente_nome || "Cliente")}</b><small>${p.itens.length} ite${p.itens.length === 1 ? "m" : "ns"} · ${moeda(Number(p.total_pix || 0))} no Pix · ${pcHora(p.criado_em)}</small></span></button></li>`).join("")
+    || `<li class="ini-vazio">${pcUi.erro ? esc(pcUi.erro) : "Nenhum pedido em aberto. Quando um cliente pedir pelo site, aparece aqui e toca um aviso."}</li>`;
   // aviso (pop-up) de pedido novo
   const naoVistos = ab.filter(p => p.status === "novo" && !pcUi.vistos.has(p.id));
   mostrarAvisoPedido(naoVistos);
@@ -5408,7 +5427,7 @@ function renderPedCli() {
   const p = pcUi.aberto && pcUi.lista.find(x => x.id === pcUi.aberto);
   if (p) { renderPedCliDet(p); return; }
   pcUi.aberto = null;
-  $("#tPedCli").textContent = "Pedidos de clientes";
+  $("#tPedCli").textContent = "Pedidos";
   $("#pcPe").hidden = true;
   if (pcUi.erro) { $("#pcCorpo").innerHTML = `<p class="vazio">${esc(pcUi.erro)}</p>`; return; }
   const ordem = { novo: 0, separando: 1, pronto: 2, retirado: 3, cancelado: 4 };
@@ -5419,8 +5438,8 @@ function renderPedCli() {
       return `<li><button type="button" class="pc-card ${x.status}" data-pc-abrir="${esc(x.id)}">
         <span class="pc-cab"><b>Nº ${x.numero}</b><span class="pc-st ${x.status}">${PC_ST[x.status]}</span><span class="hora">${pcHora(x.criado_em)}</span></span>
         <p class="pc-cli">${esc(x.cliente_nome || "Cliente sem nome")}${x.origem === "simulado" ? ' <small style="color:var(--muted);font-weight:500">· simulado</small>' : ""}</p>
-        <p class="pc-itens">${esc(x.itens.map(pcItemTxt).join(" · "))}</p>
-        <span class="pc-rod"><span class="tot">${moeda(Number(x.total_pix || 0))}</span><small>Pix · ${moeda(Number(x.total_cartao || 0))} cartão</small>
+        <ul class="pc-linhas">${x.itens.map(it => `<li class="${it.separado ? "ok" : ""}"><span class="q">${it.qtd % 1 ? String(it.qtd).replace(".", ",") : it.qtd}×</span><span class="nm">${esc(it.nome)}${it.op && it.op !== "Por muda" ? ` <small>(${esc(it.op)})</small>` : ""}</span><span class="vl">${it.preco != null ? moeda(r2(it.preco * it.qtd)) : "consultar"}</span></li>`).join("")}</ul>
+        <span class="pc-rod"><span class="tot">${moeda(Number(x.total_pix || 0))} <em>no Pix</em></span><small>${moeda(Number(x.total_cartao || 0))} no cartão</small>
           ${x.status === "separando" || x.status === "novo" ? `<span class="pc-prog" title="${sep} de ${tot} separados"><span style="width:${(sep / tot * 100).toFixed(0)}%"></span></span>` : ""}</span>
       </button></li>`; }).join("")}</ul>`
     : `<p class="vazio">${pcUi.aba === "fechados" ? "Nenhum pedido retirado nos últimos 15 dias." : "Nenhum pedido aqui. Quando um cliente fizer um pedido pelo site, ele aparece nesta tela e toca um aviso."}</p>`;
@@ -5440,8 +5459,8 @@ function renderPedCliDet(p) {
         <span class="q">${it.qtd % 1 ? String(it.qtd).replace(".", ",") : it.qtd}<small>${enc ? "bandeja" : tamBandeja(pr?.sub) ? (it.qtd > 1 ? "mudas" : "muda") : pr?.por_metro ? "metros" : "un."}</small></span>
         <span class="nm"><b>${esc(it.nome)}</b><small>${esc([it.marca, enc ? `${it.op} · ENCOMENDA` : "", pr && pr.estoque != null ? `estoque: ${qtdTxt(pr.estoque, pr)}` : ""].filter(Boolean).join(" · "))}</small></span>
         <span class="vl">${it.preco != null ? moeda(r2(it.preco * it.qtd)) : "consultar"}</span></button></li>`; }).join("")}</ul>
-    <div class="pc-tot"><div><strong>${moeda(Number(p.total_pix || 0))}</strong><small>no Pix/dinheiro${p.consultar ? " + itens a consultar" : ""}</small></div>
-      <div style="text-align:right"><b>${moeda(Number(p.total_cartao || 0))}</b><small>no cartão</small></div></div>`;
+    <div class="pc-tot"><div><strong>${moeda(Number(p.total_pix || 0))} <em class="pc-pix">no Pix</em></strong><small>Pix ou dinheiro${p.consultar ? " + itens a consultar" : ""}</small></div>
+      <div style="text-align:right;font-size:17px">${moeda(Number(p.total_cartao || 0))} no cartão</div></div>`;
   const pe = $("#pcPe"); pe.hidden = false;
   const avisar = p.cliente_tel ? `<a class="btn btn-sec" target="_blank" rel="noopener" href="https://wa.me/55${esc(p.cliente_tel.replace(/^55/, ""))}?text=${encodeURIComponent(`Olá${p.cliente_nome ? ", " + p.cliente_nome.split(" ")[0] : ""}! Seu pedido Nº ${p.numero} na Defema está separado e pronto para retirar. Total: ${moeda(Number(p.total_pix || 0))} no Pix/dinheiro ou ${moeda(Number(p.total_cartao || 0))} no cartão.`)}">Avisar no WhatsApp</a>` : "";
   pe.innerHTML = aberto ? `<span class="pc-progtxt">${sep} de ${tot} separados</span>
