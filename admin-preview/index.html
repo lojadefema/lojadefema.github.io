@@ -1170,6 +1170,88 @@ html:has(dialog[open]){overflow:hidden}
 .mc-total small{font-size:12.5px;color:var(--muted);font-weight:600}
 .f-preco em{display:block;font-style:normal;font-size:.48em;font-weight:600;color:#6b6357;text-align:right;margin-top:.5mm}
 .f-preco{text-align:right}
+
+/* ---------- pedidos de clientes ---------- */
+@media (min-width:760px){#dlgPedCli{width:min(980px,94vw);height:92vh}#dlgPedCli .dlg{height:100%}}
+.mais-pedcli{width:100%;flex-direction:row !important;min-height:58px !important;margin-bottom:10px;font-size:15px !important;justify-content:flex-start !important;padding:10px 16px !important;gap:12px !important;border-color:var(--leaf-ink) !important;background:var(--leaf-soft) !important;color:var(--leaf-ink) !important}
+.mais-pedcli span{flex:1;text-align:left}
+.pc-n{min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:#d93025;color:#fff;font:700 13px/24px var(--body);text-align:center}
+.pc-n:empty{display:none}
+.ini-pedcli{margin-bottom:14px;border:2px solid var(--leaf-ink)}
+.ini-pedcli h3{display:flex;align-items:center;gap:8px}
+.ini-pedcli h3 svg{width:22px;height:22px}
+.pc-mini{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+@media (min-width:1024px){.pc-mini{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pc-mini button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;text-align:left}
+.pc-mini button:hover{border-color:var(--leaf-ink)}
+.pc-mini .t{flex:1;min-width:0;line-height:1.3}
+.pc-mini .t b{display:block}
+.pc-mini .t small{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-st{display:inline-block;flex:none;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 8px}
+.pc-st.novo{background:#d93025;color:#fff}
+.pc-st.separando{background:#fff1c9;color:#7a5600}
+.pc-st.pronto{background:#d7f2df;color:#14572f}
+.pc-st.retirado{background:#e9e6df;color:#55504a}
+.pc-st.cancelado{background:#eee;color:#888;text-decoration:line-through}
+[data-theme="dark"] .pc-st.separando{background:#3a3120;color:#ffd77a}[data-theme="dark"] .pc-st.pronto{background:#173a24;color:#8fe0aa}[data-theme="dark"] .pc-st.retirado{background:#2a2f2a;color:#c9c3b8}
+.pc-abas{display:flex;gap:6px;padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--line);flex:none;overflow-x:auto;scrollbar-width:none}
+.pc-abas button{flex:none;display:flex;align-items:center;gap:6px;min-height:40px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font-weight:600;font-size:14px;cursor:pointer}
+.pc-abas button[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.pc-abas .n{font-size:12px;border-radius:999px;padding:0 7px;background:var(--soil-soft);color:var(--soil)}
+.pc-abas button[aria-pressed="true"] .n{background:rgba(255,255,255,.22);color:#fff}
+.pc-abas .n.alerta{background:#d93025;color:#fff}
+.pc-corpo{padding:12px !important}
+.pc-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1024px){.pc-lista{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pc-card{display:block;width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left}
+.pc-card:hover{border-color:var(--leaf-ink)}
+.pc-card.novo{border-color:#d93025;box-shadow:0 0 0 3px rgba(217,48,37,.08)}
+.pc-cab{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.pc-cab b{font-size:17px}
+.pc-cab .hora{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap}
+.pc-cli{font-weight:600;margin:0 0 4px}
+.pc-itens{margin:0;color:var(--muted);font-size:13.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-rod{display:flex;align-items:center;gap:10px;margin-top:8px;font-variant-numeric:tabular-nums}
+.pc-rod .tot{font-weight:700;color:var(--leaf-ink)}
+.pc-rod small{color:var(--muted)}
+.pc-prog{flex:1;height:6px;border-radius:999px;background:var(--line);overflow:hidden;max-width:140px;margin-left:auto}
+.pc-prog span{display:block;height:100%;background:#1d9a50}
+.pc-det-cab{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:10px}
+.pc-det-cab h3{font-size:22px;color:var(--leaf-ink);margin:0}
+.pc-det-info{color:var(--muted);font-size:14px;margin:0 0 4px}
+.pc-obs{margin:8px 0 12px;padding:10px 12px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);font-size:14px}
+.pc-check{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pc-check button{display:flex;align-items:center;gap:12px;width:100%;min-height:62px;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left}
+.pc-check .caixa{flex:none;width:30px;height:30px;border-radius:9px;border:2.5px solid var(--campo-line);display:grid;place-items:center;background:var(--campo)}
+.pc-check .q{flex:none;min-width:52px;text-align:center;font:700 20px/1 var(--display);color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.pc-check .q small{display:block;font:600 11px var(--body);color:var(--muted);margin-top:2px}
+.pc-check .nm{flex:1;min-width:0;line-height:1.3}
+.pc-check .nm b{display:block;font-weight:600}
+.pc-check .nm small{display:block;color:var(--muted);font-size:13px}
+.pc-check .vl{flex:none;text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
+.pc-check button[aria-pressed="true"]{border-color:#1d9a50;background:#eefaf1}
+[data-theme="dark"] .pc-check button[aria-pressed="true"]{background:#13281a}
+.pc-check button[aria-pressed="true"] .caixa{background:#1d9a50;border-color:#1d9a50}
+.pc-check button[aria-pressed="true"] .caixa::after{content:"";width:9px;height:15px;border:solid #fff;border-width:0 3.5px 3.5px 0;transform:rotate(45deg) translate(-1px,-2px)}
+.pc-check button[aria-pressed="true"] .nm b{text-decoration:line-through;text-decoration-color:rgba(29,154,80,.6)}
+.pc-tot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);flex-wrap:wrap}
+.pc-tot strong{font-size:26px;color:var(--leaf-ink);font-variant-numeric:tabular-nums;line-height:1}
+.pc-tot small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.pc-pe{flex-wrap:wrap;align-items:center}
+.pc-pe .pc-progtxt{margin-right:auto;font-weight:700;font-size:15px}
+.pc-pe .btn{min-height:48px}
+.pc-pe .btn-perigo{order:-1}
+.pc-aviso{position:fixed;z-index:120;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));width:min(380px,calc(100vw - 32px));background:var(--surface);color:var(--fg);border:2px solid #d93025;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.28);padding:14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:center;animation:pcEntra .25s ease-out}
+@media (min-width:760px){.pc-aviso{bottom:24px;right:24px}}
+.pc-aviso .sino{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:#d93025;color:#fff;display:grid;place-items:center;animation:pcSino 1.2s ease-in-out 3}
+.pc-aviso .sino svg{width:24px;height:24px}
+.pc-aviso b{font-size:16px}
+.pc-aviso small{grid-column:2;color:var(--muted);font-size:13.5px;line-height:1.3}
+.pc-aviso .x{grid-row:1;grid-column:3;width:34px;height:34px;border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px;border-radius:8px}
+.pc-aviso .abrir{grid-column:1/-1;margin-top:8px;min-height:46px}
+@keyframes pcEntra{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pcSino{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-5deg)}}
+@media (prefers-reduced-motion:reduce){.pc-aviso,.pc-aviso .sino{animation:none}}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1284,6 +1366,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <button type="button" data-aba="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Início</button>
       <button type="button" data-aba="produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Produtos</button>
       <button type="button" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg>Alterar preço</button>
+      <button type="button" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg>Pedidos</button>
       <button type="button" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
       <button type="button" class="aba-extra" data-acao="pedido" title="Pedir produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Pedir produtos</button>
       <button type="button" class="aba-extra" data-acao="calculadora" title="Calculadora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-width="2.6"/></svg>Calculadora</button>
@@ -1330,6 +1413,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </div>
       <div class="ini-clima" id="iniClima" aria-live="polite"><p class="ini-clima-msg">Carregando o tempo…</p></div>
     </div>
+    <section class="ini-card ini-pedcli" id="iniPedCli" hidden aria-labelledby="tIniPc">
+      <div class="ini-card-topo"><h3 id="tIniPc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg>Pedidos de clientes</h3><button type="button" class="link-btn" data-acao="pedcli">Abrir todos</button></div>
+      <ul class="pc-mini" id="iniPcLista"></ul>
+    </section>
     <section class="ini-card ini-chegando" id="iniChegando" hidden aria-labelledby="tIniCheg">
       <div class="ini-card-topo"><h3 id="tIniCheg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Pedidos a caminho</h3><button type="button" class="link-btn" data-acao="pedidos">Ver todos</button></div>
       <ul class="cheg-lista" id="iniChegLista"></ul>
@@ -1838,6 +1925,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
   <div class="dlg">
     <div class="dlg-topo"><h2 id="tMais">Mais opções</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="dlg-corpo mais-corpo">
+      <button type="button" class="mais-tile mais-pedcli" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg><span>Pedidos de clientes</span><b class="pc-n" data-pc-n></b></button>
       <div class="mais-grade mais-pri">
         <button type="button" class="mais-tile pri" data-acao="novo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Novo produto</span></button>
         <button type="button" class="mais-tile pri" data-acao="camera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Novo pela câmera</span></button>
@@ -1993,6 +2081,15 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     </div>
   </div>
 </dialog>
+<dialog id="dlgPedCli" aria-labelledby="tPedCli">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tPedCli">Pedidos de clientes</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="pc-abas" id="pcAbas" role="group" aria-label="Situação"></div>
+    <div class="dlg-corpo pc-corpo" id="pcCorpo"></div>
+    <div class="dlg-pe pc-pe" id="pcPe" hidden></div>
+  </div>
+</dialog>
+<div class="pc-aviso" id="pcAviso" role="status" aria-live="polite" hidden></div>
 <div id="impressao" aria-hidden="true"></div>
 <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
@@ -2250,6 +2347,26 @@ function criarApiDemo() {
       persistir();
       return alteracoes.length;
     },
+    async listarPedidosClientes() {
+      let l = lerJSON("defema-demo-pedcli");
+      if (!l) { // exemplos para a demonstração
+        const ps = estado.produtos.filter(p => p.preco != null), pk = i => ps[i % ps.length], ag = Date.now();
+        const it = (p, qtd, sep) => ({ produto_id: p.id, nome: p.nome, marca: p.marca || null, op: tamBandeja(p.sub) ? "Por muda" : null, qtd, preco: p.preco, separado: !!sep });
+        const mk = (numero, nome, itens, status, min, obs) => ({ id: novoId(), numero, cliente_nome: nome, cliente_tel: null, itens, status, obs: obs || null, origem: "simulado",
+          total_pix: r2(itens.reduce((t, x) => t + x.preco * x.qtd, 0)), total_cartao: r2(itens.reduce((t, x) => t + x.preco * x.qtd, 0) * 1.1), consultar: false,
+          criado_em: new Date(ag - min * 60000).toISOString(), atualizado_em: new Date(ag - min * 60000).toISOString() });
+        l = [mk(101, "João (teste)", [it(pk(3), 2, 1), it(pk(9), 1, 1)], "pronto", 120, "Busco depois do almoço"), mk(102, "Maria (teste)", [it(pk(5), 1, 1), it(pk(12), 3), it(pk(20), 1)], "separando", 50),
+             mk(103, "Sítio Boa Vista (teste)", [it(pk(30), 2), it(pk(41), 1)], "novo", 12), mk(104, "Antônio (teste)", [it(pk(7), 1), it(pk(15), 2)], "novo", 2)];
+        gravarJSON("defema-demo-pedcli", l);
+      }
+      return l.slice().sort((a, b) => String(b.criado_em).localeCompare(String(a.criado_em)));
+    },
+    async salvarPedidoCliente(id, campos) {
+      await espera(150);
+      const l = lerJSON("defema-demo-pedcli") || [], x = l.find(y => y.id === id);
+      if (!x) throw new Error("Pedido não encontrado.");
+      Object.assign(x, campos, { atualizado_em: new Date().toISOString() }); gravarJSON("defema-demo-pedcli", l); return x;
+    },
     async listarPedidosCompra() { return (lerJSON("defema-demo-pedidos") || []).slice().sort((a, b) => String(b.criado_em).localeCompare(String(a.criado_em))); },
     async salvarPedidoCompra(dados, id) {
       await espera(150);
@@ -2459,6 +2576,19 @@ function criarApiSupabase(url, chave) {
       const { error } = await sb.from("produtos").delete().eq("id", id);
       falhou(error, "Não foi possível excluir.");
       if (doStorage(fotoPath)) sb.storage.from(BUCKET).remove([fotoPath.replace(/^produtos\//, "")]).catch(() => {});
+    },
+    async listarPedidosClientes() {
+      const desde = new Date(Date.now() - 15 * 864e5).toISOString();
+      const { data, error } = await sb.from("pedidos_clientes").select("*").or(`status.in.(novo,separando,pronto),atualizado_em.gte.${desde}`).order("criado_em", { ascending: false }).limit(300);
+      if (error && (error.code === "42P01" || error.code === "PGRST205")) throw new Error("Os pedidos de clientes ainda não foram ativados no banco.");
+      falhou(error, "Não foi possível carregar os pedidos de clientes.");
+      return data;
+    },
+    async salvarPedidoCliente(id, campos) {
+      const { data, error } = await sb.from("pedidos_clientes").update({ ...campos, atualizado_em: new Date().toISOString() }).eq("id", id).select("*");
+      falhou(error, "Não foi possível salvar o pedido.");
+      if (!data || !data.length) throw new Error(NAO_GRAVOU);
+      return data[0];
     },
     async listarPedidosCompra() {
       const { data, error } = await sb.from("pedidos_compra").select("*").order("criado_em", { ascending: false }).limit(300);
@@ -4052,6 +4182,7 @@ function ligarEventosAbas() {
   ligarEventosEstoque();
   ligarEventosPedido();
   ligarEventosChegada();
+  ligarEventosPedCli();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -4135,6 +4266,7 @@ function voltarDentroDe(d) { // true = voltou um passo e a janela continua abert
   if (d.id === "dlgMudas" && mudasUi.sel) { voltarEscolhaMuda(); return true; }
   if (d.id === "dlgPlanilha" && !$("#plPrevia").hidden) { voltarPlanilha(); return true; }
   if (d.id === "dlgPedido" && pdUi.etapa === 2) { pdUi.etapa = 1; renderPedido(); return true; }
+  if (d.id === "dlgPedCli" && pcUi.aberto) { pcUi.aberto = null; renderPedCli(); return true; }
   return false;
 }
 function padronizarVoltar() {
@@ -4552,6 +4684,7 @@ function ligarEventosMais() {
     mais: abrirMais,
     pedido: daMais(() => abrirPedido()),
     pedidos: daMais(abrirPedidosFeitos),
+    pedcli: daMais(() => abrirPedCli(null)),
     "pedido-repor": daMais(() => abrirPedido("repor")),
     camera: daMais(novoPelaCamera),
     calculadora: daMais(abrirCalculadora),
@@ -5189,6 +5322,192 @@ function dicaBandejaAuto(preco, t) {
   return `Automático: ${t} × ${moeda(preco)} = ${moeda(r2(preco * t))} − 5% = <b>${moeda(bandejaAuto(preco, t))}</b> no Pix · ${moeda(cartao(bandejaAuto(preco, t)))} no cartão`;
 }
 
+
+/* =====================================================================
+   PEDIDOS DE CLIENTES (feitos pelo site e, no futuro, pelo bot do WhatsApp)
+   novo → separando → pronto (para retirada) → retirado | cancelado
+   ===================================================================== */
+const pcUi = { lista: [], erro: "", em: 0, aba: "abertos", aberto: null, vistos: new Set(lerJSON("defema-pc-vistos") || []) };
+const PC_ST = { novo: "Novo", separando: "Separando", pronto: "Pronto p/ retirar", retirado: "Retirado", cancelado: "Cancelado" };
+const pcAbertos = () => pcUi.lista.filter(p => p.status === "novo" || p.status === "separando" || p.status === "pronto");
+const pcItemTxt = it => `${it.qtd % 1 ? String(it.qtd).replace(".", ",") : it.qtd}× ${it.nome}${it.op && it.op !== "Por muda" ? ` (${it.op})` : ""}`;
+const pcSep = p => p.itens.filter(i => i.separado).length;
+function pcHora(iso) {
+  const min = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return "agora"; if (min < 60) return `há ${min} min`;
+  const d = new Date(iso), hoje = new Date();
+  return d.toDateString() === hoje.toDateString() ? "hoje " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) : dataBR(iso);
+}
+async function carregarPedidosClientes(forcar) {
+  if (!ui.logado) return;
+  if (!forcar && Date.now() - pcUi.em < 25000) return;
+  pcUi.em = Date.now();
+  try { pcUi.lista = await api.listarPedidosClientes(); pcUi.erro = ""; }
+  catch (e) { pcUi.erro = e.message; }
+  renderPcResumo();
+  if ($("#dlgPedCli").open) renderPedCli();
+}
+function renderPcResumo() {
+  const ab = pcAbertos(), novos = ab.filter(p => p.status === "novo").length;
+  // contadores (Mais, menu de cima)
+  document.querySelectorAll("[data-pc-n]").forEach(e => e.textContent = novos || "");
+  document.querySelectorAll('#abasTopo [data-acao="pedcli"]').forEach(b => {
+    let bol = b.querySelector(".aviso-n");
+    if (!novos) { bol?.remove(); return; }
+    if (!bol) { bol = document.createElement("span"); bol.className = "aviso-n"; b.appendChild(bol); }
+    bol.textContent = novos;
+  });
+  // cartão do Início
+  $("#iniPedCli").hidden = !ab.length;
+  const ordem = { novo: 0, separando: 1, pronto: 2 };
+  $("#iniPcLista").innerHTML = ab.slice().sort((a, b) => ordem[a.status] - ordem[b.status] || String(a.criado_em).localeCompare(String(b.criado_em))).slice(0, 6)
+    .map(p => `<li><button type="button" data-pc-abrir="${esc(p.id)}"><span class="pc-st ${p.status}">${PC_ST[p.status]}</span>
+      <span class="t"><b>Nº ${p.numero} · ${esc(p.cliente_nome || "Cliente")}</b><small>${p.itens.length} ite${p.itens.length === 1 ? "m" : "ns"} · ${moeda(Number(p.total_pix || 0))} · ${pcHora(p.criado_em)}</small></span></button></li>`).join("");
+  // aviso (pop-up) de pedido novo
+  const naoVistos = ab.filter(p => p.status === "novo" && !pcUi.vistos.has(p.id));
+  mostrarAvisoPedido(naoVistos);
+}
+function mostrarAvisoPedido(lista) {
+  const box = $("#pcAviso");
+  if (!lista.length || $("#dlgPedCli").open) { box.hidden = true; return; }
+  const p = lista[0], mais = lista.length - 1;
+  const jaVisivel = !box.hidden && box.dataset.id === p.id;
+  box.dataset.id = p.id;
+  box.innerHTML = `<span class="sino">${ICO_SINO_PC}</span><b>${lista.length > 1 ? `${lista.length} pedidos novos` : `Pedido novo · Nº ${p.numero}`}</b>
+    <button type="button" class="x" data-pc-fechar-aviso aria-label="Fechar aviso">✕</button>
+    <small>${esc(p.cliente_nome || "Cliente")} · ${p.itens.length} ite${p.itens.length === 1 ? "m" : "ns"} · ${moeda(Number(p.total_pix || 0))} · ${pcHora(p.criado_em)}${mais ? ` · e mais ${mais}` : ""}</small>
+    <button type="button" class="btn btn-pri abrir" data-pc-abrir="${lista.length > 1 ? "" : esc(p.id)}">Abrir ${lista.length > 1 ? "pedidos" : "pedido"}</button>`;
+  box.hidden = false;
+  if (!jaVisivel) tocarAviso();
+}
+function tocarAviso() { // "plim" curtinho (ignora se o navegador não deixar)
+  try {
+    const A = window.AudioContext || window.webkitAudioContext; if (!A) return;
+    const c = tocarAviso.ctx ||= new A(), t = c.currentTime;
+    [880, 1320].forEach((f, i) => { const o = c.createOscillator(), g = c.createGain(); o.frequency.value = f; o.connect(g); g.connect(c.destination);
+      g.gain.setValueAtTime(0.0001, t + i * .18); g.gain.exponentialRampToValueAtTime(0.25, t + i * .18 + .02); g.gain.exponentialRampToValueAtTime(0.0001, t + i * .18 + .35);
+      o.start(t + i * .18); o.stop(t + i * .18 + .4); });
+  } catch {}
+}
+function marcarVistos(ids) { ids.forEach(id => pcUi.vistos.add(id)); gravarJSON("defema-pc-vistos", [...pcUi.vistos].slice(-300)); }
+function abrirPedCli(id) {
+  marcarVistos(pcAbertos().filter(p => p.status === "novo").map(p => p.id));
+  $("#pcAviso").hidden = true;
+  pcUi.aberto = id || null;
+  if (id) { const p = pcUi.lista.find(x => x.id === id); if (p) pcUi.aba = p.status === "retirado" || p.status === "cancelado" ? "fechados" : "abertos"; }
+  renderPedCli();
+  if (!$("#dlgPedCli").open) $("#dlgPedCli").showModal();
+  carregarPedidosClientes(true);
+}
+function renderPedCli() {
+  const abertos = pcAbertos(), fech = pcUi.lista.filter(p => p.status === "retirado" || p.status === "cancelado");
+  const cont = st => pcUi.lista.filter(p => p.status === st).length;
+  const abas = [["abertos", "Em aberto", abertos.length, cont("novo")], ["novo", "Novos", cont("novo"), cont("novo")], ["separando", "Separando", cont("separando")], ["pronto", "Prontos", cont("pronto")], ["fechados", "Retirados", fech.length]];
+  $("#pcAbas").innerHTML = abas.map(([k, r, n, al]) => `<button type="button" data-pc-aba="${k}" aria-pressed="${pcUi.aba === k}">${r}<span class="n${al ? " alerta" : ""}">${n}</span></button>`).join("");
+  $("#pcAbas").hidden = !!pcUi.aberto;
+  const p = pcUi.aberto && pcUi.lista.find(x => x.id === pcUi.aberto);
+  if (p) { renderPedCliDet(p); return; }
+  pcUi.aberto = null;
+  $("#tPedCli").textContent = "Pedidos de clientes";
+  $("#pcPe").hidden = true;
+  if (pcUi.erro) { $("#pcCorpo").innerHTML = `<p class="vazio">${esc(pcUi.erro)}</p>`; return; }
+  const ordem = { novo: 0, separando: 1, pronto: 2, retirado: 3, cancelado: 4 };
+  const lista = (pcUi.aba === "abertos" ? abertos : pcUi.aba === "fechados" ? fech : pcUi.lista.filter(x => x.status === pcUi.aba))
+    .slice().sort((a, b) => pcUi.aba === "fechados" ? String(b.atualizado_em).localeCompare(String(a.atualizado_em)) : ordem[a.status] - ordem[b.status] || String(a.criado_em).localeCompare(String(b.criado_em)));
+  $("#pcCorpo").innerHTML = lista.length ? `<ul class="pc-lista">${lista.map(x => {
+      const sep = pcSep(x), tot = x.itens.length;
+      return `<li><button type="button" class="pc-card ${x.status}" data-pc-abrir="${esc(x.id)}">
+        <span class="pc-cab"><b>Nº ${x.numero}</b><span class="pc-st ${x.status}">${PC_ST[x.status]}</span><span class="hora">${pcHora(x.criado_em)}</span></span>
+        <p class="pc-cli">${esc(x.cliente_nome || "Cliente sem nome")}${x.origem === "simulado" ? ' <small style="color:var(--muted);font-weight:500">· simulado</small>' : ""}</p>
+        <p class="pc-itens">${esc(x.itens.map(pcItemTxt).join(" · "))}</p>
+        <span class="pc-rod"><span class="tot">${moeda(Number(x.total_pix || 0))}</span><small>Pix · ${moeda(Number(x.total_cartao || 0))} cartão</small>
+          ${x.status === "separando" || x.status === "novo" ? `<span class="pc-prog" title="${sep} de ${tot} separados"><span style="width:${(sep / tot * 100).toFixed(0)}%"></span></span>` : ""}</span>
+      </button></li>`; }).join("")}</ul>`
+    : `<p class="vazio">${pcUi.aba === "fechados" ? "Nenhum pedido retirado nos últimos 15 dias." : "Nenhum pedido aqui. Quando um cliente fizer um pedido pelo site, ele aparece nesta tela e toca um aviso."}</p>`;
+}
+function renderPedCliDet(p) {
+  $("#tPedCli").textContent = `Pedido Nº ${p.numero}`;
+  const sep = pcSep(p), tot = p.itens.length, aberto = p.status === "novo" || p.status === "separando";
+  $("#pcCorpo").innerHTML = `<div class="pc-det-cab"><h3>${esc(p.cliente_nome || "Cliente sem nome")}</h3><span class="pc-st ${p.status}">${PC_ST[p.status]}</span></div>
+    <p class="pc-det-info">Pedido feito ${pcHora(p.criado_em)}${p.origem === "simulado" ? " · simulado" : p.origem === "site" ? " pelo site" : ""}${p.cliente_tel ? ` · WhatsApp ${esc(p.cliente_tel)}` : ""}${p.pronto_em ? ` · pronto ${pcHora(p.pronto_em)}` : ""}</p>
+    ${p.obs ? `<p class="pc-obs"><b>Recado do cliente:</b> ${esc(p.obs)}</p>` : ""}
+    <p class="dica" style="margin:10px 0 8px">${aberto ? "Toque em cada item quando ele estiver separado." : p.status === "pronto" ? "Tudo separado. Aguardando o cliente retirar." : ""}</p>
+    <ul class="pc-check">${p.itens.map((it, i) => {
+      const pr = ui.produtos.find(x => String(x.id) === String(it.produto_id));
+      const enc = it.op && /^Bandeja fechada/.test(it.op);
+      return `<li><button type="button" data-pc-item="${i}" aria-pressed="${!!it.separado}" ${aberto ? "" : "disabled"}>
+        <span class="caixa" aria-hidden="true"></span>
+        <span class="q">${it.qtd % 1 ? String(it.qtd).replace(".", ",") : it.qtd}<small>${enc ? "bandeja" : tamBandeja(pr?.sub) ? (it.qtd > 1 ? "mudas" : "muda") : pr?.por_metro ? "metros" : "un."}</small></span>
+        <span class="nm"><b>${esc(it.nome)}</b><small>${esc([it.marca, enc ? `${it.op} · ENCOMENDA` : "", pr && pr.estoque != null ? `estoque: ${qtdTxt(pr.estoque, pr)}` : ""].filter(Boolean).join(" · "))}</small></span>
+        <span class="vl">${it.preco != null ? moeda(r2(it.preco * it.qtd)) : "consultar"}</span></button></li>`; }).join("")}</ul>
+    <div class="pc-tot"><div><strong>${moeda(Number(p.total_pix || 0))}</strong><small>no Pix/dinheiro${p.consultar ? " + itens a consultar" : ""}</small></div>
+      <div style="text-align:right"><b>${moeda(Number(p.total_cartao || 0))}</b><small>no cartão</small></div></div>`;
+  const pe = $("#pcPe"); pe.hidden = false;
+  const avisar = p.cliente_tel ? `<a class="btn btn-sec" target="_blank" rel="noopener" href="https://wa.me/55${esc(p.cliente_tel.replace(/^55/, ""))}?text=${encodeURIComponent(`Olá${p.cliente_nome ? ", " + p.cliente_nome.split(" ")[0] : ""}! Seu pedido Nº ${p.numero} na Defema está separado e pronto para retirar. Total: ${moeda(Number(p.total_pix || 0))} no Pix/dinheiro ou ${moeda(Number(p.total_cartao || 0))} no cartão.`)}">Avisar no WhatsApp</a>` : "";
+  pe.innerHTML = aberto ? `<span class="pc-progtxt">${sep} de ${tot} separados</span>
+      <button type="button" class="btn btn-perigo" data-pc-acao="cancelado">Cancelar pedido</button>
+      ${p.status === "novo" ? '<button type="button" class="btn btn-sec" data-pc-acao="separando">Começar a separar</button>' : ""}
+      <button type="button" class="btn btn-pri" data-pc-acao="pronto">Pronto para retirada</button>`
+    : p.status === "pronto" ? `<span class="pc-progtxt">Pronto para retirar</span>
+      <button type="button" class="btn btn-sec" data-pc-acao="separando">Voltar a separar</button>${avisar}
+      <button type="button" class="btn btn-pri" data-pc-acao="retirado">Cliente retirou</button>`
+    : `<span class="pc-progtxt">${p.status === "retirado" ? `Retirado ${pcHora(p.retirado_em || p.atualizado_em)}` : "Pedido cancelado"}</span>
+      ${p.status === "cancelado" ? '<button type="button" class="btn btn-sec" data-pc-acao="novo">Reabrir pedido</button>' : ""}`;
+}
+async function salvarPc(p, campos, msg) {
+  const r = await comFeedback("Salvando…", msg, () => api.salvarPedidoCliente(p.id, campos));
+  Object.assign(p, r); renderPedCli(); renderPcResumo();
+}
+async function alternarItemPc(i) {
+  const p = pcUi.lista.find(x => x.id === pcUi.aberto); if (!p) return;
+  const itens = p.itens.map((it, k) => k === i ? { ...it, separado: !it.separado } : it);
+  const campos = { itens }; if (p.status === "novo") campos.status = "separando";
+  Object.assign(p, campos); renderPedCli(); // na tela na hora; grava em seguida
+  try { Object.assign(p, await api.salvarPedidoCliente(p.id, campos)); renderPcResumo(); }
+  catch (e) { toast(e.message || "Não foi possível salvar.", "erro"); carregarPedidosClientes(true); }
+}
+async function acaoPc(acao) {
+  const p = pcUi.lista.find(x => x.id === pcUi.aberto); if (!p) return;
+  try {
+    if (acao === "pronto") {
+      const falta = p.itens.length - pcSep(p);
+      if (falta && !confirm(`Faltam ${falta} ite${falta > 1 ? "ns" : "m"} sem marcar como separado. Marcar o pedido como pronto mesmo assim?`)) return;
+      await salvarPc(p, { status: "pronto", pronto_em: new Date().toISOString() }, `Pedido Nº ${p.numero} pronto para retirada ✓`);
+    } else if (acao === "retirado") {
+      if (!confirm(`Confirmar que o cliente retirou o pedido Nº ${p.numero}?\n\nOs produtos com controle de estoque são descontados e as mudas entram na contagem das bandejas.`)) return;
+      await comFeedback("Registrando retirada…", `Pedido Nº ${p.numero} retirado ✓`, async () => {
+        const mudas = [];
+        for (const it of p.itens) {
+          const pr = ui.produtos.find(x => String(x.id) === String(it.produto_id)); if (!pr) continue;
+          const enc = it.op && /^Bandeja fechada/.test(it.op);
+          if (tamBandeja(pr.sub) && !enc) { mudas.push({ produto_id: pr.id, mudas: it.qtd, valor: it.preco != null ? r2(it.preco * it.qtd) : null }); continue; }
+          if (!enc && pr.estoque != null) { const novo = Math.max(0, Math.round((pr.estoque - it.qtd) * 1000) / 1000); await api.salvarEstoque(pr.id, novo, pr.estoque_min ?? null); pr.estoque = novo; }
+        }
+        if (mudas.length && p.origem !== "simulado") await api.salvarPedidoMudas(mudas);
+        Object.assign(p, await api.salvarPedidoCliente(p.id, { status: "retirado", retirado_em: new Date().toISOString() }));
+      });
+      renderPedCli(); renderPcResumo(); renderLista();
+    } else if (acao === "cancelado") {
+      if (!confirm(`Cancelar o pedido Nº ${p.numero}?`)) return;
+      await salvarPc(p, { status: "cancelado" }, "Pedido cancelado");
+    } else await salvarPc(p, { status: acao, ...(acao === "separando" ? { pronto_em: null } : {}) }, acao === "separando" ? "Separação iniciada" : "Pedido reaberto");
+  } catch {}
+}
+function ligarEventosPedCli() {
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-pc-abrir]"); if (b && ui.logado) { e.preventDefault(); abrirPedCli(b.dataset.pcAbrir || null); return; }
+    if (e.target.closest("[data-pc-fechar-aviso]")) { marcarVistos(pcAbertos().filter(p => p.status === "novo").map(p => p.id)); $("#pcAviso").hidden = true; }
+  });
+  $("#pcAbas").addEventListener("click", e => { const b = e.target.closest("[data-pc-aba]"); if (b) { pcUi.aba = b.dataset.pcAba; renderPedCli(); } });
+  $("#pcCorpo").addEventListener("click", e => { const b = e.target.closest("[data-pc-item]"); if (b && !b.disabled) alternarItemPc(+b.dataset.pcItem); });
+  $("#pcPe").addEventListener("click", e => { const b = e.target.closest("[data-pc-acao]"); if (b) acaoPc(b.dataset.pcAcao); });
+  $("#dlgPedCli").addEventListener("close", () => { pcUi.aberto = null; renderPcResumo(); });
+  // procura pedido novo a cada 30 s (e quando o app volta para a tela)
+  setInterval(() => { if (!document.hidden) carregarPedidosClientes(true); }, 30000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) carregarPedidosClientes(true); });
+}
+const ICO_SINO_PC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>';
+
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
   ev.preventDefault();
@@ -5213,6 +5532,7 @@ async function posLogin(sessao) {
   try { await recarregar(); } catch (e) { toast(e.message || "Erro ao carregar.", "erro"); }
   if (ui.aba === "inicio") carregarExtrasInicio(true);
   if (ui.aba === "precos") carregarHistPrecos(true);
+  carregarPedidosClientes(true);
 }
 
 /* ---------- EVENTOS ---------- */
@@ -5436,7 +5756,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610231417"; window.VERSAO_APP = VERSAO;
+  const VERSAO = "202610251853"; window.VERSAO_APP = VERSAO;
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
