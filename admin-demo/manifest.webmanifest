@@ -1,0 +1,17 @@
+{
+  "name": "Painel Defema (demonstração)",
+  "short_name": "Defema demo",
+  "description": "Painel da loja Defema: produtos, preços, mudas do balcão e carrossel do site.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fdfcf8",
+  "theme_color": "#163a22",
+  "icons": [
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
