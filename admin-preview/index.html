@@ -1273,51 +1273,122 @@ html:has(dialog[open]){overflow:hidden}
 
 /* ---------- notas fiscais ---------- */
 @media (min-width:760px){#dlgNF{width:min(1000px,94vw);height:92vh}#dlgNF .dlg{height:100%}}
-.nf-corpo{padding:12px !important}
-.nf-aviso{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);font-size:13.5px;line-height:1.4}
-.nf-tit{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 2px 8px}
-.nf-tit h3{font-size:18px;color:var(--leaf-ink);margin:0}
-.nf-tit .link-btn{padding:0}
-.nf-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.nf-item{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
-.nf-item.sel{border-color:var(--leaf-ink);background:var(--leaf-soft)}
-.nf-linha{display:flex;align-items:center;gap:12px;padding:10px 12px}
-.nf-chk{flex:none;width:28px;height:28px;accent-color:var(--leaf);cursor:pointer}
-.nf-txt{flex:1;min-width:0;line-height:1.3}
-.nf-txt b{display:block;font-weight:600}
-.nf-txt small{display:block;color:var(--muted);font-size:13px}
-.nf-qtd{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-.nf-qtd label{font-size:11.5px;font-weight:700;color:var(--muted)}
-.nf-qtd .pd-passo input{width:64px}
-.nf-qtd .tudo{border:0;background:none;color:var(--leaf-ink);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
-.nf-vendas{list-style:none;margin:0;padding:6px 12px 10px 52px;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:13px}
-.nf-vendas li{display:flex;align-items:center;gap:8px;color:var(--muted)}
-.nf-vendas li span{flex:1;min-width:0}
-.nf-vendas button{border:0;background:none;color:var(--erro);font-weight:600;font-size:12.5px;cursor:pointer;padding:2px 4px}
-.nf-ver{border:0;background:none;color:var(--muted);font-size:12.5px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
-.nf-pe{flex-wrap:wrap;align-items:flex-end}
-.nf-res{margin-right:auto;display:flex;flex-direction:column;line-height:1.2;min-width:0}
-.nf-res b{font-size:16px}
-.nf-res small{color:var(--muted);font-size:13px}
-.nf-num{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
-.nf-num .inp{width:130px;min-height:46px}
-.nf-nota{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:12px 14px}
-.nf-nota.rev{opacity:.6}
-.nf-nota-cab{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
-.nf-nota-cab b{font-size:16px}
-.nf-nota-cab .hora{margin-left:auto;color:var(--muted);font-size:13px}
-.nf-nota .pc-linhas{margin-bottom:8px}
-.nf-nota-pe{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.nf-nota-pe .tot{font-weight:700;color:var(--leaf-ink);margin-right:auto}
-.nf-nota-pe .btn{min-height:40px;padding:6px 12px;font-size:14px}
-.nf-st{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 8px;background:#d7f2df;color:#14572f}
-.nf-st.rev{background:#eee;color:#777}
-.nf-lancar{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:8px;align-items:end;padding:12px;border:1.5px dashed var(--line);border-radius:14px;margin-bottom:12px}
-@media (max-width:520px){.nf-lancar{grid-template-columns:1fr 1fr}.nf-lancar .nf-l-prod{grid-column:1/-1}}
-.nf-lancar label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
-.nf-lancar .inp{min-height:46px}
-.nf-lancar .check-mini{grid-column:1/-1;font-weight:500;color:var(--fg)}
-.nf-mudas .nf-item{display:flex;align-items:center;gap:12px;padding:10px 12px}
+#dlgNF .pc-abas{padding:10px 16px}
+.nf-corpo{padding:16px !important;background:var(--bg)}
+.nf-grade{display:grid;gap:20px;align-items:start}
+.nf-lado{display:grid;gap:14px}
+@media (min-width:900px){
+  .nf-corpo{padding:20px 22px 28px !important}
+  .nf-grade{grid-template-columns:minmax(0,1fr) 290px;gap:24px}
+  .nf-lado{grid-column:2;grid-row:1;position:sticky;top:0}
+  .nf-principal{grid-column:1;grid-row:1}
+}
+.nf-aviso{margin:0;padding:12px 14px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);font-size:14px;line-height:1.45}
+.nf-sec+.nf-sec{margin-top:28px}
+.nf-tit{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;min-height:32px}
+.nf-tit h3{font-size:19px;color:var(--leaf-ink);margin:0}
+.nf-tit .link-btn{padding:6px 2px;min-height:32px;font-size:14px}
+.nf-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+
+/* linha de produto a emitir */
+.nfp{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);color:var(--fg);transition:border-color .15s,background .15s}
+.nfp.sel{border-color:var(--leaf-ink);background:var(--leaf-soft)}
+.nfp-linha{display:grid;grid-template-columns:44px minmax(0,1fr) 164px;grid-template-areas:"chk txt qtd";align-items:center;column-gap:14px;padding:14px 16px 14px 10px}
+.nfp-chk{grid-area:chk;display:grid;place-items:center;width:44px;height:44px;cursor:pointer;border-radius:10px}
+.nfp-chk .nf-chk{width:24px;height:24px;margin:0;accent-color:var(--leaf);cursor:pointer}
+.nfp-txt{grid-area:txt;min-width:0;line-height:1.35}
+.nfp-nome{display:block;font-weight:700;font-size:16px;color:var(--fg);overflow-wrap:anywhere}
+.nfp-info{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 14px;margin-top:3px;color:var(--muted);font-size:13.5px}
+.nfp-dados{min-width:0}
+.nfp-dados>span{white-space:nowrap}
+.nfp-dados>span+span::before{content:"·";margin:0 6px}
+.nfp-info strong{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums}
+.nfp-ver{border:0;background:none;color:var(--leaf-ink);font-size:13.5px;font-weight:600;cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:2px}
+.nfp-qtd{grid-area:qtd;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nfp-rot{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.nfp-qtd .pd-passo{gap:6px}
+.nfp-qtd .pd-passo button{width:44px;height:44px}
+.nfp-qtd .pd-passo input{width:64px;height:44px}
+.nfp:not(.sel) .nfp-qtd .pd-passo input{color:var(--muted)}
+.nfp-tudo{border:0;background:none;color:var(--leaf-ink);font-weight:700;font-size:13px;cursor:pointer;padding:2px 6px;min-height:24px;white-space:nowrap}
+.nfp-vendas{list-style:none;margin:0 16px 0 68px;padding:8px 0 12px;border-top:1px dashed var(--line);display:grid;gap:2px;font-size:13.5px}
+.nfp-vendas li{display:grid;grid-template-columns:150px 56px minmax(0,1fr) auto;align-items:center;gap:10px;color:var(--muted);min-height:36px}
+.nfp-vendas .q{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums;text-align:right}
+.nfp-vendas .d{font-variant-numeric:tabular-nums}
+.nfp-vendas .r{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nfp-vendas button{border:0;background:none;color:var(--erro);font-weight:600;font-size:13px;cursor:pointer;padding:8px 6px}
+@media (max-width:599px){
+  .nfp-linha{grid-template-columns:44px minmax(0,1fr);grid-template-areas:"chk txt" "qtd qtd";row-gap:12px;padding:12px 14px 12px 8px}
+  .nfp-qtd{flex-direction:row;justify-content:flex-end;gap:10px;padding:12px 0 0 6px;border-top:1px dashed var(--line)}
+  .nfp-rot{margin-right:auto;text-transform:none;letter-spacing:0;font-size:13.5px;white-space:nowrap}
+  .nfp-qtd .pd-passo input{width:56px}
+  .nfp-tudo{min-height:44px;padding:0 2px;min-width:64px;text-align:right}
+  .nfp-dados>span{white-space:normal}
+  .nfp-vendas{margin:0 14px 0 52px}
+  .nfp-vendas li{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"d d b" "q r b";gap:0 6px;padding:4px 0}
+  .nfp-vendas .d{grid-area:d;color:var(--fg)}.nfp-vendas .q{grid-area:q;text-align:left}.nfp-vendas .q::after{content:" ·";font-weight:400;color:var(--muted)}.nfp-vendas .r{grid-area:r;white-space:normal}.nfp-vendas button{grid-area:b}
+}
+/* mudas (bandejas) */
+.nfp-muda{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;padding:14px 16px}
+.nfp-muda .btn{min-height:44px;padding:8px 16px;font-size:15px}
+
+/* lançar venda de balcão */
+.nf-lancar{margin:0;padding:16px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);display:grid;gap:12px}
+.nf-lancar h3{font-size:17px;color:var(--leaf-ink);margin:0}
+.nf-l-campos{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:10px;align-items:end}
+.nf-lancar label:not(.check-mini){display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:700;color:var(--muted);min-width:0}
+.nf-lancar .inp{min-height:48px}
+.nf-lancar .btn{min-height:48px}
+.nf-lancar .check-mini{font-weight:500;color:var(--fg);min-height:44px;margin:-4px 0 -6px;line-height:1.3}
+.nf-lancar .check-mini input{flex:none;margin:0}
+.nf-lado .nf-l-campos{grid-template-columns:minmax(0,1fr) 96px}
+.nf-lado .nf-l-prod{grid-column:1/-1}
+@media (max-width:899px){.nf-lado .nf-l-campos{grid-template-columns:minmax(0,1fr) 110px auto}.nf-lado .nf-l-prod{grid-column:auto}}
+@media (max-width:599px){.nf-lado .nf-l-campos{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.nf-lado .nf-l-prod{grid-column:1/-1}}
+
+/* barra de baixo */
+.nf-pe{flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.nf-res{margin-right:auto;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 5px;min-width:0;min-height:48px;align-content:center;line-height:1.25}
+.nf-res b{font-size:16px;font-weight:700}
+.nf-res small{font-size:16px;font-weight:700;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.nf-res small:empty{display:none}
+.nf-acao{display:flex;gap:10px;align-items:stretch}
+.nf-num{display:flex;align-items:center;gap:8px;height:48px;padding:0 12px;border:1.5px solid var(--campo-line);border-radius:12px;background:var(--campo);cursor:text}
+.nf-num:focus-within{border-color:var(--leaf-ink);box-shadow:0 0 0 3px rgba(22,58,34,.18)}
+.nf-num span{flex:none;font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap}
+.nf-num input{border:0;background:none;outline:none;width:110px;min-width:0;height:100%;padding:0;font-size:16px;color:var(--fg)}
+.nf-num input:focus-visible{box-shadow:none}
+.nf-pe .nf-acao .btn-pri{flex:none;height:48px;min-height:48px}
+@media (max-width:599px){
+  .nf-res{width:100%;min-height:0}
+  .nf-acao{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto}
+  .nf-num input{width:100%}
+  .nf-num-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .nf-pe .nf-acao .btn-pri{padding:10px 14px}
+}
+
+/* notas emitidas */
+.nf-notas{display:grid;gap:12px;align-items:start}
+@media (min-width:900px){.nf-notas{grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}}
+.nf-nota{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:14px 16px;display:grid;gap:10px}
+.nf-nota.rev{opacity:.62}
+.nf-nota-cab{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nf-nota-cab b{font:700 18px/1.2 var(--display);color:var(--fg)}
+.nf-nota-cab .hora{margin-left:auto;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.nf-st{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px;background:var(--leaf-soft);color:var(--leaf-ink);border:1px solid color-mix(in srgb,var(--leaf-ink) 25%,transparent)}
+.nf-st.rev{background:var(--bg);color:var(--muted);border-color:var(--line)}
+.nf-nota-itens{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.nf-nota-itens li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.nf-nota-itens .q{font-weight:700;color:var(--leaf-ink);font-variant-numeric:tabular-nums;text-align:right}
+.nf-nota-itens .nm{min-width:0;overflow-wrap:anywhere}
+.nf-nota-itens .vl{color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px;text-align:right}
+.nf-nota.rev .nf-nota-itens .nm{text-decoration:line-through;text-decoration-color:var(--muted)}
+.nf-nota-pe{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-height:44px}
+.nf-nota-pe .tot{margin-right:auto;display:flex;align-items:baseline;gap:8px;font-weight:700;font-size:18px;color:var(--leaf-ink);font-variant-numeric:tabular-nums}
+.nf-nota-pe .tot small{font-size:13px;font-weight:600;color:var(--muted)}
+.nf-nota-pe .btn{min-height:44px;padding:6px 16px;font-size:14px}
+.nf-nota-pe .quando{color:var(--muted);font-size:13px}
+@media (max-width:599px){.nf-nota-cab .hora{flex-basis:100%;margin-left:0}}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -2164,8 +2235,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     <div class="dlg-corpo nf-corpo" id="nfCorpo"></div>
     <div class="dlg-pe nf-pe" id="nfPe" hidden>
       <div class="nf-res"><b id="nfResumo"></b><small id="nfResumo2"></small></div>
-      <label class="nf-num"><span>Nº da nota</span><input class="inp" id="nfNumero" autocomplete="off" inputmode="numeric" placeholder="opcional"></label>
-      <button class="btn btn-pri" type="button" id="btnEmitirNF" disabled>Marcar como emitida</button>
+      <div class="nf-acao">
+        <label class="nf-num"><span>Nº<span class="nf-num-l"> da nota</span></span><input id="nfNumero" autocomplete="off" inputmode="numeric" placeholder="opcional"></label>
+        <button class="btn btn-pri" type="button" id="btnEmitirNF" disabled>Marcar como emitida</button>
+      </div>
     </div>
   </div>
 </dialog>
@@ -5640,8 +5713,8 @@ const ICO_SINO_PC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 /* =====================================================================
    NOTAS FISCAIS — controle do que já foi vendido e falta nota.
    Toda venda (pedido retirado, baixa de estoque, venda lançada) entra em
-   "A emitir". Escolhe os produtos e quantos de cada vão na nota; o resto
-   continua esperando. Nota emitida pode ser revertida (volta para A emitir).
+   "Notas a emitir". Escolhe os produtos e quantos de cada vão na nota; o resto
+   continua esperando. Nota emitida pode ser revertida (volta para Notas a emitir).
    (O painel não transmite a nota para a Sefaz: aqui é o registro/controle.)
    ===================================================================== */
 const nfUi = { vendas: [], notas: [], erro: "", aba: "emitir", sel: {}, aberto: {}, em: 0 };
@@ -5677,33 +5750,41 @@ function abrirNF() { nfUi.sel = {}; nfUi.aba = "emitir"; renderNF(); $("#dlgNF")
 function renderNF() {
   const pend = nfPendentes(), emit = nfUi.notas.filter(n => n.status === "emitida").length;
   const bandejas = produtosBandeja().map(p => ({ p, t: tamBandeja(p.sub), n: Math.floor(Math.max(0, saldoMudas(false).get(p.id) || 0) / tamBandeja(p.sub)) })).filter(x => x.n > 0);
-  $("#nfAbas").innerHTML = [["emitir", "A emitir", pend.length + bandejas.length, true], ["emitidas", "Emitidas", emit]].map(([k, r, n, al]) => `<button type="button" data-nf-aba="${k}" aria-pressed="${nfUi.aba === k}">${r}<span class="n${al && n ? " alerta" : ""}">${n}</span></button>`).join("");
+  $("#nfAbas").innerHTML = [["emitir", "Notas a emitir", pend.length + bandejas.length, true], ["emitidas", "Notas emitidas", emit]].map(([k, r, n, al]) => `<button type="button" data-nf-aba="${k}" aria-pressed="${nfUi.aba === k}">${r}<span class="n${al && n ? " alerta" : ""}">${n}</span></button>`).join("");
   if (nfUi.erro) { $("#nfCorpo").innerHTML = `<p class="vazio">${esc(nfUi.erro)}</p>`; $("#nfPe").hidden = true; return; }
   if (nfUi.aba === "emitidas") { renderNFEmitidas(); return; }
   for (const k of Object.keys(nfUi.sel)) if (!pend.some(a => a.chave === k)) delete nfUi.sel[k];
   const lancar = `<form class="nf-lancar" id="nfLancar" novalidate>
-      <label class="nf-l-prod">Lançar venda de balcão<input class="inp" name="prod" list="nfProdutos" placeholder="Nome do produto…" autocomplete="off"></label>
-      <label>Quantidade<input class="inp" name="qtd" inputmode="decimal" value="1" autocomplete="off"></label>
-      <button class="btn btn-sec" type="submit" style="min-height:46px">Lançar</button>
+      <h3>Lançar venda de balcão</h3>
+      <div class="nf-l-campos">
+        <label class="nf-l-prod">Produto<input class="inp" name="prod" list="nfProdutos" placeholder="Nome do produto…" autocomplete="off"></label>
+        <label class="nf-l-qtd">Quantidade<input class="inp" name="qtd" inputmode="decimal" value="1" autocomplete="off"></label>
+        <button class="btn btn-sec" type="submit">Lançar</button>
+      </div>
       <label class="check-mini"><input type="checkbox" name="baixa" checked> Descontar do estoque (se o produto tiver estoque)</label>
       <datalist id="nfProdutos">${ui.produtos.filter(p => !tamBandeja(p.sub)).map(p => `<option value="${esc(p.nome + (p.marca ? " · " + p.marca : ""))}">`).join("")}</datalist>
     </form>`;
   const lista = pend.length ? `<ul class="nf-lista">${pend.map(a => {
       const sel = nfUi.sel[a.chave], ab = nfUi.aberto[a.chave], q = sel ?? a.pendente;
-      return `<li class="nf-item${sel != null ? " sel" : ""}" data-nf="${esc(a.chave)}">
-        <div class="nf-linha"><input type="checkbox" class="nf-chk" ${sel != null ? "checked" : ""} aria-label="Incluir ${esc(a.nome)} na nota">
-          <span class="nf-txt"><b>${esc(a.nome)}</b><small>Falta nota: <b style="display:inline;color:var(--fg)">${qtdTxt(a.pendente)}</b>${a.valor_unit != null ? ` · ${moeda(Number(a.valor_unit))} cada` : ""}${a.emitido ? ` · já emitido ${qtdTxt(a.emitido)}` : ""}</small>
-            <button type="button" class="nf-ver" data-nf-ver>${ab ? "esconder vendas" : `ver ${a.vendas.length} venda${a.vendas.length > 1 ? "s" : ""}`}</button></span>
-          <span class="nf-qtd"><label>Nesta nota</label><span class="pd-passo"><button type="button" data-nf-passo="-1" aria-label="Menos">−</button><input inputmode="decimal" data-nf-q value="${qtdTxt(q)}" aria-label="Quantos vão nesta nota"><button type="button" data-nf-passo="1" aria-label="Mais">+</button></span>
-            <button type="button" class="tudo" data-nf-tudo>tudo (${qtdTxt(a.pendente)})</button></span></div>
-        ${ab ? `<ul class="nf-vendas">${a.vendas.slice().reverse().map(v => `<li><span>${dataBR(v.criado_em)} · ${qtdTxt(Number(v.qtd))} · ${esc(v.ref || nfOrigem[v.origem] || "")}</span><button type="button" data-nf-apagar="${esc(v.id)}">não foi venda</button></li>`).join("")}</ul>` : ""}
+      return `<li class="nfp${sel != null ? " sel" : ""}" data-nf="${esc(a.chave)}">
+        <div class="nfp-linha">
+          <label class="nfp-chk"><input type="checkbox" class="nf-chk" ${sel != null ? "checked" : ""} aria-label="Incluir ${esc(a.nome)} na nota"></label>
+          <div class="nfp-txt"><b class="nfp-nome">${esc(a.nome)}</b>
+            <div class="nfp-info"><span class="nfp-dados"><span><strong>${qtdTxt(a.pendente)}</strong> a emitir</span>${a.valor_unit != null ? `<span>${moeda(Number(a.valor_unit))} cada</span>` : ""}${a.emitido ? `<span>já emitido ${qtdTxt(a.emitido)}</span>` : ""}</span><button type="button" class="nfp-ver" data-nf-ver aria-expanded="${!!ab}">${ab ? "esconder vendas" : `ver ${a.vendas.length} venda${a.vendas.length > 1 ? "s" : ""}`}</button></div>
+          </div>
+          <div class="nfp-qtd"><span class="nfp-rot">Nesta nota</span><span class="pd-passo"><button type="button" data-nf-passo="-1" aria-label="Menos">−</button><input inputmode="decimal" data-nf-q value="${qtdTxt(q)}" aria-label="Quantos vão nesta nota"><button type="button" data-nf-passo="1" aria-label="Mais">+</button></span>
+            <button type="button" class="nfp-tudo" data-nf-tudo>tudo (${qtdTxt(a.pendente)})</button></div>
+        </div>
+        ${ab ? `<ul class="nfp-vendas">${a.vendas.slice().reverse().map(v => `<li><span class="d">${dataBR(v.criado_em)}</span><span class="q">${qtdTxt(Number(v.qtd))}</span><span class="r">${esc(v.ref || nfOrigem[v.origem] || "")}</span><button type="button" data-nf-apagar="${esc(v.id)}">não foi venda</button></li>`).join("")}</ul>` : ""}
       </li>`; }).join("")}</ul>`
-    : '<p class="vazio">Nada esperando nota. Cada venda (pedido retirado, baixa no estoque ou venda lançada aqui) aparece nesta lista.</p>';
-  const mudas = bandejas.length ? `<div class="nf-tit"><h3>Mudas · bandejas completas</h3></div>
-    <div class="nf-lista nf-mudas">${bandejas.map(({ p, t, n }) => `<div class="nf-item"><span class="nf-txt"><b>${n} bandeja${n > 1 ? "s" : ""} de ${esc(nomeMuda(p))}</b><small>${t} mudas vendidas por bandeja (balcão)</small></span>
-      <button class="btn btn-pri" type="button" data-nf-muda="${esc(p.id)}">NF emitida</button></div>`).join("")}</div>` : "";
-  $("#nfCorpo").innerHTML = `<p class="nf-aviso">Aqui é o controle das notas: marque o que entrou em cada nota depois de emitir no sistema da nota fiscal. Dá para colocar vários produtos na mesma nota e só uma parte da quantidade de cada um.</p>
-    ${lancar}<div class="nf-tit"><h3>Produtos vendidos sem nota</h3>${pend.length ? `<button type="button" class="link-btn" data-nf-todos>${Object.keys(nfUi.sel).length === pend.length ? "desmarcar todos" : "marcar todos"}</button>` : ""}</div>${lista}${mudas}`;
+    : '<p class="vazio">Nenhuma nota a emitir. Cada venda (pedido retirado, baixa no estoque ou venda lançada aqui) aparece nesta lista.</p>';
+  const mudas = bandejas.length ? `<section class="nf-sec"><div class="nf-tit"><h3>Mudas · bandejas completas</h3></div>
+    <div class="nf-lista">${bandejas.map(({ p, t, n }) => `<div class="nfp nfp-muda"><div class="nfp-txt"><b class="nfp-nome">${n} bandeja${n > 1 ? "s" : ""} de ${esc(nomeMuda(p))}</b><div class="nfp-info"><span>${t} mudas por bandeja (balcão)</span></div></div>
+      <button class="btn btn-pri" type="button" data-nf-muda="${esc(p.id)}">Nota emitida</button></div>`).join("")}</div></section>` : "";
+  $("#nfCorpo").innerHTML = `<div class="nf-grade">
+    <div class="nf-lado"><p class="nf-aviso">Marque os produtos e quantos de cada vão na nota. Depois de emitir no sistema da nota fiscal, toque em “Marcar como emitida”.</p>${lancar}</div>
+    <div class="nf-principal"><section class="nf-sec"><div class="nf-tit"><h3>Notas a emitir</h3>${pend.length ? `<button type="button" class="link-btn" data-nf-todos>${Object.keys(nfUi.sel).length === pend.length ? "desmarcar todos" : "marcar todos"}</button>` : ""}</div>${lista}</section>${mudas}</div>
+  </div>`;
   renderNFPe(pend);
 }
 function renderNFPe(pend) {
@@ -5712,16 +5793,16 @@ function renderNFPe(pend) {
   $pe.hidden = nfUi.aba !== "emitir" || !pend.length;
   const total = sel.reduce((t, [k, q]) => { const a = pend.find(x => x.chave === k); return t + (a && a.valor_unit != null ? a.valor_unit * q : 0); }, 0);
   $("#nfResumo").textContent = sel.length ? `${sel.length} produto${sel.length > 1 ? "s" : ""} nesta nota` : "Marque os produtos da nota";
-  $("#nfResumo2").textContent = sel.length ? `Total ${moeda(r2(total))}` : "";
+  $("#nfResumo2").textContent = sel.length ? `· ${moeda(r2(total))}` : "";
   $("#btnEmitirNF").disabled = !sel.length;
 }
 function renderNFEmitidas() {
   $("#nfPe").hidden = true;
-  $("#nfCorpo").innerHTML = nfUi.notas.length ? `<div class="nf-lista">${nfUi.notas.map(n => `<div class="nf-nota${n.status === "revertida" ? " rev" : ""}">
-      <div class="nf-nota-cab"><b>${n.numero ? "NF " + esc(n.numero) : "Nota sem número"}</b><span class="nf-st${n.status === "revertida" ? " rev" : ""}">${n.status === "revertida" ? "Revertida" : "Emitida"}</span><span class="hora">${dataBR(n.emitida_em)}</span></div>
-      <ul class="pc-linhas">${(n.itens || []).map(it => `<li><span class="q">${qtdTxt(Number(it.qtd))}×</span><span class="nm">${esc(it.nome)}</span><span class="vl">${it.valor_unit != null ? moeda(r2(it.valor_unit * it.qtd)) : ""}</span></li>`).join("")}</ul>
-      <div class="nf-nota-pe"><span class="tot">${n.total != null ? moeda(Number(n.total)) : ""}</span>${n.status === "revertida" ? `<small style="color:var(--muted)">revertida ${dataBR(n.revertida_em)}</small>` : `<button type="button" class="btn btn-sec" data-nf-reverter="${esc(n.id)}">Reverter</button>`}</div>
-    </div>`).join("")}</div>` : '<p class="vazio">Nenhuma nota marcada como emitida ainda.</p>';
+  $("#nfCorpo").innerHTML = nfUi.notas.length ? `<div class="nf-notas">${nfUi.notas.map(n => { const rev = n.status === "revertida"; return `<article class="nf-nota${rev ? " rev" : ""}">
+      <div class="nf-nota-cab"><b>${n.numero ? "NF " + esc(n.numero) : "Nota sem número"}</b><span class="nf-st${rev ? " rev" : ""}">${rev ? "Revertida" : "Emitida"}</span><span class="hora">${dataBR(n.emitida_em)}</span></div>
+      <ul class="nf-nota-itens">${(n.itens || []).map(it => `<li><span class="q">${qtdTxt(Number(it.qtd))}×</span><span class="nm">${esc(it.nome)}</span><span class="vl">${it.valor_unit != null ? moeda(r2(it.valor_unit * it.qtd)) : ""}</span></li>`).join("")}</ul>
+      <div class="nf-nota-pe"><span class="tot">${n.total != null ? `<small>Total</small>${moeda(Number(n.total))}` : ""}</span>${rev ? `<span class="quando">revertida ${dataBR(n.revertida_em)}</span>` : `<button type="button" class="btn btn-sec" data-nf-reverter="${esc(n.id)}">Reverter</button>`}</div>
+    </article>`; }).join("")}</div>` : '<p class="vazio">Nenhuma nota marcada como emitida ainda.</p>';
 }
 function nfMudarQtd(li, q) {
   const k = li.dataset.nf, a = nfPendentes().find(x => x.chave === k); if (!a) return;
@@ -5747,8 +5828,8 @@ async function emitirNF() {
 }
 async function reverterNF(id) {
   const n = nfUi.notas.find(x => x.id === id); if (!n) return;
-  if (!confirm(`Reverter ${n.numero ? "a NF " + n.numero : "esta nota"}? Os produtos dela voltam para "A emitir".`)) return;
-  try { Object.assign(n, await comFeedback("Revertendo…", "Nota revertida: os produtos voltaram para A emitir", () => api.salvarNota({ status: "revertida", revertida_em: new Date().toISOString() }, n.id))); renderNF(); renderNFContador(); } catch {}
+  if (!confirm(`Reverter ${n.numero ? "a NF " + n.numero : "esta nota"}? Os produtos dela voltam para "Notas a emitir".`)) return;
+  try { Object.assign(n, await comFeedback("Revertendo…", "Nota revertida: os produtos voltaram para Notas a emitir", () => api.salvarNota({ status: "revertida", revertida_em: new Date().toISOString() }, n.id))); renderNF(); renderNFContador(); } catch {}
 }
 async function lancarVendaNF(f) {
   const nomeTxt = f.elements.prod.value.trim(), q = lerQtd(f.elements.qtd.value);
