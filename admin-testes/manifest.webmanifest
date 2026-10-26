@@ -1,6 +1,6 @@
 {
-  "name": "Painel Defema (demonstração)",
-  "short_name": "Defema demo",
+  "name": "Painel Defema de testes",
+  "short_name": "Defema testes",
   "description": "Painel da loja Defema: produtos, preços, mudas do balcão e carrossel do site.",
   "lang": "pt-BR",
   "start_url": "./",

@@ -2,7 +2,7 @@
    como aplicativo. Estratégia "rede primeiro": sempre busca a versão nova;
    só usa a cópia guardada se estiver sem internet. Nada do Supabase
    (dados, login, fotos enviadas) é guardado aqui. */
-const CACHE = "painel-defema-demo-v1";
+const CACHE = "painel-defema-testes-v1";
 const BASICO = ["./", "./manifest.webmanifest", "./favicon.svg", "./icone-192.png"];
 
 self.addEventListener("install", e => {
