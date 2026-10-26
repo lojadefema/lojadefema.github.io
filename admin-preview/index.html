@@ -4477,9 +4477,23 @@ function padronizarVoltar() {
       if (history.state && history.state.dlg === d.id) { dlgNav.ignorar++; history.back(); }
     });
   });
+  // clicar fora da janela (no fundo escuro) fecha e volta para a página que estava aberta
+  const foraDa = (d, e) => { const r = d.getBoundingClientRect(); return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom; };
+  const fotoForm = d => [...d.querySelectorAll("input,select,textarea")].map(c => c.type === "checkbox" || c.type === "radio" ? c.checked : c.type === "file" ? c.files.length : c.value).join("\u0001");
+  document.querySelectorAll("dialog").forEach(d => {
+    let comecouFora = false;
+    d.addEventListener("pointerdown", e => { comecouFora = e.target === d && foraDa(d, e); });
+    d.addEventListener("click", e => {
+      const fora = comecouFora && e.target === d && foraDa(d, e); comecouFora = false;
+      if (!fora) return;
+      if (d.id === "dlgEditor" && d.dataset.foto !== undefined && d.dataset.foto !== fotoForm(d) && !confirm("Fechar sem salvar as alterações deste produto?")) return;
+      d.close();
+    });
+  });
   const abrir = HTMLDialogElement.prototype.showModal;
   HTMLDialogElement.prototype.showModal = function () {
     abrir.call(this);
+    if (this.id === "dlgEditor") setTimeout(() => { this.dataset.foto = fotoForm(this); }, 0);
     if (!dlgNav.pilha.includes(this)) { dlgNav.pilha.push(this); history.pushState({ ...(history.state || {}), dlg: this.id }, "", location.href); }
   };
 }
