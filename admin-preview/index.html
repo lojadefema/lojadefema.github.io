@@ -1270,6 +1270,54 @@ html:has(dialog[open]){overflow:hidden}
 .pc-rod small{font-size:14px;font-weight:400}
 .ini-pedcli{border-width:1px}
 .ini-pedcli .pc-mini{grid-template-columns:minmax(0,1fr) !important}
+
+/* ---------- notas fiscais ---------- */
+@media (min-width:760px){#dlgNF{width:min(1000px,94vw);height:92vh}#dlgNF .dlg{height:100%}}
+.nf-corpo{padding:12px !important}
+.nf-aviso{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--seed);color:var(--seed-ink);border:1px solid var(--seed-line);font-size:13.5px;line-height:1.4}
+.nf-tit{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 2px 8px}
+.nf-tit h3{font-size:18px;color:var(--leaf-ink);margin:0}
+.nf-tit .link-btn{padding:0}
+.nf-lista{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.nf-item{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.nf-item.sel{border-color:var(--leaf-ink);background:var(--leaf-soft)}
+.nf-linha{display:flex;align-items:center;gap:12px;padding:10px 12px}
+.nf-chk{flex:none;width:28px;height:28px;accent-color:var(--leaf);cursor:pointer}
+.nf-txt{flex:1;min-width:0;line-height:1.3}
+.nf-txt b{display:block;font-weight:600}
+.nf-txt small{display:block;color:var(--muted);font-size:13px}
+.nf-qtd{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.nf-qtd label{font-size:11.5px;font-weight:700;color:var(--muted)}
+.nf-qtd .pd-passo input{width:64px}
+.nf-qtd .tudo{border:0;background:none;color:var(--leaf-ink);font-weight:700;font-size:12.5px;cursor:pointer;padding:0}
+.nf-vendas{list-style:none;margin:0;padding:6px 12px 10px 52px;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:13px}
+.nf-vendas li{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.nf-vendas li span{flex:1;min-width:0}
+.nf-vendas button{border:0;background:none;color:var(--erro);font-weight:600;font-size:12.5px;cursor:pointer;padding:2px 4px}
+.nf-ver{border:0;background:none;color:var(--muted);font-size:12.5px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+.nf-pe{flex-wrap:wrap;align-items:flex-end}
+.nf-res{margin-right:auto;display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.nf-res b{font-size:16px}
+.nf-res small{color:var(--muted);font-size:13px}
+.nf-num{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
+.nf-num .inp{width:130px;min-height:46px}
+.nf-nota{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:12px 14px}
+.nf-nota.rev{opacity:.6}
+.nf-nota-cab{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.nf-nota-cab b{font-size:16px}
+.nf-nota-cab .hora{margin-left:auto;color:var(--muted);font-size:13px}
+.nf-nota .pc-linhas{margin-bottom:8px}
+.nf-nota-pe{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nf-nota-pe .tot{font-weight:700;color:var(--leaf-ink);margin-right:auto}
+.nf-nota-pe .btn{min-height:40px;padding:6px 12px;font-size:14px}
+.nf-st{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 8px;background:#d7f2df;color:#14572f}
+.nf-st.rev{background:#eee;color:#777}
+.nf-lancar{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:8px;align-items:end;padding:12px;border:1.5px dashed var(--line);border-radius:14px;margin-bottom:12px}
+@media (max-width:520px){.nf-lancar{grid-template-columns:1fr 1fr}.nf-lancar .nf-l-prod{grid-column:1/-1}}
+.nf-lancar label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted)}
+.nf-lancar .inp{min-height:46px}
+.nf-lancar .check-mini{grid-column:1/-1;font-weight:500;color:var(--fg)}
+.nf-mudas .nf-item{display:flex;align-items:center;gap:12px;padding:10px 12px}
 /* ---------- fotos extras no editor ---------- */
 .mais-fotos-ed{margin:0 0 12px}
 .mais-fotos-ed .rot{display:block;margin-bottom:6px;font-size:14px}
@@ -1384,6 +1432,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       <button type="button" data-aba="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Início</button>
       <button type="button" data-aba="produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Produtos</button>
       <button type="button" data-aba="precos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.2" cy="8.2" r="1.6"/></svg>Alterar preço</button>
+      <button type="button" data-acao="notas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5v4.5H19M9 12h7M9 15.5h7M9 19h4"/></svg>Notas</button>
       <button type="button" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg>Pedidos</button>
       <button type="button" data-acao="mudas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M5 15h14l-1.5 6h-11zM12 15V9M12 11c0-3 2-5 5.5-5 0 3-2 5-5.5 5zM12 12.5c0-2.4-1.7-4-4.3-4 0 2.4 1.7 4 4.3 4z"/></svg>Mudas</button>
       <button type="button" class="aba-extra" data-acao="pedido" title="Pedir produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>Pedir produtos</button>
@@ -1944,6 +1993,7 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     <div class="dlg-topo"><h2 id="tMais">Mais opções</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="dlg-corpo mais-corpo">
       <button type="button" class="mais-tile mais-pedcli" data-acao="pedcli"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></svg><span>Pedidos</span><b class="pc-n" data-pc-n></b></button>
+      <button type="button" class="mais-tile mais-pedcli" data-acao="notas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5v4.5H19M9 12h7M9 15.5h7M9 19h4"/></svg><span>Notas fiscais</span><b class="pc-n" data-nf-n></b></button>
       <div class="mais-grade mais-pri">
         <button type="button" class="mais-tile pri" data-acao="novo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Novo produto</span></button>
         <button type="button" class="mais-tile pri" data-acao="camera"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Novo pela câmera</span></button>
@@ -2105,6 +2155,18 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
     <div class="pc-abas" id="pcAbas" role="group" aria-label="Situação"></div>
     <div class="dlg-corpo pc-corpo" id="pcCorpo"></div>
     <div class="dlg-pe pc-pe" id="pcPe" hidden></div>
+  </div>
+</dialog>
+<dialog id="dlgNF" aria-labelledby="tNF">
+  <div class="dlg">
+    <div class="dlg-topo"><h2 id="tNF">Notas fiscais</h2><button class="btn btn-sec btn-ico" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="pc-abas" id="nfAbas" role="group" aria-label="Notas"></div>
+    <div class="dlg-corpo nf-corpo" id="nfCorpo"></div>
+    <div class="dlg-pe nf-pe" id="nfPe" hidden>
+      <div class="nf-res"><b id="nfResumo"></b><small id="nfResumo2"></small></div>
+      <label class="nf-num"><span>Nº da nota</span><input class="inp" id="nfNumero" autocomplete="off" inputmode="numeric" placeholder="opcional"></label>
+      <button class="btn btn-pri" type="button" id="btnEmitirNF" disabled>Marcar como emitida</button>
+    </div>
   </div>
 </dialog>
 <div class="pc-aviso" id="pcAviso" role="status" aria-live="polite" hidden></div>
@@ -2365,6 +2427,22 @@ function criarApiDemo() {
       persistir();
       return alteracoes.length;
     },
+    async listarNF() {
+      return { vendas: lerJSON("defema-demo-vendasnf") || [], notas: (lerJSON("defema-demo-notas") || []).slice().sort((a, b) => String(b.emitida_em).localeCompare(String(a.emitida_em))) };
+    },
+    async registrarVendas(lista) {
+      if (!lista.length) return;
+      const v = lerJSON("defema-demo-vendasnf") || [];
+      lista.forEach(x => v.push({ id: novoId(), criado_em: new Date().toISOString(), ...x }));
+      gravarJSON("defema-demo-vendasnf", v);
+    },
+    async apagarVenda(id) { gravarJSON("defema-demo-vendasnf", (lerJSON("defema-demo-vendasnf") || []).filter(x => x.id !== id)); },
+    async salvarNota(dados, id) {
+      await espera(150);
+      const l = lerJSON("defema-demo-notas") || [];
+      if (id) { const x = l.find(y => y.id === id); Object.assign(x, dados); gravarJSON("defema-demo-notas", l); return x; }
+      const n = { id: novoId(), status: "emitida", emitida_em: new Date().toISOString(), ...dados }; l.push(n); gravarJSON("defema-demo-notas", l); return n;
+    },
     async listarPedidosClientes() {
       let l = lerJSON("defema-demo-pedcli");
       if (!l) { // exemplos para a demonstração
@@ -2594,6 +2672,26 @@ function criarApiSupabase(url, chave) {
       const { error } = await sb.from("produtos").delete().eq("id", id);
       falhou(error, "Não foi possível excluir.");
       if (doStorage(fotoPath)) sb.storage.from(BUCKET).remove([fotoPath.replace(/^produtos\//, "")]).catch(() => {});
+    },
+    async listarNF() {
+      const [v, n] = await Promise.all([
+        sb.from("vendas_nf").select("*").order("criado_em").limit(5000),
+        sb.from("notas_fiscais").select("*").order("emitida_em", { ascending: false }).limit(500)]);
+      if ((v.error || n.error) && /vendas_nf|notas_fiscais/.test((v.error || n.error).message || "")) throw new Error("As notas fiscais ainda não foram ativadas no banco.");
+      falhou(v.error, "Não foi possível carregar as vendas."); falhou(n.error, "Não foi possível carregar as notas.");
+      return { vendas: v.data, notas: n.data };
+    },
+    async registrarVendas(lista) {
+      if (!lista.length) return;
+      const { error } = await sb.from("vendas_nf").insert(lista);
+      falhou(error, "A venda foi feita, mas não entrou em Notas a emitir.");
+    },
+    async apagarVenda(id) { const { error } = await sb.from("vendas_nf").delete().eq("id", id); falhou(error, "Não foi possível apagar."); },
+    async salvarNota(dados, id) {
+      const q = id ? sb.from("notas_fiscais").update(dados).eq("id", id) : sb.from("notas_fiscais").insert(dados);
+      const { data, error } = await q.select("*");
+      falhou(error, "Não foi possível salvar a nota."); if (!data || !data.length) throw new Error(NAO_GRAVOU);
+      return data[0];
     },
     async listarPedidosClientes() {
       const desde = new Date(Date.now() - 15 * 864e5).toISOString();
@@ -4201,6 +4299,7 @@ function ligarEventosAbas() {
   ligarEventosPedido();
   ligarEventosChegada();
   ligarEventosPedCli();
+  ligarEventosNF();
   padronizarVoltar();
   // Início
   $("#iniNums").addEventListener("click", e => {
@@ -4703,6 +4802,7 @@ function ligarEventosMais() {
     pedido: daMais(() => abrirPedido()),
     pedidos: daMais(abrirPedidosFeitos),
     pedcli: daMais(() => abrirPedCli(null)),
+    notas: daMais(abrirNF),
     "pedido-repor": daMais(() => abrirPedido("repor")),
     camera: daMais(novoPelaCamera),
     calculadora: daMais(abrirCalculadora),
@@ -4853,8 +4953,14 @@ async function salvarEstoqueSeMudou(p, qTxt, mTxt) { // devolve true se gravou
   if (Number.isNaN(q)) throw new Error("Quantidade em estoque inválida. Use só números, ex.: 12 ou 2,5.");
   if (Number.isNaN(m)) throw new Error("Quantidade para avisar inválida. Use só números, ex.: 5.");
   if (q === (p.estoque ?? null) && m === (p.estoque_min ?? null)) return false;
+  const antes = p.estoque ?? null;
   await api.salvarEstoque(p.id, q, m);
   p.estoque = q; p.estoque_min = m; p.estoque_em = new Date().toISOString();
+  if (antes != null && q != null && q < antes) { // saiu do estoque: entra em Notas a emitir
+    const pr = ui.produtos.find(x => String(x.id) === String(p.id)) || p;
+    try { await api.registrarVendas([{ produto_id: p.id, nome: pr.nome || "Produto", qtd: Math.round((antes - q) * 1000) / 1000, valor_unit: pr.preco ?? null, origem: "estoque", ref: "Baixa no estoque" }]); carregarNF(); }
+    catch (e) { console.warn(e); }
+  }
   return true;
 }
 function ligarEventosEstoque() {
@@ -5503,9 +5609,12 @@ async function acaoPc(acao) {
           if (!enc && pr.estoque != null) { const novo = Math.max(0, Math.round((pr.estoque - it.qtd) * 1000) / 1000); await api.salvarEstoque(pr.id, novo, pr.estoque_min ?? null); pr.estoque = novo; }
         }
         if (mudas.length && p.origem !== "simulado") await api.salvarPedidoMudas(mudas);
+        const vendas = p.itens.filter(it => { const pr = ui.produtos.find(x => String(x.id) === String(it.produto_id)); return !pr || !tamBandeja(pr.sub) || (it.op && /^Bandeja fechada/.test(it.op)); })
+          .map(it => ({ produto_id: it.produto_id || null, nome: it.nome + (it.op && /^Bandeja fechada/.test(it.op) ? ` (${it.op})` : ""), qtd: it.qtd, valor_unit: it.preco ?? null, origem: "pedido", ref: `Pedido Nº ${p.numero}` }));
+        await api.registrarVendas(vendas);
         Object.assign(p, await api.salvarPedidoCliente(p.id, { status: "retirado", retirado_em: new Date().toISOString() }));
       });
-      renderPedCli(); renderPcResumo(); renderLista();
+      renderPedCli(); renderPcResumo(); renderLista(); carregarNF();
     } else if (acao === "cancelado") {
       if (!confirm(`Cancelar o pedido Nº ${p.numero}?`)) return;
       await salvarPc(p, { status: "cancelado" }, "Pedido cancelado");
@@ -5526,6 +5635,154 @@ function ligarEventosPedCli() {
   document.addEventListener("visibilitychange", () => { if (!document.hidden) carregarPedidosClientes(true); });
 }
 const ICO_SINO_PC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>';
+
+
+/* =====================================================================
+   NOTAS FISCAIS — controle do que já foi vendido e falta nota.
+   Toda venda (pedido retirado, baixa de estoque, venda lançada) entra em
+   "A emitir". Escolhe os produtos e quantos de cada vão na nota; o resto
+   continua esperando. Nota emitida pode ser revertida (volta para A emitir).
+   (O painel não transmite a nota para a Sefaz: aqui é o registro/controle.)
+   ===================================================================== */
+const nfUi = { vendas: [], notas: [], erro: "", aba: "emitir", sel: {}, aberto: {}, em: 0 };
+const nfChave = x => x.produto_id ? String(x.produto_id) : "n:" + x.nome;
+function nfPendentes() {
+  const m = new Map();
+  for (const v of nfUi.vendas) {
+    const k = nfChave(v), a = m.get(k) || { chave: k, produto_id: v.produto_id, nome: v.nome, vendido: 0, emitido: 0, valor_unit: v.valor_unit, vendas: [], ultima: v.criado_em };
+    a.vendido += Number(v.qtd); a.vendas.push(v); if (v.valor_unit != null) a.valor_unit = Number(v.valor_unit); if (String(v.criado_em) > String(a.ultima)) a.ultima = v.criado_em;
+    m.set(k, a);
+  }
+  for (const n of nfUi.notas) if (n.status === "emitida") for (const it of n.itens || []) { const a = m.get(nfChave(it)); if (a) a.emitido += Number(it.qtd); }
+  return [...m.values()].map(a => ({ ...a, pendente: Math.max(0, Math.round((a.vendido - a.emitido) * 1000) / 1000) })).filter(a => a.pendente > 0)
+    .sort((a, b) => String(a.ultima).localeCompare(String(b.ultima)));
+}
+async function carregarNF() {
+  try { const r = await api.listarNF(); nfUi.vendas = r.vendas; nfUi.notas = r.notas; nfUi.erro = ""; }
+  catch (e) { nfUi.erro = e.message; }
+  nfUi.em = Date.now();
+  renderNFContador();
+  if ($("#dlgNF").open) renderNF();
+}
+function renderNFContador() {
+  const n = nfPendentes().length + produtosBandeja().filter(p => Math.floor(Math.max(0, saldoMudas(false).get(p.id) || 0) / tamBandeja(p.sub)) > 0).length;
+  document.querySelectorAll("[data-nf-n]").forEach(e => e.textContent = n || "");
+  document.querySelectorAll('#abasTopo [data-acao="notas"]').forEach(b => {
+    let bol = b.querySelector(".aviso-n"); if (!n) { bol?.remove(); return; }
+    if (!bol) { bol = document.createElement("span"); bol.className = "aviso-n"; b.appendChild(bol); } bol.textContent = n;
+  });
+}
+const nfOrigem = { pedido: "pedido", estoque: "baixa no estoque", manual: "venda lançada" };
+function abrirNF() { nfUi.sel = {}; nfUi.aba = "emitir"; renderNF(); $("#dlgNF").showModal(); carregarNF(); if (!mudasUi.movs.length) recarregarMudas().then(() => $("#dlgNF").open && renderNF()).catch(() => {}); }
+function renderNF() {
+  const pend = nfPendentes(), emit = nfUi.notas.filter(n => n.status === "emitida").length;
+  const bandejas = produtosBandeja().map(p => ({ p, t: tamBandeja(p.sub), n: Math.floor(Math.max(0, saldoMudas(false).get(p.id) || 0) / tamBandeja(p.sub)) })).filter(x => x.n > 0);
+  $("#nfAbas").innerHTML = [["emitir", "A emitir", pend.length + bandejas.length, true], ["emitidas", "Emitidas", emit]].map(([k, r, n, al]) => `<button type="button" data-nf-aba="${k}" aria-pressed="${nfUi.aba === k}">${r}<span class="n${al && n ? " alerta" : ""}">${n}</span></button>`).join("");
+  if (nfUi.erro) { $("#nfCorpo").innerHTML = `<p class="vazio">${esc(nfUi.erro)}</p>`; $("#nfPe").hidden = true; return; }
+  if (nfUi.aba === "emitidas") { renderNFEmitidas(); return; }
+  for (const k of Object.keys(nfUi.sel)) if (!pend.some(a => a.chave === k)) delete nfUi.sel[k];
+  const lancar = `<form class="nf-lancar" id="nfLancar" novalidate>
+      <label class="nf-l-prod">Lançar venda de balcão<input class="inp" name="prod" list="nfProdutos" placeholder="Nome do produto…" autocomplete="off"></label>
+      <label>Quantidade<input class="inp" name="qtd" inputmode="decimal" value="1" autocomplete="off"></label>
+      <button class="btn btn-sec" type="submit" style="min-height:46px">Lançar</button>
+      <label class="check-mini"><input type="checkbox" name="baixa" checked> Descontar do estoque (se o produto tiver estoque)</label>
+      <datalist id="nfProdutos">${ui.produtos.filter(p => !tamBandeja(p.sub)).map(p => `<option value="${esc(p.nome + (p.marca ? " · " + p.marca : ""))}">`).join("")}</datalist>
+    </form>`;
+  const lista = pend.length ? `<ul class="nf-lista">${pend.map(a => {
+      const sel = nfUi.sel[a.chave], ab = nfUi.aberto[a.chave], q = sel ?? a.pendente;
+      return `<li class="nf-item${sel != null ? " sel" : ""}" data-nf="${esc(a.chave)}">
+        <div class="nf-linha"><input type="checkbox" class="nf-chk" ${sel != null ? "checked" : ""} aria-label="Incluir ${esc(a.nome)} na nota">
+          <span class="nf-txt"><b>${esc(a.nome)}</b><small>Falta nota: <b style="display:inline;color:var(--fg)">${qtdTxt(a.pendente)}</b>${a.valor_unit != null ? ` · ${moeda(Number(a.valor_unit))} cada` : ""}${a.emitido ? ` · já emitido ${qtdTxt(a.emitido)}` : ""}</small>
+            <button type="button" class="nf-ver" data-nf-ver>${ab ? "esconder vendas" : `ver ${a.vendas.length} venda${a.vendas.length > 1 ? "s" : ""}`}</button></span>
+          <span class="nf-qtd"><label>Nesta nota</label><span class="pd-passo"><button type="button" data-nf-passo="-1" aria-label="Menos">−</button><input inputmode="decimal" data-nf-q value="${qtdTxt(q)}" aria-label="Quantos vão nesta nota"><button type="button" data-nf-passo="1" aria-label="Mais">+</button></span>
+            <button type="button" class="tudo" data-nf-tudo>tudo (${qtdTxt(a.pendente)})</button></span></div>
+        ${ab ? `<ul class="nf-vendas">${a.vendas.slice().reverse().map(v => `<li><span>${dataBR(v.criado_em)} · ${qtdTxt(Number(v.qtd))} · ${esc(v.ref || nfOrigem[v.origem] || "")}</span><button type="button" data-nf-apagar="${esc(v.id)}">não foi venda</button></li>`).join("")}</ul>` : ""}
+      </li>`; }).join("")}</ul>`
+    : '<p class="vazio">Nada esperando nota. Cada venda (pedido retirado, baixa no estoque ou venda lançada aqui) aparece nesta lista.</p>';
+  const mudas = bandejas.length ? `<div class="nf-tit"><h3>Mudas · bandejas completas</h3></div>
+    <div class="nf-lista nf-mudas">${bandejas.map(({ p, t, n }) => `<div class="nf-item"><span class="nf-txt"><b>${n} bandeja${n > 1 ? "s" : ""} de ${esc(nomeMuda(p))}</b><small>${t} mudas vendidas por bandeja (balcão)</small></span>
+      <button class="btn btn-pri" type="button" data-nf-muda="${esc(p.id)}">NF emitida</button></div>`).join("")}</div>` : "";
+  $("#nfCorpo").innerHTML = `<p class="nf-aviso">Aqui é o controle das notas: marque o que entrou em cada nota depois de emitir no sistema da nota fiscal. Dá para colocar vários produtos na mesma nota e só uma parte da quantidade de cada um.</p>
+    ${lancar}<div class="nf-tit"><h3>Produtos vendidos sem nota</h3>${pend.length ? `<button type="button" class="link-btn" data-nf-todos>${Object.keys(nfUi.sel).length === pend.length ? "desmarcar todos" : "marcar todos"}</button>` : ""}</div>${lista}${mudas}`;
+  renderNFPe(pend);
+}
+function renderNFPe(pend) {
+  pend ||= nfPendentes();
+  const sel = Object.entries(nfUi.sel).filter(([, q]) => q > 0), $pe = $("#nfPe");
+  $pe.hidden = nfUi.aba !== "emitir" || !pend.length;
+  const total = sel.reduce((t, [k, q]) => { const a = pend.find(x => x.chave === k); return t + (a && a.valor_unit != null ? a.valor_unit * q : 0); }, 0);
+  $("#nfResumo").textContent = sel.length ? `${sel.length} produto${sel.length > 1 ? "s" : ""} nesta nota` : "Marque os produtos da nota";
+  $("#nfResumo2").textContent = sel.length ? `Total ${moeda(r2(total))}` : "";
+  $("#btnEmitirNF").disabled = !sel.length;
+}
+function renderNFEmitidas() {
+  $("#nfPe").hidden = true;
+  $("#nfCorpo").innerHTML = nfUi.notas.length ? `<div class="nf-lista">${nfUi.notas.map(n => `<div class="nf-nota${n.status === "revertida" ? " rev" : ""}">
+      <div class="nf-nota-cab"><b>${n.numero ? "NF " + esc(n.numero) : "Nota sem número"}</b><span class="nf-st${n.status === "revertida" ? " rev" : ""}">${n.status === "revertida" ? "Revertida" : "Emitida"}</span><span class="hora">${dataBR(n.emitida_em)}</span></div>
+      <ul class="pc-linhas">${(n.itens || []).map(it => `<li><span class="q">${qtdTxt(Number(it.qtd))}×</span><span class="nm">${esc(it.nome)}</span><span class="vl">${it.valor_unit != null ? moeda(r2(it.valor_unit * it.qtd)) : ""}</span></li>`).join("")}</ul>
+      <div class="nf-nota-pe"><span class="tot">${n.total != null ? moeda(Number(n.total)) : ""}</span>${n.status === "revertida" ? `<small style="color:var(--muted)">revertida ${dataBR(n.revertida_em)}</small>` : `<button type="button" class="btn btn-sec" data-nf-reverter="${esc(n.id)}">Reverter</button>`}</div>
+    </div>`).join("")}</div>` : '<p class="vazio">Nenhuma nota marcada como emitida ainda.</p>';
+}
+function nfMudarQtd(li, q) {
+  const k = li.dataset.nf, a = nfPendentes().find(x => x.chave === k); if (!a) return;
+  q = Math.max(0, Math.min(a.pendente, Math.round((q || 0) * 1000) / 1000));
+  if (q > 0) nfUi.sel[k] = q; else delete nfUi.sel[k];
+  li.classList.toggle("sel", q > 0); li.querySelector(".nf-chk").checked = q > 0;
+  const inp = li.querySelector("[data-nf-q]"); if (document.activeElement !== inp) inp.value = qtdTxt(q || a.pendente);
+  renderNFPe();
+}
+async function emitirNF() {
+  const pend = nfPendentes(), sel = Object.entries(nfUi.sel).filter(([, q]) => q > 0);
+  if (!sel.length) return;
+  const itens = sel.map(([k, q]) => { const a = pend.find(x => x.chave === k); return { produto_id: a.produto_id || null, nome: a.nome, qtd: q, valor_unit: a.valor_unit ?? null }; });
+  const total = r2(itens.reduce((t, x) => t + (x.valor_unit != null ? x.valor_unit * x.qtd : 0), 0));
+  const numero = $("#nfNumero").value.trim() || null;
+  if (!confirm(`Marcar como emitida a nota${numero ? " " + numero : ""} com ${itens.length} produto(s) · ${moeda(total)}?`)) return;
+  const btn = $("#btnEmitirNF"); btn.disabled = true;
+  try {
+    const n = await comFeedback("Salvando…", "Nota registrada como emitida ✓", () => api.salvarNota({ numero, itens, total }));
+    nfUi.notas.unshift(n); nfUi.sel = {}; $("#nfNumero").value = "";
+    renderNF(); renderNFContador();
+  } catch { btn.disabled = false; }
+}
+async function reverterNF(id) {
+  const n = nfUi.notas.find(x => x.id === id); if (!n) return;
+  if (!confirm(`Reverter ${n.numero ? "a NF " + n.numero : "esta nota"}? Os produtos dela voltam para "A emitir".`)) return;
+  try { Object.assign(n, await comFeedback("Revertendo…", "Nota revertida: os produtos voltaram para A emitir", () => api.salvarNota({ status: "revertida", revertida_em: new Date().toISOString() }, n.id))); renderNF(); renderNFContador(); } catch {}
+}
+async function lancarVendaNF(f) {
+  const nomeTxt = f.elements.prod.value.trim(), q = lerQtd(f.elements.qtd.value);
+  const p = ui.produtos.find(x => (x.nome + (x.marca ? " · " + x.marca : "")) === nomeTxt) || ui.produtos.find(x => semAcento(x.nome) === semAcento(nomeTxt));
+  if (!p) { toast("Escolha um produto da lista.", "erro"); f.elements.prod.focus(); return; }
+  if (!(q > 0)) { toast("Quantidade inválida.", "erro"); f.elements.qtd.focus(); return; }
+  try {
+    await comFeedback("Lançando…", `Venda lançada: ${qtdTxt(q, p)} de ${p.nome}`, async () => {
+      if (f.elements.baixa.checked && p.estoque != null) { const novo = Math.max(0, Math.round((p.estoque - q) * 1000) / 1000); await api.salvarEstoque(p.id, novo, p.estoque_min ?? null); p.estoque = novo; }
+      await api.registrarVendas([{ produto_id: p.id, nome: p.nome, qtd: q, valor_unit: p.preco ?? null, origem: "manual", ref: "Venda de balcão" }]);
+    });
+    f.reset(); await carregarNF(); renderLista();
+  } catch {}
+}
+function ligarEventosNF() {
+  $("#nfAbas").addEventListener("click", e => { const b = e.target.closest("[data-nf-aba]"); if (b) { nfUi.aba = b.dataset.nfAba; renderNF(); } });
+  $("#nfCorpo").addEventListener("click", async e => {
+    const rv = e.target.closest("[data-nf-reverter]"); if (rv) { reverterNF(rv.dataset.nfReverter); return; }
+    const mu = e.target.closest("[data-nf-muda]"); if (mu) { await marcarNF(mu.dataset.nfMuda, mu); renderNF(); renderNFContador(); return; }
+    if (e.target.closest("[data-nf-todos]")) { const pend = nfPendentes(); if (Object.keys(nfUi.sel).length === pend.length) nfUi.sel = {}; else pend.forEach(a => nfUi.sel[a.chave] = a.pendente); renderNF(); return; }
+    const ap = e.target.closest("[data-nf-apagar]");
+    if (ap) { if (!confirm("Tirar esta venda da lista? (use quando a baixa no estoque não foi venda: perda, troca, ajuste)")) return;
+      try { await comFeedback("Apagando…", "Removida da lista", () => api.apagarVenda(ap.dataset.nfApagar)); nfUi.vendas = nfUi.vendas.filter(v => v.id !== ap.dataset.nfApagar); renderNF(); renderNFContador(); } catch {} return; }
+    const li = e.target.closest("[data-nf]"); if (!li) return;
+    const k = li.dataset.nf, a = nfPendentes().find(x => x.chave === k);
+    if (e.target.closest("[data-nf-ver]")) { nfUi.aberto[k] = !nfUi.aberto[k]; renderNF(); return; }
+    if (e.target.matches(".nf-chk")) { nfMudarQtd(li, e.target.checked ? (Number(lerQtd(li.querySelector("[data-nf-q]").value)) || a.pendente) : 0); return; }
+    if (e.target.closest("[data-nf-tudo]")) { nfMudarQtd(li, a.pendente); return; }
+    const ps = e.target.closest("[data-nf-passo]"); if (ps) nfMudarQtd(li, (nfUi.sel[k] ?? (Number(ps.dataset.nfPasso) > 0 ? 0 : a.pendente)) + Number(ps.dataset.nfPasso));
+  });
+  $("#nfCorpo").addEventListener("change", e => { if (!e.target.matches("[data-nf-q]")) return; const li = e.target.closest("[data-nf]"); const q = lerQtd(e.target.value); nfMudarQtd(li, Number.isNaN(q) ? 0 : q); });
+  $("#nfCorpo").addEventListener("submit", e => { if (e.target.id === "nfLancar") { e.preventDefault(); lancarVendaNF(e.target); } });
+  $("#btnEmitirNF").addEventListener("click", emitirNF);
+}
 
 /* ---------- LOGIN ---------- */
 async function entrar(ev) {
@@ -5552,6 +5809,7 @@ async function posLogin(sessao) {
   if (ui.aba === "inicio") carregarExtrasInicio(true);
   if (ui.aba === "precos") carregarHistPrecos(true);
   carregarPedidosClientes(true);
+  carregarNF();
 }
 
 /* ---------- EVENTOS ---------- */
