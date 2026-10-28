@@ -381,34 +381,45 @@ html:has(dialog[open]){overflow:hidden}
 /* ---------- vistas (compacto / detalhado) ---------- */
 .resumo{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .vistas{display:none}
+.dep-barra{display:none}
 @media (min-width:1024px){
   .vistas{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:3px;background:var(--surface);gap:2px}
   .vistas button{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:6px 12px;border-radius:7px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer}
   .vistas button svg{width:17px;height:17px}
   .vistas button[aria-pressed="true"]{background:var(--leaf-soft);color:var(--leaf-ink)}
-  .lista.det{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(200px,calc((100vh - 292px) / 3));gap:14px}
-  .det-card{min-height:0}
-  .det-item{align-items:stretch;gap:18px;padding:14px;min-height:0;overflow:hidden}
-  .det-foto{width:auto;height:100%;aspect-ratio:1;max-height:260px;border-radius:14px;font-size:14px;align-self:center}
-  .det-foto img{padding:8px}
-  .det-semfoto{display:grid;place-items:center;text-align:center;color:var(--muted);font:600 14px var(--body);gap:2px;padding:10px}
-  .det-semfoto small{font-weight:500;font-size:12px}
-  .det-info{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1;overflow:hidden}
+  .lista.det{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));grid-auto-rows:auto;gap:12px}
+  .det-card{display:grid;grid-template-rows:1fr auto;min-height:0}
+  .det-item{align-items:flex-start;gap:12px;padding:12px 12px 10px;min-height:0;overflow:hidden;border-radius:var(--r) var(--r) 0 0}
+  .det-foto{width:104px;height:104px;flex:none;aspect-ratio:1;border-radius:12px;font-size:13px}
+  .det-foto img{padding:6px}
+  .det-semfoto{display:grid;place-items:center;text-align:center;color:var(--muted);font:600 13px var(--body);gap:2px;padding:8px}
+  .det-semfoto small{font-weight:500;font-size:11.5px}
+  .det-info{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1;overflow:hidden}
   .det-info>*{flex:none}
-  .det-meta{font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .det-meta{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .det-meta b{color:var(--fg);font-weight:600}
-  .det-nome{font:700 20px/1.2 var(--display);color:var(--fg);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .det-dados{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 14px;font-size:14px;line-height:1.35;margin-top:2px}
+  .det-nome{font:700 16.5px/1.25 var(--display);color:var(--fg);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .det-dados{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:13px;line-height:1.35;margin-top:1px}
   .det-k{color:var(--muted);white-space:nowrap}
-  .det-v{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .det-v b{color:var(--leaf-ink);font-size:15px}
+  .det-v{min-width:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .det-v b{color:var(--leaf-ink);font-size:14px}
   .det-v s{color:var(--muted)}
   .det-consultar{color:var(--soil);font-weight:600}
   .det-desc.curta{-webkit-line-clamp:1}
-  .det-desc{font-size:13px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:auto}
+  .det-desc{font-size:12.5px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
   .det-desc.vazia{font-style:italic}
   .tag.on{background:var(--leaf-soft);color:var(--leaf-ink)}
-  .det-card .acoes{width:128px;padding:12px 12px 12px 4px;justify-content:flex-start}
+  .det-card .acoes{width:auto;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:7px 12px;border-top:1px solid var(--line)}
+  .det-card .acoes .preco-btn{flex:0 1 auto;min-width:118px;min-height:38px;width:auto}
+  .det-mais{grid-column:1 / -1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0 4px;color:var(--muted);font-size:14px}
+  .det-mais button{min-height:42px;padding:0 22px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-weight:600;cursor:pointer}
+  .det-mais button:hover{border-color:var(--leaf-ink);color:var(--leaf-ink)}
+  .dep-barra{display:flex;flex-direction:column;gap:6px;position:sticky;top:62px;z-index:6;background:var(--bg);padding:8px 0 10px;margin:0 0 10px;border-bottom:1px solid var(--line)}
+  .dep-barra[hidden]{display:none}
+  .dep-linha{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+  .dep-linha .chip{min-height:34px;padding:4px 12px;font-size:13.5px}
+  .dep-linha.subs .chip{min-height:30px;padding:3px 11px;font-size:13px;font-weight:500}
+  .dep-linha.subs .rot{align-self:center;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:none;margin-right:2px}
   .paginas{display:flex;align-items:center;gap:6px;margin-top:18px;flex-wrap:wrap}
   .paginas[hidden]{display:none}
   .paginas button{min-width:40px;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:600;cursor:pointer;color:var(--fg)}
@@ -1657,9 +1668,10 @@ dialog .toasts{bottom:calc(84px + env(safe-area-inset-bottom))}
       </select></label>
       <div class="vistas" role="group" aria-label="Modo de exibição">
         <button type="button" data-vista="compacta" aria-pressed="true" title="Compacto: 4 por linha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Compacto</button>
-        <button type="button" data-vista="detalhe" aria-pressed="false" title="Detalhado: 2 colunas, 6 por página"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.5"/><path d="M13 5.5h8M13 9.5h6"/><rect x="3" y="13" width="7" height="7" rx="1.5"/><path d="M13 14.5h8M13 18.5h6"/></svg>Detalhado</button>
+        <button type="button" data-vista="detalhe" aria-pressed="false" title="Detalhado: foto maior e todos os dados"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.5"/><path d="M13 5.5h8M13 9.5h6"/><rect x="3" y="13" width="7" height="7" rx="1.5"/><path d="M13 14.5h8M13 18.5h6"/></svg>Detalhado</button>
       </div>
     </div>
+    <nav class="dep-barra" id="depBarra" aria-label="Departamentos e subcategorias" hidden></nav>
     <ul class="lista" id="lista"></ul>
     <nav class="paginas" id="paginas" aria-label="Páginas" hidden></nav>
     </div>
@@ -2910,7 +2922,17 @@ function tamBandeja(sub) { const m = /^Bandeja (\d+) mudas$/.exec(sub || ""); re
 const ui = { deps: [], produtos: [], filtro: { q: "", dep: "", chip: "todos" }, editandoPreco: null, vista: lerVista(), pagina: 1 };
 function lerVista() { try { return localStorage.getItem("defema-admin-vista") === "detalhe" ? "detalhe" : "compacta"; } catch { return "compacta"; } }
 const mqLargo = window.matchMedia("(min-width:1024px)");
-const POR_PAGINA = 6;
+window.addEventListener("resize", () => { const bar = document.getElementById("depBarra"), topo = document.querySelector(".topo"); if (bar && topo) bar.style.top = topo.offsetHeight + "px"; });
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-mais-lote]")) { ui.pagina = (ui.pagina || 1) + 1; renderLista(); return; }
+  const d = e.target.closest("[data-bar-dep]"), s = e.target.closest("[data-bar-sub]");
+  if (!d && !s) return;
+  if (d) { ui.filtro.dep = d.dataset.barDep === ui.filtro.dep ? "" : d.dataset.barDep; ui.filtro.sub = ""; const sel = document.getElementById("filtroDep"); if (sel) sel.value = ui.filtro.dep; }
+  else { ui.filtro.sub = s.dataset.barSub === ui.filtro.sub ? "" : s.dataset.barSub; ui.filtro.subDep = ui.filtro.dep; }
+  ui.pagina = 1; renderLista();
+  const lista = document.getElementById("depBarra"); if (lista && lista.getBoundingClientRect().top < 0) lista.scrollIntoView({ block: "start" });
+});
+const POR_LOTE = 30; // vista detalhada: carrega de 30 em 30 enquanto rola
 const ORDENS = [["dep", "Departamento", "Separados por departamento, A–Z dentro de cada um"], ["az", "Nome", "Todos em ordem alfabética"], ["marca", "Marca", "Separados por marca"]];
 ui.ordem = (() => { try { const o = localStorage.getItem("defema-admin-ordem2"); return ORDENS.some(x => x[0] === o) ? o : "dep"; } catch { return "dep"; } })();
 const marcaDe = p => (p.marca || "").trim() || "Sem marca";
@@ -3081,7 +3103,8 @@ function renderLista() {
 }
 function renderListaBase() {
   const { q, dep, chip } = ui.filtro;
-  const doDep = ui.produtos.filter(p => !dep || p.dep === dep);
+  const sub = dep && ui.filtro.subDep === dep ? (ui.filtro.sub || "") : "";
+  const doDep = ui.produtos.filter(p => (!dep || p.dep === dep) && (!sub || p.sub === sub));
   const { itens: base, parecidos } = filtrarBusca(doDep, q);
   // contagem sempre do catálogo inteiro ("Todos" = todos os produtos cadastrados)
   $("#chips").innerHTML = CHIPS.map(([id, rot, f]) =>
@@ -3090,7 +3113,8 @@ function renderListaBase() {
   const vis = base.filter(filtroChip).sort(compararOrdem);
   renderFiltrosProdutos();
   $("#ordem").value = ui.ordem;
-  const filtros = [dep && `em ${dep}`, q.trim() && `buscando “${q.trim()}”`].filter(Boolean).join(", ");
+  renderDepBarra(dep, sub);
+  const filtros = [dep && `em ${dep}${sub ? " › " + sub : ""}`, q.trim() && `buscando “${q.trim()}”`].filter(Boolean).join(", ");
   $("#resumo").textContent = (vis.length === ui.produtos.length ? `${vis.length} produtos` : `Mostrando ${vis.length} de ${ui.produtos.length} produtos`) + (filtros ? ` · ${filtros}` : "")
     + (parecidos ? " · nenhum resultado exato, mostrando parecidos" : "");
   document.querySelectorAll("[data-vista]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.vista === ui.vista)));
@@ -3134,10 +3158,33 @@ function linhaCompacta(p) {
 /* ---------- vista detalhada: 2 colunas, 6 por página, foto grande e todos os dados ---------- */
 function dataBR(iso) { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("pt-BR") + " às " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }); }
 function renderDetalhe(vis) {
-  const total = Math.ceil(vis.length / POR_PAGINA);
-  ui.pagina = Math.min(Math.max(1, ui.pagina), total);
-  const ini = (ui.pagina - 1) * POR_PAGINA, pag = vis.slice(ini, ini + POR_PAGINA);
+  const lotes = Math.max(1, ui.pagina || 1);
+  const pag = vis.slice(0, lotes * POR_LOTE);
+  const porGrupo = new Map();
+  vis.forEach(p => { const g = grupoDe(p); porGrupo.set(g, (porGrupo.get(g) || 0) + 1); });
+  let gAtual;
   $("#lista").innerHTML = pag.map(p => {
+    let cab = "";
+    const g = grupoDe(p);
+    if (g !== null && g !== gAtual) { gAtual = g; cab = `<li class="grupo-tit"><h3>${esc(g)}</h3><span>${porGrupo.get(g)} produto${porGrupo.get(g) === 1 ? "" : "s"}</span></li>`; }
+    return cab + cartaoDetalhe(p);
+  }).join("") + (pag.length < vis.length
+    ? `<li class="det-mais" id="detMais"><span>Mostrando ${pag.length} de ${vis.length}</span><button type="button" data-mais-lote>Mostrar mais ${Math.min(POR_LOTE, vis.length - pag.length)}</button></li>`
+    : (vis.length > POR_LOTE ? `<li class="det-mais"><span>Fim da lista · ${vis.length} produtos</span></li>` : ""));
+  observarMais();
+}
+let obsMais = null;
+function observarMais() {
+  const el = document.getElementById("detMais");
+  if (!("IntersectionObserver" in window)) return;
+  if (!obsMais) obsMais = new IntersectionObserver(ents => {
+    if (ents.some(e => e.isIntersecting) && document.getElementById("detMais")) { obsMais.disconnect(); ui.pagina = (ui.pagina || 1) + 1; renderLista(); }
+  }, { rootMargin: "700px 0px" });
+  obsMais.disconnect();
+  if (el) obsMais.observe(el);
+}
+function cartaoDetalhe(p) {
+  return [p].map(p => {
     const t = tamBandeja(p.sub);
     const selos = [];
     selos.push(p.ativo ? '<span class="tag on">No site</span>' : '<span class="tag off">Oculto</span>');
@@ -3160,26 +3207,28 @@ function renderDetalhe(vis) {
       <span class="thumb det-foto">${foto}</span>
       <span class="det-info">
         <span class="det-nome">${esc(p.nome)}</span>
-        <span class="det-meta">${p.marca ? `<b>${esc(p.marca)}</b> · ` : ""}${esc(p.dep || "—")} › ${esc(p.sub || "—")}</span>
+        <span class="det-meta">${p.marca ? `<b>${esc(p.marca)}</b> · ` : ""}${ui.ordem === "dep" ? esc(p.sub || "—") : `${esc(p.dep || "—")} › ${esc(p.sub || "—")}`}</span>
         <span class="tags">${selos.join("")}</span>
         <span class="det-dados">${linhas.map(([k, v, html]) => `<span class="det-k">${esc(k)}</span><span class="det-v">${html ? v : esc(v)}</span>`).join("")}</span>
         ${p.descricao ? `<span class="det-desc${linhas.length > 2 ? " curta" : ""}">${esc(p.descricao)}</span>` : '<span class="det-desc vazia">Sem descrição (o site usa o texto automático).</span>'}
       </span>
     </button>${htmlAcoes(p)}</li>`;
-  }).join("");
-  const nav = $("#paginas");
-  if (total > 1) {
-    const nums = [];
-    for (let i = 1; i <= total; i++) {
-      if (i === 1 || i === total || Math.abs(i - ui.pagina) <= 2) nums.push(i);
-      else if (nums[nums.length - 1] !== "…") nums.push("…");
-    }
-    nav.innerHTML = `<button type="button" data-pag="${ui.pagina - 1}" ${ui.pagina === 1 ? "disabled" : ""} aria-label="Página anterior">‹ Anterior</button>
-      ${nums.map(n => n === "…" ? '<span class="pag-gap">…</span>' : `<button type="button" data-pag="${n}" ${n === ui.pagina ? 'aria-current="page"' : ""}>${n}</button>`).join("")}
-      <button type="button" data-pag="${ui.pagina + 1}" ${ui.pagina === total ? "disabled" : ""} aria-label="Próxima página">Próxima ›</button>
-      <span class="pag-info">${ini + 1}–${ini + pag.length} de ${vis.length}</span>`;
-    nav.hidden = false;
+  })[0];
+}
+function renderDepBarra(dep, sub) {
+  const bar = $("#depBarra"); if (!bar) return;
+  const n = f => ui.produtos.filter(f).length;
+  const deps = [["", "Todos", ui.produtos.length], ...ui.deps.map(d => [d.nome, d.nome, n(p => p.dep === d.nome)])];
+  let html = `<div class="dep-linha">${deps.map(([v, rot, c]) => `<button type="button" class="chip" data-bar-dep="${esc(v)}" aria-pressed="${dep === v}"><span class="chip-rot">${esc(rot)}</span> <span class="n">${c}</span></button>`).join("")}</div>`;
+  if (dep) {
+    const d = ui.deps.find(x => x.nome === dep);
+    const nomes = [...(d ? d.subcategorias.map(s => s.nome) : []), ...new Set(ui.produtos.filter(p => p.dep === dep).map(p => p.sub))].filter((s, i, a) => s && a.indexOf(s) === i);
+    const subs = nomes.map(s => [s, n(p => p.dep === dep && p.sub === s)]).filter(([, c]) => c);
+    if (subs.length > 1) html += `<div class="dep-linha subs"><span class="rot">${esc(dep)}</span><button type="button" class="chip" data-bar-sub="" aria-pressed="${!sub}">Tudo</button>${subs.map(([s, c]) => `<button type="button" class="chip" data-bar-sub="${esc(s)}" aria-pressed="${sub === s}"><span class="chip-rot">${esc(s)}</span> <span class="n">${c}</span></button>`).join("")}</div>`;
   }
+  bar.innerHTML = html;
+  bar.hidden = false;
+  const topo = document.querySelector(".topo"); if (topo) bar.style.top = topo.offsetHeight + "px";
 }
 
 /* ---------- ações rápidas na lista ---------- */
@@ -6128,7 +6177,7 @@ function ligarEventos() {
 
 /* ---------- versão nova publicada? recarrega sozinho (evita página antiga aberta há horas) ---------- */
 (function(){
-  const VERSAO = "202610270914"; window.VERSAO_APP = VERSAO;
+  const VERSAO = "202610272102"; window.VERSAO_APP = VERSAO;
   let ultima = 0;
   async function conferir(){
     if(Date.now() - ultima < 60000) return; ultima = Date.now();
